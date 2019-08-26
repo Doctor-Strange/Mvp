@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IndexForm renders correctly 1`] = `
+<div
+  className="box_account sc-bdVaJa iCQMGH"
+>
+  <form
+    className="ui form"
+    onSubmit={[Function]}
+  >
+    <style>
+      .DatePicker__calendarContainer {
+  transform: translateX(-22%);
+}
+
+    </style>
+    <div
+      className="DatePicker "
+    >
+      <div
+        className="src__Box-sc-1sbtrzs-0 wrapper index-box src__Flex-sc-1sbtrzs-1 hbkKnB"
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-start",
+            "margin": "0 auto",
+          }
+        }
+      >
+        <div
+          className="indexFullOnMobile src__Box-sc-1sbtrzs-0 bLCTMv"
+          width={
+            Array [
+              0.25,
+            ]
+          }
+        >
+          <div
+            className="field"
+          >
+            <label
+              htmlFor="carCity"
+            >
+              خودرو را کجا تحویل می‌گیرید؟
+            </label>
+            <div
+              aria-busy={true}
+              aria-expanded={false}
+              className="ui loading selection dropdown"
+              id="carCity"
+              name="carCity"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              role="listbox"
+              tabIndex={0}
+            >
+              <div
+                aria-live="polite"
+                className="default text"
+                role="alert"
+              >
+                شهر
+              </div>
+              <i
+                aria-hidden="true"
+                className="dropdown icon"
+                onClick={[Function]}
+              />
+              <div
+                className="menu transition"
+              >
+                <div
+                  aria-checked={true}
+                  aria-selected={true}
+                  className="active selected item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    کمی صبر کنید...
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="indexFullOnMobile src__Box-sc-1sbtrzs-0 bLCTMv"
+          width={
+            Array [
+              0.25,
+            ]
+          }
+        >
+          <div
+            className="field"
+            style={
+              Object {
+                "margin": 0,
+              }
+            }
+          >
+            <label>
+              از تاریخ
+            </label>
+          </div>
+          <input
+            aria-label="انتخاب تاریخ"
+            className="DatePicker__input index"
+            onFocus={[Function]}
+            placeholder="از تاریخ"
+            readOnly={true}
+            value=""
+          />
+        </div>
+        <div
+          className="indexFullOnMobile src__Box-sc-1sbtrzs-0 bLCTMv"
+          width={
+            Array [
+              0.25,
+            ]
+          }
+        >
+          <div
+            className="field"
+            style={
+              Object {
+                "margin": 0,
+              }
+            }
+          >
+            <label>
+              تا تاریخ
+            </label>
+          </div>
+          <input
+            aria-label="انتخاب تاریخ"
+            className="DatePicker__input"
+            onFocus={[Function]}
+            placeholder="تا تاریخ"
+            readOnly={true}
+            value=""
+          />
+        </div>
+        <div
+          className="indexFullOnMobile src__Box-sc-1sbtrzs-0 bLCTMv"
+          width={
+            Array [
+              0.25,
+            ]
+          }
+        >
+          <div
+            className="field"
+            style={
+              Object {
+                "fontSize": "0.8em",
+                "textAlign": "center",
+              }
+            }
+          >
+            <button
+              className="ui primary button btn_1 full-width"
+              onClick={[Function]}
+              type="submit"
+            >
+              جستجو
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+</div>
+`;

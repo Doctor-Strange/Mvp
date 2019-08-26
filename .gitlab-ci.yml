@@ -1,0 +1,33 @@
+image: node:10
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - setup
+#   - test
+  - deploy
+
+setup:
+  stage: setup
+  image: node:10
+  script:
+    - echo "Test"
+    - npm install
+    - npm install -g now
+  tags:
+    - docker
+
+
+# test:
+#   stage: test
+#   script: npm test
+
+deploy_staging:
+  stage: deploy
+  script:
+    - ./node_modules/.bin/now --token=$NOW_TOKEN
+  tags:
+    - docker
+  only:
+    - master

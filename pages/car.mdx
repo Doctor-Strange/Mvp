@@ -1,0 +1,47 @@
+---
+name: Car Single
+menu: Pages
+---
+
+# Car Single Page
+In indivisual rental car page, first at the server siede `getInitalProps` we look for `props.query.search_id` to get car with `search_id` wich alow us to get additinal props like `avg_price_per_day` and more.
+
+```jsx
+static async getInitialProps(props) {
+...
+    if (props.query.search_id)
+        res = await REQUEST_getCar({
+            search_id: props.query.search_id,
+        });
+    else if (props.query.id)
+        res = await REQUEST_getCar({
+            id: props.query.id,
+        });
+    return {
+        namespacesRequired: ['common'],
+        rentalCarID: props.query.id,
+        start: props.query.start,
+        end: props.query.end,
+        search_id: props.query.search_id,
+        ...res
+    };
+}
+```
+
+> there is variables like `mileage_ranges` in this page that need to refactored due to bugs they made.
+
+then we using components like [CarNav](/carNav) and `درخواست اجاره` button if it was in mobile. 
+also `nuka-carousel` for image slider.
+
+For other components in this page look at:
+```jsx
+<ContentSideCard shareBar={true} pushTopMargin={true}>
+    <CarSideCard ... /> 
+</ContentSideCard>
+<ContentCard ... >
+    <ContentCardTitle>
+    ...
+</ContentCard>
+```
+
+if user click on `reserve` buttons, thay will be redirected to [checkout](/checkout) page.

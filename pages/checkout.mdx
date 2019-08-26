@@ -1,0 +1,55 @@
+---
+name: Checkout
+menu: Pages
+---
+
+# Checkout
+Check out page is the last step for making a car rent request. using `REQUEST_newRentRequest` and passing `seach_id` we can get information about current rent and if they clicked on reserve button, the reserve function will be called.
+
+```jsx
+async reserve(search_id) {
+    // check if user is logged in, if its not, open login modal
+    if (!jsCookie.get('token')) {
+        this.state.openModal();
+        return;
+    }
+    try {
+        const res = await REQUEST_newRentRequest({
+            search_id,
+            token: jsCookie.get('token')
+        })
+        if (res) {
+            Router.push({
+                pathname: '/requests',
+                query: {
+                    id: search_id
+                }
+            });
+        }
+    }
+    catch (error) {
+        // console.log(error.data);
+        this.showError(error.data.message);
+    }
+}
+```
+
+also in some pages we use `sweet-alert` for showing erros and messages.
+```jsx
+showError(text) {
+    swal(
+        <div>
+            <h1>خطایی غیرمنتظره رخ داد</h1>
+            <span>{text}</span>
+        </div>,
+        {
+            button: {
+                text: "بستن",
+                closeModal: true,
+            },
+        }
+    );
+}
+```
+
+if user click on `reserve` buttons, the reserver will be done and a new **car rent request** will be genrated thay will be redirected to [requests](/requests) page.

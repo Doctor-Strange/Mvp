@@ -1,0 +1,58 @@
+---
+name: Profile
+menu: Pages
+---
+
+# Profile
+In some components like this we used **React Hooks** and suggest you to refactor others to it too.
+
+If the profile page was at the user own page, with `useEffect` we flag a state to render other options for them.
+```jsx
+useEffect(() => {
+    fetchAPI();
+    console.warn("user id is: ", jsCookie.get('user_id'));
+    if (jsCookie.get('user_id') == id) {
+        setOwnership(true);
+    }
+}, []);
+```
+
+and then we using `<ResultsCards />` that was initialy used in [**search results**](search-results) to show the user car we fetched in `fetchAPI` in `useEffect`.
+```jsx
+async function fetchAPI() {
+    const res = await REQUEST_getUserCars({ id });
+    setRresults(res);
+    setLoading(false);
+}
+```
+
+and also we're using `<UserCard />` conponent to render the rest of the page.
+```jsx
+<UserCard
+    id={22}
+    firstname={first_name}
+    lastname={last_name}
+    username={username}
+    responceTime="میانگین زمان پاسخگویی: نامشخص"
+    image={image_url}
+    own={own}
+    onUpdate={({username = null, id = null}) => {
+        if(username){
+            Router.pushRoute('profile_username', {username});
+        }
+        else {
+            Router.pushRoute('profile_id', {id});
+        }
+    }}
+/>
+```
+
+> if user have a username (e.g @username) they profile link will be something like `website.org/@username`. if not, then their link will be their userid number. this also handled in `getInitalProps`.
+```jsx
+if(props.query.id && resUser.username && props.res){
+    props.res.writeHead(302, {
+        Location: '/@' + resUser.username
+    })
+    props.res.end()
+}
+```

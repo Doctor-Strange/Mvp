@@ -22,7 +22,7 @@
     "heroku-postbuild": "NODE_ENV=production next build"
   },
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.16.4", 
     "@rebass/grid": "^6.0.0-7",
     "@sentry/browser": "^5.4.0",
     "@sweetalert/with-react": "^0.1.1",

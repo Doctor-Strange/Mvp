@@ -332,20 +332,29 @@ export default withRouter(
                     // this.setState(this.props.results);
 
                     // get Locations and assign them to state
-                    const resLocations = await REQUEST_getLocations({ brief: true });
-                    this.setState(resLocations);
+                    //  ====>
+                    //  Commnented by sajad 980605
+                    // I Have No Idea Why???!!!
+                    //  ====>
+                    // const resLocations = await REQUEST_getLocations({ brief: true });
+                    // console.log("resLocations ==>>",resLocations )
+                    // this.setState(resLocations);
 
-                    if (this.state.city) {
-                        this.state.citiesFarsi.map((value, index) => {
-                            if (value.value == this.state.city) {
-                                this.setState({ cityName: this.state.citiesFarsi[index].text });
-                            }
-                        });
-                    }
-
+                    // if (this.state.city) {
+                    //     this.state.citiesFarsi.map((value, index) => {
+                    //         if (value.value == this.state.city) {
+                    //             this.setState({ cityName: this.state.citiesFarsi[index].text });
+                    //         }
+                    //     });
+                    // }
+                    //  ====>
+                    //  Commnented by sajad 980605
+                    // list of ALL brand company
+                    //  ====>
+                    
                     // get car brands and assign them to state
-                    const resBrands = await REQUEST_getFactoryBrands({ limit: 900 });
-                    this.setState(resBrands);
+                    // const resBrands = await REQUEST_getFactoryBrands({ limit: 900 });
+                    // this.setState(resBrands);
                 }
 
                 // renderResultsDebounced(page = 0) {

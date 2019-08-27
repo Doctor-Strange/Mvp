@@ -30,7 +30,7 @@ import { ITheme } from "../../theme/Interfaces";
 const FilterAndSort = styled.div`
     width: 100vw;
     padding: 10px 0 5px 0;
-    background: ${({theme}:{theme:ITheme}) => theme.color.whiteBackground};
+    // background: ${({theme}:{theme:ITheme}) => theme.color.whiteBackground};
     border-bottom: 1px solid ${({theme}:{theme:ITheme}) => theme.color.fadedGray};
     z-index: 99 !important;
     position: relative;
@@ -132,6 +132,12 @@ const FilterAndSort = styled.div`
         font-size: 0.75rem;
         color: rgba(0, 0, 0, 0.5);
     }
+    .MoreFilterLoad{
+      display:none;
+      @media (max-width: 990px) {
+        display:block
+      }
+    } 
 `;
 
 const FiltersDiv = styled.div`
@@ -211,8 +217,7 @@ export class FilterAndSortBar extends React.Component<{
     const ta = <span style={{}}>تا</span>;
     return (
       <>
-        <Form>
-          <FilterAndSort className="filters_listing sticky_horizontal hide_on_desktop">
+          <FilterAndSort className="filters_listing sticky_horizontal ">
             <div className="container">
               <ul className="clearfix">
                 <li>
@@ -235,7 +240,7 @@ export class FilterAndSortBar extends React.Component<{
                     <label onClick={(e) => { togglePriceSort("-price") }} >قیمت زیاد به کم</label>
                   </div>
                 </li>
-                <li>
+                <li className="MoreFilterLoad">
                   <a
                     className="btn_filt"
                     data-toggle="collapse"
@@ -267,6 +272,9 @@ export class FilterAndSortBar extends React.Component<{
               </ul>
             </div>
           </FilterAndSort>
+        <Form>
+          {/* ==> sajad */}
+          {/* <FilterAndSort className="filters_listing sticky_horizontal hide_on_desktop"> */}
           <Transition visible={showFilters} duration={300}>
             <FiltersDiv className="collapse" id="filters">
               <div className="container margin_16">

@@ -124,7 +124,7 @@ const AddCarImageUpload: React.FC<{
             // console.log(picturesPreview)
             setPicturesPreview(picturesPreview);
               picturesID.push(response.data.id);
-              console.log("picturesID =>> ",picturesID)
+              // console.log("picturesID =>> ",picturesID)
               setPicturesID(picturesID);
           })
           .catch(error => {
@@ -156,7 +156,6 @@ const AddCarImageUpload: React.FC<{
           </div>
           <aside>
             <div className="flexParentCards">
-            {console.log(picturesPreview)}
               {picturesPreview.map(
                 (image, index) => (
                   <div className="flexItem">

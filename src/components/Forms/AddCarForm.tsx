@@ -1275,7 +1275,7 @@ export default withTranslation('common')(connect(state => state)(
                         <Icon name="help circle" />{' '}
                         VIN را از کجا پیدا کنیم؟
                         </span>
-                      <span   style={{ fontSize: '12px', fontWeight: 400, color:"firebrick" }}>
+                      <span   style={{ fontSize: '12px', fontWeight: 400}}>
                        کد شناسایی خودرو فقط جهت تنظیم قرارداد اجاره به کار می‌رود و در سایت نمایش داده نمی‌شود.
                         </span>
                     </div>
@@ -1379,7 +1379,7 @@ export default withTranslation('common')(connect(state => state)(
                         />
                       </div>
                     </Form.Group>
-                    <span   style={{ fontSize: '12px', fontWeight: 400, color:"firebrick",marginBottom: '20px',
+                    <span   style={{ fontSize: '12px', fontWeight: 400,marginBottom: '20px',
                     marginTop: "-25px",display: 'block' }}>
                     پلاک خودرو فقط جهت تنظیم قرارداد اجاره به کار می‌رود و در سایت نمایش داده نمی‌شود.
                         </span>

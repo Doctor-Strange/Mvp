@@ -88,36 +88,41 @@ const AddCarImageUpload: React.FC<{
   }
   return (
     <Dropzone
-    onChange ={acceptedFiles => {
-      acceptedFiles.forEach(file => {
-        REQUEST_newCarMedia({ file, token: jsCookie.get('token') })
-        .then(response => {
-            picturesID.push(response.data.id);
-            console.log("picturesID =>> ",picturesID)
-            setPicturesID(picturesID);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onabort = () =>
-          // console.log('file reading was aborted');
-        reader.onerror = () =>
-          // console.log('file reading has failed');
-        reader.onload = () => {
-          // console.log('file reading was susceed',picturesPreview);
-          picturesPreview.push(reader.result);
-          // console.log(picturesPreview)
-          setPicturesPreview(picturesPreview);
-        };
-      });
-    }}
+    // onChange ={acceptedFiles => {
+    //   acceptedFiles.forEach(file => {
+    //     REQUEST_newCarMedia({ file, token: jsCookie.get('token') })
+    //     .then(response => {
+    //       picturesPreview.push(reader.result);
+
+    //       console.log("picture Uploded successfully")
+    //       setPicturesPreview(picturesPreview);
+    //         picturesID.push(response.data.id);
+    //         console.log("picturesID =>> ",picturesID)
+    //         setPicturesID(picturesID);
+    //     })
+    //     .catch(error => {
+    //       console.error(error);
+    //     });
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onabort = () =>
+    //       // console.log('file reading was aborted');
+    //     reader.onerror = () =>
+    //       // console.log('file reading has failed');
+    //     reader.onload = () => {
+    //       // console.log('file reading was susceed',picturesPreview);
+          
+    //     };
+    //   });
+    // }}
       accept="image/jpeg, image/png, image/jpg"
       onDrop={acceptedFiles => {
         acceptedFiles.forEach(file => {
           REQUEST_newCarMedia({ file, token: jsCookie.get('token') })
           .then(response => {
+            picturesPreview.push(reader.result);
+            // console.log(picturesPreview)
+            setPicturesPreview(picturesPreview);
               picturesID.push(response.data.id);
               console.log("picturesID =>> ",picturesID)
               setPicturesID(picturesID);
@@ -151,6 +156,7 @@ const AddCarImageUpload: React.FC<{
           </div>
           <aside>
             <div className="flexParentCards">
+            {console.log(picturesPreview)}
               {picturesPreview.map(
                 (image, index) => (
                   <div className="flexItem">

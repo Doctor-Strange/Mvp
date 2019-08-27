@@ -104,6 +104,9 @@ const BoxAccount = styled.div`
       font-size: 18px;
     }
   }
+  select:disabled{
+    opacity:0.2;
+  }
   .selection {
     font-size: 14px;
     border-radius: 3px;
@@ -767,7 +770,7 @@ export default withTranslation('common')(connect(state => state)(
                     }
                     </optgroup>
                     </select>
-                    <Form.Group>
+                    {/* <Form.Group> */}
                       {/* {isBrowser &&
                         <Form.Dropdown
                           name="carCity"
@@ -825,7 +828,22 @@ export default withTranslation('common')(connect(state => state)(
                         </div>
                       } */}
                       {/* {this.state.shouldCityDistrictShow ? ( */}
-                        <Form.Dropdown
+                        <lable>محله</lable>
+                    <select 
+                    disabled={
+                      this.state.cityDistrictFarsi[0].value == null
+                    }
+                    // onBlur={(e)=> {;;}} 
+                    onChange= {(e) => {values.carDistrict = e.target.value}}>
+                    <optgroup >
+                    <option value="">محله خود را انتخاب کنید</option>
+                      {this.state.cityDistrictFarsi.map(i => 
+                      <option value={i.value} key={i.key} >{i.text}</option>
+                      )
+                    }
+                    </optgroup>
+                    </select>
+                        {/* <Form.Dropdown
                           name="carDistrict"
                           id="carDistrict"
                           search
@@ -856,12 +874,12 @@ export default withTranslation('common')(connect(state => state)(
                             }
                           }}
                           value={values.carDistrict}
-                        />
+                        /> */}
                       {/*) 
                        : (
                           <p />
                         )} */}
-                    </Form.Group>
+                    {/* </Form.Group> */}
 
                     <Form.Group className="carModelRow" id="carBrand">
                       <Form.Dropdown
@@ -954,8 +972,30 @@ export default withTranslation('common')(connect(state => state)(
                         }}
                         value={values.carModel}
                       />
-                      {isBrowser &&
-                        <Form.Dropdown
+                      {/* {isBrowser && */}
+                      <div className="field">
+
+                      <lable>سال</lable>
+
+                      <select 
+                      style={{
+                        height: "50px",
+                        marginTop: "4px"
+                      }}
+                    disabled={this.state.yearsFarsi[0].value == null}
+                    // onBlur={(e)=> {;;}} 
+                    onChange= {(e) => {values.carYear = e.target.value}}>
+                    <optgroup >
+                    <option value="">سال</option>
+                      {this.state.yearsFarsi.map(i => 
+                      <option value={i.value} key={i.key} >{i.text}</option>
+                      )
+                    }
+                    </optgroup>
+                    </select>
+                    </div>
+
+                        {/* <Form.Dropdown
                           name="carYear"
                           id="carYear"
                           search
@@ -982,9 +1022,9 @@ export default withTranslation('common')(connect(state => state)(
                             }
                           }}
                           value={values.carYear}
-                        />
-                      }
-                      {isMobile &&
+                        /> */}
+                      {/* // } */}
+                      {/* {isMobile &&
                         <div className="field">
                           <label>{"سال"}</label>
                           <select
@@ -1006,7 +1046,7 @@ export default withTranslation('common')(connect(state => state)(
                             ))}
                           </select>
                         </div>
-                      }
+                      } */}
                     </Form.Group>
 
                     <Form.Field style={{ margin: 0 }}>
@@ -1047,7 +1087,7 @@ export default withTranslation('common')(connect(state => state)(
                       />
                     </Form.Group>
 
-                    {isBrowser &&
+                    {/* {isBrowser && */}
                       <Form.Dropdown
                         name="carBodyStyle"
                         id="carBodyStyle"
@@ -1077,9 +1117,9 @@ export default withTranslation('common')(connect(state => state)(
                         }}
                         value={values.carBodyStyle}
                       />
-                    }
-                    {isMobile &&
-                      <div className="field">
+                    {/* } */}
+                    {/* {isMobile && */}
+                      {/* <div className="field">
                         <label>{t('carProperty.cassis')}</label>
                         <select
                           name="carBodyStyle"
@@ -1099,10 +1139,10 @@ export default withTranslation('common')(connect(state => state)(
                             <option value={item.value} label={item.text} />
                           ))}
                         </select>
-                      </div>
-                    }
+                      </div> */}
+                    {/* } */}
 
-                    {isBrowser &&
+                    {/* {isBrowser && */}
                       <Form.Input
                         // label={t('carProperty.capacity') + ' ' + t('carProperty.withDriver')}
                         label={"ظرفیت خودرو"}
@@ -1120,8 +1160,8 @@ export default withTranslation('common')(connect(state => state)(
                         }}
                         value={values.carCapacity}
                       />
-                    }
-                    {isMobile &&
+                    {/* } */}
+                    {/* {isMobile &&
                       <div className="field">
                         <label>{"ظرفیت خودرو"}</label>
                         <select
@@ -1156,7 +1196,7 @@ export default withTranslation('common')(connect(state => state)(
                           <option value={16} label={"۱۶"} />
                         </select>
                       </div>
-                    }
+                    } */}
 
                     <Form.Group>
                       {isBrowser &&

@@ -109,8 +109,25 @@ const BoxAccount = styled.div`
       font-size: 18px;
     }
   }
-  select:disabled{
+  .fieldEmulator{
+    margin-bottom:18px;
+    .diz{
+      opacity:0.2
+    }
+  }
+  .fieldEmulator select:disabled{
     opacity:0.2;
+  }
+  .field select, .fieldEmulator select  {
+    height : 48px;
+  }
+  label{
+    display: block;
+    margin: 0 0 .28571429rem 0;
+    color: rgba(0,0,0,.87);
+    font-size: .92857143em;
+    font-weight: 700;
+    text-transform: none;
   }
   .selection {
     font-size: 14px;
@@ -129,6 +146,9 @@ const BoxAccount = styled.div`
       min-width: 150px !important;
     }
   }
+  .visible.menu {
+    height: auto !important;
+  }
   @media (min-width: 767px) {
     .carModelRow {
       .field:not(:first-child) {
@@ -145,6 +165,7 @@ const BoxAccount = styled.div`
     }
   }
   .colorpicker {
+    color: #666 !important;
     .menu {
       right: 0 !important;
       @media only screen and (max-width: 767px) {
@@ -778,18 +799,18 @@ export default withTranslation('common')(connect(state => state)(
                     {/* <Form.Field style={{ margin: 0 }}>
                       <label>{t('carProperty.whereIsIt')}</label>
                     </Form.Field> */}
-                    <lable>ماشین شما کجاست؟</lable>
+                    <div className="field">
+                    <label>ماشین شما کجاست؟</label>
                     <select  
                     // onBlur={(e)=> {;;}} 
                     onChange= {(e) => {this.setCityDistrict(e.target.value);values.carCity = e.target.value}}>
-                    <optgroup label="ماشین شما کجاست؟">
-                    <option value="">شهر را انتخاب کنید</option>
+                    <option value=""></option>
                       {this.state.citiesFarsi.map(i => 
                       <option value={i.value} key={i.key} >{i.text}</option>
                       )
                     }
-                    </optgroup>
                     </select>
+                    </div>
                     {/* <Form.Group> */}
                       {/* {isBrowser &&
                         <Form.Dropdown
@@ -848,21 +869,23 @@ export default withTranslation('common')(connect(state => state)(
                         </div>
                       } */}
                       {/* {this.state.shouldCityDistrictShow ? ( */}
-                        <lable>محله</lable>
+                    <div className="fieldEmulator">
+
+                    <label className ={this.state.cityDistrictFarsi[0].value == null ? "diz": null}>محله</label>
                     <select 
+                    id="Mahaleh"
                     disabled={
                       this.state.cityDistrictFarsi[0].value == null
                     }
                     // onBlur={(e)=> {;;}} 
                     onChange= {(e) => {values.carDistrict = e.target.value}}>
-                    <optgroup >
-                    <option value="">محله خود را انتخاب کنید</option>
+                    <option value=""></option>
                       {this.state.cityDistrictFarsi.map(i => 
                       <option value={i.value} key={i.key} >{i.text}</option>
                       )
                     }
-                    </optgroup>
                     </select>
+                    </div>
                         {/* <Form.Dropdown
                           name="carDistrict"
                           id="carDistrict"
@@ -995,7 +1018,7 @@ export default withTranslation('common')(connect(state => state)(
                       {/* {isBrowser && */}
                       <div className="field">
 
-                      <lable>سال</lable>
+                      <label>سال</label>
 
                       <select 
                       style={{
@@ -1005,13 +1028,11 @@ export default withTranslation('common')(connect(state => state)(
                     disabled={this.state.yearsFarsi[0].value == null}
                     // onBlur={(e)=> {;;}} 
                     onChange= {(e) => {values.carYear = e.target.value}}>
-                    <optgroup >
-                    <option value="">سال</option>
+                    <option value=""></option>
                       {this.state.yearsFarsi.map(i => 
                       <option value={i.value} key={i.key} >{i.text}</option>
                       )
                     }
-                    </optgroup>
                     </select>
                     </div>
 
@@ -1109,7 +1130,7 @@ export default withTranslation('common')(connect(state => state)(
                     {/* {isBrowser && */}
                     <div className="field">
 
-                      <lable>نوع شاسی</lable>
+                      <label>نوع شاسی</label>
 
                       <select 
                         style={{
@@ -1119,13 +1140,11 @@ export default withTranslation('common')(connect(state => state)(
                         disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
                         onChange= {(e) => {values.carBodyStyle = e.target.value}}>
-                        <optgroup >
-                          <option value="">نوع شاسی</option>
+                          <option value=""></option>
                             {this.state.bodyStyleFarsi.map(i => 
                             <option value={i.value} key={i.key} >{i.text}</option>
                             )
                           }
-                          </optgroup>
                       </select>
                     </div>
                       {/* <Form.Dropdown
@@ -1183,7 +1202,43 @@ export default withTranslation('common')(connect(state => state)(
                     {/* } */}
 
                     {/* {isBrowser && */}
-                      <Form.Input
+                    <div className="field">
+
+                      <label>ظرفیت خودرو</label>
+                    <select
+                          name="carCapacity"
+                          className={Boolean(errors.carCapacity && touched.carCapacity) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
+                          value={values.carCapacity}
+                          onChange={(e) => {
+                            //console.log(e.target.value);
+                            if (e.target && e.target.name) {
+                              setFieldValue(e.target.name, Number(e.target.value));
+                            }
+                          }}
+                          // onBlur={handleBlur}
+                          style={{ display: 'block' }}
+                        >
+                          <option value={""} label={""} hidden />
+                          <option value={1} label={"۱"} />
+                          <option value={2} label={"۲"} />
+                          <option value={3} label={"۳"} />
+                          <option value={4} label={"۴"} />
+                          <option value={5} label={"۵"} />
+                          <option value={6} label={"۶"} />
+                          <option value={7} label={"۷"} />
+                          <option value={8} label={"۸"} />
+                          <option value={9} label={"۹"} />
+                          <option value={10} label={"۱۰"} />
+                          <option value={11} label={"۱۱"} />
+                          <option value={12} label={"۱۲"} />
+                          <option value={13} label={"۱۳"} />
+                          <option value={14} label={"۱۴"} />
+                          <option value={15} label={"۱۵"} />
+                          <option value={16} label={"۱۶"} />
+                          <option value={16} label={"17"} />
+                        </select>
+                        </div>
+                      {/* <Form.Input
                         // label={t('carProperty.capacity') + ' ' + t('carProperty.withDriver')}
                         label={"ظرفیت خودرو"}
                         name="carCapacity"
@@ -1199,7 +1254,7 @@ export default withTranslation('common')(connect(state => state)(
                           }
                         }}
                         value={values.carCapacity}
-                      />
+                      /> */}
                     {/* } */}
                     {/* {isMobile &&
                       <div className="field">
@@ -1239,7 +1294,7 @@ export default withTranslation('common')(connect(state => state)(
                     } */}
                     <div className="field">
 
-                    <lable>کارکرد خودرو</lable>
+                    <label>کارکرد خودرو</label>
 
                     <select 
                       style={{
@@ -1249,13 +1304,11 @@ export default withTranslation('common')(connect(state => state)(
                       disabled={this.state.yearsFarsi[0].value == null}
                       // onBlur={(e)=> {;;}} 
                       onChange= {(e) => {values.carKmDriven = e.target.value}}>
-                      <optgroup >
-                        <option value="">کارکرد خودرو</option>
+                        <option value=""></option>
                           {kmDrivenFarsi.map(i => 
                           <option value={i.value} key={i.key} >{i.text}</option>
                           )
                         }
-                        </optgroup>
                     </select>
                     </div>
 
@@ -1332,13 +1385,13 @@ export default withTranslation('common')(connect(state => state)(
                         }
                         style={{ direction: 'ltr' }}
                       />
-                      <span onClick={this.openVINHint} style={{ fontSize: '12px', fontWeight: 400 }}>
+                      <span onClick={this.openVINHint} style={{ fontSize: '12px',textDecoration : 'underline', fontWeight: 400 }}>
                         <Icon name="help circle" />{' '}
                         VIN را از کجا پیدا کنیم؟
                         </span>
-                      <span   style={{ fontSize: '12px', fontWeight: 400}}>
+                      <p   style={{ fontSize: '12px', fontWeight: 400}}>
                        کد شناسایی خودرو فقط جهت تنظیم قرارداد اجاره به کار می‌رود و در سایت نمایش داده نمی‌شود.
-                        </span>
+                        </p>
                     </div>
 
                     <Form.Field style={{ margin: 0 }}>
@@ -1498,12 +1551,12 @@ export default withTranslation('common')(connect(state => state)(
                         onBlur={handleBlur}
                         value={values.carColor}
                       >
-                        <Dropdown.Menu>
+                        <Dropdown.Menu >
                           {/* <Dropdown.Header
                                 icon="tags"
                                 content="Tag Label"
                               /> */}
-                          <Dropdown.Menu scrolling>
+                          <Dropdown.Menu scrolling >
                             {this.state.colors.map(option => (
                               <Dropdown.Item
                                 onClick={(e, data) => {

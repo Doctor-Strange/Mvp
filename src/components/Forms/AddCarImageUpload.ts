@@ -67,6 +67,63 @@ const DropZoneDiv = styled.section`
     }
   }
 `;
+
+const Spinner= styled.div`
+  display: inline-block;
+  position: relative;
+  width: 150px;
+  height: 42px;
+  color: #666;
+div {
+  position: absolute;
+  top: 7px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #666;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
+}`
 const AddCarImageUpload: React.FC<{
   t: any;
   picturesID: any;
@@ -79,6 +136,7 @@ const AddCarImageUpload: React.FC<{
   removePictureID,
 }) => {
   const [picturesPreview, setPicturesPreview] = useState([]);
+  const [loading, loadingHandler] = useState(0);
  const removePicture = (i) => {
     removePictureID(i);
     var picturesPreviewIndex = picturesPreview.indexOf(i);
@@ -117,9 +175,14 @@ const AddCarImageUpload: React.FC<{
     // }}
       accept="image/jpeg, image/png, image/jpg"
       onDrop={acceptedFiles => {
+        loadingHandler(true)
+            // console.log(picturesPreview)
         acceptedFiles.forEach(file => {
           REQUEST_newCarMedia({ file, token: jsCookie.get('token') })
           .then(response => {
+            loadingHandler(false)
+
+
             picturesPreview.push(reader.result);
             // console.log(picturesPreview)
             setPicturesPreview(picturesPreview);
@@ -146,9 +209,28 @@ const AddCarImageUpload: React.FC<{
       }}
     >
       {({ getRootProps, getInputProps }) => (
-        <DropZoneDiv
+        loading ? <div style ={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingTop:"20px",
+          marginBottom: "24px",
+          borderWidth: "2px",
+          borderRadius: "2px",
+          borderColor: "#eeeeee",
+          borderStyle: "dashed",
+          backgroundColor:"#fafafa",
+          color: "#bdbdbd",
+          outline: "none",
+          transition: "border 0.24s ease-in-out",
+          borderRadius: "0.28571429rem",
+              }}>
+              <Spinner >درحال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
+              </div>
+        
+        :<DropZoneDiv
           className="container"
-          style={{ padding: 0 }}
+          style={{ padding: 0, }}
         >
           <div {...getRootProps({ className: 'dropzone' })}>
             <input {...getInputProps()} />

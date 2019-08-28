@@ -43,6 +43,11 @@ import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from
 const BoxAccount = styled.div`
   margin-bottom: 25px;
   margin-top: 25px;
+  select * {
+    font-family Vazir;
+    color: rgba(0,0,0,.87);
+    line-height: 24px;
+  }
   h3 {
     font-size: 21px;
     font-size: 1.3125rem;
@@ -1048,7 +1053,6 @@ export default withTranslation('common')(connect(state => state)(
                         </div>
                       } */}
                     </Form.Group>
-
                     <Form.Field style={{ margin: 0 }}>
                       <label>{"نوع دنده"}</label>
                     </Form.Field>
@@ -1088,7 +1092,28 @@ export default withTranslation('common')(connect(state => state)(
                     </Form.Group>
 
                     {/* {isBrowser && */}
-                      <Form.Dropdown
+                    <div className="field">
+
+                      <lable>نوع شاسی</lable>
+
+                      <select 
+                        style={{
+                          height: "50px",
+                          marginTop: "4px"
+                        }}
+                        disabled={this.state.yearsFarsi[0].value == null}
+                        // onBlur={(e)=> {;;}} 
+                        onChange= {(e) => {values.carBodyStyle = e.target.value}}>
+                        <optgroup >
+                          <option value="">نوع شاسی</option>
+                            {this.state.bodyStyleFarsi.map(i => 
+                            <option value={i.value} key={i.key} >{i.text}</option>
+                            )
+                          }
+                          </optgroup>
+                      </select>
+                    </div>
+                      {/* <Form.Dropdown
                         name="carBodyStyle"
                         id="carBodyStyle"
                         placeholder={"نوع شاسی"}
@@ -1116,7 +1141,7 @@ export default withTranslation('common')(connect(state => state)(
                           }
                         }}
                         value={values.carBodyStyle}
-                      />
+                      /> */}
                     {/* } */}
                     {/* {isMobile && */}
                       {/* <div className="field">
@@ -1197,8 +1222,29 @@ export default withTranslation('common')(connect(state => state)(
                         </select>
                       </div>
                     } */}
+                    <div className="field">
 
-                    <Form.Group>
+                    <lable>کارکرد خودرو</lable>
+
+                    <select 
+                      style={{
+                        height: "50px",
+                        marginTop: "4px"
+                      }}
+                      disabled={this.state.yearsFarsi[0].value == null}
+                      // onBlur={(e)=> {;;}} 
+                      onChange= {(e) => {values.carKmDriven = e.target.value}}>
+                      <optgroup >
+                        <option value="">کارکرد خودرو</option>
+                          {kmDrivenFarsi.map(i => 
+                          <option value={i.value} key={i.key} >{i.text}</option>
+                          )
+                        }
+                        </optgroup>
+                    </select>
+                    </div>
+
+                    {/* <Form.Group>
                       {isBrowser &&
                         <Form.Dropdown
                           name="carKmDriven"
@@ -1251,7 +1297,7 @@ export default withTranslation('common')(connect(state => state)(
                           </select>
                         </div>
                       }
-                    </Form.Group>
+                    </Form.Group> */}
                     <div className="field">
                       <label>
                         {"کد شناسایی خودرو (VIN)"}

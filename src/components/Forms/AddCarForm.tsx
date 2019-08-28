@@ -571,9 +571,9 @@ export default withTranslation('common')(connect(state => state)(
       const { t } = this.props;
       const fieldErrorGenrator = fieldName => {
         return (
-          t('forms.error_filed_required1') +
+          " لطفاً فیلد " +
           fieldName +
-          t('forms.error_filed_required2')
+          " را پر کنید. "
         );
       };
       if (token) return (
@@ -601,7 +601,22 @@ export default withTranslation('common')(connect(state => state)(
             actions: FormikActions<IAddCarFormValues>
           ) => {
             actions.setSubmitting(true);
-            //console.log(this.state.picturesID);
+            // if (!values.carCity) {
+            //   // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
+            //   this.setState({ error: 'خود رو در کدام شهر است؟' });
+            //   actions.setSubmitting(false);
+            //   return false;
+            // }else if (!value.carDistrict) {
+            //   // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
+            //   this.setState({ error: 'خود رو در کدام منطقه است؟' });
+            //   actions.setSubmitting(false);
+            //   return false;
+            // }else if (!carYear) {
+            //   // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
+            //   this.setState({ error: 'سال خودرو را به درستی انتخاب نکرده اید' });
+            //   actions.setSubmitting(false);
+            //   return false;
+            // }else
             if (this.state.picturesID.length <= 0) {
               // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
               this.setState({ error: 'لطفاً حداقل یک تصویر بارگذاری کنید.' });
@@ -685,59 +700,59 @@ export default withTranslation('common')(connect(state => state)(
           }}
           validationSchema={Yup.object().shape({
             carCity: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.city')))
-              .typeError(fieldErrorGenrator(t('carProperty.city'))),
-            carDistrict: Yup.number(),
-            // .required(fieldErrorGenrator(t('carProperty.district')))
-            // .typeError(fieldErrorGenrator(t('carProperty.district'))),
+              .required(fieldErrorGenrator("شهر خودرو"))
+              .typeError(fieldErrorGenrator("شهر خودرو")),
+            carDistrict: Yup.number()
+            .required(fieldErrorGenrator("محله"))
+            .typeError(fieldErrorGenrator("محله")),
             carBrand: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.brand')))
-              .typeError(fieldErrorGenrator(t('carProperty.brand'))),
+              .required(fieldErrorGenrator("برند"))
+              .typeError(fieldErrorGenrator("برند")),
             carModel: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.model')))
-              .typeError(fieldErrorGenrator(t('carProperty.model'))),
+              .required(fieldErrorGenrator("مدل"))
+              .typeError(fieldErrorGenrator("مدل")),
             carYear: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.year')))
-              .typeError(fieldErrorGenrator(t('carProperty.year'))),
+              .required(fieldErrorGenrator("سال"))
+              .typeError(fieldErrorGenrator("سال")),
             carGearboxType: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.gearBoxType')))
-              .typeError(fieldErrorGenrator(t('carProperty.gearBoxType')))
+              .required(fieldErrorGenrator("نوع دنده"))
+              .typeError(fieldErrorGenrator("نوع دنده"))
               .min(1)
               .max(2),
             carBodyStyle: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.cassis')))
-              .typeError(fieldErrorGenrator(t('carProperty.cassis'))),
+              .required(fieldErrorGenrator("نوع شاسی"))
+              .typeError(fieldErrorGenrator("نوع شاسی")),
             carCapacity: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.capacity')))
-              .typeError(fieldErrorGenrator(t('carProperty.capacity'))),
+              .required(fieldErrorGenrator("ظرفیت خودرو"))
+              .typeError(fieldErrorGenrator("ظرفیت خودرو")),
             carKmDriven: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.kmDriven')))
-              .typeError(fieldErrorGenrator(t('carProperty.kmDriven'))),
+              .required(fieldErrorGenrator("کارکرد خودرو"))
+              .typeError(fieldErrorGenrator("کارکرد خودرو")),
             carVIN: Yup.string()
-              .required(fieldErrorGenrator(t('carProperty.VIN')))
-              .typeError(fieldErrorGenrator(t('carProperty.VIN')))
-              .matches(/[A-HJ-NPR-Z0-9]{17}/, t('forms.error_VIN_not_valid')),
+              .required(fieldErrorGenrator("VIN"))
+              .typeError(fieldErrorGenrator("VIN"))
+              .matches(/[a-zA-Z0-9]{17}/, t("کد VIN معتبر نیست")),
             carLicensePlates1: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.licensePlates')))
-              .typeError(fieldErrorGenrator(t('carProperty.licensePlates')))
+              .required(fieldErrorGenrator("بخش نخست شماره پلاک باید ۲ رقم باشد"))
+              .typeError(fieldErrorGenrator("بخش نخست شماره پلاک باید ۲ رقم باشد"))
               .min(10, t('forms.error_licensePlates1_not_valid'))
               .max(99, t('forms.error_licensePlates1_not_valid')),
             carLicensePlates2: Yup.string()
-              .required(fieldErrorGenrator(t('carProperty.licensePlates')))
-              .typeError(fieldErrorGenrator(t('carProperty.licensePlates'))),
+              .required(fieldErrorGenrator("بخش سوم شماره پلاک باید ۳ رقم باشد"))
+              .typeError(fieldErrorGenrator("بخش سوم شماره پلاک باید ۳ رقم باشد")),
             carLicensePlates3: Yup.number()
               .required(fieldErrorGenrator(t('carProperty.licensePlates')))
               .typeError(fieldErrorGenrator(t('carProperty.licensePlates')))
               .min(100, t('forms.error_licensePlates3_not_valid'))
               .max(999, t('forms.error_licensePlates3_not_valid')),
             carLicensePlates4: Yup.number()
-              .required(fieldErrorGenrator(t('carProperty.licensePlates')))
-              .typeError(fieldErrorGenrator(t('carProperty.licensePlates')))
+              .required(fieldErrorGenrator("کد استانی شماره پلاک باید ۲ رقم باشد"))
+              .typeError(fieldErrorGenrator("کد استانی شماره پلاک باید ۲ رقم باشد"))
               .min(10, t('forms.error_licensePlates4_not_valid'))
               .max(99, t('forms.error_licensePlates4_not_valid')),
             carColor: Yup.mixed()
-              .required(fieldErrorGenrator(t('carProperty.color')))
-              .typeError(fieldErrorGenrator(t('carProperty.color')))
+              .required(fieldErrorGenrator("رنگ"))
+              .typeError(fieldErrorGenrator("رنگ"))
             // carOptions: [string]:Yup.number().required( t('forms.error_filed_required1') +                   t('carProperty.city') + t('forms.error_filed_required2') ),
             // carDescription: Yup.string()
           })}
@@ -754,7 +769,7 @@ export default withTranslation('common')(connect(state => state)(
             errors,
             touched
           }) => (
-              <BoxAccount className="box_account" id="form">
+            <BoxAccount className="box_account" id="form">
                 <Form onSubmit={handleSubmit}>
                   <h3 className="new_client">{t('add_car')}</h3>
                   {/* <small className="float-right pt-2">* {$required_fields}</small> */}

@@ -1472,7 +1472,6 @@ export default withTranslation('common')(connect(state => state)(
                               } accept="image/jpeg, image/png" /> */}
                     <Form.Field style={{ margin: 0 }}>
                       <label>{"بارگذاری عکس‌ها"}</label>
-                      {console.log(this.state.picturesID)}
                       <AddCarImageUpload
                         picturesID={this.state.picturesID}
                         setPicturesID={(val) => this.setState({picturesID:val})}

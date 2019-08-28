@@ -9,7 +9,7 @@ export const REQUEST_newCarMedia = (data: InewCarMedia) => {
         token,
         file
     } = data;
-    console.log(token)
+    // console.log(token)
 
 
     let form = new FormData();
@@ -32,7 +32,7 @@ export const REQUEST_newCarMedia = (data: InewCarMedia) => {
         }
       )
       .then(response => {
-        console.log(response)
+        // console.log(response)
         if (response.data.success) {
           resolve(response.data);
         }

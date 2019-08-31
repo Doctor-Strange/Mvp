@@ -227,6 +227,7 @@ export default withTranslation('common')(
                         }
                        <ContentCard style={{ top: '-30px'}}>
                             ‍<ContentCardTitle>
+                                {/* commented by sajad 980609======> */}
                                 {isMobile &&
                                     <PriceCard style={{
                                         display: 'inline-grid',
@@ -235,6 +236,7 @@ export default withTranslation('common')(
                                         position: 'absolute'
                                     }} number={avg_discounted_price_per_day}>در روز</PriceCard>
                                 }
+                                {/* =====> */}
                                 {/* <div className="cat_star">
                                 <i className="icon_star" /><i className="icon_star" /><i className="icon_star"></i
                                 ><i className="icon_star" />

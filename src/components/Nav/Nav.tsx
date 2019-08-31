@@ -107,12 +107,16 @@ const Navigation = styled.div`
           color: ${({theme}:{theme:ITheme}) => theme.color.textMainAlter};
           :hover {
             color: ${({theme}:{theme:ITheme}) => theme.color.textSecondAlter};
+
           }
           padding: 0 8px 16px 24px;
           font-size: 14px;
           font-weight: 500;
           :first-child {
             padding-right: 0px;
+          } 
+          @media (max-width:480px){
+            font-size: 11px;
           }
         }
         :hover > a {
@@ -151,7 +155,6 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
               </li>
             </ul>
           </li>
-        // }
         <li>
           <span>
             <Link href="/requests">

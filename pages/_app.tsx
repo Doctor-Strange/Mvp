@@ -12,7 +12,7 @@ import { Provider, actions } from '../src/store';
 import * as Sentry from '@sentry/browser';
 
 Sentry.init({
-  dsn: 'https://8e50cee26dca48fb9d4828edca98d1c5@sentry.io/1482777'
+  dsn: 'https://5457324b508844abba775737bc14838e@sentry.io/1547488'
 });
 
 Router.events.on('routeChangeStart', url => {

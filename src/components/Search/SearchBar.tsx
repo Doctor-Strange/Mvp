@@ -206,7 +206,8 @@ export class SearchBar extends React.Component<{
           <div className="hide_on_desktop">
             <h4>
               <strong>{convertNumbers2Persian(count)}</strong> {text}
-              {loadingCity ? <Icon loading name='spinner' /> : cityName} <br /> {textDate ? textDate : ""}
+              {/* {loadingCity ? <Icon loading name='spinner' /> : cityName} <br /> {textDate ? textDate : ""} */}
+              {cityName} <br /> {textDate ? textDate : ""}
             </h4>
           </div>
         </div>

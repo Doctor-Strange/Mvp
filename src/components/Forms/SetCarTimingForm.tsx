@@ -623,7 +623,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
         return (
           <BoxAccount className="box_account">
             <Form onSubmit={handleSubmit}>
-              <h3 className="new_client">{t('add_car')}</h3>
+              <h3 className="new_client">{t('اضافه کردن خودرو')}</h3>
               {/* <small className="float-right pt-2">* {$required_fields}</small> */}
               <Segment>
                 <Item.Group>
@@ -667,7 +667,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Divider>
                 {/* ===================================================================== */}
                 <Form.Field style={{ margin: 0 }}>
-                  <label>{t('carTiming.daysToGetReminded')}</label>
+                  <label>زمان اطلاع از اجاره</label>
                   <Input
                     name="daysToGetReminded"
                     style={{direction:'ltr', display: 'contents'}}
@@ -711,7 +711,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Form.Field>
                 {/* ===================================================================== */}
                 <Form.Field style={{ margin: 0 }}>
-                  <label>{t('carTiming.minDaysToRent')}</label>
+                  <label>حداقل مدت اجاره</label>
                   <Input
                     name="minDaysToRent"
                     style={{direction:'ltr', display: 'contents'}}
@@ -756,7 +756,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Form.Field>
                 {/* ===================================================================== */}
                 <Form.Field style={{ margin: 0 }}>
-                  <label>{t('carTiming.distanceLimit')}</label>
+                  <label>محدودیت مسافت</label>
 
                   <Form.Input
                     // icon="search"
@@ -794,7 +794,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Form.Field>
                 {/* ===================================================================== */}
                 <Form.Field style={{ margin: 0 }}>
-                  <label>{t('carTiming.extraKmCost')}</label>
+                  <label>هزینه هر کیلومتر اضافه</label>
 
                   <Form.Input
                     // icon="search"
@@ -833,7 +833,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 {/* ===================================================================== */}
                 <Form.Field>
                   <Checkbox
-                    label={t('carTiming.deliver_at_renters_place')}
+                    label="در محل اجاره‌گیرنده تحویل می‌دهم"
                     name="deliverAtRentersPlace"
                     id="deliverAtRentersPlace"
                     onChange={handleChange}
@@ -847,13 +847,13 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 <Divider horizontal>
                   <Header as="h4">
                     <Icon name="calendar alternate outline" />
-                    {t('carTiming.rentDateAndPrice')}
+                    تاریخ و نرخ اجاره
                   </Header>
                 </Divider>
                 {/* ===================================================================== */}
                 <Form.Field className="marg8">
                   <Radio
-                    label={t('carTiming.availableInAllDatesWithSamePrice')}
+                    label="موجود در تمام تاریخ‌ها با قیمت یکسان"
                     name="radioGroup"
                     value={false}
                     checked={values.radioGroup === false}
@@ -906,16 +906,14 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                         marginRight: '8px'
                       }}
                     >
-                      {t('carTiming.toman')}
+                      تومان در روز
                     </span>
                   </div>
                 )}
                 {/* ===================================================================== */}
                 <Form.Field style={{ paddingTop: radioPad }}>
                   <Radio
-                    label={t(
-                      'carTiming.availableInDifferentDateRangesWithDifferentPrice'
-                    )}
+                    label="موجود در بازه‌های زمانی مختلف با قیمت‌های متفاوت"
                     name="radioGroup"
                     value={true}
                     checked={values.radioGroup === true}
@@ -945,7 +943,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                  <Divider horizontal>
                   <Header as="h4">
                     <Icon name="calendar alternate outline" />
-                    {t('carTiming.discounts')}
+                    تخفیف‌‌ها
                   </Header>
                 </Divider>
                 {/* ===================================================================== */}
@@ -957,10 +955,10 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 <Form.Group>
                   <Form.Field
                     control={TextArea}
-                    label={t('carTiming.cancellationPolicy')}
+                    label="قوانین کنسلی و اجاره"
                     id="cancellationPolicy"
                     name="cancellationPolicy"
-                    placeholder={t('carTiming.cancellationPolicy')}
+                    placeholder="قوانین کنسلی و اجاره"
                     style={{ minHeight: 150 }}
                     error={Boolean(
                       errors.cancellationPolicy && touched.cancellationPolicy
@@ -983,7 +981,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                     type="submit"
                     className="btn_1 full-width"
                   >
-                    {t('confirm')}
+                    تایید
                   </Button>
                   {/* {isSubmitting && (
                       <Progress

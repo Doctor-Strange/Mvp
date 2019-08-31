@@ -486,26 +486,39 @@ export default withTranslation('common')(connect(state => state)(
 
     setFasalities(id, OnlyActive = false) {
       const cblist = this.state.checkboxes;
-      let IDs = [];
+      let IDs = [...this.state.checkboxesID];
       //console.log(id);
       //console.log(cblist[i].id);
-      try {
-        cblist.map((value, index) => {
-          if (value.id === id) {
-            if (!OnlyActive) cblist[index].checked = !cblist[index].checked;
-            else cblist[index].checked = true;
+      // try {
+        if (!OnlyActive) {
+          cblist.map((value, index) => {
+              if (value.id === id) {
+                if(cblist[index].checked){
+                  cblist[index].checked = false;
+                  let indexItem = IDs.indexOf(id)
+                  IDs.splice(indexItem,1)
+                }else{
+                  cblist[index].checked = true;
+                  IDs.push(id)
+                }  
+            }
+          })
+        }
+        else {
+          cblist[index].checked = true;
+          IDs.push(id);
+        }
             // console.log(
             //   `"id" is ${cblist[index].label} and "checkboxes[${index}]" is ${
             //   cblist[index].checked
             //   }`
             // );
-            IDs.push(id);
             //console.log(id + ' added.');
-          }
-        });
-      } catch (error) {
-        console.error(error);
-      }
+          // }
+        // });
+      // } catch (error) {
+      //   console.error(error);
+      // }
 
       this.setState({
         checkboxes: cblist,

@@ -203,6 +203,7 @@ export class FilterAndSortBar extends React.Component<{
   }
 
   onSlide = (render, handle, value, un, percent) => {
+    // console.log("run")
     this.props.setPrice(value);
   };
 
@@ -300,7 +301,7 @@ export class FilterAndSortBar extends React.Component<{
                         margin={100000}
                         connect
                         direction={'rtl'}
-                        onSlide={this.onSlide}
+                        onEnd={this.onSlide}
                         step={100000}
                       />
                     </div>
@@ -497,13 +498,14 @@ export class FilterAndSortBar extends React.Component<{
                         </PriceCard>
                       </div>
                     </div>
+                    {/* ==> */}
                     <Nouislider
                       range={{ min: 0, max: 2000000 }}
                       start={price}
                       margin={100000}
                       connect
                       direction={'rtl'}
-                      onSlide={this.onSlide}
+                      onEnd={this.onSlide}
                       step={100000}
                     />
                   </div>

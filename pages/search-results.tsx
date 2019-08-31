@@ -69,6 +69,7 @@ export default withRouter(
                         limit: 8,
                         queryString
                     });
+                    // console.log("result page props =>> ",res)
                     return {
                         namespacesRequired: ['common'],
                         results: res
@@ -353,8 +354,8 @@ export default withRouter(
                     //  ====>
                     
                     // get car brands and assign them to state
-                    // const resBrands = await REQUEST_getFactoryBrands({ limit: 900 });
-                    // this.setState(resBrands);
+                    const resBrands = await REQUEST_getFactoryBrands({ limit: 900 });
+                    this.setState(resBrands);
                 }
 
                 // renderResultsDebounced(page = 0) {

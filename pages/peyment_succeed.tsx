@@ -18,6 +18,7 @@ import { ITheme } from "../src/theme/Interfaces";
 
 const ThePage = styled.div`
 margin-top: ${({theme}:{theme:ITheme}) => theme.spacing.largePadding};
+width: 100%;
 svg {
   width: 100px;
   display: block;

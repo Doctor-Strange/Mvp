@@ -98,13 +98,13 @@ export default withTranslation('common')(
       if (completed) {
         return (
           <span style={{ cursor: 'pointer' }} onClick={() => this.prevPanel()}>
-            {t('send_again')}
+            ارسال مجدد
           </span>
         );
       } else {
         return (
           <span style={{ cursor: 'default', paddingTop: '8px' }}>
-            {t('you_can_resend_code1')} {seconds} {t('you_can_resend_code2')}
+            ارسال مجدد کد {seconds}
           </span>
         );
       }
@@ -172,10 +172,10 @@ export default withTranslation('common')(
                     phone: Yup.string()
                       .matches(
                         /(^[0][9][1-3][0-9]{8,8}$|^[9][1-3][0-9]{8,8}$|^[\u06F0][\u06F9][\u06F1-\u06F2][\u06F0-\u06F9]{8,8}$|^[\u06F9][\u06F1-\u06F2][\u06F0-\u06F9]{8,8}$)/,
-                        t('forms.error_phone_not_valid')
+                        "شماره‌ موبایل صحیح نیست"
                       )
-                      .required(t('forms.error_phone_required'))
-                      .typeError(t('forms.error_phone_required'))
+                      .required("لطفا شماره موبایل را وارد کنید")
+                      .typeError("لطفا شماره موبایل را وارد کنید")
                   })}
                 >
                   {({
@@ -187,17 +187,18 @@ export default withTranslation('common')(
                     touched
                   }) => (
                       <LoginForm
+                      style={{textAlign:"right"}}
                         onSubmit={handleSubmit}
                         className="sign-in-wrapper"
                       >
-                        <label>{t('phone_number')}</label>
+                        <label>شماره تلفن همراه</label>
                         <Input
                           name="phone"
                           inputProps={{
                             type: 'tel',
                             tabIndex: this.state.showIndex === 0 ? 0 : -1,
                             className: 'add_top_8',
-                            placeholder: t('please_enter_phone_number')
+                            placeholder: "لطفا شماره همراه خود را وارد کنید"
                           }}
                         />
 
@@ -209,7 +210,7 @@ export default withTranslation('common')(
                             className="btn_1 full-width"
                             tabIndex={this.state.showIndex === 0 ? 0 : -1}
                           >
-                            {t('login')}
+                            ارسال کد ورود
                           </Button.Submit>
                           {/* <br />
                         <small>ما از شماره‌ی شما سوءاستفاده نمی‌کنیم </small> */}
@@ -320,8 +321,8 @@ export default withTranslation('common')(
                   }}
                   validationSchema={Yup.object().shape({
                     code: Yup.number()
-                      .required(t('forms.error_code_filed_required'))
-                      .typeError(t('forms.error_code_filed_required'))
+                      .required( "لطفاً کد را وارد کنید.")
+                      .typeError("لطفاً فیلد را پر کنید")
                   })}
                 >
                   {({
@@ -332,19 +333,19 @@ export default withTranslation('common')(
                     errors,
                     touched
                   }) => (
-                      <LoginForm className="sign-in-wrapper">
+                      <LoginForm className="sign-in-wrapper" style={{textAlign:"right"}}>
                         <div className="form-group">
                           <label>
-                            {t('a_code_has_been_sent_to')} {this.state.phone}
-                            {t('a_code_has_been_sent_to2')}.{' '}
-                            <a
+                            {/* {`کد ورود به شماره ${this.state.phone} پیامک شد `} */}
+                            کد پنج رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید
+                            {/* <a
                               className="small"
                               onClick={this.prevPanel}
                               style={{ cursor: 'pointer' }}
                               tabIndex={this.state.showIndex === 1 ? 0 : -1}
                             >
-                              {t('not_you')}
-                            </a>
+                              ویرایش شماره
+                            </a> */}
                           </label>
                           {/* <div className="notShowErrors"> */}
                           <Input
@@ -353,9 +354,17 @@ export default withTranslation('common')(
                               type: 'number',
                               tabIndex: this.state.showIndex === 1 ? 0 : -1,
                               className: 'add_top_8',
-                              placeholder: t('enter_code_in_field')
+                              placeholder: "لطفا کد را وارد کنید"
                             }}
                           />
+                          <a
+                              className="small"
+                              onClick={this.prevPanel}
+                              style={{ cursor: 'pointer',marginTop:"-13px",display:"block",marginBottom: "18px" }}
+                              tabIndex={this.state.showIndex === 1 ? 0 : -1}
+                            >
+                              ویرایش شماره
+                            </a>
                         </div>
                         <span className="sui-error-message">
                           {this.state.codeError || null}
@@ -381,7 +390,7 @@ export default withTranslation('common')(
                             className="btn_1 full-width"
                             tabIndex={this.state.showIndex === 0 ? 0 : -1}
                           >
-                            {t('enter')}
+                            ورود
                           </Button.Submit>
                         </div>
                       </LoginForm>

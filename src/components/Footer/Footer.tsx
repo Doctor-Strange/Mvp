@@ -369,7 +369,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <h3>Keep in touch</h3>
             </a> */}
             <div className="follow_us">
-              <h3>دنبالمان کنید</h3>
+              <h3>ما در شبکه های اجتماعی</h3>
               <Icon name='facebook' />
               <Icon name='twitter' />
               <Icon name='google plus' />
@@ -423,7 +423,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <li>
                 <span>۱۳۹۸ اتولی ©</span>
               </li>
-              <li>ver : 1.1.15</li>
+              <li>ver : 1.1.16</li>
             </AdditionalLinks>
           </div>
         </div>

@@ -90,7 +90,8 @@ export default withTranslation('common')(
             extra_km_price: null,
             facility_set: [],
             car: {},
-            loaded: false
+            loaded: false,
+            hideTheseGuys:false
         };
 
         mileage_ranges = ['۰ - ۵۰٫۰۰۰ کیلومتر',
@@ -99,6 +100,9 @@ export default withTranslation('common')(
             '+۲۰۰٫۰۰۰  کیلومتر']
 
         componentDidMount() {
+            if(window.location.search === ""){
+                this.setState({hideTheseGuys : true}) 
+            }
             setTimeout(() => {
                 // trying to solve slider issues
                 window.dispatchEvent(new Event('resize'));
@@ -113,6 +117,7 @@ export default withTranslation('common')(
         }
 
         render() {
+            // console.log("this. props ====> ", this.props)
             const { t, start_date, end_date, search_id } = this.props;
             let start, end = null;
             let startDate, endDate = null;
@@ -228,13 +233,14 @@ export default withTranslation('common')(
                        <ContentCard style={{ top: '-30px'}}>
                             ‍<ContentCardTitle>
                                 {/* commented by sajad 980609======> */}
-                                {isMobile &&
+                                {isMobile && !this.state.hideTheseGuys ?
                                     <PriceCard style={{
                                         display: 'inline-grid',
                                         left: '10px',
                                         top: '-15px',
                                         position: 'absolute'
                                     }} number={avg_discounted_price_per_day}>در روز</PriceCard>
+                                    :null
                                 }
                                 {/* =====> */}
                                 {/* <div className="cat_star">
@@ -312,7 +318,7 @@ export default withTranslation('common')(
                         </ContentCard>
                     </Section>
                     <CommentSection />
-                    {isMobile &&
+                    {isMobile && !this.state.hideTheseGuys ?
                         <Button
                             style={{
                                 zIndex: '55',
@@ -331,6 +337,7 @@ export default withTranslation('common')(
                         >
                             درخواست اجاره
                     </Button>
+                    :null
                     }
                 </Layout >
             );

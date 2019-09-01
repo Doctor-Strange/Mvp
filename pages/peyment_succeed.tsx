@@ -121,24 +121,35 @@ img{
 
 const Page = ({id}) => {
 
-    const [request, setRequest] = useState({});
+    const [request, setRequest] = useState(null);
 
       async function fetchAPI() {
-        const res = await REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  });
-        setRequest(res);
+        //  commented by sajad 980610 ====>
+        // const res = await REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  });
+        // setRequest(res);
+        // ===>
+        REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  })
+        .then(res=>{
+          setRequest(res);
+        })
+        .catch(e=>{
+          console.log(e)
+          setRequest({success: false})
+        })
     }
 
     useEffect(() => {
         fetchAPI();
     }, []);
 
-    const rentDump = request.success? request.data.rent_search_dump : {};
+    const rentDump = request? request.success? request.data.rent_search_dump : {} :null;
     // console.log(rentDump);
     return (
         <Layout haveSubHeader={true} pageTitle={'Hello World'}>
             <Section justifyCenter={true}>
                 <ThePage>
-                    {request.success ?
+                    {request ?
+                    request.success?
                       <BoxCard>
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
                             <circle className="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
@@ -193,7 +204,7 @@ const Page = ({id}) => {
                           <line className="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3"/>
                           <line className="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2"/>
                       </svg>
-                    }
+                    :<p>در حال دریافت اطلاعات پرداخت...</p>}
                 </ThePage>
             </Section>
         </Layout>

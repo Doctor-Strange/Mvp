@@ -20,6 +20,9 @@ export const REQUEST_getOrderRequest = (data: IgetOrderRequest) => {
         if (response.data.success) {
           resolve(response.data);
         }
+      })
+      .catch(e => {
+        reject(e)
       });
   });
 };

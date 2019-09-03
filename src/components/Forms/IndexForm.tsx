@@ -140,6 +140,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   async function fetchAPI() {
     //get cities and genrate a dropdown input in form
     const res = await REQUEST_getLocations({ brief: true });
+    console.log(res.citiesFarsi)
     setCitiesFarsi(res.citiesFarsi);
     setCitiesEnglish(res.citiesEnglish);
   }
@@ -186,7 +187,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
 
   return (
     <Formik
-      initialValues={{ carCity: null }}
+      initialValues={{ carCity: 1 }}
       onSubmit={(
         values: IIndexFormValues,
         actions: FormikActions<IIndexFormValues>
@@ -259,7 +260,10 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                       }}
                     >
                       <Box className="indexFullOnMobile" width={[4 / 16]}>
-                        <Form.Dropdown
+                        <label style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
+                        <input value="تهران" type = "text"/>  
+                        {/* <Form.Dropdown
+                        disabled
                           label={'خودرو را کجا تحویل می‌گیرید؟'}
                           name="carCity"
                           id="carCity"
@@ -287,7 +291,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           value={values.carCity}
                           // onBlur={() => { console.log("on Blur for To")}}
                           
-                        />
+                        /> */}
                         
                       </Box>
                       <Box className="indexFullOnMobile" width={[4 / 16]}>

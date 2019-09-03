@@ -260,7 +260,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                       }}
                     >
                       <Box className="indexFullOnMobile" width={[4 / 16]}>
-                        <label style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
+                        <label readonly style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
                         <input value="تهران" type = "text"/>  
                         {/* <Form.Dropdown
                         disabled

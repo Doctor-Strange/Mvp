@@ -104,7 +104,73 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 500;
     line-height: 1.2;
   }
+  .WHITE{
+    background : #fff;
+  }
+  .insurance{
+    background:#fff;
+    position:relative;
+    padding-top: 6em;
+    padding-bottom:50px;
 
+  }
+  .insuranceBox{
+    left:0;
+    right:0;
+    position:absolute;
+    width: 220px;
+    border-radius: 41px;
+    background: #fff;
+    text-align: center;
+    border-bottom-left-radius: 0;
+    font-size: 12px;
+    border-bottom-right-radius: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+    top: -42px;
+  }
+  .whyOtoli{
+    padding-top:70px;
+  }
+  .whyOtoli h2{
+    text-align: center;
+  }
+  .WhyOtolicontainer{
+    display:flex;
+    justify-content:center;
+    align-items:start;
+    direction: rtl; 
+  }
+  .WhyOtolibox{
+    width: 30%;
+    margin: 2%;
+    text-align: justify;
+  }
+  .addCarnow{
+    background:#fff;
+    padding-bottom:100px;
+    margin-top: 50px;
+  }
+  .addCarnow a {
+    display: block;
+    width:220px;
+    margin:auto;
+    text-align:center;
+    background: #4ba3ce none;
+    padding: .78571429em 1.5em .78571429em;
+    color:#fff;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    border-radius: .28571429rem;
+    text-shadow: none;
+    font-weight: 700;
+    line-height: 1em;
+  }
+  .addCarnow a:hover{
+    background-color: #1a69a4;
+  }
   /**============================== Bootstrap Styles ==============================**/
   .container {
     width: 100%;
@@ -1780,6 +1846,44 @@ ul.bullets li {
     box-shadow: none !important;
     border-radius: 50% !important;
   }
+  button {
+    background-color:#1678c2
+  }
+  button:hover {
+    background-color: #1e7cab !important
+  }
+  
+.responsive {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px){
+  .responsive {
+    max-width: 540px;
+  }
+}
+          @media (min-width: 768px){
+          
+            .responsive {
+              max-width: 720px;
+            }
+          }
+          @media (min-width: 992px){
+          
+            .responsive {
+              max-width: 960px;
+            }
+          }
+@media (min-width: 1200px){
+  .responsive {
+    max-width: 1140px;
+  }
+}
+
 `;
 
 enum Margin {

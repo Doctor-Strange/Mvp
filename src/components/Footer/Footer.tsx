@@ -370,23 +370,33 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
             </a> */}
             <div className="follow_us">
               <h3>ما در شبکه های اجتماعی</h3>
-              <Icon name='facebook' />
-              <Icon name='twitter' />
-              <Icon name='google plus' />
-              <Icon name='vk' />
-              <Icon name='linkedin' />
+              {/* <Icon name='facebook' /> */}
+              <a target="_black" href="https://www.instagram.com/otoli_net/">
               <Icon name='instagram' />
-              <Icon name='youtube' />
+                </a>
+              {/* <Icon name='google plus' /> */}
+              {/* <Icon name='vk' /> */}
+              
+              <a target="_black" href="https://twitter.com/otoli_net">
+                <Icon name='twitter' />
+              </a>
+              <a target="_black" href="https://t.me/otoli_net">
+              <Icon name='telegram' />
+              </a>
+
+              
+              {/* <Icon name='youtube' /> */}
             </div>
           </div>
         </div>
         <hr />
         <div className="row">
-          <div className="col-lg-6">
+          {/* <div className="col-lg-6">
             <FooterSelector id="footer-selector">
               <li>
                 <div className="styled-select" id="lang-selector">
-                  <button onClick={changeLangFunc}>تغیر زبان</button>
+                  <button onClick={changeLangFunc}>تغیر زبان</button> */}
+                  {/* ===> */}
                   {/* <select>
                     <option value="English" selected>
                       English
@@ -395,23 +405,29 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                     <option value="Spanish">Spanish</option>
                     <option value="Russian">Russian</option>
                   </select> */}
-                </div>
+                  {/* ===> */}
+
+                {/* </div>
               </li>
               <li>
-                <div className="styled-select" id="currency-selector">
+                <div className="styled-select" id="currency-selector"> */}
+                  {/* ===> */}
+
                   {/* <select>
                     <option value="US Dollars" selected>
                       US Dollars
                     </option>
                     <option value="Euro">Euro</option>
                   </select> */}
-                </div>
+                  {/* ===> */}
+
+                {/* </div>
               </li>
               <li>
                 <img src={CardsAll} alt="" />
               </li>
             </FooterSelector>
-          </div>
+          </div> */}
           <div className="col-lg-6">
             <AdditionalLinks>
               <li>
@@ -423,7 +439,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <li>
                 <span>۱۳۹۸ اتولی ©</span>
               </li>
-              <li>ver : 1.1.17</li>
+              <li>ver : 1.1.19</li>
             </AdditionalLinks>
           </div>
         </div>

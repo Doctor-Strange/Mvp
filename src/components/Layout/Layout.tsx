@@ -16,6 +16,7 @@ import { i18n, withTranslation } from '../../i18n';
 import { actions } from "../../store";
 import { ITheme } from "../../theme/Interfaces";
 
+
 class Layout extends React.Component<{
   haveSubHeader: boolean;
   pageTitle: string;
@@ -83,7 +84,7 @@ class Layout extends React.Component<{
           <div style={{
             background: `url(${bgImage}) no-repeat 50%/cover`,
             backgroundPositionY: '60%',
-            minHeight: '80vh'
+            // minHeight: '80vh'
           }}>{children}</div>
           <Footer changeLangFunc={() => actions.changeLang()} />
         </div>

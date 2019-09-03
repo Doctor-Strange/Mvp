@@ -233,6 +233,14 @@ export const CarCard: React.FunctionComponent<{
     const setCarTiming = () => {
       const href = `/set-car-timing?id=${id}`;
       Router.push(href, href);
+      // console.log("/set-car-timing")
+      // return
+      // Router.push({
+      //   pathname: '/set-car-timing',
+      //   query: {
+      //     id: id
+      //   }
+      // });
     }
 
     const pauseCar = () => {
@@ -243,8 +251,8 @@ export const CarCard: React.FunctionComponent<{
 
     return (
       <Card className="strip grid carcard">
-        <Link href={link}>
-          <a>
+        {/* <Link href={link}> */}
+          {/* <a> */}
           <figure>
             {discount_percent &&
               <a className="wish_bt" >
@@ -312,8 +320,8 @@ export const CarCard: React.FunctionComponent<{
               </Grid>
             }
           </div>
-          </a>
-        </Link>      
+          {/* </a>
+        </Link>       */}
       </Card>
     );
   }

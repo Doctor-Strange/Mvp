@@ -251,8 +251,8 @@ export const CarCard: React.FunctionComponent<{
 
     return (
       <Card className="strip grid carcard">
-        {/* <Link href={link}> */}
-          {/* <a> */}
+        <Link href={link}> 
+          <a> 
           <figure>
             {discount_percent &&
               <a className="wish_bt" >
@@ -265,6 +265,8 @@ export const CarCard: React.FunctionComponent<{
             </div>
             {/* <small>Restaurant</small> */}
           </figure>
+                    </a>
+                  </Link>
           
           <div className="wrapper row">
             <div className="col-8">
@@ -289,6 +291,7 @@ export const CarCard: React.FunctionComponent<{
               </PriceCard>
               </div>
             }
+            
             {/* <small>{text2}</small> */}
             {/* <p>{description}</p> */}
             {/* <a className="address" href={`/car?id=${id}`}>Get directions</a> */}
@@ -319,9 +322,7 @@ export const CarCard: React.FunctionComponent<{
                 </Grid.Row>
               </Grid>
             }
-          </div>
-          {/* </a>
-        </Link>       */}
+          </div>   
       </Card>
     );
   }

@@ -194,11 +194,11 @@ const DiscountsSelector: React.FC<{
           <Segment className="timingEntery">
             <Form.Group>
               <Form.Field style={{ margin: 0, maxWidth: '100%' }}>
-                <label>{t('carTiming.from')}</label>
+                <label>بیشتر از n روز، n% تخفیف.</label>
                 {/* duration picker */}
                 <Form.Dropdown
-                    label={'تعداد روزها'}
-                    placeholder={'تعداد روزها'}
+                    label={'بیشتر از '}
+                    placeholder={'تعداد روز'}
                     selection
                     options={daysFarsi}
                     onChange={(e, data) => {

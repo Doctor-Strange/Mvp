@@ -17,6 +17,8 @@ Sentry.init({
 
 Router.events.on('routeChangeStart', url => {
   //console.log(`Loading: ${url}`);
+  console.log('App is changing to: ', url)
+  window.scrollTo(0,0);
   NProgress.start();
 });
 
@@ -26,6 +28,8 @@ Router.events.on('hashChangeStart', url => {
 
 Router.events.on('routeChangeComplete', () => {
   // copied from https://github.com/zeit/next-plugins/issues/282#issuecomment-480740246
+  window.scrollTo(0,0);
+
   if (process.env.NODE_ENV !== 'production') {
     const els = document.querySelectorAll('link[href*="/_next/static/css/styles.chunk.css"]');
     const timestamp = new Date().valueOf();

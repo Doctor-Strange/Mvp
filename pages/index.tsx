@@ -33,7 +33,7 @@ const Page = props => (
             },
         }}
     />
-    <Section justifyCenter={true} Bimage={backgroundImage} IHeight="80vh">
+    <Section justifyCenter={true} Bimage={backgroundImage} IHeight="90vh">
       <div className="hero_single version_4">
         <Flex justifyContent="space-around" className="wrapper">
           <Box width={2 / 2} px={2}>

@@ -114,6 +114,9 @@ const GlobalStyle = createGlobalStyle`
     padding-bottom:50px;
 
   }
+  .insurance h2{
+    margin-bottom:20px;
+  }
   .insuranceBox{
     left:0;
     right:0;
@@ -134,6 +137,7 @@ const GlobalStyle = createGlobalStyle`
     padding-top:70px;
   }
   .whyOtoli h2{
+    margin-bottom:20px;
     text-align: center;
   }
   .WhyOtolicontainer{
@@ -142,6 +146,8 @@ const GlobalStyle = createGlobalStyle`
     align-items:start;
     direction: rtl; 
   }
+
+
   .WhyOtolibox{
     width: 30%;
     margin: 2%;
@@ -171,6 +177,21 @@ const GlobalStyle = createGlobalStyle`
   .addCarnow a:hover{
     background-color: #1a69a4;
   }
+  @media (max-width:767px){
+    .WhyOtolicontainer{
+      flex-direction: column;
+    }
+    .WhyOtolibox{
+      width: 100%;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width:580px){{
+  .WhyOtolibox{
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
   /**============================== Bootstrap Styles ==============================**/
   .container {
     width: 100%;

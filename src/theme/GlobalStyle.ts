@@ -186,7 +186,7 @@ const GlobalStyle = createGlobalStyle`
     margin-bottom: 10px;
   }
 }
-@media (max-width:580px){{
+@media (max-width:580px){
   .WhyOtolibox{
     margin-bottom: 20px;
     text-align: center;

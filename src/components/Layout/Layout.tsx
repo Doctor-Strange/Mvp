@@ -45,6 +45,10 @@ class Layout extends React.Component<{
     if (this.props.onRef) this.props.onRef(undefined);
   }
 
+  // componentWillReceiveProps = (props) =>{
+  //   console.log("props ===>",props)
+  // }
+
   doRef = ref => {
     if (ref) this.header = ref.loginmodal;
   };

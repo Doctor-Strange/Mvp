@@ -5,7 +5,7 @@ import IndexForm from '../src/components/Forms/IndexForm';
 import Layout from '../src/components/Layout';
 import { Box, Flex } from '@rebass/grid';
 import * as backgroundImage from '../static/back.jpg';
-import * as seoImage from '../static/index-landing.jpeg';
+import * as seoImage from '../static/index-landing.jpg';
 import NextSeo from 'next-seo';
 import { i18n, Link, withTranslation } from '../src/i18n';
 import insurance from '../static/SamanInsurance.png'

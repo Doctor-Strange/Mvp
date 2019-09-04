@@ -853,6 +853,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 {/* ===================================================================== */}
                 <Form.Field className="marg8">
                   <Radio
+                  select
                     label="موجود در تمام تاریخ‌ها با قیمت یکسان"
                     name="radioGroup"
                     value={false}

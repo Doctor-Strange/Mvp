@@ -337,7 +337,7 @@ export default withTranslation('common')(
                         <div className="form-group">
                           <label>
                             {/* {`کد ورود به شماره ${this.state.phone} پیامک شد `} */}
-                            کد پنج رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید
+                            کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید
                             {/* <a
                               className="small"
                               onClick={this.prevPanel}

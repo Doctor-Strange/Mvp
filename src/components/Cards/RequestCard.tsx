@@ -151,7 +151,6 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     const [star2, setStar2] = useState();
     const [text, setText] = useState();
     const [canRate, setCanRate] = useState(false);
-console.log(status)
     const doAction = async (data: IdoAction) => {
         const res = await REQUEST_setOrderStatus({ ...data, token: jsCookie.get('token') });
         if (data.action == 'pay') {
@@ -526,7 +525,6 @@ console.log(status)
                         </Grid.Column>
                     </Grid.Row>
                     {actions}
-                    {console.log(actions)}
                 </Grid>
             </Segment>
         </Card>

@@ -151,7 +151,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     const [star2, setStar2] = useState();
     const [text, setText] = useState();
     const [canRate, setCanRate] = useState(false);
-
+console.log(status)
     const doAction = async (data: IdoAction) => {
         const res = await REQUEST_setOrderStatus({ ...data, token: jsCookie.get('token') });
         if (data.action == 'pay') {
@@ -432,7 +432,8 @@ export const RequestCard: React.SFC<IRequestCard> = ({
         case 'returned':
             title = <span><Icon name="flag checkered" /> پایان اجاره</span>;
             actions = <>
-                {canRate &&
+            {/* commented by sajad ====> */}
+                {/* {canRate && */}
                     <Grid.Row className="buttons">
                         <Grid.Column width={16}>
                             <div style={{ marginLeft: '8px' }}>
@@ -447,7 +448,8 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             </div>
                         </Grid.Column>
                     </Grid.Row>
-                }
+            {/* commented by sajad ====> */}
+                {/* } */}
             </>;
             break;
         default:
@@ -524,6 +526,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                         </Grid.Column>
                     </Grid.Row>
                     {actions}
+                    {console.log(actions)}
                 </Grid>
             </Segment>
         </Card>

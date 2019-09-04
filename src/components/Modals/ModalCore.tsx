@@ -4,14 +4,16 @@ import { Icon } from 'semantic-ui-react';
 
 const ModalDiv = styled.div`
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 25vh;
+  left:0;
+  right:0;
+  margin:auto;
   width: 50%;
   max-width: 630px;
   min-width: 320px;
   height: auto;
   z-index: 2000;
-  transform: translateX(-50%) translateY(-50%) scale(.7);
+  // transform: translateX(-50%) translateY(-50%) scale(.7);
   opacity:0;
   transition: all .3s;
   #sign-in-dialog {
@@ -77,7 +79,7 @@ const ModalDiv = styled.div`
 
   &.md-show {
     opacity:1;
-    transform: translateX(-50%) translateY(-50%) scale(1);
+    // transform: translateX(-50%) translateY(-50%) scale(1);
   }
 `;
 

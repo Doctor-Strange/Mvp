@@ -93,7 +93,11 @@ const Card = styled.div`
     border-radius: 3px;
   }
   .wrapper {
-    padding: 20px 25px 30px 25px;
+    padding: 0px 0px 60px 0px;
+    .col-8{
+      top: 15px;
+      right: 15px;
+    }
     h3 {
       font-size: 20px;
       font-size: 1.25rem;
@@ -119,6 +123,7 @@ const Card = styled.div`
     margin-bottom: 15px;
     position: absolute;
     bottom: -5px;
+    right: 4px;
     li {
       display: inline-block;
       margin-right: 10px;
@@ -175,11 +180,22 @@ const Card = styled.div`
     bottom: 48px;
   }
   .edit{
-      width: 108%;
-      .item {
-        padding: 0 !important;
-        text-align:center !important;
-      }
+    width: 100%;
+    margin: 0 !important;
+     .property{
+       display:flex !important;
+       width:100% !important;
+       justify-content: center !important;
+       align-items: center !important;
+       .item {
+         padding: 0 !important;
+         text-align:center !important;
+         button{
+          padding: 5px 5px;
+          font-size: 12px;
+         }
+       }
+      } 
   }
 
   @media (min-width: 768px){

@@ -301,7 +301,7 @@ export const CarCard: React.FunctionComponent<{
               </Link>
             </div>
             {!simpleMode &&
-              <div className="col-4 leftbox">
+              <div className="col-4 leftbox" style={{cursor:"default"}}>
                 <PriceCard number={discounted_price? discounted_price : price}>
                   در روز
               </PriceCard>
@@ -312,7 +312,7 @@ export const CarCard: React.FunctionComponent<{
             {/* <p>{description}</p> */}
             {/* <a className="address" href={`/car?id=${id}`}>Get directions</a> */}
             {!simpleMode &&
-              <ul>
+              <ul style={{cursor:"default"}}>
                 {deliver_at_renters_place ?
                   (
                     <li>

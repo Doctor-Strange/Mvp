@@ -38,7 +38,7 @@ const DiscountsSelector: React.FC<{
 }) => {
   const [percent, setPercent] = useState(null);
   const [duration, setDuration] = useState(null);
-  const [showNewEntery, setShowNewEntery] = useState(true);
+  const [showNewEntery, setShowNewEntery] = useState(false);
   const [openEditFor, setOpenEditFor] = useState(null);
   // console.log("Car discounts: ", carDiscounts);
   return (
@@ -158,18 +158,20 @@ const DiscountsSelector: React.FC<{
             return (
               <Segment key={index} style={{ textAlign: 'right' }}>
                 <span>
-                  <label>اگر </label>{' '} {convertNumbers2Persian(val.duration)} روز بود
+                  <label>برای اجاره‌ بیشتر از </label>{' '} {convertNumbers2Persian(val.duration)} روز
                   <br />
-                  <label>تخفیف: </label>{' '} {convertNumbers2Persian(val.percent)}{' '}
-                  درصد
+                  {' '} {convertNumbers2Persian(val.percent)}{' '}
+                  درصد تخفیف
                 </span>
                 <Icon
                   name="close"
                   onClick={e => {
+                    
                     let data = carDiscounts;
                     data.splice(index, 1);
-                    // console.log(data);
-                    modifyCarDiscounts(data);
+                    console.log("E ===> ",data);
+                    setOpenEditFor(null);
+                    modifyCarDiscounts([]);
                     setShowNewEntery(false);
                     setPercent(null);
                     setDuration(null);
@@ -178,6 +180,7 @@ const DiscountsSelector: React.FC<{
                 <Icon
                   name="edit outline"
                   onClick={e => {
+                    console.log("E ===> ",e);
                     setShowNewEntery(false);
                     setOpenEditFor(index);
                     setPercent(null);
@@ -194,7 +197,7 @@ const DiscountsSelector: React.FC<{
           <Segment className="timingEntery">
             <Form.Group>
               <Form.Field style={{ margin: 0, maxWidth: '100%' }}>
-                <label>بیشتر از n روز، n% تخفیف.</label>
+                {/* <label>بیشتر از n روز، n% تخفیف.</label> */}
                 {/* duration picker */}
                 <Form.Dropdown
                     label={'بیشتر از '}

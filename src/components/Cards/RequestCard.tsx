@@ -42,6 +42,18 @@ const Card = styled.div`
     h3 {
         margin-bottom: 16px;
     }
+    #Text_wrapper{
+        @media (max-width:720px){
+            display:block !important;
+            width:100% !important
+        } 
+    }
+    #img_wrapper{
+        @media (max-width:720px){
+            display:block !important;
+            width:100% !important
+        }
+    }
     .img_wrapper{
         padding: 0 !important;
         text-align:center;
@@ -460,7 +472,11 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                 <Label attached='top right'>{title}</Label>
                 <Grid className="margintop8">
                     <Grid.Row columns={2} style={{ margin: '0 auto', marginTop: '8px', paddingBottom: 0 }}>
-                        <Grid.Column width={11} style={{ paddingLeft: '24px', paddingRight: '0' }}>
+                        <Grid.Column width={11} style={{ 
+                            paddingLeft: '24px',
+                             paddingRight: '0',
+                             height: "150px" }}
+                             id="Text_wrapper">
                             <h3>{carName}</h3>
                             <DateGrid start={start} end={end} />
                             <Grid className="property-row">
@@ -479,7 +495,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                 </Grid.Row>
                             </Grid>
                         </Grid.Column>
-                        <Grid.Column width={5} className="img_wrapper">
+                        <Grid.Column width={5} className="img_wrapper" id="img_wrapper">
                             <img src={picture} alt={carName} />
                             <Pelak
                                 first={pelak.first}

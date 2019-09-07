@@ -20,6 +20,7 @@ import {
 } from "react-device-detect";
 import styled from 'styled-components';
 import axios from 'axios';
+import jsCookie from 'js-cookie';
 import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
 
@@ -272,7 +273,7 @@ export default withTranslation('common')(
                             <Details title="مشخصات فنی">
                                 <ul className="bullets">
                                     <li>نوع بدنه: {body_style.fa}</li>
-                                    <li>دهنده {transmission_type.fa}</li>
+                                    <li>دنده {transmission_type.fa}</li>
                                     {/* changed in 980528 by sajad bug fix */}
                                     {/* <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id + 1] : "صفر کیلومتر"}</li> */}
                                     <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id-1 ] : "صفر کیلومتر"}</li>
@@ -319,7 +320,7 @@ export default withTranslation('common')(
                     </Section>
                     <CommentSection />
                     {isMobile && !this.state.hideTheseGuys ?
-                        <Button
+                        this.props.owner.id.toString() !== jsCookie.get('user_id') ? <Button
                             style={{
                                 zIndex: '55',
                                 bottom: '0',
@@ -336,7 +337,7 @@ export default withTranslation('common')(
                             className="btn_1 full-width"
                         >
                             درخواست اجاره
-                    </Button>
+                    </Button> : null
                     :null
                     }
                 </Layout >

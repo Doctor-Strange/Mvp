@@ -956,10 +956,10 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 <Form.Group>
                   <Form.Field
                     control={TextArea}
-                    label="قوانین کنسلی و اجاره"
+                    label="قوانین کنسلی"
                     id="cancellationPolicy"
                     name="cancellationPolicy"
-                    placeholder="قوانین کنسلی و اجاره"
+                    placeholder="قوانین کنسلی"
                     style={{ minHeight: 150 }}
                     error={Boolean(
                       errors.cancellationPolicy && touched.cancellationPolicy

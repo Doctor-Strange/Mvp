@@ -14,6 +14,7 @@ import {
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English, getShortVersion } from '../../utils/numbers';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { CarDateRange } from './index';
+import jsCookie from 'js-cookie';
 
 const Card = styled.nav`
     .DatePicker__calendarContainer {
@@ -81,12 +82,14 @@ const CarideCard: React.FunctionComponent<{
                 responceTime="میانگین زمان پاسخگویی: نامشخص"
                 image={user.image_url}
             />
+            {user.id.toString() !== jsCookie.get('user_id') ?
             <Button
                 style={{ height: '48px' }}
                 size='large'
                 fluid
                 onClick={reserveFunction}
                 color='teal'>درخواست اجاره</Button>
+                : null}
             <div
                 style={{ marginTop: '8px' }}
                 className="text-center"

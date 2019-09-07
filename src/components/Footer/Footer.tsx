@@ -100,6 +100,9 @@ const FooterTag = styled.footer`
 
   .follow_us {
     animation-delay: 1.1s;
+    a{
+      margin:10px;
+    }
     h5 {
       font-size: 16px;
       font-size: 1rem;
@@ -372,16 +375,16 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <h3>ما در شبکه های اجتماعی</h3>
               {/* <Icon name='facebook' /> */}
               <a target="_black" href="https://www.instagram.com/otoli_net/">
-              <Icon name='instagram' />
+              <Icon size ='large' name='instagram' />
                 </a>
               {/* <Icon name='google plus' /> */}
               {/* <Icon name='vk' /> */}
               
               <a target="_black" href="https://twitter.com/otoli_net">
-                <Icon name='twitter' />
+                <Icon  size ='large' name='twitter' />
               </a>
               <a target="_black" href="https://t.me/otoli_net">
-              <Icon name='telegram' />
+              <Icon size ='large' name='telegram' />
               </a>
 
               
@@ -439,7 +442,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <li>
                 <span>۱۳۹۸ اتولی ©</span>
               </li>
-              <li>ver : 1.1.29</li>
+              <li>ver : 1.1.31</li>
             </AdditionalLinks>
           </div>
         </div>

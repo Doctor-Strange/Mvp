@@ -80,7 +80,9 @@ const DiscountsSelector: React.FC<{
                   />
                 {/* percent picker */}
                 <Form.Input
-                  style={{ width: '47%', direction: 'ltr' }}
+                  style={{ width: '47%',
+                  //  direction: 'ltr'
+                   }}
                   placeholder="درصد"
                   label="درصد"
                   icon='percent'
@@ -104,7 +106,7 @@ const DiscountsSelector: React.FC<{
                       marginRight: '8px'
                     }}
                   >
-                    {t('carTiming.toman')}
+                    تومان
                   </span>
                 </Form.Input>
                 <Button.Group

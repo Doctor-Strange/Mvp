@@ -240,7 +240,9 @@ const TimeRangesSelector: React.FC<{
               </Form.Field>
             </Form.Group>
             <Form.Input
-              style={{ width: '47%', direction: 'ltr'  }}
+              style={{ width: '47%',
+              //  direction: 'ltr' 
+               }}
               name="price"
               placeholder="قیمت"
               label={t('carTiming.price')}

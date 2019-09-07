@@ -301,7 +301,7 @@ export default withTranslation('common')(
                             {/* <Details title="کارکرد">
                             {mileage_range ? this.mileage_ranges[mileage_range.id + 1] : "صفر کیلومتر"}
                             </Details> */}
-                            <Details title="قوانین کنسلی">
+                            <Details title="شرایط اجاره و کنسلی">
                                 {cancellation_policy ? cancellation_policy : "ندارد"}
                             </Details>
                             {isMobile &&

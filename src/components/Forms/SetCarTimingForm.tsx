@@ -321,7 +321,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
   const [mapApiToFormik, setMapApiToFormik] = useState(false);
   const [carTimings, setCarTimings] = useState([]);
   const [carDiscounts, setCarDiscounts] = useState([]);
-  const [isIsAllTime, setIsIsAllTime] = useState(false);
+  const [isIsAllTime, setIsIsAllTime] = useState(true);
   const [isAllTimePrice, setIsAllTimePrice] = useState(0);
   const [success, setSuccess] = useState('');
   const [disabledDays, setDisabledDays] = useState([]);
@@ -956,10 +956,10 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 <Form.Group>
                   <Form.Field
                     control={TextArea}
-                    label="قوانین کنسلی"
+                    label="شرایط اجاره و کنسلی"
                     id="cancellationPolicy"
                     name="cancellationPolicy"
-                    placeholder="قوانین کنسلی"
+                    placeholder="شرایط اجاره و کنسلی"
                     style={{ minHeight: 150 }}
                     error={Boolean(
                       errors.cancellationPolicy && touched.cancellationPolicy

@@ -233,7 +233,7 @@ export default withTranslation('common')(
                                                 <p>{location.name.breadcrumb_fa}</p>
                                                 <p>{deliver_at_renters_place ? "تحویل در محل شما" : ""}</p>
                                             </Details>
-                                            <Details title="قوانین کنسلی" showHr={false}>
+                                            <Details title="شرایط اجاره و کنسلی" showHr={false}>
                                                 {cancellation_policy ? cancellation_policy : "ندارد"}
                                             </Details>
                                             <Details title="محدودیت مسافت" showHr={false}>

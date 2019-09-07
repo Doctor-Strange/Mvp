@@ -160,6 +160,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
 
   const setCalStart = () => {
     if (date.from && !date.to) {
+      console.log("تاریخ بازگشت را انتخاب کنید")
       setCalEnd();
       return;
     }

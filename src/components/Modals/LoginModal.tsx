@@ -139,9 +139,9 @@ export default withTranslation('common')(
                   ) => {
                     let validPhoneFormated;
                     const phone = convertToEnglishNum(values.phone.toString());
-                    if (/^[0][9][1-3][0-9]{8,8}$/.test(phone)) {
+                    if (/^[0][9][0-5][0-9]{8,8}$/.test(phone)) {
                       validPhoneFormated = phone;
-                    } else if (/^[9][1-3][0-9]{8,8}$/.test(phone)) {
+                    } else if (/^[9][0-5][0-9]{8,8}$/.test(phone)) {
                       validPhoneFormated = '0' + phone;
                     } else {
                       validPhoneFormated = phone;
@@ -171,7 +171,7 @@ export default withTranslation('common')(
                   validationSchema={Yup.object().shape({
                     phone: Yup.string()
                       .matches(
-                        /(^[0][9][1-3][0-9]{8,8}$|^[9][1-3][0-9]{8,8}$|^[\u06F0][\u06F9][\u06F1-\u06F2][\u06F0-\u06F9]{8,8}$|^[\u06F9][\u06F1-\u06F2][\u06F0-\u06F9]{8,8}$)/,
+                        /(^[0][9][0-5][0-9]{8,8}$|^[9][0-5][0-9]{8,8}$|^[\u06F0][\u06F9][\u06F1-\u06F2][\u06F0-\u06F9]{8,8}$|^[\u06F9][\u06F1-\u06F2][\u06F0-\u06F9]{8,8}$)/,
                         "شماره‌ موبایل صحیح نیست"
                       )
                       .required("لطفا شماره موبایل را وارد کنید")

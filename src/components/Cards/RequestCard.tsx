@@ -43,17 +43,16 @@ const Card = styled.div`
         margin-bottom: 16px;
     }
     #Text_wrapper{
-        @media (max-width:720px){
-            display:block !important;
-            width:100% !important
+        @media (max-width:557px){
+            font-size:12px;
         } 
     }
-    #img_wrapper{
-        @media (max-width:720px){
-            display:block !important;
-            width:100% !important
-        }
-    }
+    // #img_wrapper{
+    //     @media (max-width:720px){
+    //         display:block !important;
+    //         width:100% !important
+    //     }
+    // }
     .img_wrapper{
         padding: 0 !important;
         text-align:center;
@@ -102,6 +101,20 @@ const Card = styled.div`
         .four.column.row {
             width: 170px !important;
             left: 0 !important;
+        }
+        @media (max-width:557px){
+            .flrt{
+                width: 100%;
+            }
+            .four.column.row {
+                width: 108% !important;
+                margin: 0;
+                padding: 0;
+                div , span{
+                    font-size: 12px;
+                    line-height: 2;
+                }
+            }
         }
     }
 `;

@@ -8,7 +8,9 @@ import * as backgroundImage from '../static/back.jpg';
 import * as seoImage from '../static/index-landing.jpg';
 import NextSeo from 'next-seo';
 import { i18n, Link, withTranslation } from '../src/i18n';
-import insurance from '../static/SamanInsurance.png'
+import insurance from '../static/SamanInsurance.png';
+import {GlobalStyle} from '../src/theme';
+
 
 const Page = props => (
   // <Layout haveSubHeader={true} pageTitle={'Hello World'} bgImage={backgroundImage}>
@@ -33,7 +35,7 @@ const Page = props => (
             },
         }}
     />
-    <Section justifyCenter={true} Bimage={backgroundImage} IHeight="90vh">
+    <Section justifyCenter={true} Bimage={backgroundImage} className="heightControl">
       <div className="hero_single version_4">
         <Flex justifyContent="space-around" className="wrapper">
           <Box width={2 / 2} px={2}>

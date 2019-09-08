@@ -257,9 +257,9 @@ export default withTranslation('common')(
                             > */}
                             </ContentCardTitle>
                             <hr />
-                            <Details title="محل خودرو">
+                            <Details title="محل خودرو و تحویل">
                                 <p>{location.name.breadcrumb_fa}</p>
-                                <p>{deliver_at_renters_place ? "تحویل در محل شما" : ""}</p>
+                                <p>{deliver_at_renters_place ? "در محدوده تهران، خودرو در محل شما تحویل می‌شود." : ""}</p>
                             </Details>
                             <Details title="محدودیت مسافت">
                                 <ul className="">
@@ -273,7 +273,7 @@ export default withTranslation('common')(
                             <Details title="مشخصات فنی">
                                 <ul className="bullets">
                                     <li>نوع بدنه: {body_style.fa}</li>
-                                    <li>دنده {transmission_type.fa}</li>
+                                    <li>گیربکس : {transmission_type.fa}</li>
                                     {/* changed in 980528 by sajad bug fix */}
                                     {/* <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id + 1] : "صفر کیلومتر"}</li> */}
                                     <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id-1 ] : "صفر کیلومتر"}</li>

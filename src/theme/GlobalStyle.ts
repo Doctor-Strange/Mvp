@@ -104,6 +104,26 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 500;
     line-height: 1.2;
   }
+  #alertShow{
+    position: fixed;
+    z-index: 900;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: #161616;
+    border-radius: 4px;
+    padding: 10px 40px;
+    background: #fff;
+    width: 280px;
+    text-shadow: none;
+  }
+  .heightControl{
+    height:90vh
+    @media (max-width:768px){
+      height:105vh
+    }
+  }
   .WHITE{
     background : #fff;
   }

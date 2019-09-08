@@ -40,6 +40,10 @@ import {
 } from '../../utils/date';
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
 import { lightTheme } from "../../theme/Colors"; // fixme: serve colors only from styled-component
+import swal from '@sweetalert/with-react'
+import { ToastContainer, toast } from 'react-toastify';
+import {GlobalStyle} from '../../theme';
+
 
 
 function clearNumber(x) {
@@ -160,7 +164,6 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
 
   const setCalStart = () => {
     if (date.from && !date.to) {
-      console.log("تاریخ بازگشت را انتخاب کنید")
       setCalEnd();
       return;
     }
@@ -260,6 +263,9 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                         margin: '0 auto'
                       }}
                     >
+                      {
+                        date.from && !date.to  ? <p id="alertShow">تاریخ بازگشت را انتخاب کنید</p> : null
+                      }
                       <Box className="indexFullOnMobile" width={[4 / 16]}>
                         <label readonly style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
                         <input disabled value="تهران" type = "text"/>  

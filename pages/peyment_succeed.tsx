@@ -144,7 +144,6 @@ const Page = ({id}) => {
     }, []);
 
     const rentDump = request? request.success? request.data.rent_search_dump : {} :null;
-    // console.log(rentDump);
     return (
         <Layout haveSubHeader={true} pageTitle={'Hello World'}>
             <Section justifyCenter={true}>
@@ -158,7 +157,8 @@ const Page = ({id}) => {
                         </svg>
                         <div style={{textAlign:'center'}}>
                             <h1 className="center">پرداخت با موفقیت انجام شد</h1>
-                            <img src={(rentDump.car.media_set[0] || {url:"https://www.iol.co.za/assets/images/general/no-image.png"}).url}/>
+                            {console.log(request.data.rent_search_dump.media_set[0].url)}
+                            <img src={request.data.rent_search_dump.media_set[0].url}/>
                             <h2 className="center">{rentDump.car.name.fa}</h2>
                             <h3 className="center">{rentDump.owner.name}</h3>
                             <br/>

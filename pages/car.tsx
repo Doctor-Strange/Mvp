@@ -273,7 +273,7 @@ export default withTranslation('common')(
                             <Details title="مشخصات فنی">
                                 <ul className="bullets">
                                     <li>نوع بدنه: {body_style.fa}</li>
-                                    <li>گیربکس : {transmission_type.fa}</li>
+                                    <li>گیربکس: {transmission_type.fa}</li>
                                     {/* changed in 980528 by sajad bug fix */}
                                     {/* <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id + 1] : "صفر کیلومتر"}</li> */}
                                     <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id-1 ] : "صفر کیلومتر"}</li>

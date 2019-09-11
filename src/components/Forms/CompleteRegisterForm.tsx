@@ -29,6 +29,11 @@ import * as NewUser from '../../../static/new_user.svg';
 import { Box, Flex } from '@rebass/grid';
 import { monthsEnglish, monthsFarsi } from '../../constants/options';
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
+import LoginModal from '../Modals/LoginModal';
+
+
+
+
 function clearNumber(x) {
   return Number(convertNumbers2English(x.toString())
     .replace(/,/g, '')
@@ -101,6 +106,14 @@ export default withTranslation('common')(
     constructor(props) {
       super(props);
     }
+
+    onClick = () => {
+      this.loginmodal.handleOpenModal(); // do stuff
+    };
+
+    doRef = ref => {
+      this.loginmodal = ref;
+    };
 
     render() {
       const {
@@ -305,6 +318,7 @@ export default withTranslation('common')(
               let nameErrors = (errors.firstName && touched.firstName) || (errors.lastName && touched.lastName);
               return (
                 <BoxAccount className="box_account">
+                  <LoginModal onRef={this.doRef} updateInfo={this.updateInfo} />
                   <Form onSubmit={handleSubmit}>
                     <h3 className="new_client">{$new_client}</h3>
                     {/* <small className="float-right pt-2">* {$required_fields}</small> */}
@@ -541,7 +555,7 @@ export default withTranslation('common')(
                           {$signup}
                         </Button>
                         <br />
-                        <span>{$agreement_sentence}</span>
+                        <span onClick={this.onClick}>{$agreement_sentence}</span>
                       </Form.Field>
 
                       {error && (

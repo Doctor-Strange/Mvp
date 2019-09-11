@@ -104,8 +104,39 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 500;
     line-height: 1.2;
   }
+  .box_account .activefield{
+    border:1px solid #4ba3ce !important;
+    border-bottom: 2px solid #4ba3ce !important;
+  }
+  .Calendar {
+    margin-top: 7px;
+  }
+  @media (max-width:768px){
+    .responsiveFeildcontrol div{
+      padding:0 !important;
+    }
+    .responsiveFeildcontrol .ui.button:not(.circular).full-width{
+      margin:0;
+    }
+    .responsiveFeildcontrol div:nth-of-type(2){
+      width: 50%;
+    }
+    .responsiveFeildcontrol div:nth-of-type(2) input{
+      border-left:0 !important;
+      border-top-left-radius:0px !important;
+      border-bottom-left-radius:0px !important;
+    }
+    .responsiveFeildcontrol div:nth-of-type(3){
+      width: 50%;
+    }
+    .responsiveFeildcontrol div:nth-of-type(3) input{
+      border-top-right-radius:0px !important;
+      border-bottom-right-radius:0px !important;
+    }
+  }
   #alertShow{
     position: fixed;
+     display:none;
     z-index: 900;
     top: 100px;
     left: 0;
@@ -117,6 +148,9 @@ const GlobalStyle = createGlobalStyle`
     background: #fff;
     width: 280px;
     text-shadow: none;
+    @media (max-width:768px){
+      display:block
+    }
   }
   .heightControl{
     height:90vh

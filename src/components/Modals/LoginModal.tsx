@@ -298,6 +298,22 @@ export default withTranslation('common')(
                                 first_name: response2.data.data.first_name,
                                 last_name: response2.data.data.last_name
                               });
+                              let go_to_pathname = Router.pathname;
+                              let go_to_queries = Router.query;
+                              // console.log(go_to_queries);
+                              Router.push({
+                                pathname: '/complete-register', query: {
+                                  cell: this.state.phone,
+                                  token: response.data.token,
+                                  go_to_pathname,
+                                  go_to_queries: Object.keys(go_to_queries).map(function (k) {
+                                    return encodeURIComponent(k) + '=' + encodeURIComponent(go_to_queries[k])
+                                  }).join('&')
+                                }
+                              }, {
+                                  pathname: '/complete-register'
+                                });
+                              
                               this.handleCloseModal();
                               updateInfo();
                             });

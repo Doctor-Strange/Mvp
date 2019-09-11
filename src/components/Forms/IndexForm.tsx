@@ -130,6 +130,8 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   const [error, setError] = useState('');
   const [name, setName] = useState('');
   const [success, setSuccess] = useState(false);
+  const [activeField1, setactiveField1] = useState(false);
+  const [activeField2, setactiveField2] = useState(false);
   const [datepicker_animation, setDPA] = useState(`.DatePicker__calendarContainer {
   transform: translateX(-22%);
 }
@@ -256,7 +258,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                   return (
                     <Flex
                       justifyContent="space-around"
-                      className="wrapper index-box"
+                      className="wrapper index-box responsiveFeildcontrol"
                       style={{
                         flexDirection: 'row',
                         justifyContent: 'flex-start',
@@ -308,12 +310,13 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                         <input
                           readOnly
                           ref={ref}
-                          onFocus={() => { setCalStart(); onFocus() }}
+                          onBlur={()=>{setactiveField1(false)}}
+                          onFocus={() => { setCalStart(); onFocus();setactiveField1(true) }}
                           // onBlur={() => { console.log("on Blur for from")}}
 
                           value={getSelectedDayValue(date.from)}
                           placeholder="از تاریخ"
-                          className="DatePicker__input index"
+                          className={["DatePicker__input index", activeField1 ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
                       </Box>
@@ -324,11 +327,12 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                         <input
                           readOnly
                           ref={ref}
-                          onFocus={() => { setCalEnd(); onFocus() }}
+                          onBlur={()=>{setactiveField2(true) }}
+                          onFocus={() => { setCalEnd(); onFocus(); setactiveField2(true) }}
                           // onBlur={() => { console.log("on Blur for To")}}
                           value={getSelectedDayValue(date.to)}
                           placeholder="تا تاریخ"
-                          className="DatePicker__input"
+                          className={["DatePicker__input", activeField2  || (date.from&&!date.to) ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
                       </Box>

@@ -29,7 +29,7 @@ import * as NewUser from '../../../static/new_user.svg';
 import { Box, Flex } from '@rebass/grid';
 import { monthsEnglish, monthsFarsi } from '../../constants/options';
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
-import LoginModal from '../Modals/LoginModal';
+import Laws from '../Modals/Laws';
 
 
 
@@ -59,7 +59,11 @@ const BoxAccount = styled.div`
       background: url(${NewUser}) center left no-repeat;
     }
   }
-
+  #selectBox {
+    height:15px;
+    display: inline-block;
+    width:27px !important;
+  }
   .selection {
     font-size: 14px;
     border-radius: 3px;
@@ -100,7 +104,8 @@ export default withTranslation('common')(
     state = {
       error: '',
       name: null,
-      success: false
+      success: false,
+      checkbox: false
     };
 
     constructor(props) {
@@ -114,6 +119,7 @@ export default withTranslation('common')(
     doRef = ref => {
       this.loginmodal = ref;
     };
+    updateInfo = () => { }
 
     render() {
       const {
@@ -318,7 +324,7 @@ export default withTranslation('common')(
               let nameErrors = (errors.firstName && touched.firstName) || (errors.lastName && touched.lastName);
               return (
                 <BoxAccount className="box_account">
-                  <LoginModal onRef={this.doRef} updateInfo={this.updateInfo} />
+                  <Laws onRef={this.doRef} updateInfo={this.updateInfo} />
                   <Form onSubmit={handleSubmit}>
                     <h3 className="new_client">{$new_client}</h3>
                     {/* <small className="float-right pt-2">* {$required_fields}</small> */}
@@ -546,16 +552,40 @@ export default withTranslation('common')(
                       <Form.Field
                         style={{ textAlign: 'center', fontSize: '0.8em' }}
                       >
-                        <Button
+                        <div style={{textAlign: 'right'}}>
+                        <input id="selectBox" type="checkbox" name="laws" onChange={(e) =>this.setState(pre =>{
+                          return {
+                            checkbox : !pre.checkbox
+                          }
+                        })}/>
+                        <label onClick={this.onClick} style={{fontSize: '13px'}}>
+                          <span 
+                          style ={{
+                            textDecoration:"underline",
+                          color:"#0099ff",
+                          cursor:"pointer",
+                          display:"inline-block",
+                          marginBottom:"5px"}}>قوانین و مقررات
+                          </span> را می پذیرم </label>
+                        </div>
+                        {this.state.checkbox ? <Button
                           loading={isSubmitting}
                           primary
                           type="submit"
                           className="btn_1 full-width"
                         >
                           {$signup}
-                        </Button>
-                        <br />
-                        <span onClick={this.onClick}>{$agreement_sentence}</span>
+                        </Button> :
+                        <Button
+                        disabled
+                        primary
+                        style={{background:"#ccc"}}
+                        type="submit"
+                        className="btn_1 full-width"
+                      >
+                        قوانین و مقررات را تایید کنید
+                      </Button> 
+                      }
                       </Form.Field>
 
                       {error && (

@@ -161,6 +161,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   };
 
   useEffect(() => {
+
     fetchAPI();
   }, []);
 
@@ -179,6 +180,11 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
       });
     }
   }
+
+  // document.addEventListener("click",(e)=>{
+  //   console.log(document.querySelector(".DatePicker ").children)
+  // })
+ 
 
   const setCalEnd = () => {
     setDPA(`.DatePicker__calendarContainer {
@@ -246,7 +252,6 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
               <DatePicker
                 selectedDayRange={date}
                 onChange={(v) => {
-                  // console.log("fe", v);
                   if (!v.to) {
                     setCalEnd();
                   }
@@ -311,7 +316,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           readOnly
                           ref={ref}
                           onBlur={()=>{setactiveField1(false)}}
-                          onFocus={() => { setCalStart(); onFocus();setactiveField1(true) }}
+                          onFocus={() => { console.log(1);setCalStart(); onFocus();setactiveField1(true) }}
                           // onBlur={() => { console.log("on Blur for from")}}
 
                           value={getSelectedDayValue(date.from)}
@@ -328,7 +333,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           readOnly
                           ref={ref}
                           onBlur={()=>{setactiveField2(true) }}
-                          onFocus={() => { setCalEnd(); onFocus(); setactiveField2(true) }}
+                          onFocus={() => { console.log(2);setCalEnd(); onFocus(); setactiveField2(true) }}
                           // onBlur={() => { console.log("on Blur for To")}}
                           value={getSelectedDayValue(date.to)}
                           placeholder="تا تاریخ"

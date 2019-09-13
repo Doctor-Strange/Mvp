@@ -70,16 +70,16 @@ export default class extends Document {
             content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
           />
           {/* Import CSS for nprogress */}
+          <meta name="google-site-verification" content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto" />
+          <meta name="yandex-verification" content="91fb37895d55bde3" />
+          
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
-
           <meta name="theme-color" content="#00ACC1" />
           <link rel="apple-touch-icon" href="/static/icon.png" />
           <meta name="apple-mobile-web-app-title" content="Otoli Alpha!" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="mobile-web-app-capable" content="yes" />
-
-
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content={SITE_NAME} />
           <meta property="og:title" content={SITE_TITLE} />

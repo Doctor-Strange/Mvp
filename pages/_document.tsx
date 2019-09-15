@@ -84,7 +84,6 @@ export default class extends Document {
           
           {/* Import CSS for nprogress */}
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
-          <meta name="theme-color" content="#00ACC1" />
           <link rel="apple-touch-icon" href="/static/icon.png" />
           <meta name="apple-mobile-web-app-title" content="Otoli Alpha!" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -114,7 +113,15 @@ export default class extends Document {
             rel="stylesheet"
             href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
           />
+{/* 980624 */}
           <link rel="shortcut icon" href="/static/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png"/>
+<link rel="manifest" href="/static/site.webmanifest"/>
+<link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="##4ba3ce"/>
+<meta name="msapplication-TileColor" content="#000000"/>
+<meta name="theme-color" content="#000000"/>
+{/* 980624 */}
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.find,Array.prototype.includes,String.prototype.includes,Array.prototype.findIndex,Object.entries" />
           {!DEV && FB_TRACKING_ID && (
             <script

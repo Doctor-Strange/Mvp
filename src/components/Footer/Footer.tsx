@@ -442,7 +442,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <li>
                 <span>۱۳۹۸ اتولی ©</span>
               </li>
-              <li>ver : 1.1.37</li>
+              <li>ver : 1.1.38</li>
             </AdditionalLinks>
           </div>
         </div>

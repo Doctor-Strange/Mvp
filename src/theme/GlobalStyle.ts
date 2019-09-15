@@ -1958,7 +1958,9 @@ ul.bullets li {
     max-width: 1140px;
   }
 }
-
+button:focus{
+  background: #0d71bb !important;
+}
 `;
 
 enum Margin {

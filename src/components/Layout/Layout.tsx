@@ -39,6 +39,11 @@ class Layout extends React.Component<{
   handleSidebarHide = () => this.setState({ visible: false });
 
   componentDidMount() {
+    // document.addEventListener("click",(e)=>{
+    //     console.log(document.querySelector(".DatePicker").children)
+    //   })
+
+
     if (this.props.onRef) this.props.onRef(this);
   }
   componentWillUnmount() {

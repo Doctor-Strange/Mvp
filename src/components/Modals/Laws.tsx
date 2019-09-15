@@ -143,7 +143,8 @@ export default withTranslation('common')(
             onRef={ref => (this.modalwrapper = ref)}
             direction={theme.direction}
             height={this.state.height}
-            width={this.state.width}
+            width={ window.innerWidth < 768 ? "92%": "600px"}
+            maxWidth="inherit"
           >
             <PanelsWrapper
               showIndex={this.state.showIndex}
@@ -165,7 +166,7 @@ export default withTranslation('common')(
                             onClick= {() =>{this.handleCloseModal();
                                 updateInfo();}}
                                 >
-                            بستن
+                            می‌پذیرم
                           </Button.Submit>
                         </div>
                                 </LawDiv>

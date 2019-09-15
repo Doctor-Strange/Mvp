@@ -161,7 +161,16 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   };
 
   useEffect(() => {
+    // var specifiedElement = document.querySelector('.DatePicker');
 
+    // //I'm using "click" but it works with any event
+    // document.addEventListener('click', function(event) {
+    //   var isClickInside = specifiedElement.contains(event.target);
+    //   if (!isClickInside) {
+    // console.log("out")
+    // //the click was outside the specifiedElement, do something
+    //   }
+    // });
     fetchAPI();
   }, []);
 
@@ -180,11 +189,6 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
       });
     }
   }
-
-  // document.addEventListener("click",(e)=>{
-  //   console.log(document.querySelector(".DatePicker ").children)
-  // })
- 
 
   const setCalEnd = () => {
     setDPA(`.DatePicker__calendarContainer {

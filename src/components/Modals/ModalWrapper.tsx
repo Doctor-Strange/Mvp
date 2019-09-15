@@ -8,6 +8,8 @@ export class ModalWrapper extends React.Component<{
   title?: string;
   direction: string;
   height: number;
+  width?:string;
+maxWidth?:string;
 }> {
   state = {
     animation: null,
@@ -54,6 +56,8 @@ export class ModalWrapper extends React.Component<{
           handleClose={this.handleCloseModal}
           direction={this.props.direction}
           height={this.props.height}
+          width={this.props.width}
+          maxWidth={this.props.maxWidth}
         >
           {this.props.children}
         </ModalCore>

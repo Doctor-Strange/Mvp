@@ -63,6 +63,8 @@ const BoxAccount = styled.div`
     height:15px;
     display: inline-block;
     width:27px !important;
+    margin-left: 4px;
+    vertical-align: middle;
   }
   .selection {
     font-size: 14px;
@@ -553,13 +555,20 @@ export default withTranslation('common')(
                         style={{ textAlign: 'center', fontSize: '0.8em' }}
                       >
                         <div style={{textAlign: 'right'}}>
-                        <input id="selectBox" type="checkbox" name="laws" onChange={(e) =>this.setState(pre =>{
+                        <input id="selectBox" type="checkbox"
+                        checked = {this.state.checkbox}
+                        name="laws" onChange={(e) =>this.setState(pre =>{
                           return {
                             checkbox : !pre.checkbox
                           }
                         })}/>
-                        <label onClick={this.onClick} style={{fontSize: '13px'}}>
+                        <label onClick={(e) =>this.setState(pre =>{
+                          return {
+                            checkbox : !pre.checkbox
+                          }
+                        })}>
                           <span 
+                          onClick={this.onClick} style={{fontSize: '13px'}}
                           style ={{
                             textDecoration:"underline",
                           color:"#0099ff",
@@ -574,7 +583,7 @@ export default withTranslation('common')(
                           type="submit"
                           className="btn_1 full-width"
                         >
-                          {$signup}
+                          شرایط و مقررات استفاده از اتولی را مطالعه کردم و می‌پذیرم
                         </Button> :
                         <Button
                         disabled
@@ -583,7 +592,7 @@ export default withTranslation('common')(
                         type="submit"
                         className="btn_1 full-width"
                       >
-                        قوانین و مقررات را تایید کنید
+                        شرایط و مقررات استفاده از اتولی را مطالعه کردم و می‌پذیرم
                       </Button> 
                       }
                       </Form.Field>

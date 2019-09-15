@@ -274,9 +274,9 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                         margin: '0 auto'
                       }}
                     >
-                      {
+                      {/* {
                         date.from && !date.to  ? <p id="alertShow">تاریخ بازگشت را انتخاب کنید</p> : null
-                      }
+                      } */}
                       <Box className="indexFullOnMobile" width={[4 / 16]}>
                         <label readonly style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
                         <input disabled value="تهران" type = "text"/>  

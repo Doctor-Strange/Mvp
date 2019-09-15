@@ -1961,6 +1961,19 @@ ul.bullets li {
 button:focus{
   background: #0d71bb !important;
 }
+@media (max-width:768px){
+  .DatePicker__calendarContainer {
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: none !important;
+    position: absolute;
+    background: none;
+    width: 100%;
+    height:0;
+  }
+}
 `;
 
 enum Margin {

@@ -58,6 +58,7 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
             {/* {isMobile &&
                 <CarNav startDate={start_date} endDate={end_date} />
             } */}
+            {console.log(results)}
             <Section justifyCenter={true} style={{ marginTop: '24px' }} rowClassName="profile_page">
                 <ResultsCards
                     t={t}

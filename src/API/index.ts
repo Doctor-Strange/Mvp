@@ -40,6 +40,9 @@ import { REQUEST_setOrderStatus } from './Set/setRequestsActions';
 // Other
 import { REQUEST_getFAQ } from "./Get/getFAQ";
 
+// Out of service
+import {REQUEST_set_out_of_service} from './Set/setOutOfServie'
+
 export {
   REQUEST_getCar,
   REQUEST_getLocations,
@@ -64,5 +67,6 @@ export {
   REQUEST_setCarDiscounts,
   REQUEST_newCarMedia,
   REQUEST_getOrderRequest,
-  REQUEST_getFAQ
+  REQUEST_getFAQ,
+  REQUEST_set_out_of_service
 };

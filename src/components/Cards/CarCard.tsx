@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
+import jsCookie from 'js-cookie';
 import styled from 'styled-components';
 import { Box, Flex } from '@rebass/grid';
 import Link from 'next/link';
@@ -8,6 +10,10 @@ import { Icon, Button, Grid } from 'semantic-ui-react';
 import { PriceCard } from './index'
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
 import { ITheme } from "../../theme/Interfaces";
+import { REQUEST_set_out_of_service } from '../../API';
+import axios from 'axios';
+
+
 
 const Card = styled.div`
   max-height: 300px;
@@ -246,6 +252,10 @@ export const CarCard: React.FunctionComponent<{
       link = `/car/${id}${dateURL}?search_id=${search_id}`;
     }
 
+    const [outofservice, setoutofservice] = useState(false);
+    useEffect(() => {
+      setoutofservice(is_out_of_service)
+  }, []);
     const setCarTiming = () => {
       const href = `/set-car-timing?id=${id}`;
       Router.push(href, href);
@@ -259,12 +269,47 @@ export const CarCard: React.FunctionComponent<{
       // });
     }
 
-    const pauseCar = () => {
+    const pauseCar = (id, value) => {
+      const token = jsCookie.get('token');
+      const DOMAIN = process.env.PRODUCTION_ENDPOINT;
+      const SETOUTOFSERVICE = '/core/rental-car/set-is-out-of-service';
+      axios
+      .post(
+        DOMAIN + SETOUTOFSERVICE,
+        {
+          id, 
+          value: !value
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        }
+        )
+        .then(response => {
+          console.log(response)
+          if (response.data.success) {
+            setoutofservice(!value)
+            // resolve(response.data.success);
+          }
+      })
+      .catch(error => {
+        console.log(error)
+
+        // reject(error.response);
+      });
+      // fetchAPI();
+      // console.log("pauseCar", id, value)
       // const href = `/set-car-timing?id=${id}`;
       // Router.push(href, href, { shallow: true });
+      return
       alert("خودروی شما از دیده‌ها پنهان شد.");
     }
-
+    
+    async function fetchAPI() {
+      const res = await REQUEST_set_out_of_service({  token: jsCookie.get('token'),id:11 , value : true });
+      // console.log(res);
+    }
     return (
       <Card className="strip grid carcard">
         <Link href={link}> 
@@ -331,8 +376,10 @@ export const CarCard: React.FunctionComponent<{
                       </Button>
                   </Grid.Column>
                   <Grid.Column width={8} className="item">
-                    <Button basic onClick={pauseCar}>
-                      <Icon name='pause circle outline' /> توقف نمایش
+                    <Button basic onClick={() =>pauseCar(id,is_out_of_service)}>
+                    { outofservice  ? "نمایش مجدد خودرو"
+                    : <><Icon name='pause circle outline' /> توقف نمایش</>
+                    }
                       </Button>
                   </Grid.Column>
                 </Grid.Row>

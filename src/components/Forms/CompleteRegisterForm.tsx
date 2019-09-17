@@ -574,8 +574,8 @@ export default withTranslation('common')(
                           color:"#0099ff",
                           cursor:"pointer",
                           display:"inline-block",
-                          marginBottom:"5px"}}>قوانین و مقررات
-                          </span> را می پذیرم </label>
+                          marginBottom:"5px"}}>شرایط و مقررات 
+                          </span> استفاده از اتولی را مطالعه کردم و می‌پذیرم </label>
                         </div>
                         {this.state.checkbox ? <Button
                           loading={isSubmitting}
@@ -583,7 +583,7 @@ export default withTranslation('common')(
                           type="submit"
                           className="btn_1 full-width"
                         >
-                          شرایط و مقررات استفاده از اتولی را مطالعه کردم و می‌پذیرم
+                          تایید
                         </Button> :
                         <Button
                         disabled
@@ -592,7 +592,7 @@ export default withTranslation('common')(
                         type="submit"
                         className="btn_1 full-width"
                       >
-                        شرایط و مقررات استفاده از اتولی را مطالعه کردم و می‌پذیرم
+                        تایید
                       </Button> 
                       }
                       </Form.Field>

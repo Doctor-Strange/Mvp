@@ -5,16 +5,17 @@ import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
 import { Section } from '../src/components/row/Sections';
 import { RequestCard, RequestCardPlaceholder } from '../src/components/Cards';
 import Layout from '../src/components/Layout';
-import { REQUEST_getOrderRequests } from '../src/API';
+import { REQUEST_getOrderRequests, REQUEST_getOrderRequest } from '../src/API';
 import { Box, Flex } from '@rebass/grid';
 import jsCookie from 'js-cookie';
 import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
 
-export default props => {
+const Requests = props => {
 
     const [requests, setRequests] = useState([{}]);
     const [requestsCount, setRequestsCount] = useState(-1);
+    const [request, setRequest] = useState(null);
 
     async function fetchAPI() {
         const res = await REQUEST_getOrderRequests({ token: jsCookie.get('token') });
@@ -22,8 +23,18 @@ export default props => {
         setRequestsCount(res.count || 0);
     }
 
+    async function fetchAPI2() {
+        console.log("ID Num",props.id)
+        console.log(jsCookie.get('token'))
+        let id = props.id
+        const resq = await REQUEST_getOrderRequests({ token: jsCookie.get('token'), id  });
+        console.log(resq)
+        setRequest(resq);
+    }
+
     useEffect(() => {
         fetchAPI();
+        fetchAPI2();
     }, []);
 
 
@@ -102,3 +113,19 @@ export default props => {
         </Layout>
     );
 }
+
+
+Requests.getInitialProps = async (props) => {
+    if (typeof window === 'undefined') {
+        // console.log('Server Side Router Query', props.query);
+    } else {
+        // console.log('Client side Router Query', props.query);
+    }
+    const id = props.query.id;
+    return {
+        namespacesRequired: ['common'],
+        id
+    };
+}
+
+export default Requests

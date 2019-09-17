@@ -1959,7 +1959,7 @@ ul.bullets li {
   }
 }
 button:focus{
-  background: #0d71bb !important;
+  background: #4BA3CE !important;
 }
 @media (max-width:768px){
   .DatePicker__calendarContainer {

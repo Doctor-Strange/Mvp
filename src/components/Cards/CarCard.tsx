@@ -244,6 +244,7 @@ export const CarCard: React.FunctionComponent<{
   discounted_price,
   is_out_of_service = false,
 }) => {
+  const [outofservice, setoutofservice] = useState(false);
     let link = "";
     if (simpleMode) {
       link = `/car/${id}`;
@@ -252,7 +253,6 @@ export const CarCard: React.FunctionComponent<{
       link = `/car/${id}${dateURL}?search_id=${search_id}`;
     }
 
-    const [outofservice, setoutofservice] = useState(false);
     useEffect(() => {
       setoutofservice(is_out_of_service)
   }, []);
@@ -270,6 +270,7 @@ export const CarCard: React.FunctionComponent<{
     }
 
     const pauseCar = (id, value) => {
+      // console.log("pass" , value)
       const token = jsCookie.get('token');
       const DOMAIN = process.env.PRODUCTION_ENDPOINT;
       const SETOUTOFSERVICE = '/core/rental-car/set-is-out-of-service';
@@ -287,10 +288,12 @@ export const CarCard: React.FunctionComponent<{
         }
         )
         .then(response => {
-          console.log(response)
+          // console.log("response" ,response.data.data.is_out_of_service)
           if (response.data.success) {
-            setoutofservice(!value)
-            // resolve(response.data.success);
+            setoutofservice(response.data.data.is_out_of_service)
+            // console.log("outofservice" , outofservice);
+            is_out_of_service = response.data.data.is_out_of_service
+            // console.log("new value" , is_out_of_service)
           }
       })
       .catch(error => {
@@ -306,12 +309,13 @@ export const CarCard: React.FunctionComponent<{
       alert("خودروی شما از دیده‌ها پنهان شد.");
     }
     
-    async function fetchAPI() {
-      const res = await REQUEST_set_out_of_service({  token: jsCookie.get('token'),id:11 , value : true });
-      // console.log(res);
-    }
+    // async function fetchAPI() {
+    //   const res = await REQUEST_set_out_of_service({  token: jsCookie.get('token'),id:11 , value : true });
+    //   // console.log(res);
+    // }
     return (
       <Card className="strip grid carcard">
+        {/* {console.log("body",outofservice)} */}
         <Link href={link}> 
           <a> 
           <figure>
@@ -376,8 +380,8 @@ export const CarCard: React.FunctionComponent<{
                       </Button>
                   </Grid.Column>
                   <Grid.Column width={8} className="item">
-                    <Button basic onClick={() =>pauseCar(id,is_out_of_service)}>
-                    { outofservice  ? "نمایش مجدد خودرو"
+                    <Button basic onClick={() =>pauseCar(id,outofservice)}>
+                    { outofservice? "نمایش مجدد خودرو"
                     : <><Icon name='pause circle outline' /> توقف نمایش</>
                     }
                       </Button>

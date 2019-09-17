@@ -143,7 +143,7 @@ export default withTranslation('common')(
             onRef={ref => (this.modalwrapper = ref)}
             direction={theme.direction}
             height={this.state.height}
-            width={ window.innerWidth < 768 ? "92%": "600px"}
+            width={ window.innerWidth < 768 ? "85%": "600px"}
             maxWidth="inherit"
           >
             <PanelsWrapper

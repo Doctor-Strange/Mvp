@@ -40,6 +40,8 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
     const [own, setOwnership] = useState(false);
 
     async function fetchAPI() {
+        console.warn("user id is: ", image_url);
+
         const res = await REQUEST_getUserCars({ id });
         setRresults(res);
         setLoading(false);
@@ -47,7 +49,6 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
 
     useEffect(() => {
         fetchAPI();
-        console.warn("user id is: ", jsCookie.get('user_id'));
         if (jsCookie.get('user_id') == id) {
             setOwnership(true);
         }

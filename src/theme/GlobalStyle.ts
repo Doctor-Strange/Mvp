@@ -1962,6 +1962,13 @@ button:focus{
   background: #4BA3CE !important;
 }
 @media (max-width:768px){
+.carcards_section {
+  overflow-x: hidden;
+}
+.filters_listing {
+  overflow-x: hidden;
+
+}
   .DatePicker__calendarContainer {
     top: 10px;
     left: 0;

@@ -242,7 +242,7 @@ export const UserCard: React.FunctionComponent<{
                   type='file'
                   id='file'
                   ref={inputFile}
-                  style={{display: 'none'}}
+                  // style={{display: 'none'}}
                   accept=".jpg,.jpeg,.png"
                   onChange={(e) => {
                     let file = e.target.files[0];
@@ -260,7 +260,7 @@ export const UserCard: React.FunctionComponent<{
                     reader.onerror = () =>
                       //console.log('file reading has failed');
                     reader.onload = () => {
-                      //console.log('file reading was susceed');
+                      console.log('file reading was susceed');
                       setFieldValue('shownImage', reader.result);
                     };
                   }}
@@ -269,21 +269,21 @@ export const UserCard: React.FunctionComponent<{
               <div
                 className="media-body hostDetailCard box"
               >
-                 <label>{'نام کوچک'}</label>
+                 <label>{'نام'}</label>
                 <Input
                   type="text"
                   className="firstname"
-                  placeholder="نام کوچک"
+                  placeholder="نام"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.firstname}
                   name="firstname"
                 />
-                 <label>{'نام فامیلی'}</label>
+                 <label>{'نام خانوادگی'}</label>
                 <Input
                   type="text"
                   className="lastname"
-                  placeholder="نام فامیلی"
+                  placeholder="نام خانوادگی"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.lastname}

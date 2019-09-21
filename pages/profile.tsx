@@ -40,9 +40,9 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
     const [own, setOwnership] = useState(false);
 
     async function fetchAPI() {
-        console.warn("user id is: ", image_url);
-
+        
         const res = await REQUEST_getUserCars({ id });
+        console.log("user id is: ", image_url);
         setRresults(res);
         setLoading(false);
     }

@@ -16,7 +16,7 @@ const Request = ({id}) => {
     const [request, setRequest] = useState(null);
 
     async function fetchAPI() {
-        // console.log(jsCookie.get('token'),id)
+        console.log(jsCookie.get('token'),id)
         const res = await REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  });
         console.log(res)
         setRequest(res);
@@ -38,7 +38,14 @@ const Request = ({id}) => {
                                     <RequestCardPlaceholder />
                                 </>
                                 :
-                                [request].map((value, index) => {
+                                [request].map((a, index) => {
+                                    const value = a.data;
+                                    const {
+                                        has_owner_reviewed_rent_order,
+                                        has_owner_reviewed_renter,
+                                        has_renter_reviewed_owner,
+                                        has_renter_reviewed_rent_order
+                                    } = value;
                                     const rentDump = value.rent_search_dump;
                                     return (
                                         <RequestCard
@@ -73,6 +80,12 @@ const Request = ({id}) => {
                                             }}
                                             picture={rentDump.media_set[0].url}
                                             refresh={fetchAPI}
+                                            reviewStatus={{
+                                                has_owner_reviewed_rent_order,
+                                                has_owner_reviewed_renter,
+                                                has_renter_reviewed_owner,
+                                                has_renter_reviewed_rent_order
+                                            }}
                                         />
                                     )
                                 })

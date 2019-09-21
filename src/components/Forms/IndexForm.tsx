@@ -320,7 +320,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           readOnly
                           ref={ref}
                           onBlur={()=>{setactiveField1(false)}}
-                          onFocus={() => { console.log(1);setCalStart(); onFocus();setactiveField1(true) }}
+                          onFocus={() => { setCalStart(); onFocus();setactiveField1(true) }}
                           // onBlur={() => { console.log("on Blur for from")}}
 
                           value={getSelectedDayValue(date.from)}
@@ -337,7 +337,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           readOnly
                           ref={ref}
                           onBlur={()=>{setactiveField2(true) }}
-                          onFocus={() => { console.log(2);setCalEnd(); onFocus(); setactiveField2(true) }}
+                          onFocus={() => { setCalEnd(); onFocus(); setactiveField2(true) }}
                           // onBlur={() => { console.log("on Blur for To")}}
                           value={getSelectedDayValue(date.to)}
                           placeholder="تا تاریخ"

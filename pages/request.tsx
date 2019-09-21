@@ -16,9 +16,9 @@ const Request = ({id}) => {
     const [request, setRequest] = useState(null);
 
     async function fetchAPI() {
-        console.log(jsCookie.get('token'),id)
+        // console.log(jsCookie.get('token'),id)
         const res = await REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  });
-        // console.log(res)
+        console.log(res)
         setRequest(res);
     }
 

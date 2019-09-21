@@ -134,7 +134,7 @@ const Page = ({id}) => {
           setRequest(res);
         })
         .catch(e=>{
-          console.log(e)
+          // console.log(e)
           setRequest({success: false})
         })
     }

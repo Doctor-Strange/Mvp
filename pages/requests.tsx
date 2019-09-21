@@ -23,18 +23,18 @@ const Requests = props => {
         setRequestsCount(res.count || 0);
     }
 
-    async function fetchAPI2() {
-        console.log("ID Num",props.id)
-        console.log(jsCookie.get('token'))
-        let id = props.id
-        const resq = await REQUEST_getOrderRequests({ token: jsCookie.get('token'), id  });
-        console.log(resq)
-        setRequest(resq);
-    }
+    // async function fetchAPI2() {
+    //     // console.log("ID Num",props.id)
+    //     console.log(jsCookie.get('token'))
+    //     let id = props.id
+    //     const resq = await REQUEST_getOrderRequests({ token: jsCookie.get('token'), id  });
+    //     // console.log(resq)
+    //     setRequest(resq);
+    // }
 
     useEffect(() => {
         fetchAPI();
-        fetchAPI2();
+        // fetchAPI2();
     }, []);
 
 

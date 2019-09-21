@@ -171,7 +171,7 @@ const DiscountsSelector: React.FC<{
                     
                     let data = carDiscounts;
                     data.splice(index, 1);
-                    console.log("E ===> ",data);
+                    // console.log("E ===> ",data);
                     setOpenEditFor(null);
                     modifyCarDiscounts([]);
                     setShowNewEntery(false);
@@ -182,7 +182,7 @@ const DiscountsSelector: React.FC<{
                 <Icon
                   name="edit outline"
                   onClick={e => {
-                    console.log("E ===> ",e);
+                    // console.log("E ===> ",e);
                     setShowNewEntery(false);
                     setOpenEditFor(index);
                     setPercent(null);

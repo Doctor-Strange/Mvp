@@ -10,7 +10,7 @@ export const REQUEST_set_out_of_service = (data: Ioutofservice) => {
         id, 
         value
     } = data;
-    console.log(token)
+    // console.log(token)
     axios
       .post(
         DOMAIN + SETOUTOFSERVICE,
@@ -25,7 +25,7 @@ export const REQUEST_set_out_of_service = (data: Ioutofservice) => {
         }
       )
       .then(response => {
-        console.log(response)
+        // console.log(response)
         if (response.data.success) {
           resolve(response.data.success);
         }

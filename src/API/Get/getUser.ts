@@ -11,7 +11,7 @@ export const REQUEST_getUser = (data: IgetUser) => {
         : '?username=' + data.username)
         )
       .then(response => {
-        console.log("get user info", response)
+        // console.log("get user info", response)
         if (response.data.success) {
           resolve(response.data.data);
         } else {

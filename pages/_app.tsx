@@ -17,7 +17,7 @@ Sentry.init({
 
 Router.events.on('routeChangeStart', url => {
   //console.log(`Loading: ${url}`);
-  console.log('App is changing to: ', url)
+  // console.log('App is changing to: ', url)
   window.scrollTo(0,0);
   NProgress.start();
 });

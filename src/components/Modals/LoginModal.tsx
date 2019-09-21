@@ -254,7 +254,9 @@ export default withTranslation('common')(
                             user_id: response.data.user_profile.id,
                             token: response.data.token,
                             phone: this.state.phone,
-                            complete_register: true,
+                            // =====>
+                            complete_register: false,
+                            // =====>
                           });
                           this.handleCloseModal();
                           let go_to_pathname = Router.pathname;

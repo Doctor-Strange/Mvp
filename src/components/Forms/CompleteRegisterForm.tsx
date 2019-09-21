@@ -123,6 +123,14 @@ export default withTranslation('common')(
     };
     updateInfo = () => { }
 
+    onResult = (result) =>{
+      this.setState(pre =>{
+        return {
+          checkbox : !pre.checkbox
+        }
+      })
+    }
+
     render() {
       const {
         $required_fields,
@@ -326,7 +334,7 @@ export default withTranslation('common')(
               let nameErrors = (errors.firstName && touched.firstName) || (errors.lastName && touched.lastName);
               return (
                 <BoxAccount className="box_account">
-                  <Laws onRef={this.doRef} updateInfo={this.updateInfo} />
+                  <Laws onRef={this.doRef} updateInfo={this.updateInfo} result= {this.onResult}/>
                   <Form onSubmit={handleSubmit}>
                     <h3 className="new_client">{$new_client}</h3>
                     {/* <small className="float-right pt-2">* {$required_fields}</small> */}
@@ -562,11 +570,7 @@ export default withTranslation('common')(
                             checkbox : !pre.checkbox
                           }
                         })}/>
-                        <label onClick={(e) =>this.setState(pre =>{
-                          return {
-                            checkbox : !pre.checkbox
-                          }
-                        })}>
+                        <label>
                           <span 
                           onClick={this.onClick} style={{fontSize: '13px'}}
                           style ={{
@@ -575,7 +579,15 @@ export default withTranslation('common')(
                           cursor:"pointer",
                           display:"inline-block",
                           marginBottom:"5px"}}>شرایط و مقررات 
-                          </span> استفاده از اتولی را مطالعه کردم و می‌پذیرم </label>
+                          </span>
+                          <span onClick={(e) =>this.setState(pre =>{
+                          return {
+                            checkbox : !pre.checkbox
+                          }
+                        })}>
+                             استفاده از اتولی را مطالعه کردم و می‌پذیرم 
+                            </span>
+                             </label>
                         </div>
                         {this.state.checkbox ? <Button
                           loading={isSubmitting}

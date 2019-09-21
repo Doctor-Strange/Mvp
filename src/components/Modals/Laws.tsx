@@ -164,7 +164,7 @@ export default withTranslation('common')(
                             type="submit"
                             className="btn_1 full-width"
                             onClick= {() =>{this.handleCloseModal();
-                                updateInfo();}}
+                                updateInfo();this.props.result(true)}}
                                 >
                             می‌پذیرم
                           </Button.Submit>

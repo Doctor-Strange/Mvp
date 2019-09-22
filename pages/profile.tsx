@@ -74,13 +74,14 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
                     showInProfile={true}
                     userOwnPage={own ? true : false}
                 />
-                <aside className="col-lg-4" id="sidebar">
+                <aside className="col-lg-4" id="sidebar" >
                     <BoxCard>
                         <div
                             className="score"
                         >
                         <UserCard
                             id={22}
+                            style={{padding: '16px 25px 0px 25px'}}
                             firstname={first_name}
                             lastname={last_name}
                             username={username}

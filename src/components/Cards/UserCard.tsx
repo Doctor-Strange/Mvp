@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Box, Flex } from "@rebass/grid";
+import Router from 'next/router';
+
 import {Link} from '../../../routes'
 import jsCookie from "js-cookie";
 import { Icon, Input, Button, Grid} from "semantic-ui-react";
@@ -53,7 +55,7 @@ const Card = styled.figure`
     }
   }
   .box {
-    display: inline-block;
+      display: inline-block;
   }
 
   figure.usercard {
@@ -149,13 +151,54 @@ export const UserCard: React.FunctionComponent<{
   return (
     <Link route={link}>
     <a>
-    <Card className="usercard">
+    <Card className="usercard" >
       {!editMode ? (
         <>
-          <div className="box">
+          <Icon
+              name="sign out"
+              size='large'
+              style={{
+                position: 'absolute',
+                right: 32,
+                top: 16,
+              }}
+              onClick={() => {
+                jsCookie.remove("user_id")
+                jsCookie.remove("token")
+                jsCookie.remove("phone")
+                jsCookie.remove("last_name")
+                jsCookie.remove("first_name")
+                window.location.href = process.env.SITE_URL;
+                }
+              }
+                >
+                <span style={{
+                  fontSize: '10px',
+                  verticalAlign: 'middle',
+                  display: 'inherit'
+                }}>خروج</span>
+                </Icon>
+          
+      
+          <div className="box" style={{position:'relative', float:'left',marginTop: "16px"}}>
               <img src={image} className="img-fluid" alt="" />
+              {own && (
+            <Icon
+              name="edit"
+              size='large'
+              style={{
+                position: 'absolute',
+                left: -3,
+                bottom: -7,
+              }}
+              onClick={() => {
+                setEditMode(true);
+                setImg(image)
+              }}
+            />
+          )}
           </div>
-          <div className="media-body hostDetailCard box">
+          <div className="media-body hostDetailCard box" style={{lineHeight: 5}}>
                 <span className="name">
                   {firstname} {lastname}
                 </span>
@@ -164,21 +207,6 @@ export const UserCard: React.FunctionComponent<{
                 </div> */}
               {/* <div className="hostDetailCard-responseTime">{responceTime}</div> */}
           </div>
-          {own && (
-            <Icon
-              name="pencil"
-              size='large'
-              style={{
-                position: 'absolute',
-                left: 32,
-                top: 16,
-              }}
-              onClick={() => {
-                setEditMode(true);
-                setImg(image)
-              }}
-            />
-          )}
         </>
       ) : (
         <Formik

@@ -160,12 +160,12 @@ class Header extends React.Component<{
                             <a href={`/profile?id=${user_id}`}>
                               {first_name} {last_name}
                               {' '}
-                              <Icon name="user circle" size='big' className="img-header" />
-                              {/* <img
-                                src={"https://core.otoli.net/static/core/default_profile_pic.png"}
+                              {/* <Icon name="user circle" size='big' className="img-header" /> */}
+                              <img
+                                src={localStorage["ImageUrl"] || "https://core.otoli.net/static/core/default_profile_pic.png" }
                                 className="img-header"
                                 alt=""
-                              /> */}
+                              />
                             </a>
                           </span>
                         )}

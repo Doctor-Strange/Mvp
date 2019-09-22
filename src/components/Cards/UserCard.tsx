@@ -144,6 +144,7 @@ export const UserCard: React.FunctionComponent<{
     link = (username ? `/@${username}` : `/user/${id}`);
   const [editMode, setEditMode] = useState(false);
   const [makeUsername, setMakeUsername] = useState(false);
+  const [img, setImg] = useState("");
   const inputFile = useRef(null) 
   return (
     <Link route={link}>
@@ -174,6 +175,7 @@ export const UserCard: React.FunctionComponent<{
               }}
               onClick={() => {
                 setEditMode(true);
+                setImg(image)
               }}
             />
           )}
@@ -233,10 +235,11 @@ export const UserCard: React.FunctionComponent<{
               )}
               <div className="box">
                 <img
-                  src={values.shownImage}
+                  // src={values.shownImage}
+                  src={img}
                   className="img-fluid edit"
                   alt="ویرایش نمایه"
-                  onClick={() => inputFile.current.click()}
+                  // onClick={() => inputFile.current.click()}
                 />
                 <input
                   type='file'
@@ -246,8 +249,8 @@ export const UserCard: React.FunctionComponent<{
                   accept=".jpg,.jpeg,.png"
                   onChange={(e) => {
                     let file = e.target.files[0];
+                    console.log(e.target.files[0])
                     const types = ['image/png', 'image/jpeg', 'image/png'];
-                      // #2 Catching wrong file types on the client
                     if (types.every(type => file.type !== type)) {
                       alert('لطفاً تصویر را با فرمت jpeg بارگذاری کنید.')
                       return false;
@@ -255,14 +258,19 @@ export const UserCard: React.FunctionComponent<{
                     setFieldValue('image', file);
                     const reader = new FileReader();
                     reader.readAsDataURL(file);
-                    reader.onabort = () =>
-                      //console.log('file reading was aborted');
-                    reader.onerror = () =>
-                      //console.log('file reading has failed');
-                    reader.onload = () => {
-                      console.log('file reading was susceed');
-                      setFieldValue('shownImage', reader.result);
+                    setImg(URL.createObjectURL(file))
+                    // console.log(reader.result)
+                    // setFieldValue('shownImage', reader.result);
+                    reader.onload = (e) => {
+                      console.log('file reading was susceed', e);
                     };
+                    return 
+                      // #2 Catching wrong file types on the client
+                    reader.onabort = () =>{}
+                      //console.log('file reading was aborted');
+                    reader.onerror = () =>{}
+                      //console.log('file reading has failed');
+                    // reader.readAsDataURL(event.target.files[0]);
                   }}
                 />
               </div>

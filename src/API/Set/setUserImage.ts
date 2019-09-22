@@ -24,6 +24,7 @@ export const REQUEST_setUserImage = (data: IsetUSerImage) => {
       )
       .then(response => {
         if (response.data.success) {
+          localStorage["ImageUrl"] = response.data.data.image_url
           resolve(response.data);
         }
       })

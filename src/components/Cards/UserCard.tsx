@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Box, Flex } from "@rebass/grid";
-import Router from 'next/router';
 
 import {Link} from '../../../routes'
 import jsCookie from "js-cookie";
@@ -168,7 +167,9 @@ export const UserCard: React.FunctionComponent<{
                 jsCookie.remove("phone")
                 jsCookie.remove("last_name")
                 jsCookie.remove("first_name")
+                localStorage.removeItem("ImageUrl")
                 window.location.href = process.env.SITE_URL;
+                // window.location.href = "http://localhost:8080/";
                 }
               }
                 >

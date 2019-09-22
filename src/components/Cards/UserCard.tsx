@@ -127,6 +127,7 @@ export const UserCard: React.FunctionComponent<{
   image: string;
   own?: boolean;
   onUpdate?: any;
+  showexit?: boolean;
 }> = ({
   t,
   firstname,
@@ -136,7 +137,8 @@ export const UserCard: React.FunctionComponent<{
   image,
   id,
   own = false,
-  onUpdate
+  onUpdate,
+  showexit
 }) => {
   let link;
   own ? 
@@ -153,7 +155,8 @@ export const UserCard: React.FunctionComponent<{
     <Card className="usercard" >
       {!editMode ? (
         <>
-          <Icon
+          {showexit ? 
+           <Icon
               name="sign out"
               size='large'
               style={{
@@ -168,6 +171,7 @@ export const UserCard: React.FunctionComponent<{
                 jsCookie.remove("last_name")
                 jsCookie.remove("first_name")
                 localStorage.removeItem("ImageUrl")
+                localStorage.removeItem("complete_register")
                 window.location.href = process.env.SITE_URL;
                 // window.location.href = "http://localhost:8080/";
                 }
@@ -179,7 +183,7 @@ export const UserCard: React.FunctionComponent<{
                   display: 'inherit'
                 }}>خروج</span>
                 </Icon>
-          
+           :null}
       
           <div className="box" style={{position:'relative', float:'left',marginTop: "16px"}}>
               <img src={image} className="img-fluid" alt="" />

@@ -10,22 +10,43 @@ import { Box, Flex } from '@rebass/grid';
 import jsCookie from 'js-cookie';
 import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
+import {Router} from '../routes';
+import {  toast } from 'react-toastify';
 
 const Request = ({id}) => {
 
     const [request, setRequest] = useState(null);
 
     async function fetchAPI() {
-        console.log(jsCookie.get('token'),id)
         const res = await REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  });
         console.log(res)
         setRequest(res);
     }
 
     useEffect(() => {
+        if(!jsCookie.get('token')){
+            toast.error('ابتدا وارد شوید', {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+            Router.push({pathname: '/'})
+        }else if(localStorage["complete_register"] !== 'true'){
+            toast.error('ثابت نام خود را کامل کنید', {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+            Router.push({pathname: '/complete-register'})
+        }
         fetchAPI();
     }, []);
-
 
     return (
         <Layout haveSubHeader={true} pageTitle={'Hello World'}>

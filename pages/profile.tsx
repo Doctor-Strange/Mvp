@@ -85,6 +85,7 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
                             firstname={first_name}
                             lastname={last_name}
                             username={username}
+                            showexit = {true}
                             responceTime="میانگین زمان پاسخگویی: نامشخص"
                             image={image_url}
                             own={own}

@@ -60,7 +60,7 @@ const BoxAccount = styled.div`
     }
   }
   #selectBox {
-    height:15px;
+    height:18px;
     display: inline-block;
     width:27px !important;
     margin-left: 4px;
@@ -205,6 +205,7 @@ export default withTranslation('common')(
                 .then(response => {
                   if (response.data.success) {
                     // console.log(response.data);
+                    localStorage["complete_register"] = true
                     this.setState({
                       success: response.data.success,
                       error: ''
@@ -570,7 +571,7 @@ export default withTranslation('common')(
                             checkbox : !pre.checkbox
                           }
                         })}/>
-                        <label>
+                        <label style={{fontSize: '13px'}}>
                           <span 
                           onClick={this.onClick} style={{fontSize: '13px'}}
                           style ={{
@@ -578,14 +579,14 @@ export default withTranslation('common')(
                           color:"#0099ff",
                           cursor:"pointer",
                           display:"inline-block",
-                          marginBottom:"5px"}}>شرایط و مقررات 
+                          marginBottom:"11px"}}> شرایط و مقررات  
                           </span>
                           <span onClick={(e) =>this.setState(pre =>{
                           return {
                             checkbox : !pre.checkbox
                           }
                         })}>
-                             استفاده از اتولی را مطالعه کردم و می‌پذیرم 
+                             {" "}استفاده از اتولی را مطالعه کردم و می‌پذیرم. 
                             </span>
                              </label>
                         </div>

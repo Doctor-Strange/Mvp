@@ -23,11 +23,14 @@ const LawDiv= styled.div`
   }
   p{
     direction: rtl;
-    height: 235px;
     overflow-y: scroll;
     padding: 10px;
     text-align: justify;
     margin: 10px 0;
+    height: 235px;
+    // border: 1px solid #eaeaea;
+    // border-radius: 5px;
+    // height: 60vh;
   }
 `; 
 
@@ -144,6 +147,9 @@ export default withTranslation('common')(
             direction={theme.direction}
             height={this.state.height}
             width={ window.innerWidth < 768 ? "85%": "600px"}
+            // style= {{
+            //   padding: "17px"
+            // }}
             maxWidth="inherit"
           >
             <PanelsWrapper

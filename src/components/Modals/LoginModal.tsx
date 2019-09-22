@@ -293,7 +293,6 @@ export default withTranslation('common')(
 
                             .then(response2 => {
                               // now lets sign them in
-                              console.log(response);
                           localStorage["ImageUrl"] = response.data.user_profile.image_url
                               actions.signin({
                                 user_id: response.data.user_profile.id,

@@ -91,14 +91,18 @@ export const ModalCore = ({
   height,
   width,
   maxWidth,
-  children
+  children,
+  style
 }) => {
   return (
-    <ModalDiv className={'md-modal ' + animationClass} style={{width:width}}>
+    <ModalDiv className={'md-modal ' + animationClass} 
+    // style={{width:width}} 
+    // width = {width}
+    style={style}>
       <div
         id="sign-in-dialog"
         className={`zoom-anim-dialog ${direction}`}
-        style={{ height: height, width:width, maxWidth: maxWidth  }}
+        style={{ height: height+"vh", width:width, maxWidth: maxWidth ,padding: "17px",     paddingTop: "0" }}
       >
         <div className="small-dialog-header">
           <h3>{title}</h3>

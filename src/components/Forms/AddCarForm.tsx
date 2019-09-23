@@ -708,8 +708,8 @@ export default withTranslation('common')(connect(state => state)(
                 }
               )
               .then(response => {
+                console.log("response.data ====>",response);
                 if (response.data.success) {
-                  //console.log(response.data);
                   Router.push({
                     pathname: '/set-car-timing',
                     query: {
@@ -720,6 +720,8 @@ export default withTranslation('common')(connect(state => state)(
               })
               .catch(error => {
                 // tslint:disable-next-line:no-console
+                console.log("response.data ====>",error);
+
                 console.error(error);
                 this.setState({ error: error, success: false });
               })

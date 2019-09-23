@@ -27,10 +27,10 @@ const LawDiv= styled.div`
     padding: 10px;
     text-align: justify;
     margin: 10px 0;
-    height: 235px;
-    // border: 1px solid #eaeaea;
-    // border-radius: 5px;
-    // height: 60vh;
+    // height: 235px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    height: 50vh;
   }
 `; 
 
@@ -73,7 +73,7 @@ export default withTranslation('common')(
         codeError: null,
         prevIndex: 0,
         showIndex: 0,
-        height: 400,
+        height: 77,
         width: '80%'
       };
       this.nextPanel = this.nextPanel.bind(this);
@@ -142,11 +142,15 @@ export default withTranslation('common')(
           }}
         >
           <ModalWrapper
+          style={{
+            top: "10vh",
+            width: window.innerWidth < 768 ? "85%": "600px",
+        }}
             title={''}
             onRef={ref => (this.modalwrapper = ref)}
             direction={theme.direction}
             height={this.state.height}
-            width={ window.innerWidth < 768 ? "85%": "600px"}
+            // width={ window.innerWidth < 768 ? "85%": "600px"}
             // style= {{
             //   padding: "17px"
             // }}
@@ -158,7 +162,6 @@ export default withTranslation('common')(
             >
               <Panel>
                   <LawDiv className="LawsModal">
-
               <label>                      قوانین و مقررات
 </label>
 <p>

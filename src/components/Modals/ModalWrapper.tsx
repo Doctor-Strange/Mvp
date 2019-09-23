@@ -10,6 +10,7 @@ export class ModalWrapper extends React.Component<{
   height: number;
   width?:string;
 maxWidth?:string;
+style?:any;
 }> {
   state = {
     animation: null,
@@ -58,6 +59,7 @@ maxWidth?:string;
           height={this.props.height}
           width={this.props.width}
           maxWidth={this.props.maxWidth}
+          style={this.props.style}
         >
           {this.props.children}
         </ModalCore>

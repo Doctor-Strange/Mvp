@@ -49,7 +49,7 @@ const Page = props => (
       </div>
     </Section>
     
-    <div style={{background:"#fff"}} >
+    <div style={{background:"#fafafa"}} >
 
     <section className="insurance responsive">
       <div>
@@ -108,12 +108,12 @@ const Page = props => (
           </p>
           </section> 
       </div>
-    </section>
     <div className="addCarnow">
         <Link href="/add-car">
           <a>ماشین‌تان را اضافه کنید</a>
         </Link>
       </div>
+    </section>
     </div>
 
   </Layout>

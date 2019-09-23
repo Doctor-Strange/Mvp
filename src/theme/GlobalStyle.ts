@@ -209,7 +209,8 @@ const GlobalStyle = createGlobalStyle`
   }
   .addCarnow{
     background:#fff;
-    padding-bottom:100px;
+    padding-bottom:50px;
+    margin-bottom:20px;
     margin-top: 50px;
   }
   .addCarnow a {

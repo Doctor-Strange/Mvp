@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { ITheme } from "../../theme/Interfaces";
+import jsCookie from 'js-cookie';
 
 const Navigation = styled.div`
   nav#menu.main-menu {
@@ -143,11 +144,15 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
                   <a>اتولی چیست؟</a>
                 </Link>
               </li>
+              {
+              jsCookie.get('token') ? 
               <li>
                 <Link href="/add-car">
                   <a>افزودن خودرو</a>
                 </Link>
               </li>
+              :
+              null}
               <li>
                 <Link href="/faq">
                   <a>سوالات پرتکرار</a>
@@ -155,6 +160,8 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
               </li>
             </ul>
           </li>
+        {
+          jsCookie.get('token') ? 
         <li>
           <span>
             <Link href="/requests">
@@ -162,6 +169,8 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
             </Link>
           </span>
         </li>
+          : null
+        }
         {children}
       </ul>
     </nav>

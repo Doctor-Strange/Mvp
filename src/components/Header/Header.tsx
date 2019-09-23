@@ -10,6 +10,8 @@ import ReactModal from 'react-modal';
 import LoginModal from '../Modals/LoginModal';
 import { connect } from '../../store';
 import { ITheme } from "../../theme/Interfaces";
+import {  toast } from 'react-toastify';
+
 
 const HeaderSticky = styled.div`
   height: 64px;
@@ -74,6 +76,8 @@ const HeaderSticky = styled.div`
     height: 24px;
     width: 24px;
     border-radius: 999em;
+    color: #ccc;
+    margin-left: 10px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.13)
   }
 `;
@@ -136,7 +140,7 @@ class Header extends React.Component<{
                   <Logo />
                 </div>
                 <div className="col-lg-9 hidden_mobile">
-                  <Nav>
+                  <Nav >
                     <>
                       <li>
                         {!token && (
@@ -156,7 +160,20 @@ class Header extends React.Component<{
                           </a>
                         )}
                         {token && (
-                          <span>
+                          <span style={{cursor:"pointer"}} onClick = {()=>{
+                            if(localStorage["complete_register"] !== 'true'){
+                              toast.error('ثابت نام خود را کامل کنید', {
+                                  position: "bottom-center",
+                                  autoClose: 3000,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true
+                              });
+                              Router.push({pathname: '/complete-register'})
+                          }
+                          }}>
+                            {localStorage["complete_register"] === 'true' ?
                             <a href={`/profile?id=${user_id}`}>
                               {first_name} {last_name}
                               {' '}
@@ -167,6 +184,18 @@ class Header extends React.Component<{
                                 alt=""
                               />
                             </a>
+                            : 
+                            <span >
+                              {first_name} {last_name}
+                              {' '}
+                              <Icon name="user circle" size='big' className="img-header" />
+                              {/* <img
+                                src={"https://core.otoli.net/static/core/default_profile_pic.png"}
+                                className="img-header"
+                                alt=""
+                              /> */}
+                            </span>
+                            }
                           </span>
                         )}
                       </li>
@@ -192,7 +221,12 @@ class Header extends React.Component<{
                           </a>
                         )}
                         {token && (
-                          <span>
+                          <span onClick = {()=>{
+                            if(localStorage["complete_register"] !== 'true'){
+                              Router.push({pathname: '/complete-register'})
+                          }
+                          }}>
+                            {localStorage["complete_register"] === 'true' ?
                             <a href={`/profile?id=${user_id}`}>
                               {first_name} {last_name}
                               {' '}
@@ -203,6 +237,18 @@ class Header extends React.Component<{
                                 alt=""
                               /> */}
                             </a>
+                            : 
+                            <span >
+                              {first_name} {last_name}
+                              {' '}
+                              <Icon name="user circle" size='big' className="img-header" />
+                              {/* <img
+                                src={"https://core.otoli.net/static/core/default_profile_pic.png"}
+                                className="img-header"
+                                alt=""
+                              /> */}
+                            </span>
+                            }
                           </span>
                         )}
                       </li>

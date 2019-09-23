@@ -25,7 +25,7 @@ const SearchResult = styled.div`
   color: ${({theme}:{theme:ITheme}) => theme.color.textMain};
   background: ${({theme}:{theme:ITheme}) => theme.color.whiteBackground};
   position: relative;
-  z-index: 9;
+  z-index: 6;
   text-align:center;
   h4 {
     margin: 8px 0 0 0;

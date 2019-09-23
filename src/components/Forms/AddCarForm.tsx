@@ -40,6 +40,8 @@ import scrollToElement from 'scroll-to-element';
 import AddCarImageUpload from "./AddCarImageUpload";
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
 
+import {  toast } from 'react-toastify';
+
 const BoxAccount = styled.div`
   margin-bottom: 25px;
   margin-top: 25px;
@@ -1620,6 +1622,19 @@ export default withTranslation('common')(connect(state => state)(
                       style={{ textAlign: 'center', fontSize: '0.8em' }}
                     >
                       <Button
+                        onClick={()=>{
+                          if(localStorage["complete_register"] !== 'true'){
+                            toast.error('ثابت نام خود را کامل کنید', {
+                                position: "bottom-center",
+                                autoClose: 3000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true
+                            });
+                            Router.push({pathname: '/complete-register'})
+                          }
+                        }}
                         loading={isSubmitting}
                         primary
                         type="submit"

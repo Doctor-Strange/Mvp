@@ -10,7 +10,7 @@ const FooterTag = styled.footer`
   background-color: #fff;
   .container{
     padding-top: 60px;
-    padding-bottom: 35px;
+    padding-bottom: 15px;
   }
   h3 {
     margin: 0 0 15px 0;
@@ -19,8 +19,13 @@ const FooterTag = styled.footer`
     @media (max-width: 575px) {
       font-size: 16px;
       font-size: 1rem;
-      margin: 0;
+      // margin: 0;
     }
+  }
+  .jus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   a.collapse_bt_mobile {
     position: relative;
@@ -54,9 +59,8 @@ const FooterTag = styled.footer`
         transition: all 0.3s ease-in-out;
         display: inline-block;
         position: relative;
-        color: ${({theme}:{theme:ITheme}) => theme.color.textThird};
+        color:${({theme}:{theme:ITheme}) => theme.color.mainForeground};
         :hover {
-          color:${({theme}:{theme:ITheme}) => theme.color.mainForeground};
           opacity: 1;
         }
       }
@@ -100,6 +104,10 @@ const FooterTag = styled.footer`
 
   .follow_us {
     animation-delay: 1.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     a{
       margin:10px;
     }
@@ -142,16 +150,28 @@ const FooterTag = styled.footer`
   }
 `;
 
-const AdditionalLinks = styled.ul`
+const AdditionalLinks = styled.div`
   margin: 0;
   padding: 8px 0 0 0;
   color: #555;
   font-size: 13px;
   font-size: 0.8125rem;
-  float: right;
+  // float: right;
+  position:relative;
   @media (max-width: 991px) {
     float: none;
     margin-top: 10px;
+  }
+  .ver{
+    color:#ccc;
+    position:absolute;
+    left: 20px;
+    @media (max-width:480px){
+      left:2px;
+    }
+  }
+  p{
+    text-align: center;
   }
   li {
     display: inline-block;
@@ -174,12 +194,12 @@ const AdditionalLinks = styled.ul`
         opacity: 1;
       }
     }
-    :after {
-      content: '|';
-      font-weight: 300;
-      position: relative;
-      left: 10px;
-    }
+    // :after {
+    //   content: '|';
+    //   font-weight: 300;
+    //   position: relative;
+    //   left: 10px;
+    // }
   }
 `;
 
@@ -264,44 +284,16 @@ const FooterSelector = styled.ul`
 
 const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
   <>
-    <div id="toTop" />
+    <div id="toTop"/>
     <FooterTag className="plus_border">
-      <div className="container">
+      <div className="container"  dir= "rtl">
         <div className="row">
-          <div className="col-lg-3 col-md-6 col-sm-6">
+          {/* <div className="col-lg-3 col-md-6 col-sm-6">
             <a
               data-toggle="collapse"
               data-target="#collapse_ft_1"
               aria-expanded="false"
               aria-controls="collapse_ft_1"
-              className="collapse_bt_mobile"
-            >
-              {/* <h3>پیوندهای مفید</h3> */}
-              <div className="circle-plus closed">
-                <div className="horizontal" />
-                <div className="vertical" />
-              </div>
-            </a>
-            <div className="collapse show" id="collapse_ft_1">
-              <ul className="links">
-                <li>
-                  <a href="#0">اتولی چگونه کار می‌کند؟</a>
-                </li>
-                <li>
-                  <a href="#0">چرا اتولی؟</a>
-                </li>
-                <li>
-                  <a href="#0">چگونه خودرو ثبت کنم؟</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-6 col-sm-6">
-            <a
-              data-toggle="collapse"
-              data-target="#collapse_ft_2"
-              aria-expanded="false"
-              aria-controls="collapse_ft_2"
               className="collapse_bt_mobile"
             >
               <h3>پیوندهای مفید</h3>
@@ -310,21 +302,13 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                 <div className="vertical" />
               </div>
             </a>
-            <div className="collapse show" id="collapse_ft_2">
+            <div className="collapse show" id="collapse_ft_1">
               <ul className="links">
-                <li>
-                  <a href="#0">درباره ما</a>
-                </li>
-                <li>
-                  <a href="#0">سوالات متداول</a>
-                </li>
-                <li>
-                  <a href="#0">بیمه</a>
-                </li>
+                
               </ul>
             </div>
-          </div>
-          <div className="col-lg-3 col-md-6 col-sm-6">
+          </div> */}
+          {/* <div className="col-lg-3 col-md-6 col-sm-6">
             <a
               data-toggle="collapse"
               data-target="#collapse_ft_3"
@@ -356,8 +340,45 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
           <div className="col-lg-3 col-md-6 col-sm-6">
+            {/* <a
+              data-toggle="collapse"
+              data-target="#collapse_ft_2"
+              aria-expanded="false"
+              aria-controls="collapse_ft_2"
+              className="collapse_bt_mobile"
+            >
+              <h3>پیوندهای مفید</h3>
+              <div className="circle-plus closed">
+                <div className="horizontal" />
+                <div className="vertical" />
+              </div>
+            </a> */}
+            <div className="collapse show" id="collapse_ft_2">
+              <ul className="links">
+                <li>
+                  <a href="#0">درباره ما</a>
+                </li>
+                <li>
+                  <a href="#0">اتولی چگونه کار می‌کند؟</a>
+                </li>
+                <li>
+                  <a href="#0">سوالات متداول</a>
+                </li>
+                <li>
+                <a href="#0">شرایط و قوانین استفاده</a>
+              </li>
+                <li>
+                  <a href="#0">شرایط و پوشش های بیمه</a>
+                </li>
+                <li>
+                  <a href="#0">نمونه قرارداد دوطرفه</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <div className="col-lg-3 col-md-6 col-sm-6 jus">
             {/* <a
               data-toggle="collapse"
               data-target="#collapse_ft_4"
@@ -371,9 +392,10 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               </div>
               <h3>Keep in touch</h3>
             </a> */}
-            <div className="follow_us">
-              <h3>ما در شبکه های اجتماعی</h3>
+            <div className="follow_us" >
+              <h3>ما در شبکه های اجتماعی دنبال کنید</h3>
               {/* <Icon name='facebook' /> */}
+              <div className="iconContainer">
               <a target="_black" href="https://www.instagram.com/otoli_net/">
               <Icon size ='large' name='instagram' />
                 </a>
@@ -386,13 +408,12 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <a target="_black" href="https://t.me/otoli_net">
               <Icon size ='large' name='telegram' />
               </a>
-
-              
+              </div>
               {/* <Icon name='youtube' /> */}
             </div>
           </div>
         </div>
-        <hr />
+
         <div className="row">
           {/* <div className="col-lg-6">
             <FooterSelector id="footer-selector">
@@ -431,18 +452,12 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               </li>
             </FooterSelector>
           </div> */}
-          <div className="col-lg-6">
+          <div className="col-lg-12">
             <AdditionalLinks>
-              <li>
-                <a href="#0">ارتباط با ما</a>
-              </li>
-              <li>
-                <a href="#0">شرایط و قوانین استفاده</a>
-              </li>
-              <li>
-                <span>۱۳۹۸ اتولی ©</span>
-              </li>
-              <li>ver : 1.2.14</li>
+              <span className="ver">
+                1.2.15
+                </span>
+                <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>
           </div>
         </div>

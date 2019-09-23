@@ -217,7 +217,7 @@ const GlobalStyle = createGlobalStyle`
     width:220px;
     margin:auto;
     text-align:center;
-    background: #4ba3ce none;
+    background: #A3678B none;
     padding: .78571429em 1.5em .78571429em;
     color:#fff;
     min-height: 1em;
@@ -229,7 +229,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1em;
   }
   .addCarnow a:hover{
-    background-color: #1a69a4;
+    background-color: #bf669c;
   }
   @media (max-width:767px){
     .WhyOtolicontainer{

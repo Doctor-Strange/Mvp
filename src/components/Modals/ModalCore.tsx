@@ -102,7 +102,8 @@ export const ModalCore = ({
       <div
         id="sign-in-dialog"
         className={`zoom-anim-dialog ${direction}`}
-        style={{ height: height+"vh", width:width, maxWidth: maxWidth ,padding: "17px",     paddingTop: "0" }}
+        height= {height}
+        style={{ height: height , width:width, maxWidth: maxWidth ,padding: "17px",     paddingTop: "0" }}
       >
         <div className="small-dialog-header">
           <h3>{title}</h3>

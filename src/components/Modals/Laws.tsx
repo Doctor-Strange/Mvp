@@ -99,7 +99,7 @@ export default withTranslation('common')(
       this.setState({
         prevIndex: this.state.showIndex,
         showIndex: this.state.showIndex + 1,
-        height: 290,
+        height: 77,
         codeError: null
       });
     }
@@ -109,7 +109,7 @@ export default withTranslation('common')(
       this.setState({
         prevIndex: this.state.showIndex,
         showIndex: this.state.showIndex - 1,
-        height: 280,
+        height: 77,
         codeError: null
       });
     }
@@ -145,11 +145,12 @@ export default withTranslation('common')(
           style={{
             top: "10vh",
             width: window.innerWidth < 768 ? "85%": "600px",
+            // height : '77vh'
         }}
             title={''}
             onRef={ref => (this.modalwrapper = ref)}
             direction={theme.direction}
-            height={this.state.height}
+            height={this.state.height+"vh"}
             // width={ window.innerWidth < 768 ? "85%": "600px"}
             // style= {{
             //   padding: "17px"

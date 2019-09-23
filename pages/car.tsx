@@ -23,6 +23,8 @@ import axios from 'axios';
 import jsCookie from 'js-cookie';
 import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
+import {  toast } from 'react-toastify';
+
 
 const ContentCardTitle = styled.div`
     margin-bottom: 25px;
@@ -111,10 +113,31 @@ export default withTranslation('common')(
         }
 
         reserve(search_id) {
-            // const { search_id, rentalCarID } = this.props;
-            const href = `/checkout?search_id=${search_id}`;
-            // const as = `/checkout/${rentalCarID}/${search_id}`;
-            Router.push(href);
+            if(!jsCookie.get('token')){
+                toast.error('ابتدا وارد شوید', {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+            }else if(localStorage["complete_register"] !== 'true'){
+                toast.error('ثابت نام خود را کامل کنید', {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+                Router.push({pathname: '/complete-register'})
+            }else{
+                // const { search_id, rentalCarID } = this.props;
+                const href = `/checkout?search_id=${search_id}`;
+                // const as = `/checkout/${rentalCarID}/${search_id}`;
+                Router.push(href);
+            }
         }
 
         render() {

@@ -293,14 +293,15 @@ export default withTranslation('common')(
 
                             .then(response2 => {
                               // now lets sign them in
-                          localStorage["ImageUrl"] = response.data.user_profile.image_url
+                              localStorage["ImageUrl"] = response.data.user_profile.image_url
                               actions.signin({
+                                first_name: response2.data.data.first_name,
+                                last_name: response2.data.data.last_name,
                                 user_id: response.data.user_profile.id,
                                 token: response.data.token,
                                 phone: this.state.phone,
-                                first_name: response2.data.data.first_name,
-                                last_name: response2.data.data.last_name
                               });
+                              localStorage["complete_register"] = true
                               // let go_to_pathname = Router.pathname;
                               // let go_to_queries = Router.query;
                               // // console.log(go_to_queries);

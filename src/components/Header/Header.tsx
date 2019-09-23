@@ -11,6 +11,8 @@ import LoginModal from '../Modals/LoginModal';
 import { connect } from '../../store';
 import { ITheme } from "../../theme/Interfaces";
 import {  toast } from 'react-toastify';
+import jsCookie from 'js-cookie';
+
 
 
 const HeaderSticky = styled.div`
@@ -161,7 +163,7 @@ class Header extends React.Component<{
                         )}
                         {token && (
                           <span style={{cursor:"pointer"}} onClick = {()=>{
-                            if(localStorage["complete_register"] !== 'true'){
+                            if(jsCookie.get('first_name')){
                               toast.error('ثابت نام خود را کامل کنید', {
                                   position: "bottom-center",
                                   autoClose: 3000,
@@ -173,7 +175,7 @@ class Header extends React.Component<{
                               Router.push({pathname: '/complete-register'})
                           }
                           }}>
-                            {localStorage["complete_register"] === 'true' ?
+                            {jsCookie.get('first_name') ?
                             <a href={`/profile?id=${user_id}`}>
                               {first_name} {last_name}
                               {' '}

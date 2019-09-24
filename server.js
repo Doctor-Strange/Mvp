@@ -26,12 +26,12 @@ const { join } = require('path');
     const parsedUrl = parse(req.url, true);
     const { pathname } = parsedUrl;
 
-    if (pathname === '/service-worker.js') {
-      const filePath = join(__dirname, '.next', pathname);
-      app.serveStatic(req, res, filePath);
-    } else {
-      handle(req, res);
-    }
+    // if (pathname === '/service-worker.js') {
+    //   const filePath = join(__dirname, '.next', pathname);
+    //   app.serveStatic(req, res, filePath);
+    // } else {
+    //   handle(req, res);
+    // }
   });
 
   await server.listen(port);

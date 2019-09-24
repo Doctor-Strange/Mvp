@@ -393,7 +393,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <h3>Keep in touch</h3>
             </a> */}
             <div className="follow_us" >
-              <h3>ما را در شبکه‌های اجتماعی دنبال کنید:</h3>
+              <h3 style={{color: '#929292'}}>ما را در شبکه‌های اجتماعی دنبال کنید:</h3>
               {/* <Icon name='facebook' /> */}
               <div className="iconContainer">
               <a target="_black" href="https://www.instagram.com/otoli_net/">
@@ -455,7 +455,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           <div className="col-lg-12">
             <AdditionalLinks>
               <span className="ver">
-                1.2.19
+                1.2.20
                 </span>
                 <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>

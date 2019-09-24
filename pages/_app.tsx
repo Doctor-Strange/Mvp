@@ -60,16 +60,16 @@ class OtoliApp extends App {
     // authenticate the user if he is longed in
     actions.auth();
     // todo: redirect user if he wasn't authorized
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('/service-worker.js')
-        .then(registration => {
-          //console.log('service worker registration successful')
-        })
-        .catch(err => {
-          console.warn('service worker registration failed', err.message)
-        })
-    }
+    // if ('serviceWorker' in navigator) {
+    //   navigator.serviceWorker
+    //     .register('/service-worker.js')
+    //     .then(registration => {
+    //       //console.log('service worker registration successful')
+    //     })
+    //     .catch(err => {
+    //       console.warn('service worker registration failed', err.message)
+    //     })
+    // }
   }
 
   componentDidCatch(error, errorInfo) {

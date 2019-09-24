@@ -46,27 +46,27 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap
   }
 
-  @font-face {
-    font-family: Vazir;
-    src: url('https://otoli.net/static/fonts/Vazir-Thin.eot');
-    src: url('https://otoli.net/static/fonts/Vazir-Thin.eot?#iefix') format('embedded-opentype'),
-        // url('https://otoli.net/static/fonts/Vazir-Thin.woff2') format('woff2'),
-        url('https://otoli.net/static/fonts/Vazir-Thin.woff') format('woff'),
-        url('https://otoli.net/static/fonts/Vazir-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-display: swap
-  }
+  // @font-face {
+  //   font-family: Vazir;
+  //   src: url('https://otoli.net/static/fonts/Vazir-Thin.eot');
+  //   src: url('https://otoli.net/static/fonts/Vazir-Thin.eot?#iefix') format('embedded-opentype'),
+  //       // url('https://otoli.net/static/fonts/Vazir-Thin.woff2') format('woff2'),
+  //       url('https://otoli.net/static/fonts/Vazir-Thin.woff') format('woff'),
+  //       url('https://otoli.net/static/fonts/Vazir-Thin.ttf') format('truetype');
+  //   font-weight: 100;
+  //   font-display: swap
+  // }
 
-  @font-face {
-    font-family: Vazir;
-    src: url('https://otoli.net/static/fonts/Vazir-Black.eot');
-    src: url('https://otoli.net/static/fonts/Vazir-Black.eot?#iefix') format('embedded-opentype'),
-        // url('https://otoli.net/static/fonts/Vazir-Black.woff2') format('woff2'),
-        url('https://otoli.net/static/fonts/Vazir-Black.woff') format('woff'),
-        url('https://otoli.net/static/fonts/Vazir-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-display: swap
-  }
+  // @font-face {
+  //   font-family: Vazir;
+  //   src: url('https://otoli.net/static/fonts/Vazir-Black.eot');
+  //   src: url('https://otoli.net/static/fonts/Vazir-Black.eot?#iefix') format('embedded-opentype'),
+  //       // url('https://otoli.net/static/fonts/Vazir-Black.woff2') format('woff2'),
+  //       url('https://otoli.net/static/fonts/Vazir-Black.woff') format('woff'),
+  //       url('https://otoli.net/static/fonts/Vazir-Black.ttf') format('truetype');
+  //   font-weight: 900;
+  //   font-display: swap
+  // }
 
   @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
 

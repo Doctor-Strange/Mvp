@@ -44,11 +44,10 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
     async function fetchAPI() {
         
         const res = await REQUEST_getUserCars({ id });
-        console.log("user id is: ", image_url);
         setRresults(res);
         setLoading(false);
     }
-
+    
     useEffect(() => {
         fetchAPI();
         if (jsCookie.get('user_id') == id) {

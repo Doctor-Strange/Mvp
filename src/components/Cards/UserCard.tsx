@@ -152,6 +152,8 @@ export const UserCard: React.FunctionComponent<{
   const [makeUsername, setMakeUsername] = useState(false);
   const [img, setImg] = useState("");
   const inputFile = useRef(null) 
+  const Cookieuser = jsCookie.get("first_name")
+  const Cookielast = jsCookie.get("last_name")
   return (
     <Link route={link}>
     <a>
@@ -208,7 +210,7 @@ export const UserCard: React.FunctionComponent<{
           </div>
           <div className="media-body hostDetailCard box" style={{lineHeight: 5}}>
                 <span className="name">
-                  {firstname} {lastname}
+                  {firstname ? firstname :Cookieuser } {lastname ? lastname : Cookielast }
                 </span>
               {/* <div>5,150 trips<span className="hostDetailCard-dotSeparator"></span>
                   <span>Joined May 2016</span>

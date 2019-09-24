@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Vazir;
     src: url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.eot');
     src: url('https://otoli.net/static/fonts/Vazir.eot?#iefix') format('embedded-opentype'),
-        url('https://otoli.net/static/fonts/Vazir.woff2') format('woff2'),
+        // url('https://otoli.net/static/fonts/Vazir.woff2') format('woff2'),
         url('https://otoli.net/static/fonts/Vazir.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir.ttf') format('truetype');
     font-weight: normal;
@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Vazir;
     src: url('https://otoli.net/static/fonts/Vazir-Bold.eot');
     src: url('https://otoli.net/static/fonts/Vazir-Bold.eot?#iefix') format('embedded-opentype'),
-        url('https://otoli.net/static/fonts/Vazir-Bold.woff2') format('woff2'),
+        // url('https://otoli.net/static/fonts/Vazir-Bold.woff2') format('woff2'),
         url('https://otoli.net/static/fonts/Vazir-Bold.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Bold.ttf') format('truetype');
     font-weight: bold;
@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Vazir;
     src: url('https://otoli.net/static/fonts/Vazir-Light.eot');
     src: url('https://otoli.net/static/fonts/Vazir-Light.eot?#iefix') format('embedded-opentype'),
-        url('https://otoli.net/static/fonts/Vazir-Light.woff2') format('woff2'),
+        // url('https://otoli.net/static/fonts/Vazir-Light.woff2') format('woff2'),
         url('https://otoli.net/static/fonts/Vazir-Light.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Light.ttf') format('truetype');
     font-weight: 300;
@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Vazir;
     src: url('https://otoli.net/static/fonts/Vazir-Medium.eot');
     src: url('https://otoli.net/static/fonts/Vazir-Medium.eot?#iefix') format('embedded-opentype'),
-        url('https://otoli.net/static/fonts/Vazir-Medium.woff2') format('woff2'),
+        // url('https://otoli.net/static/fonts/Vazir-Medium.woff2') format('woff2'),
         url('https://otoli.net/static/fonts/Vazir-Medium.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Medium.ttf') format('truetype');
     font-weight: 500;
@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Vazir;
     src: url('https://otoli.net/static/fonts/Vazir-Thin.eot');
     src: url('https://otoli.net/static/fonts/Vazir-Thin.eot?#iefix') format('embedded-opentype'),
-        url('https://otoli.net/static/fonts/Vazir-Thin.woff2') format('woff2'),
+        // url('https://otoli.net/static/fonts/Vazir-Thin.woff2') format('woff2'),
         url('https://otoli.net/static/fonts/Vazir-Thin.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Thin.ttf') format('truetype');
     font-weight: 100;
@@ -56,7 +56,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Vazir;
     src: url('https://otoli.net/static/fonts/Vazir-Black.eot');
     src: url('https://otoli.net/static/fonts/Vazir-Black.eot?#iefix') format('embedded-opentype'),
-        url('https://otoli.net/static/fonts/Vazir-Black.woff2') format('woff2'),
+        // url('https://otoli.net/static/fonts/Vazir-Black.woff2') format('woff2'),
         url('https://otoli.net/static/fonts/Vazir-Black.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Black.ttf') format('truetype');
     font-weight: 900;
@@ -1473,7 +1473,6 @@ textarea {
   }
 }
 .hero_in.shop_detail:before {
-  background: url(../img/hero_in_shop_detail.jpg) center center no-repeat;
   background-size: cover;
 }
 .hero_in.shop_detail .wrapper {
@@ -1488,7 +1487,6 @@ textarea {
   }
 }
 .hero_in.hotels_detail:before {
-  background: url(../img/hero_in_hotels_detail.jpg) center center no-repeat;
   background-size: cover;
 }
 .hero_in.hotels_detail .wrapper {
@@ -1504,7 +1502,6 @@ textarea {
   }
 }
 .hero_in.restaurant_detail:before {
-  background: url(../img/hero_in_restaurants_detail.jpg) center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
         url('https://otoli.net/static/fonts/Vazir.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir.ttf') format('truetype');
     font-weight: normal;
+    font-display: swap
   }
 
   @font-face {
@@ -20,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
         url('https://otoli.net/static/fonts/Vazir-Bold.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Bold.ttf') format('truetype');
     font-weight: bold;
+    font-display: swap
   }
 
   @font-face {
@@ -30,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
         url('https://otoli.net/static/fonts/Vazir-Light.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Light.ttf') format('truetype');
     font-weight: 300;
+    font-display: swap
   }
 
   @font-face {
@@ -40,6 +43,7 @@ const GlobalStyle = createGlobalStyle`
         url('https://otoli.net/static/fonts/Vazir-Medium.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Medium.ttf') format('truetype');
     font-weight: 500;
+    font-display: swap
   }
 
   @font-face {
@@ -50,6 +54,7 @@ const GlobalStyle = createGlobalStyle`
         url('https://otoli.net/static/fonts/Vazir-Thin.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Thin.ttf') format('truetype');
     font-weight: 100;
+    font-display: swap
   }
 
   @font-face {
@@ -60,6 +65,7 @@ const GlobalStyle = createGlobalStyle`
         url('https://otoli.net/static/fonts/Vazir-Black.woff') format('woff'),
         url('https://otoli.net/static/fonts/Vazir-Black.ttf') format('truetype');
     font-weight: 900;
+    font-display: swap
   }
 
   @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');

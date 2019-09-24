@@ -39,7 +39,7 @@ import Dropzone from 'react-dropzone';
 import scrollToElement from 'scroll-to-element';
 import AddCarImageUpload from "./AddCarImageUpload";
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
-
+import jsCookie from 'js-cookie';
 import {  toast } from 'react-toastify';
 
 const BoxAccount = styled.div`
@@ -1623,7 +1623,7 @@ export default withTranslation('common')(connect(state => state)(
                     >
                       <Button
                         onClick={()=>{
-                          if(localStorage["complete_register"] !== 'true'){
+                          if(!jsCookie.get('first_name')){
                             toast.error('ثابت نام خود را کامل کنید', {
                                 position: "bottom-center",
                                 autoClose: 3000,

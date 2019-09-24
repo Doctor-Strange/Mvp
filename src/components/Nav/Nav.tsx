@@ -161,7 +161,7 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
             </ul>
           </li>
         {
-          jsCookie.get('token') ? 
+          jsCookie.get('first_name') ? 
         <li>
           <span>
             <Link href="/requests">

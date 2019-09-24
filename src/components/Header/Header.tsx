@@ -162,19 +162,7 @@ class Header extends React.Component<{
                           </a>
                         )}
                         {token && (
-                          <span style={{cursor:"pointer"}} onClick = {()=>{
-                            if(jsCookie.get('first_name')){
-                              toast.error('ثابت نام خود را کامل کنید', {
-                                  position: "bottom-center",
-                                  autoClose: 3000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true
-                              });
-                              Router.push({pathname: '/complete-register'})
-                          }
-                          }}>
+                          <span>
                             {jsCookie.get('first_name') ?
                             <a href={`/profile?id=${user_id}`}>
                               {first_name} {last_name}
@@ -187,8 +175,7 @@ class Header extends React.Component<{
                               />
                             </a>
                             : 
-                            <span >
-                              {first_name} {last_name}
+                            <a href="/complete-register">
                               {' '}
                               <Icon name="user circle" size='big' className="img-header" />
                               {/* <img
@@ -196,7 +183,7 @@ class Header extends React.Component<{
                                 className="img-header"
                                 alt=""
                               /> */}
-                            </span>
+                            </a>
                             }
                           </span>
                         )}
@@ -223,12 +210,8 @@ class Header extends React.Component<{
                           </a>
                         )}
                         {token && (
-                          <span onClick = {()=>{
-                            if(localStorage["complete_register"] !== 'true'){
-                              Router.push({pathname: '/complete-register'})
-                          }
-                          }}>
-                            {localStorage["complete_register"] === 'true' ?
+                          <span >
+                            {jsCookie.get('first_name') ?
                             <a href={`/profile?id=${user_id}`}>
                               {first_name} {last_name}
                               {' '}
@@ -240,8 +223,7 @@ class Header extends React.Component<{
                               /> */}
                             </a>
                             : 
-                            <span >
-                              {first_name} {last_name}
+                            <a href="/complete-register">
                               {' '}
                               <Icon name="user circle" size='big' className="img-header" />
                               {/* <img
@@ -249,7 +231,7 @@ class Header extends React.Component<{
                                 className="img-header"
                                 alt=""
                               /> */}
-                            </span>
+                            </a>
                             }
                           </span>
                         )}

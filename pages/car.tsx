@@ -122,7 +122,7 @@ export default withTranslation('common')(
                     pauseOnHover: true,
                     draggable: true
                 });
-            }else if(localStorage["complete_register"] !== 'true'){
+            }else if(!jsCookie.get('first_name')){
                 toast.error('ثابت نام خود را کامل کنید', {
                     position: "bottom-center",
                     autoClose: 3000,

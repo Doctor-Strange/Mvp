@@ -4,7 +4,9 @@ import Layout from '../src/components/Layout';
 import SetCarTimingForm from '../src/components/Forms/SetCarTimingForm';
 import { Box, Flex } from '@rebass/grid';
 import { Icon, Segment, Button, Popup } from 'semantic-ui-react';
-import {Router} from '../routes';
+// import {Router} from '../routes';
+import Router from 'next/router';
+
 import { PriceCard, UserCard, CarCard, CarCardPlaceholder, BoxCard } from '../src/components/Cards'
 import { Details, CarNav } from '../src/components/Car'
 import { ShareBar } from '../src/components/ShareBar';
@@ -89,14 +91,19 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
                             responceTime="میانگین زمان پاسخگویی: نامشخص"
                             image={image_url}
                             own={own}
-                            onUpdate={({username = null, id = null}) => {
-                                if(username){
-                                    Router.pushRoute('profile_username', {username});
-                                }
-                                else {
-                                    Router.pushRoute('profile_id', {id});
-                                }
-                            }}
+                            // onUpdate={({username = null, id = null}) => {
+                            //     if(username){
+                            //         // Router.pushRoute('profile_username', {username});
+                            //         Router.push('/')
+                            //     }
+                            //     else {
+                            //         // Router.pushRoute('profile_id', {id});
+                            //         Router.push({
+                            //             pathname: '/profile',
+                            //             query: { id: id },
+                            //           })
+                            //     }
+                            // }}
                         />
                         </div>
                         {/* <div

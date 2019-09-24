@@ -250,7 +250,7 @@ export default withTranslation('common')(
                             timeToSendSMSAgain: null
                           });
                           // sign user in store
-                          localStorage["complete_register"] = false
+                          // localStorage["complete_register"] = false
                           actions.signin({
                             user_id: response.data.user_profile.id,
                             token: response.data.token,
@@ -294,6 +294,7 @@ export default withTranslation('common')(
                             .then(response2 => {
                               // now lets sign them in
                               localStorage["ImageUrl"] = response.data.user_profile.image_url
+                              // localStorage["complete_register"] = true
                               actions.signin({
                                 first_name: response2.data.data.first_name,
                                 last_name: response2.data.data.last_name,
@@ -301,7 +302,6 @@ export default withTranslation('common')(
                                 token: response.data.token,
                                 phone: this.state.phone,
                               });
-                              localStorage["complete_register"] = true
                               // let go_to_pathname = Router.pathname;
                               // let go_to_queries = Router.query;
                               // // console.log(go_to_queries);

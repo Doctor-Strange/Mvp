@@ -19,6 +19,9 @@ import {
 } from "../../utils/numbers";
 import { Formik, FormikActions, withFormik } from "formik";
 import { ITheme } from "../../theme/Interfaces";
+import Router from 'next/router';
+
+
 
 const Card = styled.figure`
   padding: 16px;
@@ -137,7 +140,7 @@ export const UserCard: React.FunctionComponent<{
   image,
   id,
   own = false,
-  onUpdate,
+  // onUpdate,
   showexit
 }) => {
   let link;
@@ -250,7 +253,8 @@ export const UserCard: React.FunctionComponent<{
               draggable: true
             });
             setEditMode(false);
-            onUpdate({ id: id, username: values.username }); // call parent passed function so it will reload the page
+            Router.push('/')
+            // onUpdate({ id: id, username: values.username }); // call parent passed function so it will reload the page
           }}
           render={({
             handleChange,

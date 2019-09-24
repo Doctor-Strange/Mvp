@@ -152,6 +152,7 @@ export default withTranslation('common')(
       } = this.props.strings;
       const { error } = this.state;
       const token = jsCookie.get('token');
+      const userId = jsCookie.get('user_id');
       const { t, query } = this.props;
       if (token) {
         return (
@@ -205,7 +206,7 @@ export default withTranslation('common')(
                 .then(response => {
                   if (response.data.success) {
                     // console.log(response.data);
-                    localStorage["complete_register"] = true
+                    // localStorage["complete_register"] = true
                     this.setState({
                       success: response.data.success,
                       error: ''
@@ -215,16 +216,21 @@ export default withTranslation('common')(
                       last_name: lastName,
                       complete_register: false
                     });
-                    let path_to_go = '/me';
+                    // let path_to_go = `/profile?id=${userId}`;
                     // console.log(query);
-                    if (query.go_to_pathname) {
-                      // fixme
-                      path_to_go = decodeURIComponent(query.go_to_pathname) + decodeURIComponent("?") + decodeURIComponent(query.go_to_queries);
-                    }
-                    Router.push(path_to_go, {
-                      pathname: path_to_go
-                    }, { shallow: true })
-                      .then(() => window.scrollTo(0, 0));
+                    // if (query.go_to_pathname) {
+                    //   // fixme
+                    //   path_to_go = decodeURIComponent(query.go_to_pathname) + decodeURIComponent("?") + decodeURIComponent(query.go_to_queries);
+                    // }
+                    Router.push({
+                      pathname: '/profile',
+                      query: { id: userId },
+                    })
+                    // Router.push(path_to_go, {
+                    //   pathname: path_to_go
+                    // }
+                  //   ,{ shallow: true })
+                  //     .then(() => window.scrollTo(0, 0));
                   }
                 })
                 .catch(error => {

@@ -54,7 +54,7 @@ const FooterTag = styled.footer`
 
   ul {
     li {
-      margin-bottom: 5px;
+      margin-bottom: 16px;
       a {
         transition: all 0.3s ease-in-out;
         display: inline-block;
@@ -104,10 +104,10 @@ const FooterTag = styled.footer`
 
   .follow_us {
     animation-delay: 1.1s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
     a{
       margin:10px;
     }
@@ -341,7 +341,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               </ul>
             </div>
           </div> */}
-          <div className="col-lg-3 col-md-6 col-sm-6">
+          <div className="col-lg-3 col-md-6 col-sm-6" style={{borderLeft: "1px solid #e8e8e8"}}>
             {/* <a
               data-toggle="collapse"
               data-target="#collapse_ft_2"
@@ -370,10 +370,10 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                 <a href="#0">شرایط و قوانین استفاده</a>
               </li>
                 <li>
-                  <a href="#0">شرایط و پوشش های بیمه</a>
+                  <a href="#0">شرایط و پوشش‌های بیمه</a>
                 </li>
                 <li>
-                  <a href="#0">نمونه قرارداد دوطرفه</a>
+                  <a href="#0">نمونه قرارداد فی‌مابین</a>
                 </li>
               </ul>
             </div>
@@ -393,7 +393,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <h3>Keep in touch</h3>
             </a> */}
             <div className="follow_us" >
-              <h3>ما در شبکه های اجتماعی دنبال کنید</h3>
+              <h3>ما را در شبکه‌های اجتماعی دنبال کنید:</h3>
               {/* <Icon name='facebook' /> */}
               <div className="iconContainer">
               <a target="_black" href="https://www.instagram.com/otoli_net/">
@@ -455,7 +455,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           <div className="col-lg-12">
             <AdditionalLinks>
               <span className="ver">
-                1.2.16
+                1.2.17
                 </span>
                 <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>

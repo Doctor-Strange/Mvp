@@ -163,6 +163,9 @@ const GlobalStyle = createGlobalStyle`
     @media (max-width:768px){
       height:105vh
     }
+    @media (max-width:480px){
+      height:74vh
+    }
   }
   .WHITE{
     background : #fff;

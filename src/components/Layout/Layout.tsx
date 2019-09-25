@@ -42,8 +42,6 @@ class Layout extends React.Component<{
     // document.addEventListener("click",(e)=>{
     //     console.log(document.querySelector(".DatePicker").children)
     //   })
-
-
     if (this.props.onRef) this.props.onRef(this);
   }
   componentWillUnmount() {
@@ -90,11 +88,13 @@ class Layout extends React.Component<{
             changeLang={() => actions.changeLang()}
           />
           {this.propshaveSubHeader ? <SubHeader title={pageTitle} /> : null}
-          <div style={{
-            background: `url(${bgImage}) no-repeat 50%/cover`,
-            backgroundPositionY: '60%',
-            // minHeight: '80vh'
-          }}>{children}</div>
+          <div 
+          // style={{
+          //   background: `url(${bgImage}) no-repeat 50%/cover`,
+          //   backgroundPositionY: '60%',
+          //   // minHeight: '80vh'
+          // }}
+          >{children}</div>
           <Footer changeLangFunc={() => actions.changeLang()} />
         </div>
         {/* </Sidebar.Pusher>

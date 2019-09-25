@@ -132,6 +132,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   const [success, setSuccess] = useState(false);
   const [activeField1, setactiveField1] = useState(false);
   const [activeField2, setactiveField2] = useState(false);
+  const [CalenderWork, SetCalenderWork] = useState(false);
   const [datepicker_animation, setDPA] = useState(`.DatePicker__calendarContainer {
   transform: translateX(-22%);
 }
@@ -146,7 +147,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   async function fetchAPI() {
     //get cities and genrate a dropdown input in form
     const res = await REQUEST_getLocations({ brief: true });
-    console.log(res.citiesFarsi)
+    SetCalenderWork(true)
     setCitiesFarsi(res.citiesFarsi);
     setCitiesEnglish(res.citiesEnglish);
   }
@@ -312,7 +313,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                         /> */}
                         
                       </Box>
-                      <Box className="indexFullOnMobile" width={[4 / 16]}>
+                      <Box className="indexFullOnMobile" width={[4 / 16]} style={{position:"relative"}}>
                         <Form.Field style={{ margin: 0 }}>
                           <label>از تاریخ</label>
                         </Form.Field>
@@ -325,12 +326,13 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           // onBlur={() => { console.log("on Blur for from")}}
 
                           value={getSelectedDayValue(date.from)}
-                          placeholder="از تاریخ"
+                          placeholder={CalenderWork ? "از تاریخ" : ""}
                           className={["DatePicker__input index", activeField1 ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
+                        {CalenderWork ? null : <div className="loader"></div>}
                       </Box>
-                      <Box className="indexFullOnMobile" width={[4 / 16]}>
+                      <Box className="indexFullOnMobile" width={[4 / 16]} style={{position:"relative"}}> 
                         <Form.Field style={{ margin: 0 }}>
                           <label>تا تاریخ</label>
                         </Form.Field>
@@ -341,10 +343,11 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           onFocus={() => { setCalEnd(); onFocus(); setactiveField2(true) }}
                           // onBlur={() => { console.log("on Blur for To")}}
                           value={getSelectedDayValue(date.to)}
-                          placeholder="تا تاریخ"
+                          placeholder={CalenderWork ? "تا تاریخ" : ""}
                           className={["DatePicker__input", activeField2  || (date.from&&!date.to) ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
+                        {CalenderWork ? null : <div className="loader"></div>}
                       </Box>
                       <Box className="indexFullOnMobile" width={[4 / 16]}>
                         <Form.Field

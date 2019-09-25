@@ -39,7 +39,7 @@ const Page = props => (
       <div className="hero_single version_4">
         <Flex justifyContent="space-around" className="wrapper">
           <Box width={2 / 2} px={2}>
-            <h3>اتولی | اجاره آسان خودرو</h3>
+            <h3>اتولی، اجاره آسان خودرو</h3>
             <p>
               ماشینی که دوست دارید رو پیدا کنید و در سریع‌ترین زمان اجاره کنید
             </p>

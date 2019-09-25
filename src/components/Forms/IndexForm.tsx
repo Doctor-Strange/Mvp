@@ -330,7 +330,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           className={["DatePicker__input index", activeField1 ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
-                        {CalenderWork ? null : <div className="loader"></div>}
+                        {!CalenderWork ? null : <span className="loader"></span>}
                       </Box>
                       <Box className="indexFullOnMobile" width={[4 / 16]} style={{position:"relative"}}> 
                         <Form.Field style={{ margin: 0 }}>
@@ -347,7 +347,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           className={["DatePicker__input", activeField2  || (date.from&&!date.to) ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
-                        {CalenderWork ? null : <div className="loader"></div>}
+                        {CalenderWork ? null : <span className="loader"></span>}
                       </Box>
                       <Box className="indexFullOnMobile" width={[4 / 16]}>
                         <Form.Field

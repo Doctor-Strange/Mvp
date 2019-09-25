@@ -164,6 +164,7 @@ export default withTranslation('common')(
                 max_km_per_day, description, capacity, extra_km_price, car, loaded, discount_percent,
                 discounted_total_price, total_price, avg_price_per_day, no_of_days, avg_discounted_price_per_day} = this.props;
             if (loaded) {
+                console.log(this.props)
                 return (
                     <Layout haveSubHeader={true} pageTitle={'list Your Car'} onRef={this.doRef}>
                         <Section id="checkout" justifyCenter={true} style={{ marginTop: '24px', marginBottom: '50px' }}>
@@ -239,7 +240,7 @@ export default withTranslation('common')(
                                             <Details title="محدودیت مسافت" showHr={false}>
                                                 <ul className="">
                                                     <li>{max_km_per_day ? max_km_per_day + "کیلومتر" : "ندارد"}</li>
-                                                    <li>{extra_km_price ? `هزینه هر کیلومتر اضافه ${extra_km_price} هزار تومان` : ""}</li>
+                                                    <li>{extra_km_price ? `هزینه هر کیلومتر اضافه ${extra_km_price.toLocaleString()} تومان` : ""}</li>
                                                 </ul>
                                             </Details>
                                             <Details title="توضیحات" showHr={false}>
@@ -249,12 +250,12 @@ export default withTranslation('common')(
                                         <Grid.Column width={6} className="left" style={{ padding: '0' }}>
                                             {(media_set.length >= 1)
                                                 ? <img key="1" src={media_set[0]} style={{ width: '100%' }} />
-                                                : <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8Dk6Uk5v--/c_scale,f_auto,fl_progressive,q_80,w_800/qssqrb3mvffcipwl9jn0.jpg" />
+                                                : <img src="" />
                                             }
                                         </Grid.Column>
                                     </Grid.Row>
                                 </Grid>
-                            </ContentCard>>
+                            </ContentCard>
 
                         </Section>
                         {isMobile &&

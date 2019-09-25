@@ -83,17 +83,13 @@ export class ResultsCards extends React.Component<{
                                 <CarCardPlaceholder />
                             </>
                         ) : (
-                            results.map((value, index) =>
-                                <CarCard
+                            results.map((value, index) =>{
+                                return <CarCard
                                     key={index}
                                     id={value.id}
                                     title={value.car.brand.name.fa + " " + value.car.name.fa}
                                     year={value.year.name.fa}
-                                    img={
-                                        (value.media_set[0]
-                                            || { url: "http://www.sirjanamlak.com/images/estate_images/default.jpg" })
-                                            .url
-                                    }
+                                    img={value.media_set[0].thumbnail_url}
                                     price={value.avg_price_per_day}
                                     discount_percent={value.discount_percent}
                                     discounted_price={value.avg_discounted_price_per_day}
@@ -107,6 +103,8 @@ export class ResultsCards extends React.Component<{
                                     showEditButtons={userOwnPage}
                                     is_out_of_service={value.is_out_of_service}
                                 />
+                            }
+
                             )
                         )
                     }

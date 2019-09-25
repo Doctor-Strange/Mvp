@@ -287,7 +287,7 @@ export default withTranslation('common')(
                             <Details title="محدودیت مسافت">
                                 <ul className="">
                                     <li>{max_km_per_day ? max_km_per_day + "کیلومتر" : "ندارد"}</li>
-                                    <li>{extra_km_price ? `هزینه هر کیلومتر اضافه ${extra_km_price} هزار تومان` : ""}</li>
+                                    <li>{extra_km_price ? `هزینه هر کیلومتر اضافه ${extra_km_price.toLocaleString()} تومان` : ""}</li>
                                 </ul>
                             </Details>
                             <Details title="توضیحات">

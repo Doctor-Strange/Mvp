@@ -58,6 +58,17 @@ const Card = styled.figure`
   }
   .box {
       display: inline-block;
+    }
+  .boxbox{
+    .icon{
+      display: block;
+      clear: both;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      bottom: 6px;
+      right: 0;
+    }
   }
 
   figure.usercard {
@@ -189,17 +200,14 @@ export const UserCard: React.FunctionComponent<{
                 }}>خروج</span>
                 </Icon>
            :null}
-      
-          <div className="box" style={{position:'relative', float:'left',marginTop: "16px"}}>
-              <img src={image} className="img-fluid" alt="" />
               {own && (
             <Icon
-              name="edit"
+              name="pencil"
               size='large'
               style={{
                 position: 'absolute',
-                left: -3,
-                bottom: -7,
+                left: 32,
+                top: 16
               }}
               onClick={() => {
                 setEditMode(true);
@@ -207,6 +215,8 @@ export const UserCard: React.FunctionComponent<{
               }}
             />
           )}
+          <div className="box" style={{position:'relative', float:'left',marginTop: "16px"}}>
+              <img src={image} className="img-fluid" alt="" />
           </div>
           <div className="media-body hostDetailCard box" style={{lineHeight: 5}}>
                 <span className="name">
@@ -272,7 +282,13 @@ export const UserCard: React.FunctionComponent<{
               {errors.firstname && touched.firstname && (
                 <div id="feedback">{errors.firstname}</div>
               )}
-              <div className="box">
+              <div className="box boxbox" style={{position:'relative'}}>
+                <Icon
+                className="icon"
+              name="edit"
+              size='large'
+              
+            />
                 <img
                   // src={values.shownImage}
                   src={img}
@@ -281,6 +297,16 @@ export const UserCard: React.FunctionComponent<{
                   // onClick={() => inputFile.current.click()}
                 />
                 <input
+                className ="inputFile"
+                  style={{
+                    position:'absolute',
+    display:'block',
+    right:'0',
+    bottom:'0px',
+    height:'90px',
+    opacity:'0',
+    margin:0
+                  }}
                   type='file'
                   id='file'
                   ref={inputFile}
@@ -288,7 +314,7 @@ export const UserCard: React.FunctionComponent<{
                   accept=".jpg,.jpeg,.png"
                   onChange={(e) => {
                     let file = e.target.files[0];
-                    console.log(e.target.files[0])
+                    // console.log(e.target.files[0])
                     const types = ['image/png', 'image/jpeg', 'image/png'];
                     if (types.every(type => file.type !== type)) {
                       alert('لطفاً تصویر را با فرمت jpeg بارگذاری کنید.')

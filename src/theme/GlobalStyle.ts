@@ -1970,7 +1970,7 @@ button:focus{
 }
 @media (max-width:768px){
 .carcards_section {
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 .filters_listing {
   overflow-x: hidden;

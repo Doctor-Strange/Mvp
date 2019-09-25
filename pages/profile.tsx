@@ -130,7 +130,6 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
                 >
                     ویرایش پروفایل
             </Button> */}
-}
         </Layout >
     );
 }

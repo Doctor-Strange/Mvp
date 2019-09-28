@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Box, Flex } from '@rebass/grid';
 import Router from 'next/router';
+import {Link} from '../../../routes'
 import { Button, Icon, Form, Label, Grid, Segment, Rating, TextArea } from 'semantic-ui-react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,6 +20,7 @@ import {
 import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
 import { ITheme } from "../../theme/Interfaces";
+
 
 const Card = styled.div`
     direction: rtl;
@@ -127,6 +129,7 @@ interface IRequestCard {
     start: any;
     end: any;
     price: number;
+    ownerInfo:any;
     ownerName: string;
     ownerPhone: string;
     pelak: any;
@@ -164,6 +167,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     end,
     price = 10,
     ownerName,
+    ownerInfo,
     ownerPhone,
     userID,
     pelak = { first: "", second: "", third: "", forth: "" },
@@ -526,7 +530,9 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             <Grid className="property-row">
                                 <Grid.Row columns={2} centered className="property">
                                     <Grid.Column width={10} className="right" style={{ paddingRight: '0' }}>
-                                        <strong><Icon name="user circle" /> {ownerName} </strong>
+                                        <Link route={(ownerInfo.username ? `/@${ownerInfo.username}` : `/user/${ownerInfo.id}`)}>
+                                        <strong style={{color: '#4ba3ce',cursor: 'pointer'}}><Icon name="user circle" /> {ownerName} </strong>
+                                        </Link>
                                     </Grid.Column>
                                     <Grid.Column width={6} className="left" style={{ padding: 0, }}>
                                         {statusOwner === "owner" &&

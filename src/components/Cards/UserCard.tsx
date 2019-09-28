@@ -241,7 +241,7 @@ export const UserCard: React.FunctionComponent<{
           </a>
         </Link>
           )}
-          {showexit ? 
+          {own && (
            <Icon
               name="sign out"
               size='large'
@@ -276,7 +276,7 @@ export const UserCard: React.FunctionComponent<{
                   fontFamily: 'Vazir,sans-serif'
                 }}>خروج از حساب</span>
                 </Icon>
-           :null}
+              )}
            
           </div>
         </>

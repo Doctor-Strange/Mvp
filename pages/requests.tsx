@@ -65,6 +65,7 @@ const Requests = props => {
                                             key={index}
                                             status={value.status.id}
                                             statusOwner={value.role}
+                                            ownerInfo = {rentDump.owner}
                                             carName={`${rentDump.car.brand.name.fa} ${rentDump.car.name.fa}`}
                                             start={moment(rentDump.start_date, 'jYYYY/jMM/jDD')}
                                             end={moment(rentDump.end_date, 'jYYYY/jMM/jDD')}

@@ -24,11 +24,14 @@ import Router from 'next/router';
 
 
 const Card = styled.figure`
-  padding: 16px;
+padding: 0;
+flex-direction: column !important;
+
+padding-top: 16px;
   margin: 0 !important;
   img {
-    height: 60px;
-    width: 60px;
+    height: 70px;
+    width: 70px;
     border-radius: 999em;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.13);
   }
@@ -46,8 +49,10 @@ const Card = styled.figure`
     position: relative;
     right: 5px;
     .name {
+      line-height: 0;
       display: inline-block;
-      font-size: 18px;
+      font-size: 22px;
+      color: #202020;
       font-weight: 700;
       margin-right: 4px;
       transform: translateY(-2px);
@@ -58,8 +63,17 @@ const Card = styled.figure`
   }
   .box {
       display: inline-block;
+      vertical-align: middle;
+    }
+    .boxi {
+      display: inline-block;
+      width: 70%;
+      vertical-align: middle;
     }
   .boxbox{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 6px;
     .icon{
       display: block;
       clear: both;
@@ -70,7 +84,23 @@ const Card = styled.figure`
       right: 0;
     }
   }
+  .G{
+    margin-top: 65px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    .B{
+      @media (max-width: 1200px) {
+        font-size: 12px ;
+    }
+    padding: 6px 13px;
+      background: #4BA3CE;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 14px ;
+      
+  }
   figure.usercard {
     padding: 0;
   }
@@ -129,6 +159,10 @@ const Card = styled.figure`
         width: 100%;
     }
   }
+.C{display: inline-block;
+  vertical-align: sub;
+  padding-left: 5px;
+  font-size: 17px;}
 `;
 
 export const UserCard: React.FunctionComponent<{
@@ -171,14 +205,52 @@ export const UserCard: React.FunctionComponent<{
     <Card className="usercard" >
       {!editMode ? (
         <>
+          <div className="media-body hostDetailCard box" 
+          // style={{lineHeight: 5}}
+          >
+                <span className="name">
+                  {firstname ? firstname :Cookieuser } {lastname ? lastname : Cookielast }
+                </span>
+                {own && (
+                <span 
+                onClick={() => {
+                  setEditMode(true);
+                  setImg(image)
+                }}
+                style={{
+                  display: 'block',
+                  fontSize: '16px',
+                cursor: 'pointer'
+                  
+                }}>ویرایش مشخصات کاربری</span>
+          )}
+              {/* <div>5,150 trips<span className="hostDetailCard-dotSeparator"></span>
+                  <span>Joined May 2016</span>
+                </div> */}
+              {/* <div className="hostDetailCard-responseTime">{responceTime}</div> */}
+          </div>
+          <div className="boxi" style={{width: "30%",textAlign: 'left'}}>
+              <img src={image} className="img-fluid" alt="" />
+          </div>
+          <div className="G">
+          {own && (
+          <Link href="/add-car">
+          <a className="B">
+            افزودن خودرو 
+            <span className="C">+ </span>
+          </a>
+        </Link>
+          )}
           {showexit ? 
            <Icon
               name="sign out"
               size='large'
               style={{
-                position: 'absolute',
-                right: 32,
-                top: 16,
+                // position: 'absolute',
+                // right: 32,
+                // top: 16,
+                width: 'auto',
+                cursor: 'pointer'
               }}
               onClick={() => {
                 jsCookie.remove("user_id")
@@ -194,38 +266,18 @@ export const UserCard: React.FunctionComponent<{
               }
                 >
                 <span style={{
-                  fontSize: '10px',
+                  fontSize: '14px',
                   verticalAlign: 'middle',
-                  display: 'inherit'
-                }}>خروج</span>
+                  display: 'inline',
+                  fontWeight: '100',
+                  float: "left",
+                  paddingRight:"8px",
+                  paddingTop:"5px",
+                  fontFamily: 'Vazir,sans-serif'
+                }}>خروج از حساب</span>
                 </Icon>
            :null}
-              {own && (
-            <Icon
-              name="pencil"
-              size='large'
-              style={{
-                position: 'absolute',
-                left: 32,
-                top: 16
-              }}
-              onClick={() => {
-                setEditMode(true);
-                setImg(image)
-              }}
-            />
-          )}
-          <div className="box" style={{position:'relative', float:'left',marginTop: "16px"}}>
-              <img src={image} className="img-fluid" alt="" />
-          </div>
-          <div className="media-body hostDetailCard box" style={{lineHeight: 5}}>
-                <span className="name">
-                  {firstname ? firstname :Cookieuser } {lastname ? lastname : Cookielast }
-                </span>
-              {/* <div>5,150 trips<span className="hostDetailCard-dotSeparator"></span>
-                  <span>Joined May 2016</span>
-                </div> */}
-              {/* <div className="hostDetailCard-responseTime">{responceTime}</div> */}
+           
           </div>
         </>
       ) : (
@@ -283,12 +335,12 @@ export const UserCard: React.FunctionComponent<{
                 <div id="feedback">{errors.firstname}</div>
               )}
               <div className="box boxbox" style={{position:'relative'}}>
-                <Icon
+                {/* <Icon
                 className="icon"
               name="edit"
               size='large'
               
-            />
+            /> */}
                 <img
                   // src={values.shownImage}
                   src={img}
@@ -296,6 +348,8 @@ export const UserCard: React.FunctionComponent<{
                   alt="ویرایش نمایه"
                   // onClick={() => inputFile.current.click()}
                 />
+            <p style={{marginTop:"10px"}}>تغییر تصویر کاربری</p>
+
                 <input
                 className ="inputFile"
                   style={{

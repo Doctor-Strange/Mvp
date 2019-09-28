@@ -76,7 +76,7 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
                     userOwnPage={own ? true : false}
                 />
                 <aside className="col-lg-4" id="sidebar" >
-                    <BoxCard>
+                    <BoxCard style={{padding: '0px 15px 15px 15px'}}>
                         <div
                             className="score"
                         >

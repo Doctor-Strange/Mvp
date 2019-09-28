@@ -482,7 +482,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     return (
         <Card className="request_card">
             <Segment padded>
-                <Label attached='top right'>{title}</Label>
+                <Label attached='top right' style={{boxShadow: '-1px 1px 2px 0px #cbcbcb'}}>{title}</Label>
                 <Grid className="margintop8">
                     <Grid.Row columns={2} style={{ margin: '0 auto', marginTop: '8px', paddingBottom: 0 }}>
                         <Grid.Column width={11} style={{ 

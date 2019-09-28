@@ -23,7 +23,13 @@ moment.loadPersian({ dialect: 'persian-modern' });
 import { Box, Flex } from '@rebass/grid';
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
 
-const Results = styled.div`
+const NotFound = styled.p`
+    display: block;
+    text-align: center;
+    width: 100%;
+    direction: rtl;
+    min-height: 500px;
+    padding-top: 79px;
 `;
 
 // interface ISearchResultFormValues {
@@ -110,8 +116,17 @@ export class ResultsCards extends React.Component<{
                     }
                     {noResult ?
                         (
-                            <span>
-متاسفانه نتیجه‌ای برای جستجوی شما پیدا نشد، می‌توانید تاریخ‌های دیگر را امتحان کنید.                           </span>
+                            <NotFound>
+                                {/* <Icon
+                                name="dont"
+                                size='large'
+                                /> */}
+                            متاسفانه نتیجه‌ای برای جستجوی شما پیدا نشد، می‌توانید تاریخ‌های دیگر را امتحان کنید.                           
+                            {/* <Icon
+                                name="dont"
+                                size='large'
+                                /> */}
+                            </NotFound>
                         ) : <></>
                     }
                     {showMore ? (

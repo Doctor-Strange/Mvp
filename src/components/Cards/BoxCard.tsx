@@ -19,12 +19,14 @@ const Card = styled.aside`
 
 export const BoxCard: React.FunctionComponent<{
     pushTopMargin?: boolean;
+    style?:any
 }> = ({
   children,
+  style,
   pushTopMargin = false,
 }) => {
     return (
-        <Card className={`box_detail ${pushTopMargin? "push_top" : ""}`}>
+        <Card className={`box_detail ${pushTopMargin? "push_top" : ""}`} style = {style}>
             {children}
         </Card>
     );

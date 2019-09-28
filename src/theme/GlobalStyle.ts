@@ -1994,7 +1994,7 @@ button:focus{
     top: 39px;
     border: 2px solid transparent;
     border-radius: 50%;
-    border-top: 2px solid #4ba3ce;
+    border-top: 2px solid #e8e8e8;
     width: 20px;
     height: 20px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
@@ -2010,6 +2010,9 @@ button:focus{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+#nprogress .spinner{
+  display:none;
 }
 `;
 

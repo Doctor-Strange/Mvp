@@ -154,11 +154,12 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
 
   const getSelectedDayValue = date => {
     if (!date) return '';
-    return convertNumbers2Persian(
+    let D = convertNumbers2Persian(
       moment(
         convertDateToMoment(date)
       ).format('dddd jD jMMMM jYY')
     );
+    return D
   };
 
   useEffect(() => {
@@ -172,6 +173,13 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
     // //the click was outside the specifiedElement, do something
     //   }
     // });
+    if(localStorage["start"] && localStorage["end"]){
+      // console.log(JSON.parse(localStorage["start"]),JSON.parse(localStorage["end"]))
+      setDate({
+        from: JSON.parse(localStorage["start"]),
+        to: JSON.parse(localStorage["end"])
+      });
+    }
     fetchAPI();
   }, []);
 
@@ -225,6 +233,9 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
             `start=${date.from.year}/${date.from.month}/${date.from.day}` +
             `&end=${date.to.year}/${date.to.month}/${date.to.day}&`;
         }
+        
+        localStorage["start"]=JSON.stringify(date.from)
+        localStorage["end"]=JSON.stringify(date.to)
         const href = `/search-results?${shownURL}`;
         const as = href;
         Router.push(href, as)
@@ -257,6 +268,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
               <DatePicker
                 selectedDayRange={date}
                 onChange={(v) => {
+                  console.log(v)
                   if (!v.to) {
                     setCalEnd();
                   }

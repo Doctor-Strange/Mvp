@@ -18,12 +18,13 @@ Sentry.init({
 Router.events.on('routeChangeStart', url => {
   //console.log(`Loading: ${url}`);
   // console.log('App is changing to: ', url)
-  window.scrollTo(0,0);
   NProgress.start();
 });
 
 Router.events.on('hashChangeStart', url => {
   //console.log(`hashChangeStart: ${url}`);
+  window.scrollTo(0,0);
+
 });
 
 Router.events.on('routeChangeComplete', () => {

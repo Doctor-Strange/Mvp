@@ -253,7 +253,8 @@ const GlobalStyle = createGlobalStyle`
 @media (max-width:580px){
   .WhyOtolibox{
     margin-bottom: 20px;
-    text-align: center;
+    margin-right: 0;
+    // text-align: center;
   }
 }
   /**============================== Bootstrap Styles ==============================**/

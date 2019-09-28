@@ -11,6 +11,9 @@ const FooterTag = styled.footer`
   .container{
     padding-top: 60px;
     padding-bottom: 15px;
+    @media (max-width:480px){
+      padding-top: 20px;
+    }
   }
   h3 {
     margin: 0 0 15px 0;
@@ -108,6 +111,15 @@ const FooterTag = styled.footer`
     // justify-content: center;
     // align-items: center;
     // flex-direction: column;
+    .iconContainer{
+      a{
+        i{
+          @media (max-width:575px){
+            font-size: 2em;
+          }
+        }
+      }
+    }
     a{
       margin:10px;
     }
@@ -162,6 +174,9 @@ const AdditionalLinks = styled.div`
     float: none;
     margin-top: 10px;
   }
+  @media (max-width: 480px){
+    margin-top: 26px;
+}
   .ver{
     color:#ccc;
     position:absolute;
@@ -455,7 +470,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           <div className="col-lg-12">
             <AdditionalLinks>
               <span className="ver">
-                1.2.30
+                1.2.31
                 </span>
                 <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>

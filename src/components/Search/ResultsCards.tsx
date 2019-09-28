@@ -95,7 +95,7 @@ export class ResultsCards extends React.Component<{
                                     id={value.id}
                                     title={value.car.brand.name.fa + " " + value.car.name.fa}
                                     year={value.year.name.fa}
-                                    img={value.media_set[0].thumbnail_url}
+                                    img={value.media_set[0]? value.media_set[0].thumbnail_url : null}
                                     price={value.avg_price_per_day}
                                     discount_percent={value.discount_percent}
                                     discounted_price={value.avg_discounted_price_per_day}

@@ -329,7 +329,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                         <Form.Field style={{ margin: 0 }}>
                           <label>از تاریخ</label>
                         </Form.Field>
-                        <input
+                        {CalenderWork ? <input
                           readOnly
                           ref={ref}
                           onBlur={()=>{setactiveField1(false)}}
@@ -342,13 +342,19 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           className={["DatePicker__input index", activeField1 ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
-                        {CalenderWork ? null : <span className="loader"></span>}
+                          : 
+                          <input
+                          disabled={true}
+                          value=""
+                          id="Skeletonloader"
+                          />
+                          }
                       </Box>
                       <Box className="indexFullOnMobile" width={[4 / 16]} style={{position:"relative"}}> 
                         <Form.Field style={{ margin: 0 }}>
                           <label>تا تاریخ</label>
                         </Form.Field>
-                        <input
+                        {CalenderWork ?<input
                           readOnly
                           ref={ref}
                           onBlur={()=>{setactiveField2(true) }}
@@ -359,7 +365,13 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           className={["DatePicker__input", activeField2  || (date.from&&!date.to) ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
-                        {CalenderWork ? null : <span className="loader"></span>}
+                        : 
+                          <input
+                          disabled={true}
+                          value=""
+                          id="Skeletonloader"
+                          />
+                          }
                       </Box>
                       <Box className="indexFullOnMobile" width={[4 / 16]}>
                         <Form.Field

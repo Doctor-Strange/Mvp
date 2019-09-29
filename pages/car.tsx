@@ -44,6 +44,64 @@ const ContentCardTitle = styled.div`
     }
 `;
 
+
+const Spinner= styled.div`
+  display: inline-block;
+  position: relative;
+  width: 150px;
+  height: 42px;
+  color: #666;
+div {
+  position: absolute;
+  top: 7px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #666;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
+}`
+
 export default withTranslation('common')(
     class extends React.Component<{ t: any, rentalCarID: number, start_date: any, end_date: any, search_id: string }> {
 
@@ -73,6 +131,7 @@ export default withTranslation('common')(
         }
 
         state = {
+            carousel: false,
             token: '',
             error: '',
             media_set: [],
@@ -104,8 +163,11 @@ export default withTranslation('common')(
 
         componentDidMount() {
             if(window.location.search === ""){
-                this.setState({hideTheseGuys : true}) 
+                this.setState({hideTheseGuys : true,}) 
             }
+            this.setState({
+                carousel:true
+            })
             setTimeout(() => {
                 // trying to solve slider issues
                 window.dispatchEvent(new Event('resize'));
@@ -190,7 +252,7 @@ export default withTranslation('common')(
                     }
                     <div className="hero_mother">
                         <div className="hero_in hotels_detail" style={{ maxWidth: '1111px' }}>
-                            <Carousel
+                            {this.state.carousel? <Carousel
                                 heightMode="current"
                                 initialSlideWidth={isBrowser ? 970 : undefined}
                                 renderCenterLeftControls={({ previousSlide }) => (
@@ -230,6 +292,20 @@ export default withTranslation('common')(
                                     <img key={index} src={value} />
                                 ) : <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8Dk6Uk5v--/c_scale,f_auto,fl_progressive,q_80,w_800/qssqrb3mvffcipwl9jn0.jpg" />}
                             </Carousel>
+                            : 
+                            <div style ={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                paddingTop: "20%",
+                                marginBottom: "24px",
+                                color: "#bdbdbd",
+                                outline: "none",
+                                transition: "border 0.24s ease-in-out",
+                                borderRadius: "0.28571429rem",
+                                    }}>
+                                    <Spinner >درحال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
+                                    </div>}
                         </div>
                     </div>
 

@@ -2057,6 +2057,23 @@ button:focus{
     white-space: normal;
     word-wrap: normal;
 }
+#Skeletonloader{
+  background: #f7f7f7;
+  border-color: #fff;
+  animation : anim 1s linear infinite
+}
+@keyframes anim{
+  0%{
+    background: #f7f7f7;
+  }
+  50%{
+    background: #efeeee;
+  }
+  100%{
+    background: #f7f7f7;
+  }
+}
+
 .diz{
   opacity:0.3
 }

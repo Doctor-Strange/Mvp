@@ -206,7 +206,7 @@ export const UserCard: React.FunctionComponent<{
       {!editMode ? (
         <>
           <div className="media-body hostDetailCard box" 
-          // style={{lineHeight: 5}}
+          style={{textAlign: !own  ? "center" :'right', marginBottom: !own ?"10px": 0}}
           >
                 <span className="name">
                   {firstname ? firstname :Cookieuser } {lastname ? lastname : Cookielast }
@@ -229,7 +229,7 @@ export const UserCard: React.FunctionComponent<{
                 </div> */}
               {/* <div className="hostDetailCard-responseTime">{responceTime}</div> */}
           </div>
-          <div className="boxi" style={{width: "30%",textAlign: 'left'}}>
+          <div className="boxi" style={{width: !own ? "100%" :"30%",textAlign: !own  ? "center" :'left'}}>
               <img src={image} className="img-fluid" alt="" />
           </div>
           <div className="G">

@@ -41,6 +41,7 @@ import AddCarImageUpload from "./AddCarImageUpload";
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
 import jsCookie from 'js-cookie';
 import {  toast } from 'react-toastify';
+import DropDownWithSearch from '../DropDownWithSearch/DropDownWithSearch'
 
 const BoxAccount = styled.div`
   margin-bottom: 25px;
@@ -114,7 +115,7 @@ const BoxAccount = styled.div`
   .fieldEmulator{
     margin-bottom:18px;
     .diz{
-      opacity:0.2
+      opacity:0.3
     }
   }
   .fieldEmulator select:disabled{
@@ -887,21 +888,32 @@ export default withTranslation('common')(connect(state => state)(
                       } */}
                       {/* {this.state.shouldCityDistrictShow ? ( */}
                     <div className="fieldEmulator">
-
-                    <label className ={this.state.cityDistrictFarsi[0].value == null ? "diz": null}>محله</label>
-                    <select 
+                        <DropDownWithSearch 
+                        data={this.state.cityDistrictFarsi} 
+                        Select={(e) => {
+                          values.carDistrict =e
+                        }}
+                        placeholder="محله"
+                        disabled={
+                          this.state.cityDistrictFarsi[0].value == null
+                        }>محله</DropDownWithSearch>
+                    {/* <label className ={this.state.cityDistrictFarsi[0].value == null ? "diz": null}>محله</label> */}
+                    {/* =========> */}
+                    {/* <select 
                     id="Mahaleh"
                     disabled={
                       this.state.cityDistrictFarsi[0].value == null
                     }
                     // onBlur={(e)=> {;;}} 
-                    onChange= {(e) => {values.carDistrict = e.target.value}}>
-                    <option value=""></option>
+                    onChange= {(e) => {console.log("e",e.target.value);values.carDistrict = e.target.value}}
+                    >
+                     <option value=""></option>
                       {this.state.cityDistrictFarsi.map(i => 
                       <option value={i.value} key={i.key} >{i.text}</option>
                       )
                     }
-                    </select>
+                    </select>  */}
+                    {/* =========> */}
                     </div>
                         {/* <Form.Dropdown
                           name="carDistrict"
@@ -1235,24 +1247,24 @@ export default withTranslation('common')(connect(state => state)(
                           // onBlur={handleBlur}
                           style={{ display: 'block' }}
                         >
-                          <option value={""} label={""} hidden />
-                          <option value={1} label={"۱"} />
-                          <option value={2} label={"۲"} />
-                          <option value={3} label={"۳"} />
-                          <option value={4} label={"۴"} />
-                          <option value={5} label={"۵"} />
-                          <option value={6} label={"۶"} />
-                          <option value={7} label={"۷"} />
-                          <option value={8} label={"۸"} />
-                          <option value={9} label={"۹"} />
-                          <option value={10} label={"۱۰"} />
-                          <option value={11} label={"۱۱"} />
-                          <option value={12} label={"۱۲"} />
-                          <option value={13} label={"۱۳"} />
-                          <option value={14} label={"۱۴"} />
-                          <option value={15} label={"۱۵"} />
-                          <option value={16} label={"۱۶"} />
-                          <option value={16} label={"17"} />
+                          <option value={""} hidden></option>
+                          <option value={1}>۱</option>
+                          <option value={2}>۲</option>
+                          <option value={3}>۳</option>
+                          <option value={4}>۴</option>
+                          <option value={5}>۵</option>
+                          <option value={6}>۶</option>
+                          <option value={7}>۷</option>
+                          <option value={8}>۸</option>
+                          <option value={9} >۹</option>
+                          <option value={10}>۱۰</option>
+                          <option value={11}>۱۱</option>
+                          <option value={12}>۱۲</option>
+                          <option value={13}>۱۳</option>
+                          <option value={14}>۱۴</option>
+                          <option value={15}>۱۵</option>
+                          <option value={16}>۱۶</option>
+                          <option value={17}>۱۷</option>
                         </select>
                         </div>
                       {/* <Form.Input
@@ -1554,7 +1566,7 @@ export default withTranslation('common')(connect(state => state)(
                     </Form.Field>
                     <Form.Field style={{ marginBottom: '24px' }}>
                       <Dropdown
-                        text={"رنگ خودرو"}
+                        text={"انتخاب رنگ"}
                         icon={/*this.state.colorIcon || */ `paint brush`}
                         id="carColor"
                         name="carColor"

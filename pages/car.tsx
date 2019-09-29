@@ -251,7 +251,7 @@ export default withTranslation('common')(
                         <CarNav startDate={start} endDate={end} />
                     }
                     <div className="hero_mother">
-                        <div className="hero_in hotels_detail" style={{ maxWidth: '1111px' }}>
+                        <div className="hero_in hotels_detail" style={{ maxWidth: '1111px', background:"#E6E6E6" }}>
                             {this.state.carousel? <Carousel
                                 heightMode="current"
                                 initialSlideWidth={isBrowser ? 970 : undefined}
@@ -304,12 +304,13 @@ export default withTranslation('common')(
                                 transition: "border 0.24s ease-in-out",
                                 borderRadius: "0.28571429rem",
                                     }}>
-                                    <Spinner >درحال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
-                                    </div>}
+                                <Spinner >درحال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
+                            </div>
+                        }
                         </div>
                     </div>
 
-                    <Section justifyCenter={true} style={{ marginTop: '24px' }}>
+                    <Section justifyCenter={true} style={{ marginTop: '24px',zIndex: '2',position: 'relative' }}>
                         {isBrowser &&
                             <ContentSideCard shareBar={true} pushTopMargin={true}>
                                 <CarSideCard

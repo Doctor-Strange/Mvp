@@ -1993,13 +1993,13 @@ button:focus{
   position: absolute;
     right: 23px;
     top: 39px;
-    border: 2px solid transparent;
+    border: .2em solid rgba(0,0,0,.1);
     border-radius: 50%;
-    border-top: 2px solid #e8e8e8;
+    border-top: .2em solid #949494;
     width: 20px;
     height: 20px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+  animation: spin .6s linear infinite;
 }
 
 /* Safari */

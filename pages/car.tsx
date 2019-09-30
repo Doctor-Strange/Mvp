@@ -7,7 +7,7 @@ import { Box, Flex } from '@rebass/grid';
 import { Icon, Segment, Button, Popup } from 'semantic-ui-react';
 import Router from 'next/router';
 import Carousel from 'nuka-carousel';
-import { PriceCard, UserCard, ContentCard, ContentSideCard} from '../src/components/Cards';
+import { PriceCard, UserCard, ContentCard, ContentSideCard } from '../src/components/Cards';
 import { CommentSection } from '../src/components/Comments'
 import { Details, CarNav, CarSideCard } from '../src/components/Car';
 import { i18n, withTranslation } from '../src/i18n';
@@ -23,7 +23,8 @@ import axios from 'axios';
 import jsCookie from 'js-cookie';
 import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import LoginModal from '../src/components/Modals/LoginModal'
 
 
 const ContentCardTitle = styled.div`
@@ -45,7 +46,7 @@ const ContentCardTitle = styled.div`
 `;
 
 
-const Spinner= styled.div`
+const Spinner = styled.div`
   display: inline-block;
   position: relative;
   width: 150px;
@@ -153,7 +154,8 @@ export default withTranslation('common')(
             facility_set: [],
             car: {},
             loaded: false,
-            hideTheseGuys:false
+            hideTheseGuys: false,
+            onRef: () => { }
         };
 
         mileage_ranges = ['۰ - ۵۰٫۰۰۰ کیلومتر',
@@ -161,12 +163,25 @@ export default withTranslation('common')(
             '۱۰۰٫۰۰۰ - ۲۰۰٫۰۰۰ کیلومتر',
             '+۲۰۰٫۰۰۰  کیلومتر']
 
+
+        doRef = ref => {
+            this.loginmodal = ref;
+        };
+
+        updateInfo = () => { }
+
+        componentWillUnmount() {
+            this.state.onRef(undefined);
+        }
+
         componentDidMount() {
-            if(window.location.search === ""){
-                this.setState({hideTheseGuys : true,}) 
+            this.state.onRef(this);
+            // this.props.onRef(this);
+            if (window.location.search === "") {
+                this.setState({ hideTheseGuys: true, })
             }
             this.setState({
-                carousel:true
+                carousel: true
             })
             setTimeout(() => {
                 // trying to solve slider issues
@@ -174,17 +189,17 @@ export default withTranslation('common')(
             }, 0);
         }
 
+        // doRef = ref => {
+        //     this.loginmodal = ref;
+        //   };
+
+        //   updateInfo = () => { }
+
         reserve(search_id) {
-            if(!jsCookie.get('token')){
-                toast.error('ابتدا وارد شوید', {
-                    position: "bottom-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true
-                });
-            }else if(!jsCookie.get('first_name')){
+            if (!jsCookie.get('token')) {
+                this.loginmodal.handleOpenModal(); // do stuff
+
+            } else if (!jsCookie.get('first_name')) {
                 toast.error('ثابت نام خود را کامل کنید', {
                     position: "bottom-center",
                     autoClose: 3000,
@@ -193,15 +208,15 @@ export default withTranslation('common')(
                     pauseOnHover: true,
                     draggable: true
                 });
-                Router.push({pathname: '/complete-register'})
-            }else{
+                Router.push({ pathname: '/complete-register' })
+            } else {
                 // const { search_id, rentalCarID } = this.props;
                 const href = `/checkout?search_id=${search_id}`;
                 // const as = `/checkout/${rentalCarID}/${search_id}`;
                 Router.push(href);
             }
         }
-
+        
         render() {
             // console.log("this. props ====> ", this.props)
             const { t, start_date, end_date, search_id } = this.props;
@@ -230,6 +245,8 @@ export default withTranslation('common')(
             ) : <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8Dk6Uk5v--/c_scale,f_auto,fl_progressive,q_80,w_800/qssqrb3mvffcipwl9jn0.jpg" />
             return (
                 <Layout haveSubHeader={true} pageTitle={'list Your Car'}>
+                    <LoginModal onRef={this.doRef} updateInfo={this.updateInfo} />
+
                     <NextSeo
                         config={{
                             title: `اجاره ${car.brand.name.fa} ${car.name.fa} در اتولی`,
@@ -251,8 +268,8 @@ export default withTranslation('common')(
                         <CarNav startDate={start} endDate={end} />
                     }
                     <div className="hero_mother">
-                        <div className="hero_in hotels_detail" style={{ maxWidth: '1111px', background:"#E6E6E6" }}>
-                            {this.state.carousel? <Carousel
+                        <div className="hero_in hotels_detail" style={{ maxWidth: '1111px', background: "#E6E6E6" }}>
+                            {this.state.carousel ? <Carousel
                                 heightMode="current"
                                 initialSlideWidth={isBrowser ? 970 : undefined}
                                 renderCenterLeftControls={({ previousSlide }) => (
@@ -292,25 +309,25 @@ export default withTranslation('common')(
                                     <img key={index} src={value} />
                                 ) : <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8Dk6Uk5v--/c_scale,f_auto,fl_progressive,q_80,w_800/qssqrb3mvffcipwl9jn0.jpg" />}
                             </Carousel>
-                            : 
-                            <div style ={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                paddingTop: "20%",
-                                marginBottom: "24px",
-                                color: "#bdbdbd",
-                                outline: "none",
-                                transition: "border 0.24s ease-in-out",
-                                borderRadius: "0.28571429rem",
-                                    }}>
-                                <Spinner >درحال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
-                            </div>
-                        }
+                                :
+                                <div style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    paddingTop: "20%",
+                                    marginBottom: "24px",
+                                    color: "#bdbdbd",
+                                    outline: "none",
+                                    transition: "border 0.24s ease-in-out",
+                                    borderRadius: "0.28571429rem",
+                                }}>
+                                    <Spinner >درحال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
+                                </div>
+                            }
                         </div>
                     </div>
 
-                    <Section justifyCenter={true} style={{ marginTop: '24px',zIndex: '2',position: 'relative' }}>
+                    <Section justifyCenter={true} style={{ marginTop: '24px', zIndex: '2', position: 'relative' }}>
                         {isBrowser &&
                             <ContentSideCard shareBar={true} pushTopMargin={true}>
                                 <CarSideCard
@@ -331,7 +348,7 @@ export default withTranslation('common')(
                                 />
                             </ContentSideCard>
                         }
-                       <ContentCard style={{ top: '-30px'}}>
+                        <ContentCard style={{ top: '-30px' }}>
                             ‍<ContentCardTitle>
                                 {/* commented by sajad 980609======> */}
                                 {isMobile && !this.state.hideTheseGuys ?
@@ -341,7 +358,7 @@ export default withTranslation('common')(
                                         top: '-15px',
                                         position: 'absolute'
                                     }} number={avg_discounted_price_per_day}>در روز</PriceCard>
-                                    :null
+                                    : null
                                 }
                                 {/* =====> */}
                                 {/* <div className="cat_star">
@@ -376,7 +393,7 @@ export default withTranslation('common')(
                                     <li>گیربکس: {transmission_type.fa}</li>
                                     {/* changed in 980528 by sajad bug fix */}
                                     {/* <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id + 1] : "صفر کیلومتر"}</li> */}
-                                    <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id-1 ] : "صفر کیلومتر"}</li>
+                                    <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id - 1] : "صفر کیلومتر"}</li>
                                     <li>ظرفیت: {capacity}</li>
                                 </ul>
                             </Details>
@@ -405,7 +422,7 @@ export default withTranslation('common')(
                                 {cancellation_policy ? cancellation_policy : "ندارد"}
                             </Details>
                             {isMobile &&
-                                <div style={{margin: '10px auto', direction: 'rtl'}}>
+                                <div style={{ margin: '10px auto', direction: 'rtl' }}>
                                     <UserCard
                                         id={owner.id}
                                         firstname={owner.first_name}
@@ -438,7 +455,7 @@ export default withTranslation('common')(
                         >
                             درخواست اجاره
                     </Button> : null
-                    :null
+                        : null
                     }
                 </Layout >
             );

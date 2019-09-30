@@ -89,8 +89,6 @@ class Layout extends React.Component<{
           />
           {this.propshaveSubHeader ? <SubHeader title={pageTitle} /> : null}
           <div 
-           onRef={this.doRef}
-           openMenu={this.handleShowClick}
           // style={{
           //   background: `url(${bgImage}) no-repeat 50%/cover`,
           //   backgroundPositionY: '60%',

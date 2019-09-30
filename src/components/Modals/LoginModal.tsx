@@ -33,7 +33,7 @@ interface LoginModalCodeValues {
 
 export default withTranslation('common')(
   class extends React.Component<
-    { onRef: any; t: any, updateInfo: any },
+    { onRef?: any; t: any, updateInfo: any },
     {
       showIndex: number;
       prevIndex: number;

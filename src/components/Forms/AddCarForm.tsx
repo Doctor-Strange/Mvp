@@ -743,10 +743,10 @@ export default withTranslation('common')(connect(state => state)(
               })
               .catch(error => {
                 // tslint:disable-next-line:no-console
-                console.log("response.data error ====>",error);
+                // console.log("response.data error ====>",error.response);
 
-                console.error(error);
-                this.setState({ error: error, success: false });
+                // console.error(error);
+                this.setState({ error: error.response.data.message, success: false });
               })
               .then(() => {
                 actions.setSubmitting(false);

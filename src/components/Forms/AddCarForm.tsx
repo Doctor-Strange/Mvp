@@ -218,8 +218,8 @@ export default withTranslation('common')(connect(state => state)(
       cityDistrict: null,
       shouldCityDistrictLoad: false,
       shouldCityDistrictShow: false,
-      cityDistrictFarsi: [{ text: 'کمی صبر کنید...', value: null }],
-      cityDistrictEnglish: [{ text: 'کمی صبر کنید...', value: null }],
+      cityDistrictFarsi: [],
+      cityDistrictEnglish: [],
       bodyStyle: null,
       bodyStyleFarsi: [{ text: 'کمی صبر کنید...', value: null }],
       bodyStyleEnglish: [{ text: 'کمی صبر کنید...', value: null }],
@@ -701,7 +701,6 @@ export default withTranslation('common')(connect(state => state)(
               description: carDescription,
               media_id: this.state.picturesID
             })
-            return
             axios
               .post(
                 process.env.PRODUCTION_ENDPOINT + '/core/rental-car/new',

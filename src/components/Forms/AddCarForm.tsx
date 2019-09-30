@@ -40,7 +40,7 @@ import scrollToElement from 'scroll-to-element';
 import AddCarImageUpload from "./AddCarImageUpload";
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
 import jsCookie from 'js-cookie';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import DropDownWithSearch from '../DropDownWithSearch/DropDownWithSearch'
 
 const BoxAccount = styled.div`
@@ -234,12 +234,12 @@ export default withTranslation('common')(connect(state => state)(
         }
       ],
       brand: null,
-      brandsFarsi: [{ text: 'کمی صبر کنید...', value: null }],
-      brandsEnglish: [{ text: 'کمی صبر کنید...', value: null }],
+      brandsFarsi: [],
+      brandsEnglish: [],
       model: null,
       shouldModelLoad: false,
-      modelsFarsi: [{ text: 'کمی صبر کنید...', value: null }],
-      modelsEnglish: [{ text: 'کمی صبر کنید...', value: null }],
+      modelsFarsi: [],
+      modelsEnglish: [],
       year: null,
       yearsFarsi: [{ text: 'کمی صبر کنید...', value: null }],
       yearsEnglish: [{ text: 'کمی صبر کنید...', value: null }],
@@ -493,32 +493,32 @@ export default withTranslation('common')(connect(state => state)(
       //console.log(id);
       //console.log(cblist[i].id);
       // try {
-        if (!OnlyActive) {
-          cblist.map((value, index) => {
-              if (value.id === id) {
-                if(cblist[index].checked){
-                  cblist[index].checked = false;
-                  let indexItem = IDs.indexOf(id)
-                  IDs.splice(indexItem,1)
-                }else{
-                  cblist[index].checked = true;
-                  IDs.push(id)
-                }  
+      if (!OnlyActive) {
+        cblist.map((value, index) => {
+          if (value.id === id) {
+            if (cblist[index].checked) {
+              cblist[index].checked = false;
+              let indexItem = IDs.indexOf(id)
+              IDs.splice(indexItem, 1)
+            } else {
+              cblist[index].checked = true;
+              IDs.push(id)
             }
-          })
-        }
-        else {
-          cblist[index].checked = true;
-          IDs.push(id);
-        }
-            // console.log(
-            //   `"id" is ${cblist[index].label} and "checkboxes[${index}]" is ${
-            //   cblist[index].checked
-            //   }`
-            // );
-            //console.log(id + ' added.');
-          // }
-        // });
+          }
+        })
+      }
+      else {
+        cblist[index].checked = true;
+        IDs.push(id);
+      }
+      // console.log(
+      //   `"id" is ${cblist[index].label} and "checkboxes[${index}]" is ${
+      //   cblist[index].checked
+      //   }`
+      // );
+      //console.log(id + ' added.');
+      // }
+      // });
       // } catch (error) {
       //   console.error(error);
       // }
@@ -679,7 +679,8 @@ export default withTranslation('common')(connect(state => state)(
               carLicensePlates4,
               carDescription
             } = values;
-            console.log({car_id: carModel,
+            console.log({
+              car_id: carModel,
               location_id: (carDistrict || carCity),
               year_id: carYear,
               transmission_type_id: carGearboxType,
@@ -698,7 +699,9 @@ export default withTranslation('common')(connect(state => state)(
               deliver_at_renters_place: 0, // sample
               facility_id: this.state.checkboxesID,
               description: carDescription,
-              media_id: this.state.picturesID})
+              media_id: this.state.picturesID
+            })
+            return
             axios
               .post(
                 process.env.PRODUCTION_ENDPOINT + '/core/rental-car/new',
@@ -731,7 +734,7 @@ export default withTranslation('common')(connect(state => state)(
                 }
               )
               .then(response => {
-                console.log("response.data response ====>",response);
+                console.log("response.data response ====>", response);
                 if (response.data.success) {
                   Router.push({
                     pathname: '/set-car-timing',
@@ -762,8 +765,8 @@ export default withTranslation('common')(connect(state => state)(
               .required(fieldErrorGenrator("شهر خودرو"))
               .typeError(fieldErrorGenrator("شهر خودرو")),
             carDistrict: Yup.number()
-            .required(fieldErrorGenrator("محله"))
-            .typeError(fieldErrorGenrator("محله")),
+              .required(fieldErrorGenrator("محله"))
+              .typeError(fieldErrorGenrator("محله")),
             carBrand: Yup.number()
               .required(fieldErrorGenrator("برند"))
               .typeError(fieldErrorGenrator("برند")),
@@ -828,29 +831,29 @@ export default withTranslation('common')(connect(state => state)(
             errors,
             touched
           }) => (
-            <BoxAccount className="box_account" id="form">
+              <BoxAccount className="box_account" id="form">
                 <Form onSubmit={handleSubmit}>
                   <h3 className="new_client">{t('add_car')}</h3>
                   {/* <small className="float-right pt-2">* {$required_fields}</small> */}
                   <Segment>
-<p>مشخصات خودرو را با مطابق با مدارک آن پر کنید. </p>
+                    <p>مشخصات خودرو را با مطابق با مدارک آن پر کنید. </p>
                     {/* <Form.Field style={{ margin: 0 }}>
                       <label>{t('carProperty.whereIsIt')}</label>
                     </Form.Field> */}
                     <div className="field">
-                    <label>ماشین شما کجاست؟</label>
-                    <select  
-                    // onBlur={(e)=> {;;}} 
-                    onChange= {(e) => {this.setCityDistrict(e.target.value);values.carCity = e.target.value}}>
-                    <option value=""></option>
-                      {this.state.citiesFarsi.map(i => 
-                      <option value={i.value} key={i.key} >{i.text}</option>
-                      )
-                    }
-                    </select>
+                      <label>ماشین شما کجاست؟</label>
+                      <select
+                        // onBlur={(e)=> {;;}} 
+                        onChange={(e) => { this.setCityDistrict(e.target.value); values.carCity = e.target.value }}>
+                        <option value=""></option>
+                        {this.state.citiesFarsi.map(i =>
+                          <option value={i.value} key={i.key} >{i.text}</option>
+                        )
+                        }
+                      </select>
                     </div>
                     {/* <Form.Group> */}
-                      {/* {isBrowser &&
+                    {/* {isBrowser &&
                         <Form.Dropdown
                           name="carCity"
                           id="carCity"
@@ -906,20 +909,20 @@ export default withTranslation('common')(connect(state => state)(
                           </select>
                         </div>
                       } */}
-                      {/* {this.state.shouldCityDistrictShow ? ( */}
+                    {/* {this.state.shouldCityDistrictShow ? ( */}
                     <div className="fieldEmulator">
-                        <DropDownWithSearch 
-                        data={this.state.cityDistrictFarsi} 
+                      <DropDownWithSearch
+                        loading={true}
+                        data={this.state.cityDistrictFarsi}
                         Select={(e) => {
-                          values.carDistrict =e
+                          values.carDistrict = e.value
                         }}
                         placeholder="محله"
-                        disabled={
-                          this.state.cityDistrictFarsi[0].value == null
+                        disabled={values.carCity === null
                         }>محله</DropDownWithSearch>
-                    {/* <label className ={this.state.cityDistrictFarsi[0].value == null ? "diz": null}>محله</label> */}
-                    {/* =========> */}
-                    {/* <select 
+                      {/* <label className ={this.state.cityDistrictFarsi[0].value == null ? "diz": null}>محله</label> */}
+                      {/* =========> */}
+                      {/* <select 
                     id="Mahaleh"
                     disabled={
                       this.state.cityDistrictFarsi[0].value == null
@@ -933,9 +936,9 @@ export default withTranslation('common')(connect(state => state)(
                       )
                     }
                     </select>  */}
-                    {/* =========> */}
+                      {/* =========> */}
                     </div>
-                        {/* <Form.Dropdown
+                    {/* <Form.Dropdown
                           name="carDistrict"
                           id="carDistrict"
                           search
@@ -967,14 +970,25 @@ export default withTranslation('common')(connect(state => state)(
                           }}
                           value={values.carDistrict}
                         /> */}
-                      {/*) 
+                    {/*) 
                        : (
                           <p />
                         )} */}
                     {/* </Form.Group> */}
 
                     <Form.Group className="carModelRow" id="carBrand">
-                      <Form.Dropdown
+                      <div className="field">
+
+                        <DropDownWithSearch
+                          disabled={false}
+                          data={this.state.brandsFarsi}
+                          Select={(e) => {
+                            setFieldValue("carBrand", e.value);
+                            this.setModels(e.value);
+                          }}
+                          placeholder="برند">برند</DropDownWithSearch>
+                      </div>
+                      {/* <Form.Dropdown
                         name="carBrand"
                         id="carBrand"
                         label={"برند"}
@@ -990,6 +1004,7 @@ export default withTranslation('common')(connect(state => state)(
                         }
                         error={Boolean(errors.carBrand && touched.carBrand)}
                         onChange={(e, data) => {
+                          console.log(data)
                           if (data && data.name) {
                             setFieldValue(data.name, data.value);
                             this.setModels(data.value);
@@ -1002,8 +1017,21 @@ export default withTranslation('common')(connect(state => state)(
                           }
                         }}
                         value={values.carBrand}
-                      />
-                      <Form.Dropdown
+                      /> */}
+                      <div className="field">
+
+                        <DropDownWithSearch
+                          loading={true}
+                          disabled={values.carBrand === null
+                          }
+                          data={this.state.modelsFarsi}
+                          Select={(e) => {
+                            setFieldValue("carModel", e.value);
+                            this.setModels(e.value);
+                          }}
+                          placeholder="مدل">مدل</DropDownWithSearch>
+                      </div>
+                      {/* <Form.Dropdown
                         name="carModel"
                         id="carModel"
                         search
@@ -1063,9 +1091,19 @@ export default withTranslation('common')(connect(state => state)(
                           }
                         }}
                         value={values.carModel}
-                      />
+                      /> */}
                       {/* {isBrowser && */}
                       <div className="field">
+
+                        <DropDownWithSearch
+                          disabled={false}
+                          data={this.state.yearsFarsi}
+                          Select={(e) => {
+                            values.carYear = e.value
+                          }}
+                          placeholder="سال">سال</DropDownWithSearch>
+                      </div>
+                      {/* <div className="field">
 
                       <label>سال</label>
 
@@ -1083,9 +1121,9 @@ export default withTranslation('common')(connect(state => state)(
                       )
                     }
                     </select>
-                    </div>
+                    </div> */}
 
-                        {/* <Form.Dropdown
+                      {/* <Form.Dropdown
                           name="carYear"
                           id="carYear"
                           search
@@ -1181,22 +1219,22 @@ export default withTranslation('common')(connect(state => state)(
 
                       <label>نوع شاسی</label>
 
-                      <select 
+                      <select
                         style={{
                           height: "50px",
                           marginTop: "4px"
                         }}
                         disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
-                        onChange= {(e) => {values.carBodyStyle = e.target.value}}>
-                          <option value=""></option>
-                            {this.state.bodyStyleFarsi.map(i => 
-                            <option value={i.value} key={i.key} >{i.text}</option>
-                            )
-                          }
+                        onChange={(e) => { values.carBodyStyle = e.target.value }}>
+                        <option value=""></option>
+                        {this.state.bodyStyleFarsi.map(i =>
+                          <option value={i.value} key={i.key} >{i.text}</option>
+                        )
+                        }
                       </select>
                     </div>
-                      {/* <Form.Dropdown
+                    {/* <Form.Dropdown
                         name="carBodyStyle"
                         id="carBodyStyle"
                         placeholder={"نوع شاسی"}
@@ -1227,7 +1265,7 @@ export default withTranslation('common')(connect(state => state)(
                       /> */}
                     {/* } */}
                     {/* {isMobile && */}
-                      {/* <div className="field">
+                    {/* <div className="field">
                         <label>{t('carProperty.cassis')}</label>
                         <select
                           name="carBodyStyle"
@@ -1254,40 +1292,40 @@ export default withTranslation('common')(connect(state => state)(
                     <div className="field">
 
                       <label>ظرفیت خودرو</label>
-                    <select
-                          name="carCapacity"
-                          className={Boolean(errors.carCapacity && touched.carCapacity) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
-                          value={values.carCapacity}
-                          onChange={(e) => {
-                            //console.log(e.target.value);
-                            if (e.target && e.target.name) {
-                              setFieldValue(e.target.name, Number(e.target.value));
-                            }
-                          }}
-                          // onBlur={handleBlur}
-                          style={{ display: 'block' }}
-                        >
-                          <option value={""} hidden></option>
-                          <option value={1}>۱</option>
-                          <option value={2}>۲</option>
-                          <option value={3}>۳</option>
-                          <option value={4}>۴</option>
-                          <option value={5}>۵</option>
-                          <option value={6}>۶</option>
-                          <option value={7}>۷</option>
-                          <option value={8}>۸</option>
-                          <option value={9} >۹</option>
-                          <option value={10}>۱۰</option>
-                          <option value={11}>۱۱</option>
-                          <option value={12}>۱۲</option>
-                          <option value={13}>۱۳</option>
-                          <option value={14}>۱۴</option>
-                          <option value={15}>۱۵</option>
-                          <option value={16}>۱۶</option>
-                          <option value={17}>۱۷</option>
-                        </select>
-                        </div>
-                      {/* <Form.Input
+                      <select
+                        name="carCapacity"
+                        className={Boolean(errors.carCapacity && touched.carCapacity) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
+                        value={values.carCapacity}
+                        onChange={(e) => {
+                          //console.log(e.target.value);
+                          if (e.target && e.target.name) {
+                            setFieldValue(e.target.name, Number(e.target.value));
+                          }
+                        }}
+                        // onBlur={handleBlur}
+                        style={{ display: 'block' }}
+                      >
+                        <option value={""} hidden></option>
+                        <option value={1}>۱</option>
+                        <option value={2}>۲</option>
+                        <option value={3}>۳</option>
+                        <option value={4}>۴</option>
+                        <option value={5}>۵</option>
+                        <option value={6}>۶</option>
+                        <option value={7}>۷</option>
+                        <option value={8}>۸</option>
+                        <option value={9} >۹</option>
+                        <option value={10}>۱۰</option>
+                        <option value={11}>۱۱</option>
+                        <option value={12}>۱۲</option>
+                        <option value={13}>۱۳</option>
+                        <option value={14}>۱۴</option>
+                        <option value={15}>۱۵</option>
+                        <option value={16}>۱۶</option>
+                        <option value={17}>۱۷</option>
+                      </select>
+                    </div>
+                    {/* <Form.Input
                         // label={t('carProperty.capacity') + ' ' + t('carProperty.withDriver')}
                         label={"ظرفیت خودرو"}
                         name="carCapacity"
@@ -1343,22 +1381,22 @@ export default withTranslation('common')(connect(state => state)(
                     } */}
                     <div className="field">
 
-                    <label>کارکرد خودرو</label>
+                      <label>کارکرد خودرو</label>
 
-                    <select 
-                      style={{
-                        height: "50px",
-                        marginTop: "4px"
-                      }}
-                      disabled={this.state.yearsFarsi[0].value == null}
-                      // onBlur={(e)=> {;;}} 
-                      onChange= {(e) => {values.carKmDriven = e.target.value}}>
+                      <select
+                        style={{
+                          height: "50px",
+                          marginTop: "4px"
+                        }}
+                        disabled={this.state.yearsFarsi[0].value == null}
+                        // onBlur={(e)=> {;;}} 
+                        onChange={(e) => { values.carKmDriven = e.target.value }}>
                         <option value=""></option>
-                          {kmDrivenFarsi.map(i => 
+                        {kmDrivenFarsi.map(i =>
                           <option value={i.value} key={i.key} >{i.text}</option>
-                          )
+                        )
                         }
-                    </select>
+                      </select>
                     </div>
 
                     {/* <Form.Group>
@@ -1434,12 +1472,12 @@ export default withTranslation('common')(connect(state => state)(
                         }
                         style={{ direction: 'ltr' }}
                       />
-                      <span onClick={this.openVINHint} style={{ fontSize: '12px',textDecoration : 'underline', fontWeight: 400 }}>
+                      <span onClick={this.openVINHint} style={{ fontSize: '12px', textDecoration: 'underline', fontWeight: 400 }}>
                         <Icon name="help circle" />{' '}
                         VIN را از کجا پیدا کنیم؟
                         </span>
-                      <p   style={{ fontSize: '12px', fontWeight: 400}}>
-                       کد شناسایی خودرو فقط جهت تنظیم قرارداد اجاره به کار می‌رود و در سایت نمایش داده نمی‌شود.
+                      <p style={{ fontSize: '12px', fontWeight: 400 }}>
+                        کد شناسایی خودرو فقط جهت تنظیم قرارداد اجاره به کار می‌رود و در سایت نمایش داده نمی‌شود.
                         </p>
                     </div>
 
@@ -1542,9 +1580,11 @@ export default withTranslation('common')(connect(state => state)(
                         />
                       </div>
                     </Form.Group>
-                    <span   style={{ fontSize: '12px', fontWeight: 400,marginBottom: '20px',
-                    marginTop: "-25px",display: 'block' }}>
-                    پلاک خودرو فقط جهت تنظیم قرارداد اجاره به کار می‌رود و در سایت نمایش داده نمی‌شود.
+                    <span style={{
+                      fontSize: '12px', fontWeight: 400, marginBottom: '20px',
+                      marginTop: "-25px", display: 'block'
+                    }}>
+                      پلاک خودرو فقط جهت تنظیم قرارداد اجاره به کار می‌رود و در سایت نمایش داده نمی‌شود.
                         </span>
                     <Form.Field style={{ margin: 0 }}>
                       <label>{"امکانات خودرو"}</label>
@@ -1576,8 +1616,8 @@ export default withTranslation('common')(connect(state => state)(
                       <label>{"بارگذاری عکس‌ها"}</label>
                       <AddCarImageUpload
                         picturesID={this.state.picturesID}
-                        setPicturesID={(val) => this.setState({picturesID:val})}
-                        removePictureID={(i) =>  this.removePicture(i)}
+                        setPicturesID={(val) => this.setState({ picturesID: val })}
+                        removePictureID={(i) => this.removePicture(i)}
                       />
                     </Form.Field>
 
@@ -1654,17 +1694,17 @@ export default withTranslation('common')(connect(state => state)(
                       style={{ textAlign: 'center', fontSize: '0.8em' }}
                     >
                       <Button
-                        onClick={()=>{
-                          if(!jsCookie.get('first_name')){
+                        onClick={() => {
+                          if (!jsCookie.get('first_name')) {
                             toast.error('ثابت نام خود را کامل کنید', {
-                                position: "bottom-center",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true
+                              position: "bottom-center",
+                              autoClose: 3000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true
                             });
-                            Router.push({pathname: '/complete-register'})
+                            Router.push({ pathname: '/complete-register' })
                           }
                         }}
                         loading={isSubmitting}

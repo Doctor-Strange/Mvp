@@ -25,6 +25,9 @@ class DropDownWithSearch extends Component {
         <label className={this.props.data.length < 2 ? "diz" : null}>
           {this.props.children}
         </label>
+        {!this.props.disabled && this.props.loading && this.props.data.length < 1 &&
+          <span className="loader"></span>
+        }
         <input
           disabled={this.props.disabled}
           value={this.state.InputValue}
@@ -50,7 +53,7 @@ class DropDownWithSearch extends Component {
               <p
                 onClick={() => {
                   this.setState({ InputValue: i.text });
-                  this.props.Select(i.value);
+                  this.props.Select(i);
                   this.DropDownController();
                 }}
                 key={i.key}

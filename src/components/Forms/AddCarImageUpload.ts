@@ -173,7 +173,7 @@ const AddCarImageUpload: React.FC<{
     //     };
     //   });
     // }}
-      accept="image/jpeg, image/png, image/jpg"
+      accept=".jpeg, .jpg, .png"
       onDrop={acceptedFiles => {
         loadingHandler(true)
             // console.log(picturesPreview)

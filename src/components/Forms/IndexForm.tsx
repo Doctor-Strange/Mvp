@@ -338,7 +338,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           // onBlur={() => { console.log("on Blur for from")}}
 
                           value={getSelectedDayValue(date.from)}
-                          placeholder={CalenderWork ? "از تاریخ" : ""}
+                          placeholder={"از تاریخ"}
                           className={["DatePicker__input index", activeField1 ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
@@ -355,7 +355,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           onFocus={() => { setCalEnd(); onFocus(); setactiveField2(true) }}
                           // onBlur={() => { console.log("on Blur for To")}}
                           value={getSelectedDayValue(date.to)}
-                          placeholder={CalenderWork ? "تا تاریخ" : ""}
+                          placeholder={"تا تاریخ"}
                           className={["DatePicker__input", activeField2  || (date.from&&!date.to) ? "activefield":null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />

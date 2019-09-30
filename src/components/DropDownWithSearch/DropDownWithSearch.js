@@ -41,7 +41,7 @@ class DropDownWithSearch extends Component {
                 return i.text.match(e.target.value);
               })
             });
-            this.setState({ InputValue: e.target.value });
+            this.setState({ InputValue: e.target.value, ShowControler: true });
           }}
         />
         {this.state.ShowControler ? (

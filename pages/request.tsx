@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
 import { Section } from '../src/components/row/Sections';
@@ -12,28 +12,38 @@ import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
 import {Router} from '../routes';
 import {  toast } from 'react-toastify';
+import LoginModal from '../src/components/Modals/LoginModal';
 
-const Request = ({id}) => {
+
+const Request = ({id}, props) => {
 
     const [request, setRequest] = useState(null);
+
+    let loginmodal = useRef(null);
+    const doRef = ref => {
+         loginmodal = ref;
+    };
 
     async function fetchAPI() {
         const res = await REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  });
         console.log(res)
         setRequest(res);
     }
+    const myRef = React.createRef();
 
     useEffect(() => {
         if(!jsCookie.get('token')){
-            toast.error('ابتدا وارد شوید', {
-                position: "bottom-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true
-            });
-            Router.push({pathname: '/'})
+    loginmodal.handleOpenModal();
+
+            // toast.error('ابتدا وارد شوید', {
+            //     position: "bottom-center",
+            //     autoClose: 3000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true
+            // });
+            // Router.push({pathname: '/'})
         }else if(!jsCookie.get('first_name')){
             toast.error('ثابت نام خود را کامل کنید', {
                 position: "bottom-center",
@@ -48,8 +58,22 @@ const Request = ({id}) => {
         fetchAPI();
     }, []);
 
+    const refcontroller = () =>{
+        myRef.current.focus();
+    }
+
+
+    
+
+    const updateInfo = () => {fetchAPI();}
+
     return (
         <Layout haveSubHeader={true} pageTitle={'Hello World'}>
+            {/* <input type="text" ref={myRef}/>
+            <div onClick={refcontroller}>a</div> */}
+            <LoginModal
+            onRef={doRef} 
+            updateInfo={updateInfo}/>
             <Section justifyCenter={true}>
                 <Flex className="wrapper">
                     <Box width={2 / 2} px={2}>
@@ -78,6 +102,7 @@ const Request = ({id}) => {
                                             start={moment(rentDump.start_date, 'jYYYY/jMM/jDD')}
                                             end={moment(rentDump.end_date, 'jYYYY/jMM/jDD')}
                                             price={rentDump.discounted_total_price}
+                                            ownerInfo = {rentDump.owner}
                                             ownerName={
                                                 (value.role === "owner")
                                                     ? `${value.renter.first_name} ${value.renter.last_name}`

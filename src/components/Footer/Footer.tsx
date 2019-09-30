@@ -470,7 +470,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           <div className="col-lg-12">
             <AdditionalLinks>
               <span className="ver">
-                1.2.35
+                1.2.36
                 </span>
                 <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>

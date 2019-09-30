@@ -1991,7 +1991,8 @@ button:focus{
 }
 .loader {
   position: absolute;
-    right: 23px;
+    left: 23px;
+    right: auto;
     top: 39px;
     border: .2em solid rgba(0,0,0,.1);
     border-radius: 50%;

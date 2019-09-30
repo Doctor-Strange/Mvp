@@ -319,7 +319,7 @@ export default withTranslation('common')(
                               //   });
                               
                               this.handleCloseModal();
-                              updateInfo();
+                              updateInfo("ok");
                             });
                         } else {
                           // tslint:disable-next-line:no-console

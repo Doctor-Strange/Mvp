@@ -198,6 +198,8 @@ interface IAddCarFormValues {
   carLicensePlates3: number;
   carLicensePlates4: number;
   carDescription: string;
+  cylinder:any;
+  value:any;
 }
 
 export default withTranslation('common')(connect(state => state)(
@@ -248,7 +250,9 @@ export default withTranslation('common')(connect(state => state)(
         { id: 0, label: 'کمی صبر کنید...', checked: true, parsedID: null }
       ],
       picturesID: [],
-      picturesPreview: []
+      picturesPreview: [],
+      cylinder:null,
+      value:null
     };
 
     constructor(props) {
@@ -631,7 +635,9 @@ export default withTranslation('common')(connect(state => state)(
             carLicensePlates3: null,
             carLicensePlates4: null,
             carColor: null,
-            carDescription: null
+            carDescription: null,
+            cylinder:null,
+            value:null
           }}
           onSubmit={(
             values: IAddCarFormValues,
@@ -677,7 +683,9 @@ export default withTranslation('common')(connect(state => state)(
               carLicensePlates2,
               carLicensePlates3,
               carLicensePlates4,
-              carDescription
+              carDescription,
+              cylinder,
+              value
             } = values;
             console.log({
               car_id: carModel,
@@ -699,8 +707,11 @@ export default withTranslation('common')(connect(state => state)(
               deliver_at_renters_place: 0, // sample
               facility_id: this.state.checkboxesID,
               description: carDescription,
-              media_id: this.state.picturesID
+              media_id: this.state.picturesID,
+              cylinder: cylinder,
+              value:value
             })
+            // return 
             axios
               .post(
                 process.env.PRODUCTION_ENDPOINT + '/core/rental-car/new',
@@ -724,7 +735,9 @@ export default withTranslation('common')(connect(state => state)(
                   deliver_at_renters_place: 0, // sample
                   facility_id: this.state.checkboxesID,
                   description: carDescription,
-                  media_id: this.state.picturesID
+                  media_id: this.state.picturesID,
+                  cylinder: cylinder,
+                  value:value
                 },
                 {
                   headers: {
@@ -1233,6 +1246,31 @@ export default withTranslation('common')(connect(state => state)(
                         }
                       </select>
                     </div>
+                    <div className="field">
+
+                      <label>تعداد سیلندر</label>
+                      <select
+                        name="cylinder"
+                        className={Boolean(errors.cylinder && touched.cylinder) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
+                        value={values.cylinder}
+                        onChange={(e) => {
+                          //console.log(e.target.value);
+                          if (e.target && e.target.name) {
+                            setFieldValue(e.target.name, Number(e.target.value));
+                          }
+                        }}
+                        // onBlur={handleBlur}
+                        style={{ display: 'block' }}
+                      >
+                        <option value={""} hidden></option>
+                        <option value={3}>۳</option>
+                        <option value={4}>۴</option>
+                        <option value={5}>۵</option>
+                        <option value={6}>۶</option>
+                        <option value={8}>۸</option>
+                        <option value={10}>۱۰</option>
+                      </select>
+                    </div>
                     {/* <Form.Dropdown
                         name="carBodyStyle"
                         id="carBodyStyle"
@@ -1396,6 +1434,25 @@ export default withTranslation('common')(connect(state => state)(
                         )
                         }
                       </select>
+                    </div>
+
+                    <div className="field">
+
+                      <label>ارزش خودرو</label>
+
+                      <input 
+                      type="number"
+                      min="2000000"
+                      max="5000000000"
+                        style={{
+                          height: "50px",
+                          marginTop: "4px"
+                        }}
+                        // disabled={this.state.yearsFarsi[0].value == null}
+                        // onBlur={(e)=> {;;}} 
+                        onChange={(e) => { values.value = e.target.value }}
+                        value={ values.value}
+                        />
                     </div>
 
                     {/* <Form.Group>

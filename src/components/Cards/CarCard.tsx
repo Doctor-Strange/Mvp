@@ -297,7 +297,7 @@ export const CarCard: React.FunctionComponent<{
           }
       })
       .catch(error => {
-        console.log(error)
+        console.log(error.response)
 
         // reject(error.response);
       });

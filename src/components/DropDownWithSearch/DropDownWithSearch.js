@@ -21,22 +21,25 @@ class DropDownWithSearch extends Component {
 
   render() {
     return (
-      <div className="searchBoxContainer">
+      <div className="searchBoxContainer"
+        onMouseLeave={() => this.setState({ ShowControler: false })}>
         <label className={this.props.data.length < 2 ? "diz" : null}>
           {this.props.children}
         </label>
-        {!this.props.disabled && this.props.loading && this.props.data.length < 1 &&
+        {
+          !this.props.disabled && this.props.loading && this.props.data.length < 1 &&
           <span className="loader"></span>
         }
         <input
           disabled={this.props.disabled}
           value={this.state.InputValue}
           placeholder={this.props.placeholder}
-          onBlur={() => {
-            if (this.state.ShowControler) {
-              this.DropDownController;
-            }
-          }}
+          // onBlur={() => {
+          //   console.log(1)
+          //   if (this.state.ShowControler) {
+
+          //   }
+          // }}
           onClick={this.DropDownController}
           onChange={e => {
             this.setState({
@@ -47,23 +50,25 @@ class DropDownWithSearch extends Component {
             this.setState({ InputValue: e.target.value, ShowControler: true });
           }}
         />
-        {this.state.ShowControler ? (
-          <div className="resultList">
-            {this.state.data.map(i => (
-              <p
-                onClick={() => {
-                  this.setState({ InputValue: i.text });
-                  this.props.Select(i);
-                  this.DropDownController();
-                }}
-                key={i.key}
-              >
-                {i.text}
-              </p>
-            ))}
-          </div>
-        ) : null}
-      </div>
+        {
+          this.state.ShowControler ? (
+            <div className="resultList">
+              {this.state.data.map(i => (
+                <p
+                  onClick={() => {
+                    this.setState({ InputValue: i.text });
+                    this.props.Select(i);
+                    this.DropDownController();
+                  }}
+                  key={i.key}
+                >
+                  {i.text}
+                </p>
+              ))}
+            </div>
+          ) : null
+        }
+      </div >
     );
   }
 }

@@ -433,13 +433,14 @@ export default withTranslation('common')(
                             // label={$month}
                             name="month"
                             id="month"
+                            label={isMobile &&"ماه"}
                             placeholder={$month}
                             clearable
                             selection
                             options={
                               i18n.language === 'en' ? monthsEnglish : monthsFarsi
                             }
-                            style={{ marginTop: '25px' }}
+                            style={{ marginTop: isMobile ? "0px" :'25px' }}
                             error={Boolean(errors.month && touched.month)}
                             onChange={(e, data) => {
                               if (data && data.name) {

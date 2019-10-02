@@ -201,8 +201,8 @@ interface IAddCarFormValues {
   carLicensePlates3: number;
   carLicensePlates4: number;
   carDescription: string;
-  cylinder:any;
-  value:any;
+  cylinder: any;
+  value: any;
 }
 
 export default withTranslation('common')(connect(state => state)(
@@ -254,8 +254,8 @@ export default withTranslation('common')(connect(state => state)(
       ],
       picturesID: [],
       picturesPreview: [],
-      cylinder:null,
-      value:null
+      cylinder: null,
+      value: null
     };
 
     constructor(props) {
@@ -610,6 +610,7 @@ export default withTranslation('common')(connect(state => state)(
     // }
 
     render() {
+
       const { checkboxes, error } = this.state;
       const { token } = this.props.user;
       const { t } = this.props;
@@ -639,13 +640,15 @@ export default withTranslation('common')(connect(state => state)(
             carLicensePlates4: null,
             carColor: null,
             carDescription: null,
-            cylinder:null,
-            value:null
+            cylinder: null,
+            value: null
           }}
           onSubmit={(
             values: IAddCarFormValues,
             actions: FormikActions<IAddCarFormValues>
           ) => {
+      console.log(validationSchema)
+
             actions.setSubmitting(true);
             // if (!values.carCity) {
             //   // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
@@ -712,7 +715,7 @@ export default withTranslation('common')(connect(state => state)(
               description: carDescription,
               media_id: this.state.picturesID,
               cylinder: cylinder,
-              value:value
+              value: value
             })
             // return 
             axios
@@ -740,7 +743,7 @@ export default withTranslation('common')(connect(state => state)(
                   description: carDescription,
                   media_id: this.state.picturesID,
                   cylinder: cylinder,
-                  value:value
+                  value: value
                 },
                 {
                   headers: {
@@ -796,6 +799,10 @@ export default withTranslation('common')(connect(state => state)(
               .typeError(fieldErrorGenrator("نوع دنده"))
               .min(1)
               .max(2),
+
+            cylinder: Yup.number()
+              .required(fieldErrorGenrator("تعداد سیلندر"))
+              .typeError(fieldErrorGenrator("تعداد سیلندر")),
             carBodyStyle: Yup.number()
               .required(fieldErrorGenrator("نوع شاسی"))
               .typeError(fieldErrorGenrator("نوع شاسی")),
@@ -925,7 +932,7 @@ export default withTranslation('common')(connect(state => state)(
                         </div>
                       } */}
                     {/* {this.state.shouldCityDistrictShow ? ( */}
-                    <div className="fieldEmulator">
+                    <div className="fieldEmulator field">
                       <DropDownWithSearch
                         loading={true}
                         data={this.state.cityDistrictFarsi}
@@ -1443,10 +1450,10 @@ export default withTranslation('common')(connect(state => state)(
 
                       <label>ارزش خودرو</label>
 
-                      <input 
-                      type="number"
-                      min="2000000"
-                      max="5000000000"
+                      <input
+                        type="number"
+                        min="2000000"
+                        max="5000000000"
                         style={{
                           height: "50px",
                           marginTop: "4px"
@@ -1454,8 +1461,8 @@ export default withTranslation('common')(connect(state => state)(
                         // disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
                         onChange={(e) => { values.value = e.target.value }}
-                        value={ values.value}
-                        />
+                        value={values.value}
+                      />
                     </div>
 
                     {/* <Form.Group>

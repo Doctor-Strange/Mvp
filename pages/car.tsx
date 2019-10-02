@@ -8,6 +8,8 @@ import { Icon, Segment, Button, Popup } from 'semantic-ui-react';
 import Router from 'next/router';
 import Carousel from 'nuka-carousel';
 import { PriceCard, UserCard, ContentCard, ContentSideCard } from '../src/components/Cards';
+import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../src/utils/numbers';
+
 import { CommentSection } from '../src/components/Comments'
 import { Details, CarNav, CarSideCard } from '../src/components/Car';
 import { i18n, withTranslation } from '../src/i18n';
@@ -377,7 +379,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                         </ContentCardTitle>
                         <hr />
                         <Details title="محل خودرو و تحویل">
-                            <p>{location.name.breadcrumb_fa}</p>
+                            <p>{convertNumbers2Persian(location.name.breadcrumb_fa)}</p>
                             <p>{deliver_at_renters_place ? "در محدوده تهران، خودرو در محل شما تحویل می‌شود." : ""}</p>
                         </Details>
                         <Details title="محدودیت مسافت">

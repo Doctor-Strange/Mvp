@@ -171,7 +171,8 @@ const Page = ({id}) => {
                              </li>
                              <li>محل تحویل
                                      <span className="float-left">
-                                     {rentDump.deliver_at_renters_place ? "تحویل در محل شما" : rentDump.location.name.fa}
+                                     {rentDump.deliver_at_renters_place ? "تحویل در محل شما" 
+                                     : convertNumbers2Persian(rentDump.location.name.fa)}
                                  </span>
                              </li>
                              <li>از <span className="float-left">

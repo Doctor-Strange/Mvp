@@ -12,9 +12,10 @@ const Item = styled.div`
 export const Details: React.FunctionComponent<{
     title: any;
     children: any;
+    style?:any;
     showHr?: boolean;
-}> = ({ title, children, showHr = true }) => (
-    <Item>
+}> = ({ title, children, showHr = true, style}) => (
+    <Item style={style}>
         <h5>{title}</h5>
         {children}
         {showHr ? <hr /> : ""}

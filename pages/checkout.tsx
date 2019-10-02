@@ -231,19 +231,22 @@ export default withTranslation('common')(
                                             {/* <span>{year.fa}</span> <br /> */}
                                         </div>
                                             <Details title="محل خودرو" showHr={false}>
-                                                <p>{location.name.breadcrumb_fa}</p>
+                                            <p style={{margin: 'auto'}}>{
+                                                convertNumbers2Persian(location.name.breadcrumb_fa)}
+                                                </p>
                                                 <p>{deliver_at_renters_place ? "تحویل در محل شما" : ""}</p>
                                             </Details>
-                                            <Details title="شرایط اجاره و کنسلی" showHr={false}>
+                                            <Details title="شرایط اجاره و کنسلی" showHr={false} 
+                                            style={{marginTop: '20px'}}>
                                                 {cancellation_policy ? cancellation_policy : "ندارد"}
                                             </Details>
-                                            <Details title="محدودیت مسافت" showHr={false}>
+                                            <Details style={{marginTop: '20px'}} title="محدودیت مسافت" showHr={false}>
                                                 <ul className="">
-                                                    <li>{max_km_per_day ? max_km_per_day + "کیلومتر" : "ندارد"}</li>
-                                                    <li>{extra_km_price ? `هزینه هر کیلومتر اضافه ${extra_km_price.toLocaleString()} تومان` : ""}</li>
+                                                    <li>{max_km_per_day ? convertNumbers2Persian(max_km_per_day) + "کیلومتر" : "ندارد"}</li>
+                                                    <li>{extra_km_price ? `هزینه هر کیلومتر اضافه ${convertNumbers2Persian(extra_km_price).toLocaleString()} تومان` : ""}</li>
                                                 </ul>
                                             </Details>
-                                            <Details title="توضیحات" showHr={false}>
+                                            <Details style={{marginTop: '20px'}} title="توضیحات" showHr={false}>
                                                 {description ? description : "ندارد"}
                                             </Details>
                                         </Grid.Column>

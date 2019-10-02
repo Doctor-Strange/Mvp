@@ -610,7 +610,6 @@ export default withTranslation('common')(connect(state => state)(
     // }
 
     render() {
-
       const { checkboxes, error } = this.state;
       const { token } = this.props.user;
       const { t } = this.props;
@@ -647,8 +646,6 @@ export default withTranslation('common')(connect(state => state)(
             values: IAddCarFormValues,
             actions: FormikActions<IAddCarFormValues>
           ) => {
-      console.log(validationSchema)
-
             actions.setSubmitting(true);
             // if (!values.carCity) {
             //   // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");

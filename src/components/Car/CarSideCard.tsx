@@ -83,19 +83,22 @@ const CarideCard: React.FunctionComponent<{
                 image={user.image_url}
             />
             {user.id.toString() !== jsCookie.get('user_id') ?
+            <>
             <Button
                 style={{ height: '48px' }}
                 size='large'
                 fluid
                 onClick={reserveFunction}
                 color='teal'>درخواست اجاره</Button>
-                : null}
+                
             <div
                 style={{ marginTop: '8px' }}
                 className="text-center"
             >
                 <small>دراین مرحله هزینه‌ای اخذ نمی‌شود.</small>
             </div>
+            </>
+            : null}
         </Card>
     )
 };

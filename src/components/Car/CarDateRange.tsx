@@ -38,9 +38,9 @@ export const CarDateRange: React.FunctionComponent<{
                         colorPrimaryLight={lightTheme.secondForeground}
                     />
                 }
-                {(!from && !to) &&
+                {/* {(!from && !to) &&
                     `برای اجاره به صفحه نخست مراجعه کنید`
-                }
+                } */}
             </div>
         </Line>
     )

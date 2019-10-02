@@ -54,9 +54,13 @@ export const CarNav: React.FunctionComponent<{
     simpleMode?: boolean;
 }> = ({ startDate, endDate, simpleMode = false }) => {
     const main = <h4>
-            {(startDate && endDate)
+            {/* {(startDate && endDate)
                 ?` از ${convertNumbers2Persian(startDate)} تا ${convertNumbers2Persian(endDate)} `
                 :`برای اجاره به صفحه نخست مراجعه کنید`
+            } */}
+            {(startDate && endDate)
+                ?` از ${convertNumbers2Persian(startDate)} تا ${convertNumbers2Persian(endDate)} `
+                :null
             }
         </h4>;
     return !simpleMode ? (

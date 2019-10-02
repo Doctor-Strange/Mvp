@@ -428,7 +428,7 @@ export default withTranslation('common')(
                           </Input>
                         </div>
 
-                        {isBrowser &&
+                        {/* {isBrowser && */}
                           <Form.Dropdown
                             // label={$month}
                             name="month"
@@ -448,8 +448,8 @@ export default withTranslation('common')(
                             }}
                             value={values.month}
                           />
-                        }
-                        {isMobile &&
+                        {/* } */}
+                        {/* {isMobile &&
                           <div className="field">
                             <label>{$month}</label>
                             <select
@@ -475,7 +475,7 @@ export default withTranslation('common')(
                               ))}
                             </select>
                           </div>
-                        }
+                        } */}
 
                         {isBrowser &&
                           <Form.Input

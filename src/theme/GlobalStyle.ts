@@ -2087,6 +2087,9 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield !important;;
 }
+.radio.checkbox label{
+  font-weight: 100;
+}
 `;
 
 enum Margin {

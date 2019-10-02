@@ -146,6 +146,9 @@ const BoxAccount = styled.div`
       @media (min-width: 767px) {
         width: 33% !important;
       }
+      label{
+        font-weight:100
+      }
       min-width: 150px !important;
     }
   }

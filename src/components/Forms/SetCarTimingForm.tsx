@@ -361,6 +361,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
       token: jsCookie.get('token')
     });
     setCar(carRes);
+    console.log(carRes)
 
     // 2. fetch car availablity data and parse it and set it to state
     const timeRes = await REQUEST_getCarAvailabilities({

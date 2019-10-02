@@ -273,11 +273,12 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                 }
                 <div className="hero_mother">
                     <div className="hero_in hotels_detail" style={{ maxWidth: '1111px', background: "#E6E6E6" }}>
-                        {this.state.carousel ? <Carousel
+                        {this.state.carousel 
+                        ? <Carousel
                             heightMode="current"
                             initialSlideWidth={isBrowser ? 970 : undefined}
                             renderCenterLeftControls={({ previousSlide }) => (
-                                <button
+                                media_set.length > 1 ?<button
                                     onClick={previousSlide}
                                     aria-label="next"
                                     style={{
@@ -291,9 +292,10 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                                 >
                                     <Icon name="angle left" />
                                 </button>
-                            )}
+                                :null
+        )}
                             renderCenterRightControls={({ nextSlide }) => (
-                                <button
+                                media_set.length > 1 ? <button
                                     onClick={nextSlide}
                                     aria-label="next"
                                     style={{
@@ -307,6 +309,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                                 >
                                     <Icon name="angle right" />
                                 </button>
+                                :null
                             )}
                         >
                             {(media_set.length >= 1) ? media_set.map((value, index) =>

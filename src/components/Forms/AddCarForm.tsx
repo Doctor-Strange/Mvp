@@ -205,7 +205,7 @@ interface IAddCarFormValues {
   carLicensePlates3: number;
   carLicensePlates4: number;
   carDescription: string;
-  cylinder: any;
+  cylinder_id: any;
   value: any;
 }
 
@@ -258,7 +258,7 @@ export default withTranslation('common')(connect(state => state)(
       ],
       picturesID: [],
       picturesPreview: [],
-      cylinder: null,
+      cylinder_id: null,
       value: ''
     };
 
@@ -643,7 +643,7 @@ export default withTranslation('common')(connect(state => state)(
             carLicensePlates4: null,
             carColor: null,
             carDescription: null,
-            cylinder: null,
+            cylinder_id: null,
             value: ''
           }}
           onSubmit={(
@@ -691,7 +691,7 @@ export default withTranslation('common')(connect(state => state)(
               carLicensePlates3,
               carLicensePlates4,
               carDescription,
-              cylinder,
+              cylinder_id,
               value
             } = values;
             console.log({
@@ -715,7 +715,7 @@ export default withTranslation('common')(connect(state => state)(
               facility_id: this.state.checkboxesID,
               description: carDescription,
               media_id: this.state.picturesID,
-              cylinder: cylinder,
+              cylinder_id: cylinder_id,
               value: value
             })
             // return
@@ -743,7 +743,7 @@ export default withTranslation('common')(connect(state => state)(
                   facility_id: this.state.checkboxesID,
                   description: carDescription,
                   media_id: this.state.picturesID,
-                  cylinder: cylinder,
+                  cylinder_id: cylinder_id,
                   value: value
                 },
                 {
@@ -806,7 +806,7 @@ export default withTranslation('common')(connect(state => state)(
               .min(1)
               .max(2),
 
-            cylinder: Yup.number()
+              cylinder_id: Yup.number()
               .required(fieldErrorGenrator("تعداد سیلندر"))
               .typeError(fieldErrorGenrator("تعداد سیلندر")),
             carBodyStyle: Yup.number()
@@ -1285,9 +1285,9 @@ export default withTranslation('common')(connect(state => state)(
 
                       <label>تعداد سیلندر</label>
                       <select
-                        name="cylinder"
-                        className={Boolean(errors.cylinder && touched.cylinder) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
-                        value={values.cylinder}
+                        name="cylinder_id"
+                        className={Boolean(errors.cylinder_id && touched.cylinder_id) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
+                        value={values.cylinder_id}
                         onChange={(e) => {
                           //console.log(e.target.value);
                           if (e.target && e.target.name) {

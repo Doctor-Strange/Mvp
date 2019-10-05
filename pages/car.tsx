@@ -237,7 +237,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             end = moment(endDate).format('jD jMMMM jYY');
             //console.log(start);
         }
-        const { media_set, year, mileage_range, owner, body_style, color, color_code,
+        const { media_set, year, mileage_range, owner, body_style, color, color_code,cylinder_id,
             deliver_at_renters_place, cancellation_policy, transmission_type, location, facility_set,
             max_km_per_day, description, capacity, extra_km_price, car, loaded, avg_price_per_day, avg_discounted_price_per_day } = this.props;
         let metaImagesArr = [];
@@ -399,7 +399,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                                 <li>نوع بدنه: {body_style.fa}</li>
                                 <li>گیربکس: {transmission_type.fa}</li>
                                 {/* changed in 980528 by sajad bug fix */}
-                                {/* <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id + 1] : "صفر کیلومتر"}</li> */}
+                                <li>سیلندر: {cylinder_id}</li>
                                 <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id - 1] : "صفر کیلومتر"}</li>
                                 <li>ظرفیت: {capacity}</li>
                             </ul>

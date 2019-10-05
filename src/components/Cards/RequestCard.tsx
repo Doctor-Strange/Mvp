@@ -137,6 +137,7 @@ interface IRequestCard {
     style?: any;
     refresh?: any;
     reviewStatus?: any;
+    no_of_days?:Number;
 }
 
 interface IdoAction {
@@ -174,7 +175,8 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     picture,
     style = {},
     refresh,
-    reviewStatus
+    reviewStatus,
+    no_of_days
 }) => {
     const [star1, setStar1] = useState();
     const [star2, setStar2] = useState();
@@ -497,6 +499,19 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             <h3>{carName}</h3>
                             <DateGrid start={start} end={end} />
                             <Grid className="property-row">
+                            <Grid.Row columns={2} centered className="property">
+                                    <Grid.Column width={8} className="right">
+                                    مدت زمان
+                                </Grid.Column>
+                                    <Grid.Column width={7} className="left">
+                                        <div style={{ float: 'right', textAlign: 'right' }}>
+                                            <strong style={{ fontSize: '14px' }}>
+                                                {no_of_days}{" "}
+                                                 روز 
+                                            </strong>
+                                        </div>
+                                    </Grid.Column>
+                                </Grid.Row>
                                 <Grid.Row columns={2} centered className="property">
                                     <Grid.Column width={8} className="right">
                                         هزینه اجاره

@@ -780,11 +780,7 @@ export default withTranslation('common')(connect(state => state)(
             }, 3000);
           }}
           validationSchema={Yup.object().shape({
-            value: Yup.number()
-            .required(fieldErrorGenrator("ارزش خودرو"))
-            .typeError(fieldErrorGenrator("ارزش خودرو"))
-            .min(2000000)
-            .max(800000000000),
+            
             carCity: Yup.number()
               .required(fieldErrorGenrator("شهر خودرو"))
               .typeError(fieldErrorGenrator("شهر خودرو")),
@@ -805,7 +801,7 @@ export default withTranslation('common')(connect(state => state)(
               .typeError(fieldErrorGenrator("نوع دنده"))
               .min(1)
               .max(2),
-
+              
               cylinder_id: Yup.number()
               .required(fieldErrorGenrator("تعداد سیلندر"))
               .typeError(fieldErrorGenrator("تعداد سیلندر")),
@@ -818,7 +814,11 @@ export default withTranslation('common')(connect(state => state)(
             carKmDriven: Yup.number()
               .required(fieldErrorGenrator("کارکرد خودرو"))
               .typeError(fieldErrorGenrator("کارکرد خودرو")),
-            
+              value: Yup.number()
+              .required(fieldErrorGenrator("ارزش خودرو"))
+              .typeError(fieldErrorGenrator("ارزش خودرو"))
+              .min(2000000)
+              .max(800000000000),
             carVIN: Yup.string()
               .required(fieldErrorGenrator("VIN"))
               .typeError(fieldErrorGenrator("VIN"))
@@ -873,6 +873,7 @@ export default withTranslation('common')(connect(state => state)(
                       <label>ماشین شما کجاست؟</label>
                       <select
                         // onBlur={(e)=> {;;}} 
+                        error={Boolean(errors.carCity && touched.carCity)}
                         onChange={(e) => { this.setCityDistrict(e.target.value); values.carCity = e.target.value }}>
                         <option value=""></option>
                         {this.state.citiesFarsi.map(i =>
@@ -946,6 +947,9 @@ export default withTranslation('common')(connect(state => state)(
                         Select={(e) => {
                           values.carDistrict = e.value
                         }}
+                        error={Boolean(
+                          errors.carDistrict && touched.carDistrict
+                        )}
                         IconTop="42"
                         clearField={()=>{
                           values.carDistrict = null
@@ -1016,6 +1020,7 @@ export default withTranslation('common')(connect(state => state)(
                           disabled={false}
                           data={this.state.brandsFarsi}
                           IconTop="42"
+                          error={Boolean(errors.carBrand && touched.carBrand)}
                         clearField={()=>{
                           setFieldValue("carBrand", '');
                           this.setModels("");
@@ -1064,6 +1069,7 @@ export default withTranslation('common')(connect(state => state)(
                           }
                           data={this.state.modelsFarsi}
                           IconTop="42"
+                          error={Boolean(errors.carModel && touched.carModel)}
                           clearField={()=>{
                             setFieldValue("carModel", '');
                             this.setModels("");
@@ -1141,6 +1147,7 @@ export default withTranslation('common')(connect(state => state)(
                         <DropDownWithSearch
                           disabled={false}
                           data={this.state.yearsFarsi}
+                          error={Boolean(errors.carYear && touched.carYear)}
                           IconTop="42"
                           clearField={()=>{
                             values.carYear =''
@@ -1271,6 +1278,7 @@ export default withTranslation('common')(connect(state => state)(
                           height: "50px",
                           marginTop: "4px"
                         }}
+                        className={Boolean(errors.carBodyStyle && touched.carBodyStyle) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
                         disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
                         onChange={(e) => { values.carBodyStyle = e.target.value }}>
@@ -1460,6 +1468,8 @@ export default withTranslation('common')(connect(state => state)(
                           height: "50px",
                           marginTop: "4px"
                         }}
+                        className={Boolean(errors.carKmDriven && touched.carKmDriven) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
+
                         disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
                         onChange={(e) => { values.carKmDriven = e.target.value }}>
@@ -1495,10 +1505,11 @@ export default withTranslation('common')(connect(state => state)(
                           numberWithCommas(values.value)
                         ))}
                       <input
+                      className={Boolean(errors.value && touched.value) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
+
                         type="number"
                         min="2000000"
                         max="8000000000"
-                        error={Boolean(errors.value && touched.value)}
                         style={{
                           height: "50px",
                           marginTop: "4px",

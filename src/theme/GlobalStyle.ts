@@ -2058,6 +2058,11 @@ button:focus{
     white-space: normal;
     word-wrap: normal;
 }
+.ErrorINPUT input{
+  background: #fff6f6 !important;
+  border-color: #e0b4b4 !important;
+  color: #9f3a38 !important;
+}
 #Skeletonloader{
   background: #f7f7f7;
   border-color: #fff;

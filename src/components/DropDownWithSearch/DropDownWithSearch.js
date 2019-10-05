@@ -23,7 +23,7 @@ class DropDownWithSearch extends Component {
   render() {
     return (
       <div
-        className="searchBoxContainer"
+        className={['searchBoxContainer' , this.props.error? "ErrorINPUT": null].join(" ")}
         onMouseLeave={() => this.setState({ ShowControler: false })}
       >
         <label className={this.props.data.length < 2 ? "diz" : null}>

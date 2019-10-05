@@ -26,7 +26,11 @@ import Router from 'next/router';
 const Card = styled.figure`
 padding: 0;
 flex-direction: column !important;
-
+display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row !important;
+    flex-wrap:wrap;
 padding-top: 16px;
   margin: 0 !important;
   img {
@@ -34,6 +38,9 @@ padding-top: 16px;
     width: 70px;
     border-radius: 999em;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.13);
+  }
+  @media (max-width: 991px) {
+    justify-content: flex-end;
   }
   @media (max-width: 768px) {
     /* width: 97vw;
@@ -51,7 +58,7 @@ padding-top: 16px;
     .name {
       line-height: 0;
       display: inline-block;
-      font-size: 22px;
+      font-size: 18px;
       color: #202020;
       font-weight: 700;
       margin-right: 4px;
@@ -65,11 +72,11 @@ padding-top: 16px;
       display: inline-block;
       vertical-align: middle;
     }
-    .boxi {
-      display: inline-block;
-      width: 70%;
-      vertical-align: middle;
-    }
+    // .boxi {
+    //   display: inline-block;
+    //   width: 70%;
+    //   vertical-align: middle;
+    // }
   .boxbox{
     width: 100%;
     text-align: center;
@@ -85,6 +92,7 @@ padding-top: 16px;
     }
   }
   .G{
+    width: 100%;
     margin-top: 65px;
     display: flex;
     justify-content: space-between;
@@ -219,7 +227,7 @@ export const UserCard: React.FunctionComponent<{
                 }}
                 style={{
                   display: 'block',
-                  fontSize: '16px',
+                  fontSize: '14px',
                 cursor: 'pointer'
                   
                 }}>ویرایش مشخصات کاربری</span>
@@ -229,7 +237,9 @@ export const UserCard: React.FunctionComponent<{
                 </div> */}
               {/* <div className="hostDetailCard-responseTime">{responceTime}</div> */}
           </div>
-          <div className="boxi" style={{width: !own ? "100%" :"30%",textAlign: !own  ? "center" :'left'}}>
+          <div
+          //  className="boxi" style={{width: !own ? "100%" :"30%",textAlign: !own  ? "center" :'left'}}
+           >
               <img src={image} className="img-fluid" alt="" />
           </div>
           <div className="G">

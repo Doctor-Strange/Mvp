@@ -86,7 +86,7 @@ export default withRouter(
                     startDate: moment(),
                     endDate: moment(),
                     price: [0, 2000000],
-                    priceSort: 'price',
+                    priceSort: '-price',
                     focusedInput: null,
                     brand: null,
                     brandsFarsi: [{ text: 'کمی صبر کنید...', value: null }],
@@ -182,6 +182,7 @@ export default withRouter(
                 }
 
                 togglePriceSort(priceSort) {
+                    // console.log("priceSort ===>", priceSort)
                     this.setState({ priceSort, loadingResults: true }, () => {
                         this.renderResults();
                     });

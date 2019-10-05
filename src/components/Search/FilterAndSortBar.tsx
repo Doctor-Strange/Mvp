@@ -26,6 +26,7 @@ import { FilterType } from "./FilterType";
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English, getShortVersion } from '../../utils/numbers';
 import { PriceCard } from '../Cards';
 import { ITheme } from "../../theme/Interfaces";
+import DropDownWithSearch from '../DropDownWithSearch/DropDownWithSearch'
 
 const FilterAndSort = styled.div`
     width: 100vw;
@@ -596,7 +597,20 @@ export class FilterAndSortBar extends React.Component<{
                   </ul>
                 </FilterType>
                 <FilterType title='برند'>
-                  <Form.Dropdown
+                <div className=" field">
+                <DropDownWithSearch
+                        loading={true}
+                        top="46"
+                        data={brandsFarsi}
+                        Select={(e) => {
+                          setBrandAndGetModels(e.value, "");
+                          // values.carDistrict = e.value
+                        }}
+                        placeholder="برند"
+                        // disabled={brand == null || brand == ""}
+                        ></DropDownWithSearch>
+                        </div>
+                  {/* <Form.Dropdown
                     name="carBrand"
                     id="carBrand"
                     // label={t('carProperty.brand')}
@@ -623,8 +637,24 @@ export class FilterAndSortBar extends React.Component<{
                     // }}
                     // defaultValue={brand[0].value}
                     value={brand}
-                  />
-                  <Form.Dropdown
+                  /> */}
+                  <div className=" field">
+                <DropDownWithSearch
+                        loading={true}
+                        top="46"
+                        data={modelsFarsi}
+                        Select={(e) => {
+                          setModel(e.value, "");
+                          // values.carDistrict = e.value
+                        }}
+                        clearField={()=>{
+                          setModel("", "");
+                        }}
+                        placeholder="مدل"
+                        disabled={modelLoading && !(brand == null || brand == "")}
+                        ></DropDownWithSearch>
+                        </div>
+                  {/* <Form.Dropdown
                     name="carModel"
                     id="carModel"
                     search
@@ -654,7 +684,7 @@ export class FilterAndSortBar extends React.Component<{
                     // }}
                     // defaultValue={model[0].value}
                     value={model}
-                  />
+                  /> */}
                 </FilterType>
               </div>
             </div>

@@ -183,6 +183,10 @@ const BoxAccount = styled.div`
     height: 24px;
     overflow: hidden;
   }
+
+  .field{
+    position:relative
+  }
 `;
 
 interface IAddCarFormValues {
@@ -255,7 +259,7 @@ export default withTranslation('common')(connect(state => state)(
       picturesID: [],
       picturesPreview: [],
       cylinder: null,
-      value: null
+      value: ''
     };
 
     constructor(props) {
@@ -640,7 +644,7 @@ export default withTranslation('common')(connect(state => state)(
             carColor: null,
             carDescription: null,
             cylinder: null,
-            value: null
+            value: ''
           }}
           onSubmit={(
             values: IAddCarFormValues,
@@ -714,7 +718,7 @@ export default withTranslation('common')(connect(state => state)(
               cylinder: cylinder,
               value: value
             })
-            // return 
+            // return
             axios
               .post(
                 process.env.PRODUCTION_ENDPOINT + '/core/rental-car/new',
@@ -776,6 +780,11 @@ export default withTranslation('common')(connect(state => state)(
             }, 3000);
           }}
           validationSchema={Yup.object().shape({
+            value: Yup.number()
+            .required(fieldErrorGenrator("ارزش خودرو"))
+            .typeError(fieldErrorGenrator("ارزش خودرو"))
+            .min(2000000)
+            .max(800000000000),
             carCity: Yup.number()
               .required(fieldErrorGenrator("شهر خودرو"))
               .typeError(fieldErrorGenrator("شهر خودرو")),
@@ -809,6 +818,7 @@ export default withTranslation('common')(connect(state => state)(
             carKmDriven: Yup.number()
               .required(fieldErrorGenrator("کارکرد خودرو"))
               .typeError(fieldErrorGenrator("کارکرد خودرو")),
+            
             carVIN: Yup.string()
               .required(fieldErrorGenrator("VIN"))
               .typeError(fieldErrorGenrator("VIN"))
@@ -1446,20 +1456,48 @@ export default withTranslation('common')(connect(state => state)(
                     <div className="field">
 
                       <label>ارزش خودرو</label>
-
+                      {/* <Input
+                        name="value"
+                        error={Boolean(errors.value && touched.value)}
+                        onChange={(e, data) => {
+                          if (data && data.name) {
+                            setFieldValue(data.name, convertNumbers2English(data.value));
+                            setFieldTouched(data.name);
+                          }
+                        }}
+                        min="2000000"
+                        max="5000000000"
+                        value={values.value
+                          ? convertNumbers2Persian(values.value)
+                          : values.value
+                        }
+                        style={{ direction: 'ltr' }}
+                      /> */}
                       <input
                         type="number"
                         min="2000000"
-                        max="5000000000"
+                        max="8000000000"
+                        error={Boolean(errors.value && touched.value)}
                         style={{
                           height: "50px",
-                          marginTop: "4px"
+                          marginTop: "4px",
+                          textIndent: '40px'
                         }}
                         // disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
-                        onChange={(e) => { values.value = e.target.value }}
-                        value={values.value}
+                        onChange={(e) => { e.persist();
+                          setFieldValue("value", e.target.value);
+                          // console.log("type",e.target.value);values.value = e.target.value 
+                        }}
+                        value={convertNumbers2Persian(
+                          numberWithCommas(values.value)
+                        )}
                       />
+                      <span style={{
+                        position: 'absolute',
+                        left: '10px',
+                        top: '42px',
+                      }}>تومان</span>
                     </div>
 
                     {/* <Form.Group>

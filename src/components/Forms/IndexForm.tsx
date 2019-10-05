@@ -180,6 +180,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
         to: JSON.parse(localStorage["end"])
       });
     }
+    console.log("process.env.NODE_ENV ====>",process.env.NODE_ENV)
     fetchAPI();
   }, []);
 

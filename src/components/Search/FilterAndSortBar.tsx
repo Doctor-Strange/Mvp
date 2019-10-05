@@ -606,6 +606,10 @@ export class FilterAndSortBar extends React.Component<{
                           setBrandAndGetModels(e.value, "");
                           // values.carDistrict = e.value
                         }}
+                        IconTop="20"
+                        clearField={()=>{
+                          setBrandAndGetModels("", "");
+                        }}
                         placeholder="برند"
                         // disabled={brand == null || brand == ""}
                         ></DropDownWithSearch>

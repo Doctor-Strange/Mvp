@@ -946,6 +946,10 @@ export default withTranslation('common')(connect(state => state)(
                         Select={(e) => {
                           values.carDistrict = e.value
                         }}
+                        IconTop="42"
+                        clearField={()=>{
+                          values.carDistrict = null
+                        }}
                         placeholder="محله"
                         disabled={values.carCity === null
                         }>محله</DropDownWithSearch>
@@ -1011,6 +1015,11 @@ export default withTranslation('common')(connect(state => state)(
                         <DropDownWithSearch
                           disabled={false}
                           data={this.state.brandsFarsi}
+                          IconTop="42"
+                        clearField={()=>{
+                          setFieldValue("carBrand", '');
+                          this.setModels("");
+                        }}
                           Select={(e) => {
                             setFieldValue("carBrand", e.value);
                             this.setModels(e.value);
@@ -1054,6 +1063,11 @@ export default withTranslation('common')(connect(state => state)(
                           disabled={values.carBrand === null
                           }
                           data={this.state.modelsFarsi}
+                          IconTop="42"
+                          clearField={()=>{
+                            setFieldValue("carModel", '');
+                            this.setModels("");
+                          }}
                           Select={(e) => {
                             setFieldValue("carModel", e.value);
                             this.setModels(e.value);
@@ -1127,6 +1141,10 @@ export default withTranslation('common')(connect(state => state)(
                         <DropDownWithSearch
                           disabled={false}
                           data={this.state.yearsFarsi}
+                          IconTop="42"
+                          clearField={()=>{
+                            values.carYear =''
+                          }}
                           Select={(e) => {
                             values.carYear = e.value
                           }}
@@ -1473,6 +1491,9 @@ export default withTranslation('common')(connect(state => state)(
                         }
                         style={{ direction: 'ltr' }}
                       /> */}
+                      {console.log(convertNumbers2Persian(
+                          numberWithCommas(values.value)
+                        ))}
                       <input
                         type="number"
                         min="2000000"
@@ -1489,9 +1510,7 @@ export default withTranslation('common')(connect(state => state)(
                           setFieldValue("value", e.target.value);
                           // console.log("type",e.target.value);values.value = e.target.value 
                         }}
-                        value={convertNumbers2Persian(
-                          numberWithCommas(values.value)
-                        )}
+                        value={values.value}
                       />
                       <span style={{
                         position: 'absolute',

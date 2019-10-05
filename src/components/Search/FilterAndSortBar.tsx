@@ -646,6 +646,7 @@ export class FilterAndSortBar extends React.Component<{
                 <DropDownWithSearch
                         loading={true}
                         top="46"
+                        IconTop="20"
                         data={modelsFarsi}
                         Select={(e) => {
                           setModel(e.value, "");

@@ -25,12 +25,14 @@ const Card = styled.div`
 
 export const ContentCard: React.FunctionComponent<{
     style?: object;
+    className?: string 
 }> = ({
   children,
-  style
+  style,
+  className
 }) => {
     return (
-        <Card className="col-lg-8" style={style? style : {}}>
+        <Card className={['col-lg-8' , className].join(" ")} style={style? style : {}}>
             <section id="description" className="det">
                 {children}
             </section>

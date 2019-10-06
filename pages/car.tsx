@@ -328,7 +328,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                                 transition: "border 0.24s ease-in-out",
                                 borderRadius: "0.28571429rem",
                             }}>
-                                <Spinner >درحال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
+                                <Spinner ><div></div><div></div><div></div><div></div></Spinner>
                             </div>
                         }
                     </div>

@@ -59,7 +59,7 @@ class DropDownWithSearch extends Component {
               left: "11px",
               top: this.props.IconTop+"px",
               cursor: "pointer",
-              zIndex:'10'
+              zIndex:'4'
             }}
             onClick={() => {
               this.setState({ InputValue: "" });

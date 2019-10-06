@@ -2095,6 +2095,76 @@ input[type="number"] {
 .radio.checkbox label{
   font-weight: 100;
 }
+.ownerInCheckOut{
+  position: absolute;
+    bottom: 17px;
+    right: 0;
+}
+.ownerInCheckOut img{
+  width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    margin-left: 10px;
+}
+.ownerInCheckOut div{
+  display:inline-block;
+  vertical-align:middle;
+}
+.checkOutPartoneFather{
+  position: relative;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 19px;
+}
+.box_detail li{
+  border-bottom: 1px solid transparent;
+}
+.dateFatherCheckout{
+  display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+}
+@media (max-width:768px){
+  #sidebar{
+    padding: 0 !important;
+  }
+  .Nadarim{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    background: #fff;
+    padding-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width:991px){
+  #sidebar .dateFatherCheckout, .DayCounter_Checkout{
+    display:none;
+  }
+  .di_couner_checkout{
+     margin-bottom: 0px !important;
+  }
+  .DatesinCheckOutpage, .di_couner_checkout {
+    font-weight: 100 !important;
+}
+.DesignReally{
+  background-color: #fff;
+            padding: 25px 25px 15px 25px;
+            box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
+            border-radius: 3px;
+            margin-bottom: 30px;
+}
+}
+
+.DatesinCheckOutpage{
+  font-weight: bold;
+}
+.TaInCheckout{
+  text-align:center;
+  display: inline-block;
+  width: 90%;
+}
 `;
 
 enum Margin {

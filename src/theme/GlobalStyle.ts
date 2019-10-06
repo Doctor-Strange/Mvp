@@ -2116,7 +2116,7 @@ input[type="number"] {
   padding-bottom: 19px;
 }
 .box_detail li{
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid transparent !important;  
 }
 .dateFatherCheckout{
   display: flex;

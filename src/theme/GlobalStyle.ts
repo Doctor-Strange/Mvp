@@ -2125,17 +2125,30 @@ input[type="number"] {
 
 
 }
+.Nadarim{
+  display:none;
+}
 @media (max-width:768px){
   #sidebar{
     padding: 0 !important;
   }
   .Nadarim{
+  display:block;
+  border-radius: 3px;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
     position: relative;
     width: 100%;
     min-height: 1px;
     background: #fff;
     padding-top: 10px;
     margin-bottom: 20px;
+  }
+  .DesignReally{
+    background-color: #fff;
+              padding: 25px 25px 15px 25px;
+              box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
+              border-radius: 3px;
+              margin-bottom: 30px;
   }
 }
 @media (max-width:991px){
@@ -2147,13 +2160,6 @@ input[type="number"] {
   }
   .DatesinCheckOutpage, .di_couner_checkout {
     font-weight: 100 !important;
-}
-.DesignReally{
-  background-color: #fff;
-            padding: 25px 25px 15px 25px;
-            box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
-            border-radius: 3px;
-            margin-bottom: 30px;
 }
 }
 

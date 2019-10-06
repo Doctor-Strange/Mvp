@@ -2149,12 +2149,12 @@ input[type="number"] {
               box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
               border-radius: 3px;
               margin-bottom: 30px;
-  }
-}
-@media (max-width:991px){
+            }
   #sidebar .dateFatherCheckout, .DayCounter_Checkout{
     display:none;
   }
+}
+@media (max-width:991px){
   .di_couner_checkout{
      margin-bottom: 0px !important;
   }

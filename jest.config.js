@@ -8,7 +8,7 @@ module.exports = {
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
-  testMatch: ["**/*.test.(ts|tsx)"],
+  testMatch: ["**/*.test.(js|ts|tsx)"],
   testPathIgnorePatterns: ["./.next/", "./node_modules/"],
   globals: {
     "ts-jest": {

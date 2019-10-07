@@ -49,6 +49,8 @@ export const REQUEST_getCar = (data: IgetCar) => {
           total_price: data.total_price,
           discounted_total_price: data.discounted_total_price,
           avg_discounted_price_per_day: data.avg_discounted_price_per_day,
+          value:data.value,
+          cylinder: data.cylinder
         });
       } else {
         reject(false);

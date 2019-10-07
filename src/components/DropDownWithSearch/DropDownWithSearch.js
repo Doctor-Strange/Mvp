@@ -73,6 +73,7 @@ class DropDownWithSearch extends Component {
           <div className="resultList" style={{ top: this.props.top + "px" }}>
             {this.state.data.map(i => (
               <p
+              className="Items"
                 onClick={() => {
                   this.setState({ InputValue: i.text });
                   this.props.Select(i);

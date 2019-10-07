@@ -30,6 +30,7 @@ import styled from "styled-components";
 import moment from "moment-jalaali";
 moment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 import swal from "@sweetalert/with-react";
+import Insurance from '../src/components/insurance/Insurance'
 
 export default withTranslation("common")(
   class extends React.Component<{
@@ -240,7 +241,7 @@ export default withTranslation("common")(
                     <span className="float-left">
                       <span>
                         {convertNumbers2Persian(
-                          numberWithCommas(discounted_total_price - total_price)
+                          numberWithCommas(total_price - discounted_total_price)
                         )}
                       </span>
                       <span style={{ fontWeight: 100 }}> تومان </span>
@@ -264,7 +265,7 @@ export default withTranslation("common")(
                       <span style={{ fontWeight: 100 }}> تومان </span>
                     </span>
                   </li>
-                  <li style={{ borderTop: "2px solid #ddd", fontSize: '20px'}} >
+                  <li style={{ borderTop: "2px solid #ddd", fontSize: '20px' }} >
                     جمع کل
                     <span className="float-left">
                       <span >
@@ -307,6 +308,9 @@ export default withTranslation("common")(
                   </>
                 )}
               </ContentSideCard>
+              <div className="mobileView">
+                <Insurance />
+              </div>
               <ContentCard className="DesignReally">
                 <Grid>
                   <Grid.Row columns={2} centered className="property">
@@ -358,11 +362,11 @@ export default withTranslation("common")(
                           <img
                             key="1"
                             src={media_set[0]}
-                            style={{ width: "50%" ,borderRadius: '5px'}}
+                            style={{ width: "50%", borderRadius: '5px' }}
                           />
                         ) : (
-                          <img src="" />
-                        )}
+                            <img src="" />
+                          )}
                       </div>
                       <Details
                         title="شرایط اجاره و کنسلی"
@@ -393,14 +397,14 @@ export default withTranslation("common")(
                             روزی
                             {max_km_per_day
                               ? convertNumbers2Persian(max_km_per_day) +
-                                " کیلومتر "
+                              " کیلومتر "
                               : "ندارد"}
                           </li>
                           <li>
                             {extra_km_price
                               ? `هر کیلومتر اضافه ${convertNumbers2Persian(
-                                  extra_km_price
-                                ).toLocaleString()} تومان`
+                                extra_km_price
+                              ).toLocaleString()} تومان`
                               : ""}
                           </li>
                         </ul>
@@ -422,31 +426,10 @@ export default withTranslation("common")(
                     </Grid.Column> */}
                   </Grid.Row>
                 </Grid>
-                <Grid style={{ direction: "rtl" }}>
-                  <h2 style={{ padding: "0" }}>بیمه اجاره</h2>
-                  <p style={{ padding: "0" }}>
-                    در طول مدت اجاره مسئولیت نگهداری از خودرو با شما خواهد بود.
-                    با خرید بیمه اجاره که توسط بیمه سامان صادر می‌شود، جبران
-                    خسارت ناشی از سرقت، تصادف، حوادث طبیعی و پاشیده شدن رنگ و
-                    مواد شیمیایی در درجه اول بر عهده بیمه سامان خواهد بود و شما
-                    تنها متعهد به جبران مواردی خواهید بود که تحت پوشش بیمه نیست.
-                    این موارد ممکن است برای هر مالک متفاوت باشد. بعد از ثبت
-                    درخواست اجاره و تماس مالک با شما، درباره این موارد از او
-                    سوال کنید.
-                  </p>
-                  <div
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      padding: "0",
-                      textAlign: "left",
-                      marginBottom: "20px"
-                    }}
-                  >
-                    <span style={{ color: "#4BA3CE" }}>حذف بیمه</span>
-                  </div>
-                </Grid>
               </ContentCard>
+              <div className="DeskView">
+              <Insurance />
+              </div>
               <ContentCard className="Nadarim">
                 <List boldLastItem={false}>
                   <div className="dateFatherCheckout" style={{ fontWeight: 100 }}>
@@ -458,7 +441,7 @@ export default withTranslation("common")(
                       {LongDate(endDate)}
                     </span>
                   </div>
-                  <div className="di_couner_checkout" style={{ textAlign: "center", marginBottom: "25px",fontWeight: 100 }}>
+                  <div className="di_couner_checkout" style={{ textAlign: "center", marginBottom: "25px", fontWeight: 100 }}>
                     مدت اجاره:
                     <span >
                       {convertNumbers2Persian(no_of_days)}

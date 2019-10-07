@@ -213,7 +213,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
         } else {
             // const { search_id, rentalCarID } = this.props;
             let href = "";
-            if(search_id) {
+            if (search_id) {
                 href = `/checkout?search_id=${search_id}`;
             } else href = `/checkout`
             // const as = `/checkout/${rentalCarID}/${search_id}`;
@@ -237,7 +237,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             end = moment(endDate).format('jD jMMMM jYY');
             //console.log(start);
         }
-        const { media_set, year, mileage_range, owner, body_style, color, color_code,cylinder_id,
+        const { media_set, year, mileage_range, owner, body_style, color, color_code, cylinder, value,
             deliver_at_renters_place, cancellation_policy, transmission_type, location, facility_set,
             max_km_per_day, description, capacity, extra_km_price, car, loaded, avg_price_per_day, avg_discounted_price_per_day } = this.props;
         let metaImagesArr = [];
@@ -273,49 +273,49 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                 }
                 <div className="hero_mother">
                     <div className="hero_in hotels_detail" style={{ maxWidth: '1111px', background: "#E6E6E6" }}>
-                        {this.state.carousel 
-                        ? <Carousel
-                            heightMode="current"
-                            initialSlideWidth={isBrowser ? 970 : undefined}
-                            renderCenterLeftControls={({ previousSlide }) => (
-                                media_set.length > 1 ?<button
-                                    onClick={previousSlide}
-                                    aria-label="next"
-                                    style={{
-                                        border: '0px',
-                                        background: 'rgba(0, 0, 0, 0.4)',
-                                        color: 'white',
-                                        padding: '10px',
-                                        opacity: '1',
-                                        cursor: 'pointer'
-                                    }}
-                                >
-                                    <Icon name="angle left" />
-                                </button>
-                                :null
-        )}
-                            renderCenterRightControls={({ nextSlide }) => (
-                                media_set.length > 1 ? <button
-                                    onClick={nextSlide}
-                                    aria-label="next"
-                                    style={{
-                                        border: '0px',
-                                        background: 'rgba(0, 0, 0, 0.4)',
-                                        color: 'white',
-                                        padding: '10px',
-                                        opacity: '1',
-                                        cursor: 'pointer'
-                                    }}
-                                >
-                                    <Icon name="angle right" />
-                                </button>
-                                :null
-                            )}
-                        >
-                            {(media_set.length >= 1) ? media_set.map((value, index) =>
-                                <img key={index} src={value} />
-                            ) : <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8Dk6Uk5v--/c_scale,f_auto,fl_progressive,q_80,w_800/qssqrb3mvffcipwl9jn0.jpg" />}
-                        </Carousel>
+                        {this.state.carousel
+                            ? <Carousel
+                                heightMode="current"
+                                initialSlideWidth={isBrowser ? 970 : undefined}
+                                renderCenterLeftControls={({ previousSlide }) => (
+                                    media_set.length > 1 ? <button
+                                        onClick={previousSlide}
+                                        aria-label="next"
+                                        style={{
+                                            border: '0px',
+                                            background: 'rgba(0, 0, 0, 0.4)',
+                                            color: 'white',
+                                            padding: '10px',
+                                            opacity: '1',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <Icon name="angle left" />
+                                    </button>
+                                        : null
+                                )}
+                                renderCenterRightControls={({ nextSlide }) => (
+                                    media_set.length > 1 ? <button
+                                        onClick={nextSlide}
+                                        aria-label="next"
+                                        style={{
+                                            border: '0px',
+                                            background: 'rgba(0, 0, 0, 0.4)',
+                                            color: 'white',
+                                            padding: '10px',
+                                            opacity: '1',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <Icon name="angle right" />
+                                    </button>
+                                        : null
+                                )}
+                            >
+                                {(media_set.length >= 1) ? media_set.map((value, index) =>
+                                    <img key={index} src={value} />
+                                ) : <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8Dk6Uk5v--/c_scale,f_auto,fl_progressive,q_80,w_800/qssqrb3mvffcipwl9jn0.jpg" />}
+                            </Carousel>
                             :
                             <div style={{
                                 display: "flex",
@@ -399,8 +399,11 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                                 <li>نوع بدنه: {body_style.fa}</li>
                                 <li>گیربکس: {transmission_type.fa}</li>
                                 {/* changed in 980528 by sajad bug fix */}
-                                <li>سیلندر: {cylinder_id}</li>
+                                {cylinder && <li>سیلندر: {cylinder.name.fa} </li>}
                                 <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id - 1] : "صفر کیلومتر"}</li>
+                                <li>ارزش خودرو: {
+                                    convertNumbers2Persian(numberWithCommas(value))
+                                } تومان</li>
                                 <li>ظرفیت: {capacity}</li>
                             </ul>
                         </Details>

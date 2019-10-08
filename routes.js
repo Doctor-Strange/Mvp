@@ -10,10 +10,10 @@ module.exports = routes()
   .add("requests")
   .add("request", "/request/:id")
   .add("search-results")
-  .add("set-car-timing");
-  .add("about-us");
-  .add("our-policies");
-  .add("insurance-policies");
-  .add("guide-picture");
-  .add("guide-renter");
+  .add("set-car-timing")
+  .add("about-us")
+  .add("our-policies")
+  .add("insurance-policies")
+  .add("guide-picture")
+  .add("guide-renter")
   .add("guide-for-rent")

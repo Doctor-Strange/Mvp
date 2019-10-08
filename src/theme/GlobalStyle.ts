@@ -2207,6 +2207,32 @@ input[type="number"] {
       padding-left: 0px;
   }
 }
+
+.AboutUsPage{
+  direction: rtl;
+  text-align: right;
+  margin: 50px auto;
+  min-height: 400px;
+}
+.AboutUsPage h1{
+  font-size:30px;
+  line-height:2;
+}
+.AboutUsPage p{
+  line-height:2;
+  text-align:justify;
+  direction: rtl;
+}
+.AboutUsPage ul{
+  list-style-type: disc;
+  padding-right: 15px;
+  text-align: justify;
+  direction: rtl;
+  list-style-position: inside;
+}
+.intends{
+  padding-right:50px !important;
+}
 `;
 
 enum Margin {

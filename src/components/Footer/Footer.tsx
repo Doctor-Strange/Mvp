@@ -1,12 +1,13 @@
 /* tslint:disable */
 import * as React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { Button, Icon } from 'semantic-ui-react'
 import * as CardsAll from '../../../static/cards_all.svg';
 import { ITheme } from "../../theme/Interfaces";
 
 const FooterTag = styled.footer`
-  border-top: 1px solid ${({theme}:{theme:ITheme}) => theme.color.cardLabels};
+  border-top: 1px solid ${({ theme }: { theme: ITheme }) => theme.color.cardLabels};
   background-color: #fff;
   .container{
     padding-top: 60px;
@@ -35,7 +36,7 @@ const FooterTag = styled.footer`
     display: block;
     cursor: default;
     @media (max-width: 575px) {
-      border-bottom: 1px solid ${({theme}:{theme:ITheme}) => theme.color.cardLabels};
+      border-bottom: 1px solid ${({ theme }: { theme: ITheme }) => theme.color.cardLabels};
       padding: 12px 0;
     }
     .circle-plus {
@@ -62,7 +63,7 @@ const FooterTag = styled.footer`
         transition: all 0.3s ease-in-out;
         display: inline-block;
         position: relative;
-        color:${({theme}:{theme:ITheme}) => theme.color.mainForeground};
+        color:${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
         :hover {
           opacity: 1;
         }
@@ -81,7 +82,7 @@ const FooterTag = styled.footer`
         }
         :hover:after {
           opacity: 1;
-          color: ${({theme}:{theme:ITheme}) => theme.color.mainForeground};
+          color: ${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
         }
       }
     }
@@ -98,7 +99,7 @@ const FooterTag = styled.footer`
       position: absolute;
       top: 0;
       left: 0;
-      color: ${({theme}:{theme:ITheme}) => theme.color.textThird};
+      color: ${({ theme }: { theme: ITheme }) => theme.color.textThird};
       line-height: 1;
       font-size: 18px;
       font-size: 1.125rem;
@@ -268,7 +269,7 @@ const Newsletter = styled.div`
     line-height: 42px;
     cursor: pointer;
     border-radius: 0 3px 3px 0;
-    background-color: ${({theme}:{theme:ITheme}) => theme.color.mainForeground};
+    background-color: ${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
     transition: all 0.3s ease-in-out;
     outline: none;
 
@@ -299,9 +300,9 @@ const FooterSelector = styled.ul`
 
 const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
   <>
-    <div id="toTop"/>
+    <div id="toTop" />
     <FooterTag className="plus_border">
-      <div className="container"  dir= "rtl">
+      <div className="container" dir="rtl">
         <div className="row">
           {/* <div className="col-lg-3 col-md-6 col-sm-6">
             <a
@@ -356,7 +357,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               </ul>
             </div>
           </div> */}
-          <div className="col-lg-3 col-md-6 col-sm-6" style={{borderLeft: "1px solid #e8e8e8"}}>
+          <div className="col-lg-3 col-md-6 col-sm-6" style={{ borderLeft: "1px solid #e8e8e8" }}>
             {/* <a
               data-toggle="collapse"
               data-target="#collapse_ft_2"
@@ -373,19 +374,19 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
             <div className="collapse show" id="collapse_ft_2">
               <ul className="links">
                 <li>
-                  <a href="#0">درباره ما</a>
+                  <Link href="/about-us"><a>درباره ما</a></Link>
                 </li>
                 <li>
-                  <a href="#0">اتولی چگونه کار می‌کند؟</a>
+                  <Link href="/our-policies"><a>اتولی چگونه کار می‌کند؟</a></Link>
                 </li>
                 <li>
-                  <a href="#0">سوالات متداول</a>
+                  <Link href="/faq"><a>سوالات متداول</a></Link>
                 </li>
                 <li>
-                <a href="#0">شرایط و قوانین استفاده</a>
-              </li>
+                  <Link href="/our-policies"><a>شرایط و قوانین استفاده</a></Link>
+                </li>
                 <li>
-                  <a href="#0">شرایط و پوشش‌های بیمه</a>
+                  <Link href="/insurance-policies"><a>شرایط و پوشش‌های بیمه</a></Link>
                 </li>
                 <li>
                   <a href="#0">نمونه قرارداد فی‌مابین</a>
@@ -393,7 +394,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               </ul>
             </div>
           </div>
-        <div className="col-lg-3 col-md-6 col-sm-6 jus">
+          <div className="col-lg-3 col-md-6 col-sm-6 jus">
             {/* <a
               data-toggle="collapse"
               data-target="#collapse_ft_4"
@@ -408,21 +409,21 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <h3>Keep in touch</h3>
             </a> */}
             <div className="follow_us" >
-              <h3 style={{color: '#929292'}}>ما را در شبکه‌های اجتماعی دنبال کنید:</h3>
+              <h3 style={{ color: '#929292' }}>ما را در شبکه‌های اجتماعی دنبال کنید:</h3>
               {/* <Icon name='facebook' /> */}
               <div className="iconContainer">
-              <a target="_black" href="https://www.instagram.com/otoli_net/">
-              <Icon size ='large' name='instagram' />
+                <a target="_black" href="https://www.instagram.com/otoli_net/">
+                  <Icon size='large' name='instagram' />
                 </a>
-              {/* <Icon name='google plus' /> */}
-              {/* <Icon name='vk' /> */}
-              
-              <a target="_black" href="https://twitter.com/otoli_net">
-                <Icon  size ='large' name='twitter' />
-              </a>
-              <a target="_black" href="https://t.me/otoli_net">
-              <Icon size ='large' name='telegram' />
-              </a>
+                {/* <Icon name='google plus' /> */}
+                {/* <Icon name='vk' /> */}
+
+                <a target="_black" href="https://twitter.com/otoli_net">
+                  <Icon size='large' name='twitter' />
+                </a>
+                <a target="_black" href="https://t.me/otoli_net">
+                  <Icon size='large' name='telegram' />
+                </a>
               </div>
               {/* <Icon name='youtube' /> */}
             </div>
@@ -435,8 +436,8 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               <li>
                 <div className="styled-select" id="lang-selector">
                   <button onClick={changeLangFunc}>تغیر زبان</button> */}
-                  {/* ===> */}
-                  {/* <select>
+          {/* ===> */}
+          {/* <select>
                     <option value="English" selected>
                       English
                     </option>
@@ -444,23 +445,23 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                     <option value="Spanish">Spanish</option>
                     <option value="Russian">Russian</option>
                   </select> */}
-                  {/* ===> */}
+          {/* ===> */}
 
-                {/* </div>
+          {/* </div>
               </li>
               <li>
                 <div className="styled-select" id="currency-selector"> */}
-                  {/* ===> */}
+          {/* ===> */}
 
-                  {/* <select>
+          {/* <select>
                     <option value="US Dollars" selected>
                       US Dollars
                     </option>
                     <option value="Euro">Euro</option>
                   </select> */}
-                  {/* ===> */}
+          {/* ===> */}
 
-                {/* </div>
+          {/* </div>
               </li>
               <li>
                 <img src={CardsAll} alt="" />
@@ -470,9 +471,9 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           <div className="col-lg-12">
             <AdditionalLinks>
               <span className="ver">
-                1.2.49
+                1.2.50
                 </span>
-                <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
+              <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>
           </div>
         </div>

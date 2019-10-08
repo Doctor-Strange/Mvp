@@ -40,7 +40,7 @@ const Navigation = styled.div`
         margin: 0;
         display: block;
         padding: 0;
-        background: ${({theme}:{theme:ITheme}) => theme.color.whiteBackground};
+        background: ${({ theme }: { theme: ITheme }) => theme.color.whiteBackground};
         min-width: 200px;
         box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.175);
         transform: scale(0.4);
@@ -59,7 +59,7 @@ const Navigation = styled.div`
           width: 0;
           position: absolute;
           pointer-events: none;
-          border-bottom-color: ${({theme}:{theme:ITheme}) => theme.color.whiteBackground};
+          border-bottom-color: ${({ theme }: { theme: ITheme }) => theme.color.whiteBackground};
           border-width: 7px;
           margin-left: -7px;
         }
@@ -77,15 +77,15 @@ const Navigation = styled.div`
             border-radius: 0 0 3px 3px;
           }
           :hover > a {
-            background-color: ${({theme}:{theme:ITheme}) => theme.color.lightBackground};
-            color: ${({theme}:{theme:ITheme}) => theme.color.mainForeground};
+            background-color: ${({ theme }: { theme: ITheme }) => theme.color.lightBackground};
+            color: ${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
             padding-left: 15px;
           }
           a {
             font-size: 13px;
             font-size: 0.8125rem;
-            color: ${({theme}:{theme:ITheme}) => theme.color.textMain};
-            border-bottom: 1px solid ${({theme}:{theme:ITheme}) => theme.color.textMainAlter};
+            color: ${({ theme }: { theme: ITheme }) => theme.color.textMain};
+            border-bottom: 1px solid ${({ theme }: { theme: ITheme }) => theme.color.textMainAlter};
             display: block;
             padding: 15px 10px;
             line-height: 1;
@@ -105,9 +105,9 @@ const Navigation = styled.div`
       /*First level styles */
       &>li span {
         &>a {
-          color: ${({theme}:{theme:ITheme}) => theme.color.textMainAlter};
+          color: ${({ theme }: { theme: ITheme }) => theme.color.textMainAlter};
           :hover {
-            color: ${({theme}:{theme:ITheme}) => theme.color.textSecondAlter};
+            color: ${({ theme }: { theme: ITheme }) => theme.color.textSecondAlter};
 
           }
           padding: 0 8px 16px 24px;
@@ -134,42 +134,51 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
       <ul>
         {/* commented by sajad bug fix */}
         {/* {!isMobile && */}
-          <li>
-            <span>
-              <a href="#">راهنما</a>
-            </span>
-            <ul>
-              <li>
-                <Link href="/what_is_otoli">
-                  <a>اتولی چیست؟</a>
-                </Link>
-              </li>
-              {
-              jsCookie.get('token') ? 
-              <li>
-                <Link href="/add-car">
-                  <a>افزودن خودرو</a>
-                </Link>
-              </li>
-              :
-              null}
-              <li>
-                <Link href="/faq">
-                  <a>سوالات پرتکرار</a>
-                </Link>
-              </li>
-            </ul>
-          </li>
-        {
-          jsCookie.get('first_name') ? 
         <li>
           <span>
-            <Link href="/requests">
-              <a>رزروهای من</a>
-            </Link>
+            <a href="#">راهنما</a>
           </span>
+          <ul>
+            <li>
+              <Link href="/what_is_otoli">
+                <a>اتولی چیست؟</a>
+              </Link>
+            </li>
+            {
+              jsCookie.get('token') ?
+                <li>
+                  <Link href="/add-car">
+                    <a>افزودن خودرو</a>
+                  </Link>
+                </li>
+                :
+                null}
+            <li>
+              <Link href="/faq">
+                <a>سوالات پرتکرار</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/guide-picture"><a>راهنمای عکس گرفتن</a></Link>
+            </li>
+            <li>
+              <Link href="/guide-renter"><a>راهنمای اجاره دهنده</a></Link>
+            </li>
+            <li>
+              <Link href="/guide-for-rent"><a>راهنمای اجاره گیرنده</a></Link>
+            </li>
+          </ul>
         </li>
-          : null
+        {
+          jsCookie.get('first_name') ?
+            <li>
+              <span>
+                <Link href="/requests">
+                  <a>رزروهای من</a>
+                </Link>
+              </span>
+            </li>
+            : null
         }
         {children}
       </ul>

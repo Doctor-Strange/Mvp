@@ -2233,6 +2233,78 @@ input[type="number"] {
 .intends{
   padding-right:50px !important;
 }
+@media (max-width: 768px)
+.AboutUsPage {
+    padding: 0px 15px;
+}
+
+/* The container */
+.RadioButtonContainer {
+  display: block;
+  position: relative;
+  padding-right: 40px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  color:#2A2A2A;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.RadioButtonContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  height: 22px;
+  width: 22px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.RadioButtonContainer:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.activeOne .checkmark {
+  background-color: #fff;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.activeOne .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.activeOne .checkmark:after {
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4BA3CE;
+}
+.fadeItem{
+  color:#ddd;
+}
 `;
 
 enum Margin {

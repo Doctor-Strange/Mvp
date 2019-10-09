@@ -24,6 +24,7 @@ export const REQUEST_getCar = (data: IgetCar) => {
         const media_set = [];
         data.media_set.map((value, index) => media_set.push(value.url));
         resolve({
+          data:data,
           year: data.year.name,
           mileage_range: data.mileage_range,
           avg_price_per_day: data.avg_price_per_day,
@@ -50,7 +51,8 @@ export const REQUEST_getCar = (data: IgetCar) => {
           discounted_total_price: data.discounted_total_price,
           avg_discounted_price_per_day: data.avg_discounted_price_per_day,
           value:data.value,
-          cylinder: data.cylinder
+          cylinder: data.cylinder,
+          insurance_total_price:data.insurance_total_price,
         });
       } else {
         reject(false);

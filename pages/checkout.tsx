@@ -86,6 +86,7 @@ export default withTranslation("common")(
       car: {},
       no_of_days: null,
       loaded: false,
+      insurance: true,
       openModal: () => null
     };
 
@@ -135,6 +136,7 @@ export default withTranslation("common")(
       try {
         const res = await REQUEST_newRentRequest({
           search_id,
+          has_insurance:this.state.insurance,
           token: jsCookie.get("token")
         });
         if (res) {
@@ -149,6 +151,21 @@ export default withTranslation("common")(
         //console.log(error.data);
         this.showError(error.data.message);
       }
+    }
+    insuranceCalculator = (e) => {
+      if (e)
+        this.setState({
+          insurance: true
+        })
+      else {
+        this.setState({
+          insurance: false
+        })
+      }
+      // data ? this.setState({
+      //   insurance
+      // })
+      // :
     }
 
     render() {
@@ -192,7 +209,8 @@ export default withTranslation("common")(
         total_price,
         avg_price_per_day,
         no_of_days,
-        avg_discounted_price_per_day
+        avg_discounted_price_per_day,
+        insurance_total_price
       } = this.props;
       if (loaded) {
         console.log(this.props);
@@ -236,7 +254,7 @@ export default withTranslation("common")(
                       <span style={{ fontWeight: 100 }}> تومان </span>
                     </span>
                   </li>
-                  <li>
+                  {total_price !== discounted_total_price && <li>
                     تخفیف برای {convertNumbers2Persian(no_of_days)} روز
                     <span className="float-left">
                       <span>
@@ -247,6 +265,7 @@ export default withTranslation("common")(
                       <span style={{ fontWeight: 100 }}> تومان </span>
                     </span>
                   </li>
+                  }
                   <li>
                     جمع اجاره
                     <span className="float-left">
@@ -258,20 +277,26 @@ export default withTranslation("common")(
                       <span style={{ fontWeight: 100 }}> تومان </span>
                     </span>
                   </li>
-                  <li>
+                  {this.state.insurance && <li>
                     بیمه
                     <span className="float-left">
-                      <span>{convertNumbers2Persian(numberWithCommas(0))}</span>
+                      <span>{convertNumbers2Persian(numberWithCommas(insurance_total_price))}</span>
                       <span style={{ fontWeight: 100 }}> تومان </span>
                     </span>
                   </li>
+                  }
                   <li style={{ borderTop: "2px solid #ddd", fontSize: '20px' }} >
                     جمع کل
                     <span className="float-left">
                       <span >
-                        {convertNumbers2Persian(
-                          numberWithCommas(discounted_total_price || 0)
-                        )}
+                        {this.state.insurance ?
+                          convertNumbers2Persian(
+                            numberWithCommas(discounted_total_price + insurance_total_price || 0)
+                          )
+                          :
+                          convertNumbers2Persian(
+                            numberWithCommas(discounted_total_price || 0)
+                          )}
                       </span>
                       <span style={{ fontWeight: 100 }}> تومان </span>
                     </span>
@@ -309,7 +334,7 @@ export default withTranslation("common")(
                 )}
               </ContentSideCard>
               <div className="mobileView">
-                <Insurance />
+                <Insurance hasInsurance={this.insuranceCalculator}  insurance_total_price/>
               </div>
               <ContentCard className="DesignReally">
                 <Grid>
@@ -428,7 +453,7 @@ export default withTranslation("common")(
                 </Grid>
               </ContentCard>
               <div className="DeskView">
-              <Insurance />
+                <Insurance hasInsurance={this.insuranceCalculator} insuranvePrice={insurance_total_price} />
               </div>
               <ContentCard className="Nadarim">
                 <List boldLastItem={false}>

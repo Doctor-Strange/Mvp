@@ -506,7 +506,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                     <Grid.Column width={7} className="left">
                                         <div style={{ float: 'right', textAlign: 'right' }}>
                                             <strong style={{ fontSize: '14px' }}>
-                                                {no_of_days}{" "}
+                                                {convertNumbers2Persian(no_of_days)}{" "}
                                                  روز 
                                             </strong>
                                         </div>

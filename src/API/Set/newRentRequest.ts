@@ -9,7 +9,8 @@ export const REQUEST_newRentRequest = (data: InewRentRequest) => {
       .post(
         DOMAIN + GET_FACTORY_BRANDS,
         {
-          search_id: data.search_id
+          search_id: data.search_id,
+          has_insurance: data.has_insurance
         },
         {
           headers: {
@@ -30,5 +31,6 @@ export const REQUEST_newRentRequest = (data: InewRentRequest) => {
 
 interface InewRentRequest {
   token: string;
+  has_insurance: boolean,
   search_id: string;
 }

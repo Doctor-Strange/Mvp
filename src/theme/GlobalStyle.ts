@@ -2655,12 +2655,20 @@ OTILI
   border-color: transparent #A3678B transparent transparent;
 }
 
-
+.OTOLI_MIDDLE_Dif{
+  font-size:22px !important;
+  width: 179px;
+  margin: auto;
+  padding: 10px;
+  border: 2px solid #e1e1e1;
+  color: #bfbfbf !important;
+}
 
 @media (max-width: 768px)
 .OTILI {
     padding: 0px 15px;
 }
+
 
 @media (max-width: 575px){
   .partOne_OTOLI_D1 {

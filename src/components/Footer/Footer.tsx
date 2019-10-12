@@ -377,7 +377,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                   <Link href="/about-us"><a>درباره ما</a></Link>
                 </li>
                 <li>
-                  <Link href="/our-policies"><a>اتولی چگونه کار می‌کند؟</a></Link>
+                  <Link href="/otoli"><a>اتولی چگونه کار می‌کند؟</a></Link>
                 </li>
                 <li>
                   <Link href="/faq"><a>سوالات متداول</a></Link>
@@ -471,7 +471,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           <div className="col-lg-12">
             <AdditionalLinks>
               <span className="ver">
-                1.3.2
+                1.3.3
                 </span>
               <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>

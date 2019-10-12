@@ -387,8 +387,8 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                         </Details>
                         <Details title="محدودیت مسافت">
                             <ul className="">
-                                <li>{max_km_per_day ? max_km_per_day + "کیلومتر" : "ندارد"}</li>
-                                <li>{extra_km_price ? `هزینه هر کیلومتر اضافه ${extra_km_price.toLocaleString()} تومان` : ""}</li>
+                                <li>{max_km_per_day ? convertNumbers2Persian(max_km_per_day) + "کیلومتر" : "ندارد"}</li>
+                                <li>{extra_km_price ? `هزینه هر کیلومتر اضافه ${convertNumbers2Persian(numberWithCommas(extra_km_price))} تومان` : ""}</li>
                             </ul>
                         </Details>
                         <Details title="توضیحات">
@@ -404,7 +404,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                                 {value  && <li>ارزش خودرو: {
                                     convertNumbers2Persian(numberWithCommas(value))
                                 } تومان</li>}
-                                <li>ظرفیت: {capacity}</li>
+                                <li>ظرفیت: {convertNumbers2Persian(capacity)}</li>
                             </ul>
                         </Details>
                         <Details title="امکانات">

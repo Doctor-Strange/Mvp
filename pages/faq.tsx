@@ -116,7 +116,7 @@ export default withTranslation("common")(
                 <h1 style={{ fontSize: "22px" }}>{`سوالات پرتکرار`}</h1>
                 <span> پاسخگوی تمام نیازهای شما </span>
               </ContentCardTitle>
-              {items.reverse().map((item) => {
+              {items.map((item) => {
                   console.log(item)
                 return <div className="FQ_WRAPPER" key={item.id}>
                   <h2 style={{ fontSize: "22px" }}>{item.name.fa}</h2>

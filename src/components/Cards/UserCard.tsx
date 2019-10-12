@@ -391,7 +391,7 @@ export const UserCard: React.FunctionComponent<{
                     // console.log(reader.result)
                     // setFieldValue('shownImage', reader.result);
                     reader.onload = (e) => {
-                      console.log('file reading was susceed', e);
+                      // console.log('file reading was susceed', e);
                     };
                     return 
                       // #2 Catching wrong file types on the client

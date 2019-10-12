@@ -213,7 +213,7 @@ export default withTranslation("common")(
         insurance_total_price
       } = this.props;
       if (loaded) {
-        console.log(this.props);
+        // console.log(this.props);
         return (
           <Layout
             haveSubHeader={true}

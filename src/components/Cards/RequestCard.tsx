@@ -174,9 +174,11 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     pelak = { first: "", second: "", third: "", forth: "" },
     picture,
     style = {},
+    avatarImage,
     refresh,
     reviewStatus,
-    no_of_days
+    no_of_days,
+    renterInfo
 }) => {
     const [star1, setStar1] = useState();
     const [star2, setStar2] = useState();
@@ -209,6 +211,23 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     }
 
     const openRatingModal = (id) => {
+        // console.log(id,
+        //     status,
+        //     statusOwner,
+        //     carName,
+        //     start,
+        //     end,
+        //     price = 10,
+        //     ownerName,
+        //     ownerInfo,
+        //     ownerPhone,
+        //     userID,
+        //     pelak = { first: "", second: "", third: "", forth: "" },
+        //     picture,
+        //     style = {},
+        //     refresh,
+        //     reviewStatus,
+        //     no_of_days)
         let localStar1;
         let localStar2;
         let localText;
@@ -225,23 +244,14 @@ export const RequestCard: React.SFC<IRequestCard> = ({
         }
         swal(
             <div>
-                <h3>اامتیاز دهید</h3>
+                {/* <h3>اامتیاز دهید</h3> */}
                 <Form>
                     <Form.Field>
-                        <label>امتیاز به
-                            {statusOwner === 'renter' ? 'اجاره‌دهنده' : 'اجاره‌گیرنده'}
-                        </label>
-                        <Rating
-                            maxRating={5}
-                            defaultRating={star1}
-                            icon='star'
-                            size='huge'
-                            onRate={settingStar1}
-                        />
-                    </Form.Field>
                     {statusOwner === 'renter' &&
                         <Form.Field>
-                            <label>امتیاز به خودرو</label>
+                        <img src={picture} alt="تصویر خودرو" className="RATE_CAR_IMAGE"/>
+                        <h4 className="CarName-RATE">{carName}</h4>
+                            <label style={{fontWeight: '100'}}>امتیاز شما به خودرو</label>
                             <Rating
                                 maxRating={5}
                                 defaultRating={star2}
@@ -251,12 +261,28 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             />
                         </Form.Field>
                     }
+                        <img src={avatarImage} alt="تصویر خودرو" className="RATE_CAR_IMAGE"/>
+                        <h4 className="CarName-RATE">{statusOwner === 'renter' ?
+                            ownerInfo.first_name+" "+ownerInfo.last_name
+                        : renterInfo.first_name +""+renterInfo.last_name
+                        }</h4>
+                        <label style={{fontWeight: '100'}}>امتیاز به
+                            {statusOwner === 'renter' ? ' اجاره‌دهنده ' : ' اجاره‌گیرنده '}
+                        </label>
+                        <Rating
+                            maxRating={5}
+                            defaultRating={star1}
+                            icon='star'
+                            size='huge'
+                            onRate={settingStar1}
+                        />
+                    </Form.Field>
                     <Form.Field>
-                        <label>تظر شما راجع به
-                        {statusOwner === 'renter' ? 'خودرو' : 'اجاره‌گیرنده'}
+                        <label style={{fontWeight: '100', textAlign: 'right'}}>:توضیح
+                        {/* {statusOwner === 'renter' ? ' خودرو '  : ' اجاره‌گیرنده '} */}
                         </label>
                         <TextArea
-                            placeholder='راستشو بگو...'
+                            placeholder='(با به اشتراک‌گذاری تجربه‌تان، به کاربران دیگر در انتخاب کمک می‌کنید.)'
                             value={text}
                             onChange={settingText}
                         />

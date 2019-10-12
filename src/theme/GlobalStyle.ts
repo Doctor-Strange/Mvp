@@ -2725,7 +2725,55 @@ OTILI
 
 }
 }
+// *****************RATE
+.RATE_CAR_IMAGE{
+  width: 64px;
+  height: 64px;
+  border-radius: 50px;
+}
+.CarName-RATE{
+  font-weight: 100;
+  margin: 10px auto;
+}
 
+// *********F&Q
+.FQ_WRAPPER{
+  margin-bottom: 50px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+.FQ_WRAPPER h2{
+  font-size:22px;
+  padding: 15px;
+
+}
+.QuestionPart{
+  display:none;
+  font-size: 1rem;
+    line-height: 1.6;
+    font-family: Vazir, sans-serif;
+    color: rgb(42, 42, 42);
+}
+.activeQA{
+  display:block;
+  color: rgba(0,0,0,.95) !important
+
+}
+.FQ_BOX{
+  cursor:pointer;
+  border-top: 1px solid #ccc;
+  padding: 15px;
+  direction:rtl;
+}
+.FQ_BOX h3{
+  font-family:  Vazir, sans-serif;
+  color: rgba(0,0,0,0.6);
+  font-size: 1em;
+}
+.FQ_BOX a {
+  color:#0099ff !important;
+}
 `;
 
 enum Margin {

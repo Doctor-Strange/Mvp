@@ -694,30 +694,30 @@ export default withTranslation('common')(connect(state => state)(
               cylinder_id,
               value
             } = values;
-            console.log({
-              car_id: carModel,
-              location_id: (carDistrict || carCity),
-              year_id: carYear,
-              transmission_type_id: carGearboxType,
-              body_style_id: carBodyStyle,
-              mileage_range_id: carKmDriven,
-              color_id: this.state.colorId,
-              special_type_id: 1,
-              vin: carVIN,
-              registration_plate_first_part: carLicensePlates1,
-              registration_plate_second_part: carLicensePlates2,
-              registration_plate_third_part: carLicensePlates3,
-              registration_plate_forth_part: carLicensePlates4,
-              days_to_get_reminded: 3, // sample
-              min_days_to_rent: 1, // sample
-              capacity: carCapacity,
-              deliver_at_renters_place: 0, // sample
-              facility_id: this.state.checkboxesID,
-              description: carDescription,
-              media_id: this.state.picturesID,
-              cylinder_id: cylinder_id,
-              value: value
-            })
+            // console.log({
+            //   car_id: carModel,
+            //   location_id: (carDistrict || carCity),
+            //   year_id: carYear,
+            //   transmission_type_id: carGearboxType,
+            //   body_style_id: carBodyStyle,
+            //   mileage_range_id: carKmDriven,
+            //   color_id: this.state.colorId,
+            //   special_type_id: 1,
+            //   vin: carVIN,
+            //   registration_plate_first_part: carLicensePlates1,
+            //   registration_plate_second_part: carLicensePlates2,
+            //   registration_plate_third_part: carLicensePlates3,
+            //   registration_plate_forth_part: carLicensePlates4,
+            //   days_to_get_reminded: 3, // sample
+            //   min_days_to_rent: 1, // sample
+            //   capacity: carCapacity,
+            //   deliver_at_renters_place: 0, // sample
+            //   facility_id: this.state.checkboxesID,
+            //   description: carDescription,
+            //   media_id: this.state.picturesID,
+            //   cylinder_id: cylinder_id,
+            //   value: value
+            // })
             // return
             axios
               .post(
@@ -753,7 +753,7 @@ export default withTranslation('common')(connect(state => state)(
                 }
               )
               .then(response => {
-                console.log("response.data response ====>", response);
+                // console.log("response.data response ====>", response);
                 if (response.data.success) {
                   Router.push({
                     pathname: '/set-car-timing',

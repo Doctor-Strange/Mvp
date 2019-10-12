@@ -222,7 +222,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
     }
 
     render() {
-        console.log("this. props ====> ", this.props)
+        // console.log("this. props ====> ", this.props)
         const { t, start_date, end_date, search_id } = this.props;
         let start, end = null;
         let startDate, endDate = null;

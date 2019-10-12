@@ -180,7 +180,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
         to: JSON.parse(localStorage["end"])
       });
     }
-    console.log("process.env.NODE_ENV ====>",process.env.NODE_ENV)
+    // console.log("process.env.NODE_ENV ====>",process.env.NODE_ENV)
     fetchAPI();
   }, []);
 
@@ -269,7 +269,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
               <DatePicker
                 selectedDayRange={date}
                 onChange={(v) => {
-                  console.log(v)
+                  // console.log(v)
                   if (!v.to) {
                     setCalEnd();
                   }

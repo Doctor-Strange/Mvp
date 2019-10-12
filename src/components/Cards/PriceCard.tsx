@@ -38,7 +38,7 @@ export const PriceCard: React.FunctionComponent<{
     fontSize?: number;
     style?: any;
     moreThan?: boolean;
-}> = ({ children, number, preNumber, fontSize = 30, style, moreThan = false }) => {
+}> = ({ children, number, preNumber, fontSize = 24, style, moreThan = false }) => {
     let price= convertNumbers2Persian(getShortVersion(number).number);
     let  bo = convertNumbers2Persian(getShortVersion(number).number).indexOf(".") === -1
     let  pos = convertNumbers2Persian(getShortVersion(number).number).indexOf(".")
@@ -47,7 +47,6 @@ export const PriceCard: React.FunctionComponent<{
     }
     return <Card className="price" style={style}>
         <span className="number" style={{ fontSize: fontSize + 'px' }}>
-            <span>
                 {preNumber}
                 {" "}
                 {price}
@@ -57,7 +56,6 @@ export const PriceCard: React.FunctionComponent<{
                 {moreThan &&
                     "+"
                 }
-            </span>
         </span>
         <span className="unit">
             <span className="strong">{getShortVersion(number).unit} تومان</span>

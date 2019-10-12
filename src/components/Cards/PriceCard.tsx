@@ -44,7 +44,9 @@ export const PriceCard: React.FunctionComponent<{
             <span>
                 {preNumber}
                 {" "}
-                {convertNumbers2Persian(getShortVersion(number).number)}
+                {convertNumbers2Persian(getShortVersion(number).number).length > 3 
+                ?convertNumbers2Persian(getShortVersion(number).number).slice(0,4)
+            :convertNumbers2Persian(getShortVersion(number).number)}
                 {moreThan &&
                     "+"
                 }

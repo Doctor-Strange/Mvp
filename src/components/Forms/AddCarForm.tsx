@@ -1501,11 +1501,15 @@ export default withTranslation('common')(connect(state => state)(
                         }
                         style={{ direction: 'ltr' }}
                       /> */}
-                      {console.log(convertNumbers2Persian(
+                        <p style={{
+                        position: 'absolute',
+                        left: '58px',
+                        top: '46px',
+                      }}>{convertNumbers2Persian(
                           numberWithCommas(values.value)
-                        ))}
+                        )}</p>
                       <input
-                      className={Boolean(errors.value && touched.value) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
+                      className={["KESAFAT_KARI",Boolean(errors.value && touched.value) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"].join(" ")}
 
                         type="number"
                         min="2000000"
@@ -1513,11 +1517,13 @@ export default withTranslation('common')(connect(state => state)(
                         style={{
                           height: "50px",
                           marginTop: "4px",
-                          textIndent: '40px'
+                          textIndent: '40px',
+                          color:'transparent',
+                          background:"transparent"
                         }}
                         // disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
-                        onChange={(e) => { e.persist();
+                        onChange={(e) => { 
                           setFieldValue("value", e.target.value);
                           // console.log("type",e.target.value);values.value = e.target.value 
                         }}
@@ -1820,7 +1826,6 @@ export default withTranslation('common')(connect(state => state)(
                         value={values.carDescription}
                       />
                     </Form.Group>
-
                     <Form.Field
                       style={{ textAlign: 'center', fontSize: '0.8em' }}
                     >

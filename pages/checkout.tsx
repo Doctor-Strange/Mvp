@@ -398,7 +398,9 @@ export default withTranslation("common")(
                         showHr={false}
                         style={{ marginTop: "20px" }}
                       >
+                        <pre>
                         {cancellation_policy ? cancellation_policy : "ندارد"}
+                        </pre>
                       </Details>
                       <Details
                         title="محل تحویل"

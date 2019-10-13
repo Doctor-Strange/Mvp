@@ -2748,6 +2748,15 @@ OTILI
   padding: 15px;
 
 }
+.ICON_CHevron{
+  transition:0.25s;
+    position: absolute;
+    left: 9px;
+    top: 20px;
+}
+.ACTIVE_CHEVRON{
+ transform:rotate(180deg)
+}
 .QuestionPart{
   display:none;
   font-size: 1rem;
@@ -2765,6 +2774,8 @@ OTILI
   border-top: 1px solid #ccc;
   padding: 15px;
   direction:rtl;
+  position: relative;
+
 }
 .FQ_BOX h3{
   font-family:  Vazir, sans-serif;
@@ -2773,6 +2784,20 @@ OTILI
 }
 .FQ_BOX a {
   color:#0099ff !important;
+}
+
+input.KESAFAT_KARI::selection {
+  background: transparent;
+  color:transparent
+}
+input.KESAFAT_KARI::-moz-selection {
+  background: #ffb7b7;
+}
+pre{
+  font-size: 1rem !important;
+    line-height: 1.6 !important;
+    font-family: Vazir,sans-serif !important;
+    color: #2A2A2A !important;
 }
 `;
 

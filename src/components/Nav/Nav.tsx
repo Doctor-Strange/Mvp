@@ -140,11 +140,9 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
           </span>
           <ul>
             <li>
-              <Link href="/what_is_otoli">
-                <a>اتولی چیست؟</a>
-              </Link>
+              <Link href="/otoli"><a>اتولی چگونه کار می‌کند؟</a></Link>
             </li>
-            {
+            {/* {
               jsCookie.get('token') ?
                 <li>
                   <Link href="/add-car">
@@ -152,7 +150,7 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
                   </Link>
                 </li>
                 :
-                null}
+                null} */}
             <li>
               <Link href="/faq">
                 <a>سوالات پرتکرار</a>

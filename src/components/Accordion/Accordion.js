@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Icon } from "semantic-ui-react";
 
 class Accordion extends Component {
   state = {
@@ -31,6 +32,14 @@ class Accordion extends Component {
             className={this.state.index === index ? "activeQA" : ""}
             dangerouslySetInnerHTML={{ __html: item.title }}
           ></h3>
+          <Icon
+            name="angle down"
+            size="small"
+            className={[
+              "ICON_CHevron",
+              this.state.index === index ? "ACTIVE_CHEVRON" : ""
+            ]}
+          ></Icon>
           <p
             className={[
               "QuestionPart",

@@ -245,6 +245,7 @@ export const CarCard: React.FunctionComponent<{
   is_out_of_service = false,
 }) => {
   const [outofservice, setoutofservice] = useState(false);
+  const [heightController, setheightController] = useState(0);
     let link = "";
     if (simpleMode) {
       link = `/car/${id}`;
@@ -324,7 +325,22 @@ export const CarCard: React.FunctionComponent<{
               ٪{convertNumbers2Persian(discount_percent)} تخفیف
               </a>
             }
-            <img src={img} className="img-fluid" alt="" />
+            <img 
+            style={{position:"absolute",top:-heightController+"px"}}
+            src={img} className="img-fluid" alt=""
+             onLoad = {(a)=>{
+              a.persist()
+              let w = a.target.naturalWidth; 
+              let h = a.target.naturalHeight;
+              console.log(title,"==>",w/h)
+              if(w/h < 1.2){
+                setheightController(w/h*100)
+              }
+              if(w/h < 0.9){
+                setheightController(w/h*220)
+              }
+            }}
+            />
             <div className="read_more">
               <span>{simpleMode ? "مشاهده" : "مشاهده مشخصات"}</span>
             </div>

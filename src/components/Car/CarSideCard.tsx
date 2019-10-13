@@ -23,12 +23,13 @@ const Card = styled.nav`
     .DatePicker__input {
         font-size: 15px;
         font-family: Vazir;
+        border: none;
     }
     .price {
         top: -20px;
         position: relative;
         text-align: center;
-        width: 80px;
+        width: auto;
         height: 80px;
         padding: 5px;
         margin: 0 auto;

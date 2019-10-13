@@ -247,6 +247,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                 alt: 'Og Image Alt',
             })
         ) : <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8Dk6Uk5v--/c_scale,f_auto,fl_progressive,q_80,w_800/qssqrb3mvffcipwl9jn0.jpg" />
+        // console.log(this.props)
         return (
             <Layout haveSubHeader={true} pageTitle={'list Your Car'}>
                 <LoginModal onRef={this.doRef} updateInfo={this.updateInfo} />
@@ -392,7 +393,9 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                             </ul>
                         </Details>
                         <Details title="توضیحات">
+                            <pre>
                             {description ? description : "ندارد"}
+                            </pre>
                         </Details>
                         <Details title="مشخصات فنی">
                             <ul className="bullets">
@@ -429,7 +432,9 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                             {mileage_range ? this.mileage_ranges[mileage_range.id + 1] : "صفر کیلومتر"}
                             </Details> */}
                         <Details title="شرایط اجاره و کنسلی">
+                            <pre>
                             {cancellation_policy ? cancellation_policy : "ندارد"}
+                            </pre>
                         </Details>
                         {isMobile &&
                             <div style={{ margin: '10px auto', direction: 'ltr' }}>

@@ -21,7 +21,7 @@ class RadioButton extends Component {
         return (
             <>
                 <label className={['RadioButtonContainer', this.state.insurance ? "activeOne" : ''].join(" ")} onClick={(e) => this.changeHandler(e, true)}>
-                    <p><strong >بسته ویژه بیمه سامان</strong>
+                    <p><strong >بسته ویژه بیمه سامان{" "}</strong>
                         ({this.props.insuranvePrice && convertNumbers2Persian(numberWithCommas(this.props.insuranvePrice))} هزار تومان)<br />
                         شامل پوشش‌های: سرقت، تصادف، حوادث طبیعی و پاشیده شدن رنگ و مواد شیمیایی در مدت اجاره</p>
                     <span className="checkmark"></span>

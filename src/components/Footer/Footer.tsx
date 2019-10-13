@@ -388,9 +388,9 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                 <li>
                   <Link href="/insurance-policies"><a>شرایط و پوشش‌های بیمه</a></Link>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#0">نمونه قرارداد فی‌مابین</a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -471,7 +471,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           <div className="col-lg-12">
             <AdditionalLinks>
               <span className="ver">
-                1.3.12
+                1.3.13
                 </span>
               <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>

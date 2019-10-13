@@ -94,10 +94,13 @@ const Request = ({id}, props) => {
                                     const rentDump = value.rent_search_dump;
                                     return (
                                         <RequestCard
+                      no_of_days={rentDump.no_of_days}
                                             id={value.id}
                                             key={index}
                                             status={value.status.id}
                                             statusOwner={value.role}
+                                            ownerInfo={rentDump.owner}
+                      renterInfo={value.renter}
                                             carName={`${rentDump.car.brand.name.fa} ${rentDump.car.name.fa}`}
                                             start={moment(rentDump.start_date, 'jYYYY/jMM/jDD')}
                                             end={moment(rentDump.end_date, 'jYYYY/jMM/jDD')}
@@ -108,6 +111,9 @@ const Request = ({id}, props) => {
                                                     ? `${value.renter.first_name} ${value.renter.last_name}`
                                                     : `${rentDump.owner.first_name} ${rentDump.owner.last_name}`
                                             }
+                                            avatarImage= {value.role === "owner" ? 
+                      value.renter.image_url
+                      :rentDump.owner.thumbnail_url}
                                             ownerPhone={
                                                 (value.role === "renter")
                                                     ? null

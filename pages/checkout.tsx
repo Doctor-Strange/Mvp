@@ -87,7 +87,8 @@ export default withTranslation("common")(
       no_of_days: null,
       loaded: false,
       insurance: true,
-      openModal: () => null
+      openModal: () => null,
+      heightController:0
     };
 
     doRef = ref => {
@@ -168,6 +169,22 @@ export default withTranslation("common")(
       // :
     }
 
+    setheightController= (a) =>{
+      a.persist()
+      let w = a.target.naturalWidth; 
+      let h = a.target.naturalHeight;
+      if(w/h < 1.2){
+        this.setState({
+          heightController  :w/h*80
+        })
+      }
+      if(w/h < 0.9){
+        this.setState({
+          heightController :w/h*110
+        })
+      }      
+    }
+
     render() {
       const { t, start_date, end_date, search_id } = this.props;
       let start,
@@ -229,15 +246,15 @@ export default withTranslation("common")(
                 <List boldLastItem={true}>
                   <div className="dateFatherCheckout">
                     <span className="DatesinCheckOutpage">
-                      {LongDate(startDate)}
-                    </span>
-                    <span className="TaInCheckout">تا</span>
-                    <span className="DatesinCheckOutpage">
                       {LongDate(endDate)}
+                    </span>
+                    <span className="TaInCheckout"><Icon name="arrow left" size="large"></Icon></span>
+                    <span className="DatesinCheckOutpage">
+                      {LongDate(startDate)}
                     </span>
                   </div>
                   <div className="DayCounter_Checkout" style={{ textAlign: "center", marginBottom: "25px" }}>
-                    مدت اجاره:
+                    مدت اجاره: 
                     <span className="">
                       {convertNumbers2Persian(no_of_days)}
                       <span> روز </span>
@@ -277,15 +294,22 @@ export default withTranslation("common")(
                       <span style={{ fontWeight: 100 }}> تومان </span>
                     </span>
                   </li>
-                  {this.state.insurance && <li>
+                   <li>
                     بیمه
                     <span className="float-left">
-                      <span>{convertNumbers2Persian(numberWithCommas(insurance_total_price))}</span>
-                      <span style={{ fontWeight: 100 }}> تومان </span>
+                    {this.state.insurance ?
+                    <span>{convertNumbers2Persian(numberWithCommas(insurance_total_price))}</span>
+                    : <span> ندارد
+                    </span>
+                    }
+                      <span style={{ fontWeight: 100 }}> 
+                      {this.state.insurance ?"تومان" 
+                      : "" 
+                      }
+                      </span>
                     </span>
                   </li>
-                  }
-                  <li style={{ borderTop: "2px solid #ddd", fontSize: '20px' }} >
+                  <li style={{ borderTop: "1px solid #ddd", fontSize: '20px' }} >
                     جمع کل
                     <span className="float-left">
                       <span >
@@ -349,7 +373,7 @@ export default withTranslation("common")(
                           style={{
                             display: "inline-block",
                             verticalAlign: "top",
-                            width: "50%"
+                            width: "69%"
                           }}
                         >
                           <h1
@@ -384,11 +408,19 @@ export default withTranslation("common")(
                         {/* <DateGrid start={startDate} end={endDate} /> */}
                         {/* <span>{year.fa}</span> <br /> */}
                         {media_set.length >= 1 ? (
-                          <img
+                          <div className="COMEOOON" style={{display:"inline-block",width: "170px",height:"120px", position:'relative',overflow:"hidden"}}>
+                            <img
                             key="1"
                             src={media_set[0]}
-                            style={{ width: "50%", borderRadius: '5px' }}
-                          />
+                            onLoad = {(a)=>{this.setheightController(a)}}
+                            style={{
+    left: '0',
+    right: '0',
+    margin: 'auto',
+    width: '100%',
+                              position:"absolute",top:"-"+this.state.heightController+"px"}}
+                            />
+                            </div>
                         ) : (
                             <img src="" />
                           )}
@@ -463,7 +495,9 @@ export default withTranslation("common")(
                     <span className="DatesinCheckOutpage">
                       {LongDate(startDate)}
                     </span>
-                    <span className="TaInCheckout">تا</span>
+                    <span className="TaInCheckout">
+                      <Icon name="arrow left" size="small"></Icon>
+                    </span>
                     <span className="DatesinCheckOutpage">
                       {LongDate(endDate)}
                     </span>

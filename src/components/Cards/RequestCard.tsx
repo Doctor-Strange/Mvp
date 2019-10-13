@@ -43,6 +43,8 @@ const Card = styled.div`
     }
     h3 {
         margin-bottom: 16px;
+        margin-top: 8px;
+        font-size: 17px;
     }
     #Text_wrapper{
         @media (max-width:557px){
@@ -63,6 +65,22 @@ const Card = styled.div`
             height: auto;
             border-radius: .28571429rem;
             max-height: 105px;
+        }
+    }
+    .DD {
+        margin-top:5px !important;
+        *{
+            font-size: 12px;
+font-weight: 400;
+        }
+    }
+    @media (max-width:420px){
+        .DD{
+            margin-top:25px !important;
+            *{
+                font-size: 14px;
+    font-weight: 400;
+            }
         }
     }
     .property {
@@ -569,7 +587,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                     <Grid.Row style={{ margin: '0 auto' }}>
                         <Grid.Column>
                             <Grid className="property-row">
-                                <Grid.Row columns={2} centered className="property">
+                                <Grid.Row columns={2} centered className="property DD">
                                     <Grid.Column width={10} className="right" style={{ paddingRight: '0' }}>
                                         <Link route={(ownerInfo.username ? `/@${ownerInfo.username}` : `/user/${ownerInfo.id}`)}>
                                         <strong style={{color: '#4ba3ce',cursor: 'pointer'}}><Icon name="user circle" /> {ownerName} </strong>

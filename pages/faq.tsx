@@ -116,10 +116,10 @@ export default withTranslation("common")(
                 <h1 style={{ fontSize: "22px" }}>{`سوالات پرتکرار`}</h1>
                 <span> پاسخگوی تمام نیازهای شما </span>
               </ContentCardTitle>
-              {items.map((item) => {
+              {items.map((item, i) => {
                   console.log(item)
                 return <div className="FQ_WRAPPER" key={item.id}>
-                  <h2 style={{ fontSize: "22px" }}>{item.name.fa}</h2>
+                  {i === 0 ? null : <h2 style={{ fontSize: "22px" }}>{item.name.fa}</h2>}
                   <Accordion question_set={item.question_set}/>
                   {/* <Accordion styled fluid defaultActiveIndex={0} panels={item.question_set} /> */}
                 </div>;

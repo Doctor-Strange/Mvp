@@ -2128,8 +2128,9 @@ input[type="number"] {
   vertical-align:middle;
 }
 .checkOutPartoneFather{
+  display: flex;
   position: relative;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 1px solid #d7d7d7;
   padding-bottom: 19px;
 }
 .box_detail li{
@@ -2158,14 +2159,14 @@ input[type="number"] {
     min-height: 1px;
     background: #fff;
     padding-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .DesignReally{
     background-color: #fff;
               padding: 25px 25px 15px 25px;
               box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
               border-radius: 3px;
-              margin-bottom: 30px;
+              margin-bottom: 10px;
             }
   #sidebar .dateFatherCheckout, .DayCounter_Checkout{
     display:none;
@@ -2176,7 +2177,8 @@ input[type="number"] {
      margin-bottom: 0px !important;
   }
   .DatesinCheckOutpage, .di_couner_checkout {
-    font-weight: 100 !important;
+    font-weight: 400 !important;
+    font-size: 13px;
 }
 }
 
@@ -2187,6 +2189,10 @@ input[type="number"] {
   text-align:center;
   display: inline-block;
   width: 90%;
+  @media (max-width:991px){
+    width: 00%;
+    
+  }
 }
 .mobileView{
   display:none;
@@ -2203,7 +2209,7 @@ input[type="number"] {
   padding: 25px 25px 15px 25px;
   box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
   border-radius: 3px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 @media (max-width:991px){

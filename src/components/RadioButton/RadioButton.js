@@ -26,6 +26,7 @@ class RadioButton extends Component {
                         شامل پوشش‌های: سرقت، تصادف، حوادث طبیعی و پاشیده شدن رنگ و مواد شیمیایی در مدت اجاره</p>
                     <span className="checkmark"></span>
                 </label>
+                <br></br>
                 <label className={['RadioButtonContainer', !this.state.insurance ? "activeOne" : ''].join(" ")} onClick={(e) => this.changeHandler(e, false)}>
                     <p><strong>به بیمه نیاز ندارم</strong>
                         <br />

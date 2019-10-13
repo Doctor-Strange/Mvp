@@ -2184,6 +2184,7 @@ input[type="number"] {
 
 .DatesinCheckOutpage{
   font-weight: bold;
+  direction: rtl;
 }
 .TaInCheckout{
   text-align:center;
@@ -2804,6 +2805,9 @@ pre{
     line-height: 1.6 !important;
     font-family: Vazir,sans-serif !important;
     color: #2A2A2A !important;
+}
+.COMEOOON{
+  position:relative
 }
 `;
 

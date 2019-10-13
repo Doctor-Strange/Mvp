@@ -246,11 +246,15 @@ export default withTranslation("common")(
                 <List boldLastItem={true}>
                   <div className="dateFatherCheckout">
                     <span className="DatesinCheckOutpage">
-                      {LongDate(endDate)}
+                      {LongDate(endDate).split(" ")[0]}
+                      <br/>
+                      {LongDate(endDate).split(" ").slice(1,4)}
                     </span>
                     <span className="TaInCheckout"><Icon name="arrow left" size="large"></Icon></span>
                     <span className="DatesinCheckOutpage">
-                      {LongDate(startDate)}
+                      {LongDate(startDate).split(" ")[0]}
+                      <br/>
+                      {LongDate(startDate).split(" ").slice(1,4)}
                     </span>
                   </div>
                   <div className="DayCounter_Checkout" style={{ textAlign: "center", marginBottom: "25px" }}>
@@ -493,13 +497,17 @@ export default withTranslation("common")(
                 <List boldLastItem={false}>
                   <div className="dateFatherCheckout" style={{ fontWeight: 100 }}>
                     <span className="DatesinCheckOutpage">
-                      {LongDate(startDate)}
+                      {LongDate(startDate).split(" ")[0]}
+                      <br/>
+                      {LongDate(startDate).split(" ").slice(1,4)}
                     </span>
                     <span className="TaInCheckout">
                       <Icon name="arrow left" size="small"></Icon>
                     </span>
                     <span className="DatesinCheckOutpage">
-                      {LongDate(endDate)}
+                      {LongDate(endDate).split(" ")[0]}
+                      <br/>
+                      {LongDate(endDate).split(" ").slice(1,4)}
                     </span>
                   </div>
                   <div className="di_couner_checkout" style={{ textAlign: "center", marginBottom: "25px", fontWeight: 100 }}>

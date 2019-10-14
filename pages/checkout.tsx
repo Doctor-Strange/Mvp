@@ -243,7 +243,7 @@ export default withTranslation("common")(
               style={{ marginTop: "24px", marginBottom: "50px" }}
             >
               <ContentSideCard>
-                <List boldLastItem={true}>
+                <List boldLastItem={true} className="marginni">
                   <div className="dateFatherCheckout">
                     <span className="DatesinCheckOutpage">
                       {LongDate(endDate).split(" ")[0]}
@@ -497,17 +497,17 @@ export default withTranslation("common")(
                 <List boldLastItem={false}>
                   <div className="dateFatherCheckout" style={{ fontWeight: 100 }}>
                     <span className="DatesinCheckOutpage">
-                      {LongDate(startDate).split(" ")[0]}
+                      {LongDate(endDate).split(" ")[0]}
                       <br/>
-                      {LongDate(startDate).split(" ").slice(1,4)}
+                      {LongDate(endDate).split(" ").slice(1,4)}
                     </span>
                     <span className="TaInCheckout">
                       <Icon name="arrow left" size="small"></Icon>
                     </span>
                     <span className="DatesinCheckOutpage">
-                      {LongDate(endDate).split(" ")[0]}
+                      {LongDate(startDate).split(" ")[0]}
                       <br/>
-                      {LongDate(endDate).split(" ").slice(1,4)}
+                      {LongDate(startDate).split(" ").slice(1,4)}
                     </span>
                   </div>
                   <div className="di_couner_checkout" style={{ textAlign: "center", marginBottom: "25px", fontWeight: 100 }}>

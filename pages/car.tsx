@@ -273,8 +273,10 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                     <CarNav startDate={start} endDate={end} />
                 }
                 <div className="hero_mother">
-                    <div className="hero_in hotels_detail" style={{ maxWidth: '1111px', background: "#E6E6E6" }}>
-                        {this.state.carousel
+                    <div className="hero_in hotels_detail" style={{ maxWidth: '1111px', 
+                    background: media_set.length > 1 ? "#E6E6E6" : '##fafafa' }}>
+                        {media_set.length > 1 ? 
+                            this.state.carousel
                             ? <Carousel
                                 heightMode="current"
                                 initialSlideWidth={isBrowser ? 970 : undefined}
@@ -315,7 +317,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                             >
                                 {(media_set.length >= 1) ? media_set.map((value, index) =>
                                     <img key={index} src={value} />
-                                ) : <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8Dk6Uk5v--/c_scale,f_auto,fl_progressive,q_80,w_800/qssqrb3mvffcipwl9jn0.jpg" />}
+                                ) : null}
                             </Carousel>
                             :
                             <div style={{
@@ -331,7 +333,22 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                             }}>
                                 <Spinner >در حال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
                             </div>
-                        }
+                        :this.state.carousel ? <img style={{
+                            position: 'absolute',top: '0',right: '0',width: '100%',}}
+                             src={media_set[0]} alt="تصویر اسلایدر"/>:
+                             <div style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                paddingTop: "20%",
+                                marginBottom: "24px",
+                                color: "#bdbdbd",
+                                outline: "none",
+                                transition: "border 0.24s ease-in-out",
+                                borderRadius: "0.28571429rem",
+                            }}>
+                                <Spinner >در حال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
+                            </div>}
                     </div>
                 </div>
 

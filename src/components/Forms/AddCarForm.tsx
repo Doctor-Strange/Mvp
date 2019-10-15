@@ -465,6 +465,8 @@ export default withTranslation('common')(connect(state => state)(
       axios
         .post(process.env.PRODUCTION_ENDPOINT + '/core/car/list?limit=800&brand_id=' + brandID)
         .then(response => {
+
+          // console.log("response",response)
           if (
             response.data.success &&
             Object.keys(response.data.items).length >= 1
@@ -545,6 +547,7 @@ export default withTranslation('common')(connect(state => state)(
         axios
           .post(process.env.PRODUCTION_ENDPOINT + '/core/car/get?id=' + modelID)
           .then(response => {
+            console.log(response)
             if (response.data.success) {
               let output = {};
               const {
@@ -1023,10 +1026,10 @@ export default withTranslation('common')(connect(state => state)(
                           error={Boolean(errors.carBrand && touched.carBrand)}
                         clearField={()=>{
                           setFieldValue("carBrand", '');
-                          this.setModels("");
+                          // this.setModels("");
                         }}
                           Select={(e) => {
-                            setFieldValue("carBrand", e.value);
+                            setFieldValue("carBrand", e.value);                           
                             this.setModels(e.value);
                           }}
                           placeholder="برند">برند</DropDownWithSearch>
@@ -1072,12 +1075,44 @@ export default withTranslation('common')(connect(state => state)(
                           error={Boolean(errors.carModel && touched.carModel)}
                           clearField={()=>{
                             setFieldValue("carModel", '');
-                            this.setModels("");
                           }}
                           Select={(e) => {
                             setFieldValue("carModel", e.value);
-                            this.setModels(e.value);
-                          }}
+                            // this.setModels(e.value);
+                            this.getCarInfo(e.value)
+                                  .then(carInfo => {
+                                    //set car options
+                                    setFieldValue(
+                                      'carGearboxType',
+                                      carInfo.transmission_type
+                                    );
+                                    setFieldValue(
+                                      'carBodyStyle',
+                                      carInfo.body_style
+                                    );
+                                    setFieldValue('carCapacity', carInfo.capacity);
+    
+                                    // clear checkboxes
+                                    let checkboxes = this.state.checkboxes;
+                                    let newcheckboxes = [];
+                                    checkboxes.map((value, index) => {
+                                      newcheckboxes.push({
+                                        id: value.id,
+                                        label: value.label,
+                                        checked: false,
+                                        parsedID: null
+                                      });
+                                    });
+                                    this.setState({ checkboxes: newcheckboxes });
+                                    //set car facilities checkboxes
+                                    carInfo.facilities.map((value, index) => {
+                                      this.setFasalities(value, true);
+                                    });
+                                  })
+                                  .catch(function (error) {
+                                    //console.log(error.message);
+                                  });
+                            }}
                           placeholder="مدل">مدل</DropDownWithSearch>
                       </div>
                       {/* <Form.Dropdown

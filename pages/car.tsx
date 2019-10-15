@@ -156,7 +156,8 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
         car: {},
         loaded: false,
         hideTheseGuys: false,
-        onRef: () => { }
+        onRef: () => { },
+      heightController:0
     };
 
     mileage_ranges = ['۰ - ۵۰٫۰۰۰ کیلومتر',
@@ -220,6 +221,22 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             Router.push(href);
         }
     }
+
+    setheightController= (a) =>{
+        a.persist()
+        let w = a.target.naturalWidth; 
+        let h = a.target.naturalHeight;
+        if(w/h < 1.2){
+          this.setState({
+            heightController  :w/h*80
+          })
+        }
+        if(w/h < 0.9){
+          this.setState({
+            heightController :w/h*110
+          })
+        }      
+      }
 
     render() {
         // console.log("this. props ====> ", this.props)
@@ -333,8 +350,12 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                             }}>
                                 <Spinner >در حال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
                             </div>
-                        :this.state.carousel ? <img style={{
-                            position: 'absolute',top: '0',right: '0',width: '100%',}}
+                        :this.state.carousel ? <img 
+                        onLoad = {(a)=>{this.setheightController(a)}}
+                        style={{
+                            position: 'absolute',
+                            top:"-"+this.state.heightController+"px"
+                            ,right: '0',width: '100%',}}
                              src={media_set[0]} alt="تصویر اسلایدر"/>:
                              <div style={{
                                 display: "flex",

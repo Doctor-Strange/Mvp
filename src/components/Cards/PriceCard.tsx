@@ -43,7 +43,11 @@ export const PriceCard: React.FunctionComponent<{
     let  bo = convertNumbers2Persian(getShortVersion(number).number).indexOf(".") === -1
     let  pos = convertNumbers2Persian(getShortVersion(number).number).indexOf(".")
     if(!bo){
-        price = convertNumbers2Persian(getShortVersion(number).number).slice(0, pos+2)
+        if(number > 1000000){
+            price = convertNumbers2Persian(getShortVersion(number).number).slice(0, pos+2)
+        }else{
+            price = convertNumbers2Persian(getShortVersion(number).number).slice(0, pos)
+        }
     }
     return <Card className="price" style={style}>
         <span className="number" style={{ fontSize: fontSize + 'px' }}>

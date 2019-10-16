@@ -88,7 +88,8 @@ export default withTranslation("common")(
       loaded: false,
       insurance: true,
       openModal: () => null,
-      heightController:0
+      heightController:0,
+      loading:false
     };
 
     doRef = ref => {
@@ -135,6 +136,9 @@ export default withTranslation("common")(
         return;
       }
       try {
+        this.setState({
+          loading:true
+          })
         const res = await REQUEST_newRentRequest({
           search_id,
           has_insurance:this.state.insurance,
@@ -149,6 +153,9 @@ export default withTranslation("common")(
           });
         }
       } catch (error) {
+        this.setState({
+          loading:false
+          })
         //console.log(error.data);
         this.showError(error.data.message);
       }
@@ -342,6 +349,7 @@ export default withTranslation("common")(
                   <>
                     <br />
                     <Button
+                    loading={this.state.loading}
                       style={{ height: "48px" }}
                       size="large"
                       fluid
@@ -522,6 +530,7 @@ export default withTranslation("common")(
             </Section>
             {isMobile && (
               <Button
+              loading={this.state.loading}
                 style={{
                   zIndex: "55",
                   bottom: "0",

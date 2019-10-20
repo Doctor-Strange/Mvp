@@ -39,10 +39,10 @@ const Page = props => (
       <div className="hero_single version_4">
         <Flex justifyContent="space-around" className="wrapper">
           <Box width={2 / 2} px={2}>
-            <h3>اتولی، اجاره آسان خودرو</h3>
-            <p>
+            <h1>اتولی، اجاره آسان خودرو</h1>
+            <h2>
             ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید.
-            </p>
+            </h2>
             <IndexForm t={props.t} />
           </Box>
         </Flex>

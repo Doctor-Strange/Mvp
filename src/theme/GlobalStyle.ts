@@ -1266,13 +1266,14 @@ textarea {
     width: 100%;
     position: relative;
     text-align: center;
-    margin: 0;
+    margin: 15px auto;
     .wrapper {
       flex-direction: column;
       justify-content: center;
       height: 100%;
-      h3 {
+      h1 {
         font-size: 52px;
+        color: #fff;
         font-size: 3.25rem;
         margin: 0;
         text-transform: uppercase;
@@ -1286,11 +1287,13 @@ textarea {
             font-size: 1.4375rem;
         }
       }
-      p {
+      h2 {
         font-weight: 300;
         margin: 10px 0 0 0;
         padding: 0 20%;
         font-size: 24px;
+        color: #fff;
+        margin-bottom: 26px;
         font-size: 1.5rem;
         line-height: 1.4;
         @media (max-width: 767px) {
@@ -2873,6 +2876,21 @@ width: 40px !important;
   .pelak .field input{
     padding: 8px !important;
   }
+//   .hero_single.version_4 .wrapper h1 {
+//     font-size: 42px;
+//     font-size: 2.625rem;
+//     color: White;
+//     text-shadow: 4px 4px 12px rgba(0,0,0,0.3);
+// }
+// .hero_single.version_4 .wrapper h2 {
+//   color: white;
+//   font-weight: 400;
+//   margin: 5px 0 20px 0;
+//   padding: 0;
+//   font-size: 21px;
+//   font-size: 1.3125rem;
+//   text-shadow: 4px 4px 12px rgba(0,0,0,0.3);
+// }
 `;
 
 enum Margin {

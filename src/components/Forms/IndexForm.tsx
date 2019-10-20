@@ -185,6 +185,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   }, []);
 
   const setCalStart = () => {
+
     if (date.from && !date.to) {
       setCalEnd();
       return;
@@ -200,6 +201,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
     }
   }
 
+
   const setCalEnd = () => {
     setDPA(`.DatePicker__calendarContainer {
       transform: translateX(-75%);
@@ -211,6 +213,8 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
     document.activeElement.blur();
   }
 
+  
+  
   return (
     <Formik
       initialValues={{ carCity: 1 }}
@@ -272,6 +276,11 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                   // console.log(v)
                   if (!v.to) {
                     setCalEnd();
+                  }
+                  if(date.from && !date.to){
+                    setDPA(`.DatePicker__calendarContainer {
+                      transform: translateX(-75%);
+                    }`);
                   }
                   setDate(v)
                 }}
@@ -335,8 +344,10 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           ref={ref}
                           onBlur={()=>{setactiveField1(false)}}
                           // onFocus={() => { setCalStart(); onFocus();setactiveField1(true) }}
-                          onClick={() => { setCalStart(); onFocus();setactiveField1(true) }}
-                          // onBlur={() => { console.log("on Blur for from")}}
+                          onClick={() => { 
+                            // setCalStart();
+                             onFocus();
+                             setactiveField1(true) }}
 
                           value={getSelectedDayValue(date.from)}
                           placeholder={"از تاریخ"}
@@ -353,7 +364,9 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           readOnly
                           ref={ref}
                           onBlur={()=>{setactiveField2(true) }}
-                          onFocus={() => { setCalEnd(); onFocus(); setactiveField2(true) }}
+                          onFocus={() => {
+                            //  setCalEnd(); 
+                            onFocus(); setactiveField2(true) }}
                           // onBlur={() => { console.log("on Blur for To")}}
                           value={getSelectedDayValue(date.to)}
                           placeholder={"تا تاریخ"}

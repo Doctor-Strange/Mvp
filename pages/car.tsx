@@ -125,8 +125,8 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
         return {
             // namespacesRequired: ['common'],
             rentalCarID: props.query.id,
-            start: props.query.start,
-            end: props.query.end,
+            // start: props.query.start,
+            // end: props.query.end,
             search_id: props.query.search_id,
             ...res
         };
@@ -157,7 +157,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
         loaded: false,
         hideTheseGuys: false,
         onRef: () => { },
-      heightController:0
+      heightController:0,
     };
 
     mileage_ranges = ['۰ - ۵۰٫۰۰۰ کیلومتر',
@@ -178,7 +178,6 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
 
     componentDidMount() {
         this.state.onRef(this);
-        // this.props.onRef(this);
         if (window.location.search === "") {
             this.setState({ hideTheseGuys: true, })
         }
@@ -189,6 +188,10 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             // trying to solve slider issues
             window.dispatchEvent(new Event('resize'));
         }, 0);
+    }
+
+    componentWillReceiveProps = () =>{
+        console.log('componentWillReceiveProps');
     }
 
     // doRef = ref => {
@@ -239,7 +242,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
       }
 
     render() {
-        // console.log("this. props ====> ", this.props)
+        console.log("this. props ====> ", this.props)
         const { t, start_date, end_date, search_id } = this.props;
         let start, end = null;
         let startDate, endDate = null;
@@ -254,6 +257,8 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             end = moment(endDate).format('jD jMMMM jYY');
             //console.log(start);
         }
+        console.log(startDate,
+            endDate)
         const { media_set, year, mileage_range, owner, body_style, color, color_code, cylinder, value,
             deliver_at_renters_place, cancellation_policy, transmission_type, location, facility_set,
             max_km_per_day, description, capacity, extra_km_price, car, loaded, avg_price_per_day, avg_discounted_price_per_day } = this.props;
@@ -377,10 +382,12 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                     {isBrowser &&
                         <ContentSideCard shareBar={true} pushTopMargin={true}>
                             <CarSideCard
-                                date={{
-                                    start: startDate,
-                                    end: endDate
-                                }}
+                                // date={{
+                                //     start: startDate,
+                                //     end: endDate
+                                // }}
+                                start= {start}
+                                    end= {end}
                                 price={avg_discounted_price_per_day}
                                 user={{
                                     id: owner.id,

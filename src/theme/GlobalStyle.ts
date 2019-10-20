@@ -2814,6 +2814,44 @@ pre{
   margin: 0px 0px 7px;
 
 }
+button.Calendar__day.-selectedBetween {
+  background: #fff;
+  color:#444;
+}
+
+.pelak .field {
+  position: absolute !important;
+}
+.pelak .field:nth-of-type(4){
+left: 39px !important;
+top: 9px !important;
+width: 40px !important;
+}
+
+.pelak .field:nth-of-type(2){
+  left: 87px !important;
+  top: 9px !important;
+  width: 70px !important;
+  }
+
+.pelak .field:nth-of-type(3){
+  left: 164px !important;
+  top: 9px !important;
+  width: 55px !important;
+  }
+
+  .pelak .field:nth-of-type(1){
+    left: 238px !important;
+    top: 20px !important;
+    width: 55px !important;
+    }
+    .pelak .field:nth-of-type(1) input{
+      height:39px !important;
+      padding: 8px;
+  }
+  .pelak .field input{
+    padding: 8px !important;
+  }
 `;
 
 enum Margin {

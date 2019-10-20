@@ -247,11 +247,13 @@ export const CarCard: React.FunctionComponent<{
   const [outofservice, setoutofservice] = useState(false);
   const [heightController, setheightController] = useState(0);
     let link = "";
+    let start_date = JSON.parse(localStorage['start'])
+    let end_date = JSON.parse(localStorage['end'])
     if (simpleMode) {
       link = `/car/${id}`;
     }
     else {
-      link = `/car/${id}${dateURL}?search_id=${search_id}`;
+      link = `/car/${id}${dateURL}?search_id=${search_id}`
     }
 
     useEffect(() => {

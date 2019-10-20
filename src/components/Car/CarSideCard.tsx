@@ -54,11 +54,13 @@ const Card = styled.nav`
 `;
 
 const CarideCard: React.FunctionComponent<{
-    date: any;
+    date?: any;
     price: any;
+    start?:string;
+end?:string;
     user: any;
     reserveFunction: any;
-}> = ({ date, price, user, reserveFunction }) => {
+}> = ({ date, price, user, reserveFunction,start,end }) => {
     return (
         <Card>
             {(price > 0) &&
@@ -74,7 +76,14 @@ const CarideCard: React.FunctionComponent<{
                     </span>
                 </div>
             }
-            <CarDateRange from={convertMomentToDate(date.start)} to={convertMomentToDate(date.end)} />
+            {start && end &&<p style={{textAlign:"center", marginBottom:'0px'}}>
+                 از{" "} 
+                <span style={{fontWeight:'500'}}>{convertNumbers2Persian(start)}</span>
+                {" "} تا {" "}
+                <span style={{fontWeight:'500'}}>{convertNumbers2Persian(end)}</span>
+            </p>
+            }
+            {/* <CarDateRange from={convertMomentToDate(date.start)} to={convertMomentToDate(date.end)} /> */}
             <UserCard
                 id={user.id}
                 firstname={user.first_name}

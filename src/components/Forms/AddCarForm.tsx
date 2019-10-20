@@ -70,47 +70,49 @@ const BoxAccount = styled.div`
     background: url(${Pelak}) no-repeat;
     height: 70px;
     width: 308px;
+    position:relative;
     margin-bottom: 24px;
-    #carLicensePlates1 {
-      background: transparent;
-      position: absolute;
-      left: 40px;
-      width: 40px !important;
-      padding: 8px;
-      top: 9px;
-      font-size: 18px;
-    }
-    #carLicensePlates2 {
-      background: transparent;
-      position: relative;
-      left: -150px;
-      width: 70px !important;
-      height: 48px;
-      padding: 8px;
-      top: -35px;
-      font-size: 18px;
-      text-align: center;
-      direction: rtl;
-    }
-    #carLicensePlates3 {
-      background: transparent;
-      position: absolute;
-      left: 166px;
-      width: 55px !important;
-      padding: 8px;
-      top: -101px;
-      font-size: 18px;
-    }
-    #carLicensePlates4 {
-      background: transparent;
-      position: absolute;
-      left: 237px;
-      width: 55px !important;
-      height: 39px;
-      padding: 8px;
-      top: -133px;
-      font-size: 18px;
-    }
+  
+    // #carLicensePlates1 {
+    //   background: transparent;
+    //   position: absolute;
+    //   left: 40px;
+    //   width: 40px !important;
+    //   padding: 8px;
+    //   top: 9px;
+    //   font-size: 18px;
+    // }
+    // #carLicensePlates2 {
+    //   background: transparent;
+    //   position: relative;
+    //   left: -150px;
+    //   width: 70px !important;
+    //   height: 48px;
+    //   padding: 8px;
+    //   top: -35px;
+    //   font-size: 18px;
+    //   text-align: center;
+    //   direction: rtl;
+    // }
+    // #carLicensePlates3 {
+    //   background: transparent;
+    //   position: absolute;
+    //   left: 166px;
+    //   width: 55px !important;
+    //   padding: 8px;
+    //   top: -101px;
+    //   font-size: 18px;
+    // }
+    // #carLicensePlates4 {
+    //   background: transparent;
+    //   position: absolute;
+    //   left: 237px;
+    //   width: 55px !important;
+    //   height: 39px;
+    //   padding: 8px;
+    //   top: -133px;
+    //   font-size: 18px;
+    // }
   }
   .fieldEmulator{
     margin-bottom:18px;

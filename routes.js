@@ -2,7 +2,7 @@ const routes = require("next-routes");
 
 module.exports = routes()
   .add("add-car")
-  .add("car", "/car/:id")
+  .add("car", "/car/:id/:carname")
   .add("checkout")
   .add("complete-register")
   .add("profile_username", "/@:username", "profile")

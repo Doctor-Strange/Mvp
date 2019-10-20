@@ -2537,10 +2537,27 @@ OTILI
   padding: 15px;
   border-radius:4px;
   border:1px solid #A3678B;
-  margin-bottom: 70px;
+  margin-bottom: 59px;
+  margin-top: 15px;
 }
-.D1_Right div:nth-of-type(1){
+.PartOne_OTOLI:nth-of-type(1) .D1_Right div:nth-of-type(2){
   margin-top: 60px;
+  margin-bottom: 221px;
+}
+.PartOne_OTOLI:nth-of-type(2) .D1_Right div:nth-of-type(1){
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+.PartOne_OTOLI:nth-of-type(3) .D1_Left div:nth-of-type(1){
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+.PartOne_OTOLI:nth-of-type(4) .D1_Left div:nth-of-type(1){
+  margin-top: 10px;
+  margin-bottom: 60px;
+}
+.PartOne_OTOLI:nth-of-type(4) .D1_Right div:nth-of-type(1){
+  margin-top: 40px;
   margin-bottom: 60px;
 }
 .D1_Right div:nth-of-type(1):before{
@@ -2678,6 +2695,10 @@ OTILI
 
 
 @media (max-width: 575px){
+  .PartOne_OTOLI:nth-of-type(1) .D1_Right div:nth-of-type(2){
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
   .partOne_OTOLI_D1 {
       display: block;
       vertical-align: top;

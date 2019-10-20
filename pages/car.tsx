@@ -122,6 +122,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             res = await REQUEST_getCar({
                 id: props.query.id,
             });
+            console.log(props.query.id)
         return {
             // namespacesRequired: ['common'],
             rentalCarID: props.query.id,

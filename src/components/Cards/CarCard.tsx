@@ -249,11 +249,12 @@ export const CarCard: React.FunctionComponent<{
     let link = "";
     let start_date = JSON.parse(localStorage['start'])
     let end_date = JSON.parse(localStorage['end'])
+    let carName = title.replace(/ /g, "-");
     if (simpleMode) {
-      link = `/car/${id}`;
+      link = `/car/${id}/${carName}`;
     }
     else {
-      link = `/car/${id}${dateURL}?search_id=${search_id}`
+      link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`
     }
 
     useEffect(() => {

@@ -71,15 +71,16 @@ const Card = styled.div`
     .DD {
         margin-top:5px !important;
         *{
-            font-size: 12px;
+            font-size: 14px;
 font-weight: 400;
         }
     }
-    @media (max-width:420px){
+    @media (max-width:575px){
         .DD{
             margin-top:25px !important;
             *{
-                font-size: 14px;
+                padding:0;
+                font-size: 12px;
     font-weight: 400;
             }
         }

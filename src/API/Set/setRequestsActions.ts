@@ -23,7 +23,7 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
   return new Promise((resolve, reject) => {
     let ACTION_URL;
     let more;
-    let message = ''
+    let message = 'با موفقیت انجام شد'
     switch (data.action) {
       case 'approve':
         ACTION_URL = SET_ORDER_APPROVE;

@@ -23,7 +23,10 @@ class DropDownWithSearch extends Component {
   render() {
     return (
       <div
-        className={['searchBoxContainer' , this.props.error? "ErrorINPUT": null].join(" ")}
+        className={[
+          "searchBoxContainer",
+          this.props.error ? "ErrorINPUT" : null
+        ].join(" ")}
         onMouseLeave={() => this.setState({ ShowControler: false })}
       >
         <label className={this.props.data.length < 2 ? "diz" : null}>
@@ -57,9 +60,11 @@ class DropDownWithSearch extends Component {
             style={{
               position: "absolute",
               left: "11px",
-              top: this.props.IconTop+"px",
+              top: this.props.IconTop + "px",
               cursor: "pointer",
-              zIndex:'4'
+              zIndex: "4",
+              fontSize: "15px",
+              color: "#767676"
             }}
             onClick={() => {
               this.setState({ InputValue: "" });
@@ -73,7 +78,7 @@ class DropDownWithSearch extends Component {
           <div className="resultList" style={{ top: this.props.top + "px" }}>
             {this.state.data.map(i => (
               <p
-              className="Items"
+                className="Items"
                 onClick={() => {
                   this.setState({ InputValue: i.text });
                   this.props.Select(i);

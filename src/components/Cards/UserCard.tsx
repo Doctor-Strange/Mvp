@@ -64,6 +64,12 @@ padding-top: 16px;
       margin-right: 4px;
       transform: translateY(-2px);
     }
+    input{
+      margin-bottom:15px;
+    }
+    span{
+      cursor:pointer;
+    }
     .hostDetailCard-responseTime {
       margin-top: 2px;
     }
@@ -165,8 +171,10 @@ padding-top: 16px;
     }
     .media-body.hostDetailCard.box {
         width: 100%;
+        
     }
   }
+
 .C{display: inline-block;
   vertical-align: sub;
   padding-left: 5px;
@@ -310,7 +318,7 @@ export const UserCard: React.FunctionComponent<{
             if (values.username)
               await REQUEST_setUsername({
                 token: jsCookie.get("token"),
-                username: values.username
+                username: values.username.replace(/\s/g,"")
               });
             if(values.image)
               await REQUEST_setUserImage({

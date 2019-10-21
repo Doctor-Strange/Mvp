@@ -174,11 +174,13 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
     //   }
     // });
     if(localStorage["start"] && localStorage["end"]){
-      // console.log(JSON.parse(localStorage["start"]),JSON.parse(localStorage["end"]))
-      setDate({
-        from: JSON.parse(localStorage["start"]),
-        to: JSON.parse(localStorage["end"])
-      });
+      let start = JSON.parse(localStorage["start"]);
+      if(start.day > moment().jDate() || start.month > moment().jMonth()+1 ){
+        setDate({
+          from: JSON.parse(localStorage["start"]),
+          to: JSON.parse(localStorage["end"])
+        });
+      }
     }
     // console.log("process.env.NODE_ENV ====>",process.env.NODE_ENV)
     fetchAPI();

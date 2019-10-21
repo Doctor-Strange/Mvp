@@ -407,7 +407,24 @@ export class FilterAndSortBar extends React.Component<{
                 </div>
                 <div className="row">
                   <div className="col-12">
-                    <Form.Dropdown
+                  <div className=" field">
+                <DropDownWithSearch
+                        loading={true}
+                        top="46"
+                        data={brandsFarsi}
+                        Select={(e) => {
+                          setBrandAndGetModels(e.value, "");
+                          // values.carDistrict = e.value
+                        }}
+                        IconTop="20"
+                        clearField={()=>{
+                          setBrandAndGetModels("", "");
+                        }}
+                        placeholder="برند"
+                        // disabled={brand == null || brand == ""}
+                        ></DropDownWithSearch>
+                        </div>
+                    {/* <Form.Dropdown
                       name="carBrand"
                       id="carBrand"
                       label={t('carProperty.brand')}
@@ -434,8 +451,25 @@ export class FilterAndSortBar extends React.Component<{
                       // }}
                       // defaultValue={brand[0].value}
                       value={brand}
-                    />
-                    <Form.Dropdown
+                    /> */}
+                    <div className=" field">
+                <DropDownWithSearch
+                        loading={true}
+                        top="46"
+                        IconTop="20"
+                        data={modelsFarsi}
+                        Select={(e) => {
+                          setModel(e.value, "");
+                          // values.carDistrict = e.value
+                        }}
+                        clearField={()=>{
+                          setModel("", "");
+                        }}
+                        placeholder="مدل"
+                        disabled={modelLoading && !(brand == null || brand == "")}
+                        ></DropDownWithSearch>
+                        </div>
+                    {/* <Form.Dropdown
                       name="carModel"
                       id="carModel"
                       search
@@ -465,7 +499,7 @@ export class FilterAndSortBar extends React.Component<{
                       // }}
                       // defaultValue={model[0].value}
                       value={model}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>

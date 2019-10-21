@@ -4,7 +4,6 @@ import { Box, Flex } from '@rebass/grid';
 import Router from 'next/router';
 import {Link} from '../../../routes'
 import { Button, Icon, Form, Label, Grid, Segment, Rating, TextArea } from 'semantic-ui-react'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import swal from '@sweetalert/with-react'
 import { Pelak, DateGrid } from './index';
@@ -20,6 +19,8 @@ import {
 import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
 import { ITheme } from "../../theme/Interfaces";
+import { ToastContainer, toast } from "react-toastify";
+
 
 
 const Card = styled.div`
@@ -404,6 +405,11 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             <div style={{ marginLeft: '8px' }}>
                                 <Button
                                     onClick={() => doAction({ id, action: 'approve' })}
+                                    // onClick= {()=>{
+                                    //     setTimeout(() => {
+                                            
+                                    //     }, 10000);
+                                    // }}
                                     primary
                                     fluid
                                     className="left">

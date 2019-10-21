@@ -1,3 +1,4 @@
+import { ToastContainer, toast } from "react-toastify";
 import axios from 'axios';
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
@@ -22,24 +23,30 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
   return new Promise((resolve, reject) => {
     let ACTION_URL;
     let more;
+    let message = ''
     switch (data.action) {
       case 'approve':
         ACTION_URL = SET_ORDER_APPROVE;
+        message= "درخواست تایید شما با موفقیت ثبت شد"
         break;
       case 'reject':
         ACTION_URL = SET_ORDER_REJECT;
+        message= "رد درخواست انجام شد"
         break;
       case 'cancel':
         ACTION_URL = SET_ORDER_CANCEL;
+        message= "درخواست شما حذف شد"
         break;
       case 'pay':
         ACTION_URL = SET_ORDER_PAY;
         break;
       case 'deliver':
         ACTION_URL = SET_ORDER_DLIVER;
+        message= "درخواست شما با موفقیت ثبت شد"
         break;
       case 'return':
         ACTION_URL = SET_ORDER_RETURN;
+        message= "درخواست شما با موفقیت ثبت شد"
         break;
       case 'rate':
         if (data.payload.toRate === 'renter') {
@@ -87,6 +94,14 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
       )
       .then(response => {
           resolve(response.data);
+          toast.success(message, {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true
+          });
       })
       .catch(error => {
           reject(error);

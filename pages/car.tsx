@@ -450,9 +450,9 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                                 {/* changed in 980528 by sajad bug fix */}
                                 {cylinder && <li>سیلندر: {cylinder.name.fa} </li>}
                                 <li>کارکرد: {mileage_range ? this.mileage_ranges[mileage_range.id - 1] : "صفر کیلومتر"}</li>
-                                {value  && <li>ارزش خودرو: {
+                                {/* {value  && <li>ارزش خودرو: {
                                     convertNumbers2Persian(numberWithCommas(value))
-                                } تومان</li>}
+                                } تومان</li>} */}
                                 <li>ظرفیت: {convertNumbers2Persian(capacity)}</li>
                             </ul>
                         </Details>

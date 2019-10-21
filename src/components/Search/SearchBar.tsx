@@ -114,6 +114,7 @@ export class SearchBar extends React.Component<{
               <h4 style={{ fontSize: '16px', textAlign: 'center' }}>
                 <strong> {convertNumbers2Persian(count)} </strong>
                 {text}
+                
                 {/* <Dropdown
                   inline
                   name="carCity"

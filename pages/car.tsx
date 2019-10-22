@@ -296,7 +296,24 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                 {isMobile &&
                     <CarNav startDate={start} endDate={end} />
                 }
-                <Slider Feed={media_set}/>
+                 {this.state.carousel
+                ?<Slider Feed={media_set}/>
+                :
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                paddingTop: "16%",
+                                paddingBottom: "12%",
+                                marginBottom: "24px",
+                                color: "#bdbdbd",
+                                outline: "none",
+                                transition: "border 0.24s ease-in-out",
+                                borderRadius: "0.28571429rem",
+                            }}>
+                                <Spinner >در حال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
+                            </div>
+                 }
                 {/* <div className="hero_mother">
                     <div className="hero_in hotels_detail" style={{ maxWidth: '1111px', 
                     background: media_set.length > 1 ? "#E6E6E6" : '##fafafa' }}>

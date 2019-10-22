@@ -27,6 +27,7 @@ import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
 import { toast } from 'react-toastify';
 import LoginModal from '../src/components/Modals/LoginModal'
+import Slider  from '../src/components/Slider/Slider';
 
 
 const ContentCardTitle = styled.div`
@@ -122,7 +123,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             res = await REQUEST_getCar({
                 id: props.query.id,
             });
-            console.log(props.query.id)
+            // console.log(props.query.id)
         return {
             // namespacesRequired: ['common'],
             rentalCarID: props.query.id,
@@ -191,9 +192,9 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
         }, 0);
     }
 
-    componentWillReceiveProps = () =>{
-        console.log('componentWillReceiveProps');
-    }
+    // componentWillReceiveProps = () =>{
+    //     // console.log('componentWillReceiveProps');
+    // }
 
     // doRef = ref => {
     //     this.loginmodal = ref;
@@ -243,7 +244,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
       }
 
     render() {
-        console.log("this. props ====> ", this.props)
+        // console.log("this. props ====> ", this.props)
         const { t, start_date, end_date, search_id } = this.props;
         let start, end = null;
         let startDate, endDate = null;
@@ -258,8 +259,8 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             end = moment(endDate).format('jD jMMMM jYY');
             //console.log(start);
         }
-        console.log(startDate,
-            endDate)
+        // console.log(startDate,
+        //     endDate)
         const { media_set, year, mileage_range, owner, body_style, color, color_code, cylinder, value,
             deliver_at_renters_place, cancellation_policy, transmission_type, location, facility_set,
             max_km_per_day, description, capacity, extra_km_price, car, loaded, avg_price_per_day, avg_discounted_price_per_day } = this.props;
@@ -295,7 +296,8 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                 {isMobile &&
                     <CarNav startDate={start} endDate={end} />
                 }
-                <div className="hero_mother">
+                <Slider Feed={media_set}/>
+                {/* <div className="hero_mother">
                     <div className="hero_in hotels_detail" style={{ maxWidth: '1111px', 
                     background: media_set.length > 1 ? "#E6E6E6" : '##fafafa' }}>
                         {media_set.length > 1 ? 
@@ -377,7 +379,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                                 <Spinner >در حال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
                             </div>}
                     </div>
-                </div>
+                </div> */}
 
                 <Section justifyCenter={true} style={{ marginTop: '24px', zIndex: '2', position: 'relative' }}>
                     {isBrowser &&

@@ -2876,21 +2876,65 @@ width: 40px !important;
   .pelak .field input{
     padding: 8px !important;
   }
-//   .hero_single.version_4 .wrapper h1 {
-//     font-size: 42px;
-//     font-size: 2.625rem;
-//     color: White;
-//     text-shadow: 4px 4px 12px rgba(0,0,0,0.3);
+// SLIDER CAROUSEL 
+.carousel_container{
+  position:relative;
+  width:100%;
+  height:550px;
+  background-color:#e6e6e6;
+  overflow:hidden
+}
+.carousel_container .carousel_FrontImage{
+  max-width: auto;
+  height: 100%;
+  box-shadow:0px 0px 105px #3c3c3c;
+  display: block;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+}
+.carousel_BackImage{
+  transform: scale(1.5);
+  right: 0;
+  top: 0;
+    z-index: 1 !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: auto !important;
+    filter: blur(17px);
+}
+// .Slider_Part .carousel_FrontImage{
+//   width: auto;
+//   height: 100%;
+//   display: block;
+//   margin: auto;
+//   position: relative;
+//   z-index: 2;
 // }
-// .hero_single.version_4 .wrapper h2 {
-//   color: white;
-//   font-weight: 400;
-//   margin: 5px 0 20px 0;
-//   padding: 0;
-//   font-size: 21px;
-//   font-size: 1.3125rem;
-//   text-shadow: 4px 4px 12px rgba(0,0,0,0.3);
-// }
+.HiddenSlide{
+  display:none !important;
+}
+.arrow-Container{
+  position: absolute;
+    top: 246px;
+    z-index: 10;
+    width:100%
+}
+.NAVIGA{
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #989898;
+}
+.NAVIGA:hover,.NAVIGA:focus,.NAVIGA:active{
+  background-color: transparent !important;
+  outline:none;
+}
+.NAVIGA.arrow-left{
+  left:0;
+  position: absolute;
+}
 `;
 
 enum Margin {

@@ -2935,6 +2935,15 @@ width: 40px !important;
   left:0;
   position: absolute;
 }
+
+@media (max-width:768px){
+.carousel_container{  
+    height: 230px;
+  }
+  .arrow-Container {
+    top: 38%;
+  }
+}
 `;
 
 enum Margin {

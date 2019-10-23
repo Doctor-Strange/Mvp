@@ -2925,7 +2925,7 @@ width: 40px !important;
   background: transparent;
   border: none;
   font-size: 20px;
-  color: #989898;
+  color: #fff;
 }
 .NAVIGA:hover,.NAVIGA:focus,.NAVIGA:active{
   background-color: transparent !important;
@@ -2935,6 +2935,13 @@ width: 40px !important;
   left:0;
   position: absolute;
 }
+.FullScreen{
+  position: absolute;
+  bottom: 20px;
+  right: 16px;
+  color: #fff;
+  z-index: 3;
+}
 
 @media (max-width:768px){
 .carousel_container{  
@@ -2942,6 +2949,99 @@ width: 40px !important;
   }
   .arrow-Container {
     top: 38%;
+  }
+}
+
+// GALLERY STYLES
+.Gallery_Container{
+  overflow:hidden;
+  overflow-y:scroll;
+  padding-top: 30px;
+  position:fixed;
+  top:0;
+  right:0;
+  width:100%;
+  z-index: 999;
+  height: 100%;
+    background: rgba(0,0,0,0.89);
+}
+.closeButton{
+  z-index: 1000;
+    color: #fff;
+    position: absolute;
+    right: 40px;  
+}
+.show_part{
+  width: 80%;
+    height: 450px;
+    margin: auto;
+}
+.show_part img{
+  height: 100%;
+  display: block;
+  margin: auto;
+}
+.thumbnail_part{
+  width: 80%;
+    margin: auto;
+    display: flex;
+    overflow-x: scroll;
+    height:100px;
+    margin-top:20px;
+    padding-bottom: 6px;
+  }
+
+  /* width */
+  .thumbnail_part::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.thumbnail_part::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+.thumbnail_part::-webkit-scrollbar-thumb {
+  background:  #555; 
+}
+
+/* Handle on hover */
+.thumbnail_part::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+  .thumbnail_part img{
+    border: 1px solid #fff;
+    border-radius: 4px;
+    margin: 0 10px;
+  display:inline-block;
+  vertical-align:top;
+  height:100%;
+}
+
+@media (max-width:960px){
+  .show_part {
+    height: 360px;
+    margin-bottom: 80px;
+  }
+  .closeButton {
+    right: 10px;
+  }
+}
+
+@media (max-width:660px){
+  .show_part {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 96%;
+    height: auto;
+}
+.show_part img {
+  width: 100%;
+}
+  .closeButton {
+    right: 10px;
   }
 }
 `;

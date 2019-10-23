@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Icon } from "semantic-ui-react";
+import Gallery from "./Gallery/Gallery";
 
 class Slider extends Component {
   state = {
     heightController: 0,
-    slideIndex: 0
+    slideIndex: 0,
+    colseModal: true
   };
   positionController = e => {
     e.persist();
@@ -31,16 +33,24 @@ class Slider extends Component {
     ) {
       this.setState(p => {
         return {
-          slideIndex: 1+ p.slideIndex
+          slideIndex: 1 + p.slideIndex
         };
       });
-    } else if (this.state.slideIndex > 0) {
+    } else if (slide === "left" && this.state.slideIndex > 0) {
       this.setState(p => {
         return {
-          slideIndex: 1-p.slideIndex 
+          slideIndex: p.slideIndex - 1
         };
       });
-    }
+    } else return;
+  };
+
+  CloseGallery = () => {
+    this.setState(p => {
+      return {
+        colseModal: !p.colseModal
+      };
+    });
   };
 
   render() {
@@ -48,54 +58,36 @@ class Slider extends Component {
 
     const { Feed } = this.props;
     let carousel = Feed.length > 1 ? true : false;
-    console.log(this.state.heightController);
     return (
       <div className="carousel_container">
+        {!this.state.colseModal && (
+          <Gallery Feed={Feed} CloseGallery={this.CloseGallery} />
+        )}
         {carousel ? (
-          Feed.map((item, i) => {
-            return (
-              <>
-                <img
-                  className={[
-                    "carousel_FrontImage",
-                    this.state.slideIndex === i ? "activslide" : "HiddenSlide"
-                  ].join(" ")}
-                  src={item}
-                  key={i}
-                  alt="تصویر اسلایدر"
-                />
-                <img
-                  className={[
-                    "carousel_BackImage",
-                    this.state.slideIndex === i ? "activslide" : "HiddenSlide"
-                  ].join(" ")}
-                  style={{
-                    top: `-${this.state.heightController}px`
-                  }}
-                  src={item}
-                  key={i}
-                  alt="تصویر اسلایدر"
-                  onLoad={this.positionController}
-                />
-                <div className="arrow-Container">
-                  <button className="NAVIGA arrow-right">
-                    <Icon
-                      onClick={() => this.SliderNav("right")}
-                      name="chevron right"
-                      size="big"
-                    />
-                  </button>
-                  <button className="NAVIGA arrow-left">
-                    <Icon
-                      onClick={() => this.SliderNav("left")}
-                      name="chevron left"
-                      size="big"
-                    />
-                  </button>
-                </div>
-              </>
-            );
-          })
+          <>
+            <img
+              className="carousel_FrontImage"
+              // className={[
+              //   "carousel_FrontImage",
+              //   this.state.slideIndex === i ? "activslide" : "HiddenSlide"
+              // ].join(" ")}
+              src={Feed[this.state.slideIndex]}
+              alt="تصویر اسلایدر"
+            />
+            <img
+              className="carousel_BackImage"
+              // className={[
+              //   "carousel_BackImage",
+              //   this.state.slideIndex === i ? "activslide" : "HiddenSlide"
+              // ].join(" ")}
+              style={{
+                top: `-${this.state.heightController}px`
+              }}
+              src={Feed[this.state.slideIndex]}
+              alt="تصویر اسلایدر"
+              onLoad={this.positionController}
+            />
+          </>
         ) : (
           <>
             <img
@@ -115,6 +107,31 @@ class Slider extends Component {
             />
           </>
         )}
+        {carousel && (
+          <div className="arrow-Container">
+            {this.state.slideIndex < this.props.Feed.length - 1 && (
+              <button className="NAVIGA arrow-right">
+                <Icon
+                  onClick={() => this.SliderNav("right")}
+                  name="chevron right"
+                  size="big"
+                />
+              </button>
+            )}
+            {this.state.slideIndex > 0 && (
+              <button className="NAVIGA arrow-left">
+                <Icon
+                  onClick={() => this.SliderNav("left")}
+                  name="chevron left"
+                  size="big"
+                />
+              </button>
+            )}
+          </div>
+        )}
+        <div className="FullScreen" onClick={this.CloseGallery}>
+          <Icon name="expand" size="big" />
+        </div>
       </div>
     );
   }

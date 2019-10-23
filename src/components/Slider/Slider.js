@@ -129,9 +129,11 @@ class Slider extends Component {
             )}
           </div>
         )}
-        <div className="FullScreen" onClick={this.CloseGallery}>
-          <Icon name="expand" size="big" />
-        </div>
+        {carousel && (
+          <div className="FullScreen" onClick={this.CloseGallery}>
+            <Icon name="expand" size="big" />
+          </div>
+        )}
       </div>
     );
   }

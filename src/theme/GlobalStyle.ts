@@ -2895,14 +2895,14 @@ width: 40px !important;
   max-width: 100%;
 }
 .carousel_BackImage{
-  transform: scale(1.5);
+  transform: scale(1.7);
   right: 0;
   top: 0;
     z-index: 1 !important;
     position: absolute !important;
     width: 100% !important;
     height: auto !important;
-    filter: blur(17px);
+    filter: blur(20px);
 }
 // .Slider_Part .carousel_FrontImage{
 //   width: auto;
@@ -2985,6 +2985,7 @@ width: 40px !important;
   width: 80%;
     margin: auto;
     display: flex;
+    justify-content: center;
     overflow-x: scroll;
     height:100px;
     margin-top:20px;

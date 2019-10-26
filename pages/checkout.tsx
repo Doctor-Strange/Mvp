@@ -31,6 +31,7 @@ import moment from "moment-jalaali";
 moment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 import swal from "@sweetalert/with-react";
 import Insurance from '../src/components/insurance/Insurance'
+import { toast } from "react-toastify";
 
 export default withTranslation("common")(
   class extends React.Component<{
@@ -145,6 +146,14 @@ export default withTranslation("common")(
           token: jsCookie.get("token")
         });
         if (res) {
+        toast.success("درخواست شما ثبت شد. اجاره‌ دهنده پس از بررسی و در صورت نیاز، تماس با شما، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.", {
+          position: "bottom-center",
+          autoClose: false,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true
+        });
           Router.push({
             pathname: "/requests",
             query: {

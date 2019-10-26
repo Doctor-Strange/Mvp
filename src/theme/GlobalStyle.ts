@@ -2973,7 +2973,7 @@ width: 40px !important;
 }
 .show_part{
   width: 80%;
-    height: 450px;
+  height: 70vh;
     margin: auto;
 }
 .show_part img{
@@ -3045,6 +3045,46 @@ width: 40px !important;
     right: 10px;
   }
 }
+.rightSlide{
+  opacity:0;
+  // transition:opacity 0.3s,
+  animation: fadeIN 0.25s linear 0.1s  forwards 
+}
+
+@keyframe fadeIN{
+  0%{
+    opacity:0;
+
+  }
+  100%{
+    opacity:1
+
+  }
+}
+.Toastify__toast-body {
+  text-align: right;
+  color: #2a2a2a;
+  font-family: vazir;
+  direction: rtl;
+}
+.Toastify__toast--success {
+  background: #f1f1f1;
+}
+
+button.Toastify__close-button.Toastify__close-button--success {
+  color: #2a2a2a;
+  padding-left: 11px;
+  display: block;
+}
+
+button.Toastify__close-button.Toastify__close-button--success:hover {
+  background-color: transparent !important;
+}
+
+.Toastify__toast-container {
+  z-index: 999999999;
+}
+
 `;
 
 enum Margin {

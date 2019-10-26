@@ -6,7 +6,8 @@ class Slider extends Component {
   state = {
     heightController: 0,
     slideIndex: 0,
-    colseModal: true
+    colseModal: true,
+    direction:null
   };
   positionController = e => {
     e.persist();
@@ -26,20 +27,21 @@ class Slider extends Component {
   };
 
   SliderNav = slide => {
-    console.log(slide);
     if (
       slide === "right" &&
       this.state.slideIndex < this.props.Feed.length - 1
     ) {
       this.setState(p => {
         return {
-          slideIndex: 1 + p.slideIndex
+          slideIndex: 1 + p.slideIndex,
+          direction:slide
         };
       });
     } else if (slide === "left" && this.state.slideIndex > 0) {
       this.setState(p => {
         return {
-          slideIndex: p.slideIndex - 1
+          slideIndex: p.slideIndex - 1,
+          direction:slide          
         };
       });
     } else return;
@@ -66,11 +68,10 @@ class Slider extends Component {
         {carousel ? (
           <>
             <img
-              className="carousel_FrontImage"
-              // className={[
-              //   "carousel_FrontImage",
-              //   this.state.slideIndex === i ? "activslide" : "HiddenSlide"
-              // ].join(" ")}
+              className={[
+                "carousel_FrontImage",
+                this.state.direction === "right" ? "rightSlide" : "leftSlide"
+              ].join(" ")}
               src={Feed[this.state.slideIndex]}
               alt="تصویر اسلایدر"
             />

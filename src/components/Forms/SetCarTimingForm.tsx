@@ -512,7 +512,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           .then(response => {
               setTimeout(() => {
                 actions.setSubmitting(false);
-                Router.push('/car/'+ id);
+                Router.push(`/car/${id}/${car.car.brand.name.fa}-${car.car.name.fa}`);
               }, 1000);
           })
         }
@@ -540,7 +540,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           .then(response => {
               setTimeout(() => {
                 actions.setSubmitting(false);
-                Router.push('/car/'+ id);
+                Router.push(`/car/${id}/${car.car.brand.name.fa}-${car.car.name.fa}`);
               }, 1000);
           })
         }

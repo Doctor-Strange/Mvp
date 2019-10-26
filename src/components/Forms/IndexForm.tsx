@@ -112,7 +112,20 @@ const BoxAccount = styled.div`
     input.DatePicker__input {
       cursor: pointer;
     }
+  .wrapper{
+    position:relative;
   }
+  .JustForTehran{
+    position: absolute;
+    margin: 0 !important;
+    right: 42px;
+    bottom: 7px;
+    color: #2A2A2A !important;
+    z-index: 2;
+    text-shadow: none !important;
+    font-size: 14px !important;
+  }
+}
 `;
 
 interface IIndexFormValues {
@@ -133,6 +146,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   const [activeField1, setactiveField1] = useState(false);
   const [activeField2, setactiveField2] = useState(false);
   const [CalenderWork, SetCalenderWork] = useState(false);
+  const [locationAlert,setAlert] = useState(false)
   const [datepicker_animation, setDPA] = useState(`.DatePicker__calendarContainer {
   transform: translateX(-22%);
 }
@@ -304,7 +318,9 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                       } */}
                       <Box className="indexFullOnMobile" width={[4 / 16]}>
                         <label readonly style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
-                        <input disabled value="تهران" type = "text"/>  
+                        <input disabled value="تهران" type = "text" onClick={()=>{alert();setAlert(true)}
+                        }/>  
+                        {locationAlert && <p className="JustForTehran">اتولی فعلا اجاره‌های با مبدا تهران را پوشش می‌دهد.</p> }
                         {/* <Form.Dropdown
                         disabled
                           label={'خودرو را کجا تحویل می‌گیرید؟'}

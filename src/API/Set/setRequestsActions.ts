@@ -27,11 +27,11 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
     switch (data.action) {
       case 'approve':
         ACTION_URL = SET_ORDER_APPROVE;
-        message= "درخواست تایید شما با موفقیت ثبت شد"
+        message= "تایید درخواست ثبت شد. در صورتی که اجاره‌ گیرنده مبلغ اجاره را پرداخت کند، درخواست قطعی می‌شود و از طریق پیامک به اطلاع شما می‌رسد."
         break;
       case 'reject':
         ACTION_URL = SET_ORDER_REJECT;
-        message= "رد درخواست انجام شد"
+        message= "رد درخواست اجاره ثبت شد و به اطلاع اجاره گیرنده می‌رسد."
         break;
       case 'cancel':
         ACTION_URL = SET_ORDER_CANCEL;
@@ -42,11 +42,11 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
         break;
       case 'deliver':
         ACTION_URL = SET_ORDER_DLIVER;
-        message= "درخواست شما با موفقیت ثبت شد"
+        message= "سفر خوبی را برایتان آرزو می‌کنیم. لطفا در نگهداری خودرو دقت فرمایید. در صورت بروز هرگونه مشکل با اجاره گیرنده یا اتولی تماس بگیرید."
         break;
       case 'return':
         ACTION_URL = SET_ORDER_RETURN;
-        message= "درخواست شما با موفقیت ثبت شد"
+        message= "امیدواریم تجربه خوبی از اجاره خودروتان داشته باشید. نظرتان در مورد اجاره گیرنده را با سایر کاربران در میان بگذارید."
         break;
       case 'rate':
         if (data.payload.toRate === 'renter') {
@@ -94,9 +94,9 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
       )
       .then(response => {
           resolve(response.data);
-          toast.success(message, {
+          data.action !== 'pay' && toast.success(message, {
             position: "bottom-center",
-            autoClose: 5000,
+            autoClose: false,
             hideProgressBar: true,
             closeOnClick: false,
             pauseOnHover: true,

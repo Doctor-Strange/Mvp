@@ -231,18 +231,18 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     }
 
     const openRatingModal = (id) => {
-        toast.success(
-            statusOwner === 'renter'
-            ?"امیدواریم سفر خوبی را تجربه کرده باشید. لطفا نظرتان در مورد ماشین و اجاره دهنده را با سایر کاربران در میان بگذارید."
-            : "لطفا نظرتان را در مورد اجاره گیرنده با ما به اشتراک بگذارید"
-            , {
-            position: "bottom-center",
-            autoClose: false,
-            hideProgressBar: true,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true
-          });
+        // toast.success(
+        //     statusOwner === 'renter'
+        //     ?"امیدواریم سفر خوبی را تجربه کرده باشید. لطفا نظرتان در مورد ماشین و اجاره دهنده را با سایر کاربران در میان بگذارید."
+        //     : "لطفا نظرتان را در مورد اجاره گیرنده با ما به اشتراک بگذارید"
+        //     , {
+        //     position: "bottom-center",
+        //     autoClose: false,
+        //     hideProgressBar: true,
+        //     closeOnClick: false,
+        //     pauseOnHover: true,
+        //     draggable: true
+        //   });
         // console.log(id,
         //     status,
         //     statusOwner,

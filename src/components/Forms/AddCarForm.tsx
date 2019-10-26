@@ -549,7 +549,6 @@ export default withTranslation('common')(connect(state => state)(
         axios
           .post(process.env.PRODUCTION_ENDPOINT + '/core/car/get?id=' + modelID)
           .then(response => {
-            console.log(response)
             if (response.data.success) {
               let output = {};
               const {
@@ -1087,11 +1086,9 @@ export default withTranslation('common')(connect(state => state)(
                                     setFieldValue(
                                       'carGearboxType',
                                       carInfo.transmission_type
-                                    );
-                                    setFieldValue(
-                                      'carBodyStyle',
-                                      carInfo.body_style
-                                    );
+                                      );
+                                    setFieldValue('carBodyStyle', carInfo.body_style);
+
                                     setFieldValue('carCapacity', carInfo.capacity);
     
                                     // clear checkboxes
@@ -1315,6 +1312,7 @@ export default withTranslation('common')(connect(state => state)(
                           height: "50px",
                           marginTop: "4px"
                         }}
+                        value={values.carBodyStyle}
                         className={Boolean(errors.carBodyStyle && touched.carBodyStyle) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
                         disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 

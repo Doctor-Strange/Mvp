@@ -12,15 +12,38 @@ class Gallery extends Component {
     });
   };
 
+  SliderNav = slide => {
+    if (
+      slide === "right" &&
+      this.state.index < this.props.Feed.length - 1
+    ) {
+      this.setState(p => {
+        return {
+          index: 1 + p.index,
+          // direction:slide
+        };
+      });
+    } else if (slide === "left" && this.state.index > 0) {
+      this.setState(p => {
+        return {
+          index: p.index - 1,
+          // direction:slide          
+        };
+      });
+    } else return;
+  };
+
   render() {
     const { Feed } = this.props;
+    let carousel = Feed.length > 1 ? true : false;
+
     return (
       <div className="Gallery_Container">
         <div className="closeButton" onClick={this.props.CloseGallery}>
           <Icon name="window close outline" size="big" />
         </div>
         <div className="show_part">
-          <img src={Feed[this.state.index]} alt="تصویر گالری" />
+          <img src={Feed[this.state.index]} alt="تصویر گالری" onTouchMoveCapture={(e)=>{e.persist();console.log(e)}}/>
         </div>
         <div className="thumbnail_part">
           {Feed.map((item, i) => {
@@ -33,6 +56,28 @@ class Gallery extends Component {
             );
           })}
         </div>
+        {carousel && (
+          <div className="arrow-Container">
+            {this.state.index < this.props.Feed.length - 1 && (
+              <button className="NAVIGA arrow-right">
+                <Icon
+                  onClick={() => this.SliderNav("right")}
+                  name="chevron right"
+                  size="big"
+                />
+              </button>
+            )}
+            {this.state.index > 0 && (
+              <button className="NAVIGA arrow-left">
+                <Icon
+                  onClick={() => this.SliderNav("left")}
+                  name="chevron left"
+                  size="big"
+                />
+              </button>
+            )}
+          </div>
+        )}
       </div>
     );
   }

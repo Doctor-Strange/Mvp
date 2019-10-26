@@ -2922,6 +2922,7 @@ width: 40px !important;
     width:100%
 }
 .NAVIGA{
+  cursor:pointer;
   background: transparent;
   border: none;
   font-size: 20px;
@@ -2936,6 +2937,7 @@ width: 40px !important;
   position: absolute;
 }
 .FullScreen{
+  cursor:pointer;
   position: absolute;
   bottom: 20px;
   right: 16px;
@@ -2968,6 +2970,7 @@ width: 40px !important;
 .closeButton{
   z-index: 1000;
     color: #fff;
+    cursor:pointer;
     position: absolute;
     right: 40px;  
 }
@@ -3013,6 +3016,7 @@ width: 40px !important;
 }
 
   .thumbnail_part img{
+    cursor:pointer;
     border: 1px solid #fff;
     border-radius: 4px;
     margin: 0 10px;
@@ -3037,6 +3041,9 @@ width: 40px !important;
     margin-bottom: 20px;
     width: 96%;
     height: auto;
+}
+.thumbnail_part {
+  width: 96%;
 }
 .show_part img {
   width: 100%;

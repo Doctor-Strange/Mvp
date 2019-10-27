@@ -95,13 +95,14 @@ class Gallery extends Component {
                 } else {
                   this.setState({
                     rightV: left,
-                    left:"auto"
                   });
                 }
               }
             }}
             style={{
-              right: this.state.rightV + "px"
+              right: this.state.rightV + "px",
+              left:"auto"
+
             }}
           />
         </div>

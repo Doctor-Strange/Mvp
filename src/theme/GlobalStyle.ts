@@ -2962,6 +2962,16 @@ width: 40px !important;
     top: 38%;
     display: block;
   }
+  .G_R,
+  .G_L{
+    top:26%
+  }
+  .G_R{
+right:0;
+  }
+  .G_L{
+    left:0
+  }
 }
 
 @media (max-width:991px){

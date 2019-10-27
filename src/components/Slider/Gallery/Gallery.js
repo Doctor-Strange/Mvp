@@ -119,7 +119,7 @@ class Gallery extends Component {
         {carousel && (
           <>
             {this.state.index < this.props.Feed.length - 1 && (
-              <button className="NAVIGA arrow-right">
+              <button className="NAVIGA arrow-right G_R">
                 <Icon
                   onClick={() => this.SliderNav("right")}
                   name="chevron right"
@@ -128,7 +128,7 @@ class Gallery extends Component {
               </button>
             )}
             {this.state.index > 0 && (
-              <button className="NAVIGA arrow-left">
+              <button className="NAVIGA arrow-left G_L">
                 <Icon
                   onClick={() => this.SliderNav("left")}
                   name="chevron left"

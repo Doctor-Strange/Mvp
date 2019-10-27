@@ -64,7 +64,7 @@ class DropDownWithSearch extends Component {
               cursor: "pointer",
               zIndex: "4",
               fontSize: "15px",
-              color: "#767676"
+              color: "rgb(165, 165, 165)"
             }}
             onClick={() => {
               this.setState({ InputValue: "" });

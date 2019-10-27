@@ -37,8 +37,8 @@ export default withTranslation("common")(
   class extends React.Component<{
     t: any;
     rentalCarID: number;
-    start: any;
-    end: any;
+    start?: any;
+    end?: any;
     search_id: string;
     user: any;
   }> {
@@ -133,6 +133,7 @@ export default withTranslation("common")(
     async reserve(search_id) {
       // check if user is logged in, if its not, open login modal
       if (!jsCookie.get("token")) {
+        localStorage["URL"] =Router.router.asPath.replace("?","%3F") 
         this.state.openModal();
         return;
       }

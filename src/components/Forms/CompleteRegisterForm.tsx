@@ -222,10 +222,18 @@ export default withTranslation('common')(
                     //   // fixme
                     //   path_to_go = decodeURIComponent(query.go_to_pathname) + decodeURIComponent("?") + decodeURIComponent(query.go_to_queries);
                     // }
-                    Router.push({
-                      pathname: '/profile',
-                      query: { id: userId },
-                    })
+                    if(localStorage["URL"]){
+                      // window.location.href = localStorage["URL"]
+                      Router.push({
+                        pathname: localStorage["URL"]
+                      })
+                    }else{
+
+                      Router.push({
+                        pathname: '/profile',
+                        query: { id: userId },
+                      })
+                    }
                     // Router.push(path_to_go, {
                     //   pathname: path_to_go
                     // }

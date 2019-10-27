@@ -77,7 +77,7 @@ class Gallery extends Component {
                   );
                 } else {
                   this.setState({
-                    rightV: "-" + right
+                    rightV: "-" + 0
                   });
                 }
               } else {
@@ -94,14 +94,13 @@ class Gallery extends Component {
                   );
                 } else {
                   this.setState({
-                    rightV: left,
+                    rightV:0,
                   });
                 }
               }
             }}
             style={{
               right: this.state.rightV + "px",
-              left:"auto"
 
             }}
           />

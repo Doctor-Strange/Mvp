@@ -203,20 +203,21 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
     //   updateInfo = () => { }
 
     reserve(search_id) {
-        if (!jsCookie.get('token')) {
-            this.loginmodal.handleOpenModal(); // do stuff
+        // if (!jsCookie.get('token')) {
+        //     localStorage["URL"] = Router.router.asPath
+        //     this.loginmodal.handleOpenModal(); // do stuff
 
-        } else if (!jsCookie.get('first_name')) {
-            toast.error('ثابت نام خود را کامل کنید', {
-                position: "bottom-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true
-            });
-            Router.push({ pathname: '/complete-register' })
-        } else {
+        // } else if (!jsCookie.get('first_name')) {
+        //     toast.error('ثابت نام خود را کامل کنید', {
+        //         position: "bottom-center",
+        //         autoClose: 3000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true
+        //     });
+        //     Router.push({ pathname: '/complete-register' })
+        // } else {
             // const { search_id, rentalCarID } = this.props;
             let href = "";
             if (search_id) {
@@ -224,7 +225,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             } else href = `/checkout`
             // const as = `/checkout/${rentalCarID}/${search_id}`;
             Router.push(href);
-        }
+        // }
     }
 
     setheightController= (a) =>{

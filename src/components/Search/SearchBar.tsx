@@ -105,13 +105,14 @@ export class SearchBar extends React.Component<{
     if (!cityName) {
       loadingCity = true;
     }
+    console.log(count>0)
     const textDate = ` از تاریخ ${convertNumbers2Persian(start)} تا ${convertNumbers2Persian(end)}`;
     return (
       <SearchResult id="results">
         <div className="container">
           <Flex justifyContent="space-around" className="row hide_on_mobile">
             <Box width={12 / 12} px={2}>
-              <h4 style={{ fontSize: '16px', textAlign: 'center' }}>
+            {count>0 &&  <h4 style={{ fontSize: '16px', textAlign: 'center' }}>
                 <strong> {convertNumbers2Persian(count)} </strong>
                 {text}
                 
@@ -143,6 +144,7 @@ export class SearchBar extends React.Component<{
                 {/* {loadingCity ? <Icon loading name='spinner' /> : ""} */}
                 {textDate ? textDate : ""}
               </h4>
+            }
             </Box>
             {/* <Box width={9 / 12} px={2}>
               <Form>
@@ -205,11 +207,12 @@ export class SearchBar extends React.Component<{
             </Box> */}
           </Flex>
           <div className="hide_on_desktop">
-            <h4>
+            {count>0 && <h4>
               <strong>{convertNumbers2Persian(count)}</strong> {text}
               {/* {loadingCity ? <Icon loading name='spinner' /> : cityName} <br /> {textDate ? textDate : ""} */}
               {cityName} <br /> {textDate ? textDate : ""}
             </h4>
+            }
           </div>
         </div>
       </SearchResult >

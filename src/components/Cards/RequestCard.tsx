@@ -69,7 +69,7 @@ const Card = styled.div`
         }
     }
     .DD {
-        margin-top:5px !important;
+        margin-top:14px !important;
         *{
             font-size: 14px;
 font-weight: 400;

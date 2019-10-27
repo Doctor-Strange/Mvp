@@ -2920,18 +2920,24 @@ width: 40px !important;
 .arrow-Container{
   position: absolute;
     top: 246px;
-    z-index: 10;
+    z-index: 1;
     width:100%
 }
 .NAVIGA{
-  cursor:pointer;
+  cursor: pointer;
   background: transparent;
   border: none;
-  font-size: 20px;
-  color: #fff;
+  margin-right: 10px;
+  font-size: 12px;
+  color: #7d7d7d;
+  border-radius: 50px;
+  margin-left: 10px;
+  background: #fff;
+  height: 40px;
+  width: 40px;
 }
 .NAVIGA:hover,.NAVIGA:focus,.NAVIGA:active{
-  background-color: transparent !important;
+  background-color: #fff !important;
   outline:none;
 }
 .NAVIGA.arrow-left{
@@ -2948,15 +2954,12 @@ width: 40px !important;
 }
 
 @media (max-width:768px){
-  .arrow-Container{
-      display:none;
-
-  }
 .carousel_container{  
     height: 230px;
   }
   .arrow-Container {
     top: 38%;
+    display: block;
   }
 }
 
@@ -3075,21 +3078,21 @@ height:100%;
 }
 
 .activeDot{
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius:50px;
   background: #fff;
-  margin: 10px;
+  margin: 6px;
   display: inline-block;
   vertical-align: middle;
 }
 
 .deactiveDot{
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 50px;
   background: transparent;
-  margin: 10px;
+  margin:6px;
   display: inline-block;
   vertical-align: middle;
   border: 2px solid #fff;
@@ -3155,6 +3158,43 @@ button.Toastify__close-button.Toastify__close-button--success:hover {
   z-index: 999999999;
 }
 
+
+/*** iPhone and iOS Form Input Zoom Fixes ***/
+/* Fix Input Zoom on devices older than iPhone 5: */
+@media screen and (device-aspect-ratio: 2/3) {
+    select, textarea, input[type="text"], input[type="password"],
+    input[type="datetime"], input[type="datetime-local"],
+    input[type="date"], input[type="month"], input[type="time"],
+    input[type="week"], input[type="number"], input[type="email"],
+    input[type="url"]{ font-size: 16px; }
+}
+
+/* Fix Input Zoom on iPhone 5, 5C, 5S, iPod Touch 5g */
+@media screen and (device-aspect-ratio: 40/71) {
+    select, textarea, input[type="text"], input[type="password"],
+    input[type="datetime"], input[type="datetime-local"],
+    input[type="date"], input[type="month"], input[type="time"],
+    input[type="week"], input[type="number"], input[type="email"],
+    input[type="url"]{ font-size: 16px; }
+}
+
+/* Fix Input Zoom on iPhone 6, iPhone 6s, iPhone 7  */
+@media screen and (device-aspect-ratio: 375/667) {
+    select, textarea, input[type="text"], input[type="password"],
+    input[type="datetime"], input[type="datetime-local"],
+    input[type="date"], input[type="month"], input[type="time"],
+    input[type="week"], input[type="number"], input[type="email"],
+    input[type="url"]{ font-size: 16px; }
+}
+
+/* Fix Input Zoom on iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus, iPhone 8, iPhone X, XS, XS Max  */
+@media screen and (device-aspect-ratio: 9/16) {
+    select, textarea, input[type="text"], input[type="password"],
+    input[type="datetime"], input[type="datetime-local"],
+    input[type="date"], input[type="month"], input[type="time"],
+    input[type="week"], input[type="number"], input[type="email"],
+    input[type="url"]{ font-size: 16px; }
+}
 `;
 
 enum Margin {

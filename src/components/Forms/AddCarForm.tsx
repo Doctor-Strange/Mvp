@@ -269,6 +269,9 @@ export default withTranslation('common')(connect(state => state)(
     }
 
     componentDidMount() {
+      if (!this.props.user.token ){
+        localStorage["URL"] = Router.router.asPath        
+      }
       // changed by sajad 980528
       // disable Auto scroll because of small screens
       // scrollToElement('#form');
@@ -621,6 +624,7 @@ export default withTranslation('common')(connect(state => state)(
       const { checkboxes, error } = this.state;
       const { token } = this.props.user;
       const { t } = this.props;
+      
       const fieldErrorGenrator = fieldName => {
         return (
           " لطفاً فیلد " +

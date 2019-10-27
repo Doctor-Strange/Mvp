@@ -123,7 +123,7 @@ const BoxAccount = styled.div`
     color: #2A2A2A !important;
     z-index: 2;
     text-shadow: none !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
   }
 }
 `;
@@ -331,8 +331,9 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                       } */}
                       <Box className="indexFullOnMobile" width={[4 / 16]}>
                         <label readonly style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
-                        <input disabled value="تهران" type = "text" onClick={()=>{alert();setAlert(true)}
-                        }/>  
+                        <span  onClick={()=>{setAlert(true)}}>
+                          <input disabled value="تهران" type = "text"/>  
+                        </span>
                         {locationAlert && <p className="JustForTehran">اتولی فعلا اجاره‌های با مبدا تهران را پوشش می‌دهد.</p> }
                         {/* <Form.Dropdown
                         disabled

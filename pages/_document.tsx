@@ -77,7 +77,7 @@ export default class extends Document {
         </script>
           <meta
             name="viewport"
-            content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+            content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"
           />
           {/* <meta name="google-site-verification" content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto" />
           <meta name="yandex-verification" content="91fb37895d55bde3" /> */}

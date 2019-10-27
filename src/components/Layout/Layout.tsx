@@ -76,10 +76,10 @@ class Layout extends React.Component<{
       >
         <div id="layout" className={theme.direction.direction}>
           <Head>
-            <meta
+            {/* <meta
               name="viewport"
               content="width=device-width, initial-scale=1, shrink-to-fit=no"
-            />
+            /> */}
           </Head>
           <Header
             onRef={this.doRef}

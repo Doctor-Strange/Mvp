@@ -2939,9 +2939,9 @@ width: 40px !important;
   position: absolute;
 }
 .FullScreen{
-  cursor:pointer;
+  cursor: pointer;
   position: absolute;
-  bottom: 20px;
+  top: 20px;
   right: 16px;
   color: #fff;
   z-index: 3;
@@ -2958,6 +2958,20 @@ width: 40px !important;
   .arrow-Container {
     top: 38%;
   }
+}
+
+@media (max-width:991px){
+  .NavBotton {
+    bottom: 44px !important;
+  }
+}
+@media (max-width:768px){
+  .deactiveDot, .activeDot{
+    margin: 4px !important;
+  }
+  .NavBotton {
+    bottom: 0px !important;
+}
 }
 
 // GALLERY STYLES
@@ -3047,6 +3061,38 @@ height:100%;
   .closeButton {
     right: 10px;
   }
+}
+
+.NavBotton {
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 4;
+  text-align: center;
+}
+
+.activeDot{
+  width: 15px;
+  height: 15px;
+  border-radius:50px;
+  background: #fff;
+  margin: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.deactiveDot{
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+  background: transparent;
+  margin: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 2px solid #fff;
 }
 
 @media (max-width:660px){

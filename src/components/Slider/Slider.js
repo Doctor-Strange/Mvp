@@ -10,7 +10,7 @@ class Slider extends Component {
     rightV: 0,
     startPoint: 0,
     FromX: 0,
-    falgControl : false
+    falgControl: false
     // direction:null
   };
   positionController = e => {
@@ -73,7 +73,7 @@ class Slider extends Component {
               onTouchEnd={() => {
                 this.setState({
                   rightV: 0,
-                  falgControl:false
+                  falgControl: false
                 });
               }}
               onTouchStart={e => {
@@ -81,7 +81,7 @@ class Slider extends Component {
                 this.setState({
                   startPoint: e.changedTouches[0].screenX,
                   FromX: e.target.x,
-                  falgControl:true
+                  falgControl: true
                 });
               }}
               onTouchMoveCapture={e => {
@@ -89,14 +89,15 @@ class Slider extends Component {
                 if (e.changedTouches[0].screenX > this.state.startPoint) {
                   let right =
                     e.changedTouches[0].screenX - this.state.startPoint;
-                  if (right < 200  && this.state.falgControl) {
+                  if (right < 100 && this.state.falgControl) {
                     this.setState(
                       {
                         rightV: 0,
-                        falgControl:false
+                        falgControl: false
                       },
                       () => {
                         this.SliderNav("left");
+                        return;
                       }
                     );
                   } else {
@@ -107,14 +108,15 @@ class Slider extends Component {
                 } else {
                   let left =
                     this.state.startPoint - e.changedTouches[0].screenX;
-                  if (left > 200 && this.state.falgControl) {
+                  if (left > 100 && this.state.falgControl) {
                     this.setState(
                       {
                         rightV: 0,
-                        falgControl:false
+                        falgControl: false
                       },
                       () => {
                         this.SliderNav("right");
+                        return;
                       }
                     );
                   } else {
@@ -184,6 +186,24 @@ class Slider extends Component {
                 />
               </button>
             )}
+          </div>
+        )}
+        {carousel && (
+          <div className="NavBotton" >
+            {Feed.map((_, i) => {
+              return (
+                <span
+                  onClick={() => {
+                    this.setState({
+                      slideIndex: i
+                    });
+                  }}
+                  className={
+                    this.state.slideIndex === i ? "activeDot" : "deactiveDot"
+                  }
+                ></span>
+              );
+            })}
           </div>
         )}
         {carousel && (

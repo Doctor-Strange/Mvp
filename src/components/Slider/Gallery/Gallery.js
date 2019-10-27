@@ -94,7 +94,8 @@ class Gallery extends Component {
                   );
                 } else {
                   this.setState({
-                    rightV: left
+                    rightV: left,
+                    left:"auto"
                   });
                 }
               }

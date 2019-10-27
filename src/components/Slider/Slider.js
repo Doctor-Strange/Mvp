@@ -167,7 +167,7 @@ class Slider extends Component {
           </>
         )}
         {carousel && (
-          <div className="arrow-Container">
+          <>
             {this.state.slideIndex < this.props.Feed.length - 1 && (
               <button className="NAVIGA arrow-right">
                 <Icon
@@ -186,7 +186,7 @@ class Slider extends Component {
                 />
               </button>
             )}
-          </div>
+          </>
         )}
         {carousel && (
           <div className="NavBotton" >

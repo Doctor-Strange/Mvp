@@ -2917,13 +2917,10 @@ width: 40px !important;
 .HiddenSlide{
   display:none !important;
 }
-.arrow-Container{
-  position: absolute;
-    top: 246px;
-    z-index: 1;
-    width:100%
-}
 .NAVIGA{
+  position: absolute;
+  top: 246px;
+  z-index: 10;
   cursor: pointer;
   background: transparent;
   border: none;
@@ -2940,8 +2937,12 @@ width: 40px !important;
   background-color: #fff !important;
   outline:none;
 }
+.NAVIGA.arrow-right{
+  right:10px;
+  position: absolute;
+}
 .NAVIGA.arrow-left{
-  left:0;
+  left:10px;
   position: absolute;
 }
 .FullScreen{
@@ -2957,7 +2958,7 @@ width: 40px !important;
 .carousel_container{  
     height: 230px;
   }
-  .arrow-Container {
+  .NAVIGA {
     top: 38%;
     display: block;
   }

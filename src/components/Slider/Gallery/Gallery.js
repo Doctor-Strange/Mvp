@@ -117,7 +117,7 @@ class Gallery extends Component {
           })}
         </div>
         {carousel && (
-          <div className="arrow-Container">
+          <>
             {this.state.index < this.props.Feed.length - 1 && (
               <button className="NAVIGA arrow-right">
                 <Icon
@@ -136,7 +136,7 @@ class Gallery extends Component {
                 />
               </button>
             )}
-          </div>
+          </>
         )}
       </div>
     );

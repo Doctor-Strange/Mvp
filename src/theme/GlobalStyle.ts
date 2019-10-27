@@ -3057,10 +3057,13 @@ height:100%;
     height: auto;
 }
 .thumbnail_part {
-  width: 96%;
+  position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 .show_part img {
-  width: 100%;
+  height: auto;
+    width: 100%;
 }
   .closeButton {
     right: 10px;

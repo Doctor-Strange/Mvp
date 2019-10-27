@@ -9,7 +9,8 @@ class Slider extends Component {
     colseModal: true,
     rightV: 0,
     startPoint: 0,
-    FromX: 0
+    FromX: 0,
+    falgControl : false
     // direction:null
   };
   positionController = e => {
@@ -30,6 +31,7 @@ class Slider extends Component {
   };
 
   SliderNav = slide => {
+    console.log("run")
     if (
       slide === "right" &&
       this.state.slideIndex < this.props.Feed.length - 1
@@ -71,14 +73,16 @@ class Slider extends Component {
             <img
               onTouchEnd={() => {
                 this.setState({
-                  rightV: 0
+                  rightV: 0,
+                  falgControl:false
                 });
               }}
               onTouchStart={e => {
                 e.persist();
                 this.setState({
                   startPoint: e.changedTouches[0].screenX,
-                  FromX: e.target.x
+                  FromX: e.target.x,
+                  falgControl:true
                 });
               }}
               onTouchMoveCapture={e => {
@@ -86,27 +90,39 @@ class Slider extends Component {
                 if (e.changedTouches[0].screenX > this.state.startPoint) {
                   let right =
                     e.changedTouches[0].screenX - this.state.startPoint;
-                  if (right < 200) {
-                    this.SliderNav("right");
+                  if (right < 200  && this.state.falgControl) {
+                    this.setState(
+                      {
+                        rightV: 0,
+                        falgControl:false
+                      },
+                      () => {
+                        this.SliderNav("left");
+                      }
+                    );
+                  } else {
                     this.setState({
-                      rightV: 0
+                      rightV: "-" + right
                     });
                   }
-                  this.setState({
-                    rightV: "-" + right
-                  });
                 } else {
                   let left =
                     this.state.startPoint - e.changedTouches[0].screenX;
-                  if (left > 200) {
-                    this.SliderNav("left");
+                  if (left > 200 && this.state.falgControl) {
+                    this.setState(
+                      {
+                        rightV: 0,
+                        falgControl:false
+                      },
+                      () => {
+                        this.SliderNav("right");
+                      }
+                    );
+                  } else {
                     this.setState({
-                      rightV: 0
+                      rightV: left
                     });
                   }
-                  this.setState({
-                    rightV: left
-                  });
                 }
               }}
               style={{

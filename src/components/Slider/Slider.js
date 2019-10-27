@@ -31,7 +31,6 @@ class Slider extends Component {
   };
 
   SliderNav = slide => {
-    console.log("run")
     if (
       slide === "right" &&
       this.state.slideIndex < this.props.Feed.length - 1

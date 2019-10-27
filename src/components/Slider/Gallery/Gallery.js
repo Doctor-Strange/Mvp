@@ -6,7 +6,8 @@ class Gallery extends Component {
     index: 0,
     rightV: 0,
     startPoint: 0,
-    FromX: 0
+    FromX: 0,
+    falgControl: false
   };
 
   showController = index => {
@@ -16,21 +17,18 @@ class Gallery extends Component {
   };
 
   SliderNav = slide => {
-    if (
-      slide === "right" &&
-      this.state.index < this.props.Feed.length - 1
-    ) {
+    if (slide === "right" && this.state.index < this.props.Feed.length - 1) {
       this.setState(p => {
         return {
-          index: 1 + p.index,
+          index: 1 + p.index
           // direction:slide
         };
       });
     } else if (slide === "left" && this.state.index > 0) {
       this.setState(p => {
         return {
-          index: p.index - 1,
-          // direction:slide          
+          index: p.index - 1
+          // direction:slide
         };
       });
     } else return;
@@ -46,51 +44,64 @@ class Gallery extends Component {
           <Icon name="window close outline" size="big" />
         </div>
         <div className="show_part">
-          <img src={Feed[this.state.index]} alt="تصویر گالری" 
-          
-          onTouchEnd={() => {
-            this.setState({
-              rightV: 0
-            });
-          }}
-          onTouchStart={e => {
-            e.persist();
-            this.setState({
-              startPoint: e.changedTouches[0].screenX,
-              FromX: e.target.x
-            });
-          }}
-          onTouchMoveCapture={e => {
-            e.persist();
-            if (e.changedTouches[0].screenX > this.state.startPoint) {
-              let right =
-                e.changedTouches[0].screenX - this.state.startPoint;
-              if (right < 200) {
-                this.SliderNav("right");
-                this.setState({
-                  rightV: 0
-                });
-              }
+          <img
+            src={Feed[this.state.index]}
+            alt="تصویر گالری"
+            onTouchEnd={() => {
               this.setState({
-                rightV: "-" + right
+                rightV: 0,
+                falgControl: false
               });
-            } else {
-              let left =
-                this.state.startPoint - e.changedTouches[0].screenX;
-              if (left > 200) {
-                this.SliderNav("left");
-                this.setState({
-                  rightV: 0
-                });
-              }
+            }}
+            onTouchStart={e => {
+              e.persist();
               this.setState({
-                rightV: left
+                startPoint: e.changedTouches[0].screenX,
+                FromX: e.target.x,
+                falgControl: true
               });
-            }
-          }}
-          style={{
-            right: this.state.rightV + "px"
-          }}
+            }}
+            onTouchMoveCapture={e => {
+              e.persist();
+              if (e.changedTouches[0].screenX > this.state.startPoint) {
+                let right = e.changedTouches[0].screenX - this.state.startPoint;
+                if (right < 200 && this.state.falgControl) {
+                  this.setState(
+                    {
+                      rightV: 0,
+                      falgControl: false
+                    },
+                    () => {
+                      this.SliderNav("left");
+                    }
+                  );
+                } else {
+                  this.setState({
+                    rightV: "-" + right
+                  });
+                }
+              } else {
+                let left = this.state.startPoint - e.changedTouches[0].screenX;
+                if (left > 200 && this.state.falgControl) {
+                  this.setState(
+                    {
+                      rightV: 0,
+                      falgControl: false
+                    },
+                    () => {
+                      this.SliderNav("right");
+                    }
+                  );
+                } else {
+                  this.setState({
+                    rightV: left
+                  });
+                }
+              }
+            }}
+            style={{
+              right: this.state.rightV + "px"
+            }}
           />
         </div>
         <div className="thumbnail_part">

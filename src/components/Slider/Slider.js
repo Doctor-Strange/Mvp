@@ -102,7 +102,7 @@ class Slider extends Component {
                     );
                   } else {
                     this.setState({
-                      rightV: "-" +10
+                      rightV: "-" +0
                     });
                   }
                 } else {
@@ -121,7 +121,7 @@ class Slider extends Component {
                     );
                   } else {
                     this.setState({
-                      rightV: 10
+                      rightV: 0
                     });
                   }
                 }

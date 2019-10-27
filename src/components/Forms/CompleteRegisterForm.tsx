@@ -224,11 +224,22 @@ export default withTranslation('common')(
                     // }
                     if(localStorage["URL"]){
                       // window.location.href = localStorage["URL"]
-                      Router.push({
-                        pathname: localStorage["URL"]
-                      })
-                    }else{
+                      let index = localStorage["URL"].indexOf("?")
+                      if(index === -1){
+                        Router.push({
+                          pathname: localStorage["URL"],
+                        })
+                        localStorage.removeItem("URL")
+                      }else{
+                        let url = localStorage["URL"].slice(0,index)
+                        Router.push({
+                          pathname: url,
+                          query: { search_id: localStorage["URL"].slice(index+11) },
+                        })
+                        localStorage.removeItem("URL")
 
+                      }
+                    }else{
                       Router.push({
                         pathname: '/profile',
                         query: { id: userId },

@@ -133,7 +133,7 @@ export default withTranslation("common")(
     async reserve(search_id) {
       // check if user is logged in, if its not, open login modal
       if (!jsCookie.get("token")) {
-        localStorage["URL"] =Router.router.asPath.replace("?","%3F") 
+        localStorage["URL"] =Router.router.asPath
         this.state.openModal();
         return;
       }

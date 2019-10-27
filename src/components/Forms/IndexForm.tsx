@@ -124,6 +124,11 @@ const BoxAccount = styled.div`
     z-index: 2;
     text-shadow: none !important;
     font-size: 12px !important;
+    @media (max-width:768px){
+        position:static;
+    font-size: 13px !important;
+
+    }
   }
 }
 `;

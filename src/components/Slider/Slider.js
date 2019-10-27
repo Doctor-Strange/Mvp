@@ -7,6 +7,9 @@ class Slider extends Component {
     heightController: 0,
     slideIndex: 0,
     colseModal: true,
+    rightV: 0,
+    startPoint: 0,
+    FromX: 0
     // direction:null
   };
   positionController = e => {
@@ -33,15 +36,15 @@ class Slider extends Component {
     ) {
       this.setState(p => {
         return {
-          slideIndex: 1 + p.slideIndex,
+          slideIndex: 1 + p.slideIndex
           // direction:slide
         };
       });
     } else if (slide === "left" && this.state.slideIndex > 0) {
       this.setState(p => {
         return {
-          slideIndex: p.slideIndex - 1,
-          // direction:slide          
+          slideIndex: p.slideIndex - 1
+          // direction:slide
         };
       });
     } else return;
@@ -56,8 +59,6 @@ class Slider extends Component {
   };
 
   render() {
-    console.log(this.state.slideIndex, this.props.Feed.length - 1);
-
     const { Feed } = this.props;
     let carousel = Feed.length > 1 ? true : false;
     return (
@@ -68,6 +69,49 @@ class Slider extends Component {
         {carousel ? (
           <>
             <img
+              onTouchEnd={() => {
+                this.setState({
+                  rightV: 0
+                });
+              }}
+              onTouchStart={e => {
+                e.persist();
+                this.setState({
+                  startPoint: e.changedTouches[0].screenX,
+                  FromX: e.target.x
+                });
+              }}
+              onTouchMoveCapture={e => {
+                e.persist();
+                if (e.changedTouches[0].screenX > this.state.startPoint) {
+                  let right =
+                    e.changedTouches[0].screenX - this.state.startPoint;
+                  if (right < 200) {
+                    this.SliderNav("right");
+                    this.setState({
+                      rightV: 0
+                    });
+                  }
+                  this.setState({
+                    rightV: "-" + right
+                  });
+                } else {
+                  let left =
+                    this.state.startPoint - e.changedTouches[0].screenX;
+                  if (left > 200) {
+                    this.SliderNav("left");
+                    this.setState({
+                      rightV: 0
+                    });
+                  }
+                  this.setState({
+                    rightV: left
+                  });
+                }
+              }}
+              style={{
+                right: this.state.rightV + "px"
+              }}
               className="carousel_FrontImage"
               src={Feed[this.state.slideIndex]}
               alt="تصویر اسلایدر"

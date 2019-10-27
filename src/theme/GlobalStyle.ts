@@ -2890,7 +2890,9 @@ width: 40px !important;
   box-shadow:0px 0px 105px #3c3c3c;
   display: block;
   margin: auto;
-  position: relative;
+  right:0;
+  left:0;
+  position: absolute;
   z-index: 2;
   max-width: 100%;
 }
@@ -2946,6 +2948,10 @@ width: 40px !important;
 }
 
 @media (max-width:768px){
+  .arrow-Container{
+      display:none;
+
+  }
 .carousel_container{  
     height: 230px;
   }
@@ -3027,8 +3033,16 @@ width: 40px !important;
 
 @media (max-width:960px){
   .show_part {
+  position:relative;
     height: 360px;
     margin-bottom: 80px;
+  }
+  .show_part img{
+position:absolute;
+margin:auto;
+left:0;
+right:0;
+height:100%;
   }
   .closeButton {
     right: 10px;

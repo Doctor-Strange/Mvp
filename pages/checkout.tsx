@@ -149,7 +149,7 @@ export default withTranslation("common")(
         if (res) {
         toast.success("درخواست شما ثبت شد. اجاره‌ دهنده پس از بررسی، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.", {
           position: "bottom-center",
-          autoClose: 7000,
+          autoClose: 10000,
           hideProgressBar: true,
           closeOnClick: false,
           pauseOnHover: true,

@@ -2001,9 +2001,10 @@ button:focus{
 
 }
 .DOOOOOD  .DatePicker__calendarContainer{
-  top: 40px;
-  width: 320px;
-    height: 360px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 20vh;
 }
 .DOOOOOD .Calendar {
   top: -177px;

@@ -147,7 +147,7 @@ export default withTranslation("common")(
           token: jsCookie.get("token")
         });
         if (res) {
-        toast.success("درخواست شما ثبت شد. اجاره‌ دهنده پس از بررسی و در صورت نیاز، تماس با شما، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.", {
+        toast.success("درخواست شما ثبت شد. اجاره‌ دهنده پس از بررسی، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.", {
           position: "bottom-center",
           autoClose: 7000,
           hideProgressBar: true,
@@ -277,7 +277,7 @@ export default withTranslation("common")(
                     </span>
                   </div>
                   <div className="DayCounter_Checkout" style={{ textAlign: "center", marginBottom: "25px" }}>
-                    مدت اجاره: 
+                    مدت اجاره:{" "} 
                     <span className="">
                       {convertNumbers2Persian(no_of_days)}
                       <span> روز </span>
@@ -533,7 +533,7 @@ export default withTranslation("common")(
                     </span>
                   </div>
                   <div className="di_couner_checkout" style={{ textAlign: "center", marginBottom: "25px", fontWeight: 100 }}>
-                    مدت اجاره:
+                    مدت اجاره:{" "}
                     <span >
                       {convertNumbers2Persian(no_of_days)}
                       <span> روز </span>

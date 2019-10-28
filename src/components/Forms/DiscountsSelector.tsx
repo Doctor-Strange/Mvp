@@ -288,7 +288,7 @@ const DiscountsSelector: React.FC<{
           marginBottom: '24px'
         }}
       >
-        <Button
+       {!showNewEntery && <Button
           icon
           labelPosition="right"
           type="button"
@@ -304,6 +304,7 @@ const DiscountsSelector: React.FC<{
           افزودن
           <Icon name="plus" />
         </Button>
+       }
       </div>
     </Component>
   );

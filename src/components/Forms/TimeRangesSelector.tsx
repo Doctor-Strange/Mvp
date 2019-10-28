@@ -52,7 +52,7 @@ const TimeRangesSelector: React.FC<{
   const [openEditFor, setOpenEditFor] = useState(null);
   // console.log("Car timings: ", carTimings);
   return (
-      <div style={{ maxWidth: '370px' }}>
+      <div style={{ maxWidth: '370px' }} className="DOOOOOD">
       <Segment.Group style={{ marginBottom: '12px' }}>
         {carTimings.map((val, index) => {
           if (val == undefined) {
@@ -74,7 +74,7 @@ const TimeRangesSelector: React.FC<{
               // );
             }
             return (
-              <Segment key={index} style={{ textAlign: 'right' }}>
+              <Segment key={index} style={{ textAlign: 'right' }} >
                 <Form.Group>
                   <Form.Field
                     style={{ margin: 0, maxWidth: '47%' }}
@@ -323,7 +323,7 @@ const TimeRangesSelector: React.FC<{
           marginBottom: '24px'
         }}
       >
-        <Button
+      {!showNewEntery &&  <Button
           icon
           labelPosition="right"
           type="button"
@@ -339,6 +339,7 @@ const TimeRangesSelector: React.FC<{
           افزودن
           <Icon name="plus" />
         </Button>
+      }
       </div>
     </div>
   );

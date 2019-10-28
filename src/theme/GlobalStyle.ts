@@ -119,6 +119,9 @@ const GlobalStyle = createGlobalStyle`
   .Calendar {
     margin-top: 7px;
   }
+  .DOOOOOD .Calendar {
+    margin-top: 31px;
+  }
   @media (max-width:768px){
     .responsiveFeildcontrol div{
       padding:0 !important;
@@ -1236,7 +1239,7 @@ textarea {
     background: #0000005e;
     .Calendar{
       margin: 0 auto;
-      transform: translateY(50%);
+      // transform: translateY(50%);
     }
   }
 }
@@ -1996,6 +1999,14 @@ button:focus{
 .filters_listing {
   overflow-x: hidden;
 
+}
+.DOOOOOD  .DatePicker__calendarContainer{
+  top: 40px;
+  width: 320px;
+    height: 360px;
+}
+.DOOOOOD .Calendar {
+  top: -177px;
 }
   .DatePicker__calendarContainer {
     top: 10px;
@@ -3150,7 +3161,7 @@ height:100%;
 }
 
 .Toastify__toast-container.Toastify__toast-container--bottom-center{
-  width: 100%;
+  width: 50%;
     right: 0;
     left: 0;
     margin: auto;
@@ -3158,12 +3169,17 @@ height:100%;
     padding: 0;
     box-shadow: -1px -1px 2px 0px rgba(197, 197, 197, 0.75);
 }
+@media (max-width:768px){
+  .Toastify__toast-container.Toastify__toast-container--bottom-center{
+    width: 100%;
+  }
+}
 .Toastify__toast.Toastify__toast--success,.Toastify__toast.Toastify__toast--error  {
   margin: 0;
 }
 
 .Toastify__toast-body {
-  text-align: right;
+  text-align: center;
   color: #fff;
   font-family: vazir;
   direction: rtl;

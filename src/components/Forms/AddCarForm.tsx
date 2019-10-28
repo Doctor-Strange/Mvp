@@ -1873,7 +1873,7 @@ export default withTranslation('common')(connect(state => state)(
                           if (!jsCookie.get('first_name')) {
                             toast.error('ثابت نام خود را کامل کنید', {
                               position: "bottom-center",
-                              autoClose: 3000,
+                              autoClose: 7000,
                               hideProgressBar: false,
                               closeOnClick: true,
                               pauseOnHover: true,

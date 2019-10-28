@@ -305,7 +305,7 @@ export const CarCard: React.FunctionComponent<{
             }
             toast.success(message,{
               position: "bottom-center",
-              autoClose: false,
+              autoClose: 7000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: false,

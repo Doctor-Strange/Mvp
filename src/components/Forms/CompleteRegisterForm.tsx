@@ -440,7 +440,7 @@ export default withTranslation('common')(
                             onBlur={handleBlur}
                             value={values.day
                               ? convertNumbers2Persian(values.day)
-                              : values.day
+                              : ""
                             }
                           >
                             <input style={{ marginBottom: '0px !important' }} inputMode='numeric' /* novalidate pattern="[0-9]*/ />

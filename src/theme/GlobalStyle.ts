@@ -2192,7 +2192,7 @@ input[type="number"] {
 .TaInCheckout{
   text-align:center;
   display: inline-block;
-  width: 90%;
+  width: 55%;
   @media (max-width:991px){
     width: 00%;
     

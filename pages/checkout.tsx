@@ -149,7 +149,7 @@ export default withTranslation("common")(
         if (res) {
         toast.success("درخواست شما ثبت شد. اجاره‌ دهنده پس از بررسی و در صورت نیاز، تماس با شما، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.", {
           position: "bottom-center",
-          autoClose: false,
+          autoClose: 7000,
           hideProgressBar: true,
           closeOnClick: false,
           pauseOnHover: true,
@@ -265,13 +265,15 @@ export default withTranslation("common")(
                     <span className="DatesinCheckOutpage">
                       {LongDate(endDate).split(" ")[0]}
                       <br/>
-                      {LongDate(endDate).split(" ").slice(1,4)}
+                      {LongDate(endDate).split(" ")[1]
+                    +" "+LongDate(startDate).split(" ")[2]}
                     </span>
                     <span className="TaInCheckout"><Icon name="arrow left" size="large"></Icon></span>
                     <span className="DatesinCheckOutpage">
                       {LongDate(startDate).split(" ")[0]}
                       <br/>
-                      {LongDate(startDate).split(" ").slice(1,4)}
+                      {LongDate(startDate).split(" ")[1]
+                    +" "+LongDate(startDate).split(" ")[2]}
                     </span>
                   </div>
                   <div className="DayCounter_Checkout" style={{ textAlign: "center", marginBottom: "25px" }}>
@@ -324,7 +326,7 @@ export default withTranslation("common")(
                     </span>
                     }
                       <span style={{ fontWeight: 100 }}> 
-                      {this.state.insurance ?"تومان" 
+                      {this.state.insurance ?" تومان " 
                       : "" 
                       }
                       </span>
@@ -465,7 +467,7 @@ export default withTranslation("common")(
                           {convertNumbers2Persian(location.name.breadcrumb_fa)}
                         </p>
                         <p>
-                          {deliver_at_renters_place ? "تحویل در محل شما" : ""}
+                          {deliver_at_renters_place ? "در محدوده تهران، خودرو در محل شما تحویل می‌شود." : ""}
                         </p>
                       </Details>
                       <Details
@@ -475,8 +477,8 @@ export default withTranslation("common")(
                       >
                         <ul className="">
                           <li>
-                            روزی
-                            {max_km_per_day
+                        روزی{" "}
+                        {max_km_per_day
                               ? convertNumbers2Persian(max_km_per_day) +
                               " کیلومتر "
                               : "ندارد"}
@@ -517,7 +519,8 @@ export default withTranslation("common")(
                     <span className="DatesinCheckOutpage">
                       {LongDate(endDate).split(" ")[0]}
                       <br/>
-                      {LongDate(endDate).split(" ").slice(1,4)}
+                      {LongDate(endDate).split(" ")[1]
+                    +" "+LongDate(startDate).split(" ")[2]}
                     </span>
                     <span className="TaInCheckout">
                       <Icon name="arrow left" size="small"></Icon>
@@ -525,7 +528,8 @@ export default withTranslation("common")(
                     <span className="DatesinCheckOutpage">
                       {LongDate(startDate).split(" ")[0]}
                       <br/>
-                      {LongDate(startDate).split(" ").slice(1,4)}
+                      {LongDate(startDate).split(" ")[1]
+                    +" "+LongDate(startDate).split(" ")[2]}
                     </span>
                   </div>
                   <div className="di_couner_checkout" style={{ textAlign: "center", marginBottom: "25px", fontWeight: 100 }}>

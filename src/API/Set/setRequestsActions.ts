@@ -106,7 +106,7 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
         data.action !== "pay" &&
           toast.success(message, {
             position: "bottom-center",
-            autoClose: false,
+            autoClose: 7000,
             hideProgressBar: true,
             closeOnClick: false,
             pauseOnHover: true,

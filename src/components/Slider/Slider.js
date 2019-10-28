@@ -70,6 +70,7 @@ class Slider extends Component {
         {carousel ? (
           <>
             <img
+              onClick={this.CloseGallery}
               onTouchEnd={() => {
                 this.setState({
                   rightV: 0,
@@ -102,7 +103,7 @@ class Slider extends Component {
                     );
                   } else {
                     this.setState({
-                      rightV: "-" +0
+                      rightV: "-" + 0
                     });
                   }
                 } else {
@@ -189,7 +190,7 @@ class Slider extends Component {
           </>
         )}
         {carousel && (
-          <div className="NavBotton" >
+          <div className="NavBotton">
             {Feed.map((_, i) => {
               return (
                 <span

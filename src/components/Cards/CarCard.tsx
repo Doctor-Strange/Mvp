@@ -12,6 +12,7 @@ import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from
 import { ITheme } from "../../theme/Interfaces";
 import { REQUEST_set_out_of_service } from '../../API';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 
@@ -295,9 +296,23 @@ export const CarCard: React.FunctionComponent<{
           // console.log("response" ,response.data.data.is_out_of_service)
           if (response.data.success) {
             setoutofservice(response.data.data.is_out_of_service)
-            // console.log("outofservice" , outofservice);
             is_out_of_service = response.data.data.is_out_of_service
-            // console.log("new value" , is_out_of_service)
+            let message = "";
+            if(is_out_of_service){
+              message = `خودروی ${carName} شما در نتایج جستجو نمایش داده نخواهد شد.`
+            }else{
+              message = `خودروی ${carName} شما در نتایج جستجو نمایش داده خواهد شد.`
+            }
+            toast.success(message,{
+              position: "bottom-center",
+              autoClose: false,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true
+            })
+            // console.log("outofservice" , outofservice);
+            console.log("new value" , is_out_of_service)
           }
       })
       .catch(error => {

@@ -61,6 +61,7 @@ import {
 } from '../../utils/date';
 import TimeRangesSelector from './TimeRangesSelector';
 import DiscountsSelector from './DiscountsSelector';
+import { toast } from 'react-toastify';
 
 function clearNumber(x) {
   return convertNumbers2English(x.toString())
@@ -510,6 +511,14 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
             }])
           })
           .then(response => {
+            toast.success(`خودرو ${car.car.name.fa} با موفقیت ثبت شد`,{
+              position: "bottom-center",
+              autoClose: 7000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true
+            })
               setTimeout(() => {
                 actions.setSubmitting(false);
                 Router.push(`/car/${id}/${car.car.brand.name.fa}-${car.car.name.fa}`);

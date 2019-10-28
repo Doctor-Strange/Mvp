@@ -2918,6 +2918,8 @@ width: 40px !important;
   display:none !important;
 }
 .NAVIGA{
+  transition:0.2s;
+  opacity:0.3;
   position: absolute;
   top: 246px;
   z-index: 10;
@@ -2936,6 +2938,7 @@ width: 40px !important;
 .NAVIGA:hover,.NAVIGA:focus,.NAVIGA:active{
   background-color: #fff !important;
   outline:none;
+  opacity:.8
 }
 .NAVIGA.arrow-right{
   right:10px;
@@ -3101,12 +3104,12 @@ height:100%;
 .deactiveDot{
   width: 10px;
   height: 10px;
-  border-radius: 50px;
-  background: transparent;
-  margin:6px;
+  border-radius:50px;
+  background: #fff;
+  margin: 6px;
   display: inline-block;
   vertical-align: middle;
-  border: 2px solid #fff;
+  opacity:0.3;
 }
 
 @media (max-width:660px){
@@ -3145,18 +3148,32 @@ height:100%;
 
   }
 }
+
+.Toastify__toast-container.Toastify__toast-container--bottom-center{
+  width: 100%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    bottom: 0;
+    padding: 0;
+    box-shadow: -1px -1px 2px 0px rgba(197, 197, 197, 0.75);
+}
+.Toastify__toast.Toastify__toast--success,.Toastify__toast.Toastify__toast--error  {
+  margin: 0;
+}
+
 .Toastify__toast-body {
   text-align: right;
-  color: #2a2a2a;
+  color: #fff;
   font-family: vazir;
   direction: rtl;
 }
 .Toastify__toast--success {
-  background: #f1f1f1;
+  background: #03a596;
 }
 
 button.Toastify__close-button.Toastify__close-button--success {
-  color: #2a2a2a;
+  color: #fff;
   padding-left: 11px;
   display: block;
 }

@@ -234,7 +234,7 @@ const AddCarImageUpload: React.FC<{
         >
           <div {...getRootProps({ className: 'dropzone' })}>
             <input {...getInputProps()} />
-            <span>{"جهت باگذاری عکس اینجا کلیک کنید و یا عکس خود را داخل این کادر بیاندازید"}</span>
+            <span>{"جهت بارگذاری عکس اینجا کلیک کنید و یا عکس خود را داخل این کادر بیاندازید"}</span>
           </div>
           <aside>
             <div className="flexParentCards">

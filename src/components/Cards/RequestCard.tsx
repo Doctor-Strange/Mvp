@@ -348,6 +348,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                         payload: {
                             toRate: statusOwner,
                             type: 'rent-order',
+                            user_profile_id: userID,
                             rate: localStar1,
                             review: localText,
                         }
@@ -362,17 +363,17 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             rate: localStar2,
                         }
                     });
-                    toast.success('نظر شما با موفقیت ثبت شد', {
-                        position: "bottom-center",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true
-                    });
+                    // toast.success('نظر شما با موفقیت ثبت شد', {
+                    //     position: "bottom-center",
+                    //     autoClose: 5000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true
+                    // });
                 }
                 catch(error) {
-                    toast.error('مشکلی پیش آمد', {
+                    toast.error("خطایی رخ داده است", {
                         position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,

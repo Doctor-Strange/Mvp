@@ -57,10 +57,12 @@ const CarideCard: React.FunctionComponent<{
     date?: any;
     price: any;
     start?:string;
+    loading?: boolean;
 end?:string;
     user: any;
     reserveFunction: any;
-}> = ({ date, price, user, reserveFunction,start,end }) => {
+}> = ({ date, price, user, reserveFunction,start,end,loading }) => {
+    console.log("user",user)
     return (
         <Card>
             {(price > 0) &&
@@ -95,6 +97,7 @@ end?:string;
             {user.id.toString() !== jsCookie.get('user_id') ?
             <>
             <Button
+            loading = {loading}
                 style={{ height: '48px' }}
                 size='large'
                 fluid

@@ -135,6 +135,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
     }
 
     state = {
+        load:false,
         carousel: false,
         token: '',
         error: '',
@@ -219,6 +220,9 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
         //     Router.push({ pathname: '/complete-register' })
         // } else {
             // const { search_id, rentalCarID } = this.props;
+            this.setState({
+                load:true
+            })
             let href = "";
             if (search_id) {
                 href = `/checkout?search_id=${search_id}`;
@@ -260,8 +264,8 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             end = moment(endDate).format('jD jMMMM jYY');
             //console.log(start);
         }
-        // console.log(startDate,
-        //     endDate)
+        console.log("this.props",
+        this.props)
         const { media_set, year, mileage_range, owner, body_style, color, color_code, cylinder, value,
             deliver_at_renters_place, cancellation_policy, transmission_type, location, facility_set,
             max_km_per_day, description, capacity, extra_km_price, car, loaded, avg_price_per_day, avg_discounted_price_per_day } = this.props;
@@ -403,6 +407,8 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                     {isBrowser &&
                         <ContentSideCard shareBar={true} pushTopMargin={true}>
                             <CarSideCard
+                        loading = {this.state.load}
+
                                 // date={{
                                 //     start: startDate,
                                 //     end: endDate
@@ -529,6 +535,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                         }}
                         primary
                         type="submit"
+                        loading = {this.state.load}
                         onClick={
                             () => this.reserve(search_id)
                         }

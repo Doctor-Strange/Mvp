@@ -3240,6 +3240,21 @@ button.Toastify__close-button.Toastify__close-button--success:hover {
     input[type="week"], input[type="number"], input[type="email"],
     input[type="url"]{ font-size: 16px; }
 }
+
+// 404 page
+._404PageImage{
+  display:block;
+  margin:auto;
+  @media (max-width:720px){
+    width:100%
+  }
+}
+._404PageAnchor{
+  text-align: center;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 100px;
+}
 `;
 
 enum Margin {

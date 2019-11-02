@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { i18n, Link, withTranslation } from '../src/i18n';
+import Layout from '../src/components/Layout';
+import four04 from '../static/404.png'
 
 class Error extends React.Component<{ statusCode: any, t: any }> {
   static getInitialProps({ res, err }) {
@@ -18,11 +20,12 @@ class Error extends React.Component<{ statusCode: any, t: any }> {
   render() {
     const { statusCode, t } = this.props
     return (
-      <p>
-        {statusCode
-          ? t('error-with-status', { statusCode })
-          : t('error-without-status')}
-      </p>
+      <Layout>
+          <div>
+            <img src={four04} alt="404" className="_404PageImage"/>
+            <Link href={process.env.SITE_URL} ><a className="_404PageAnchor">بازگشت به صفحه اصلی</a></Link>
+          </div>
+      </Layout>
     )
   }
 }

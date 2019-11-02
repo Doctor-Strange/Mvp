@@ -78,9 +78,9 @@ end?:string;
             }
             {start && end &&<p style={{textAlign:"center", marginBottom:'0px'}}>
                  از{" "} 
-                <span style={{fontWeight:'500'}}>{convertNumbers2Persian(start)}</span>
+                <span style={{fontWeight:'500'}}>{convertNumbers2Persian(start).slice(0, start.length-2)}</span>
                 {" "} تا {" "}
-                <span style={{fontWeight:'500'}}>{convertNumbers2Persian(end)}</span>
+                <span style={{fontWeight:'500'}}>{convertNumbers2Persian(end).slice(0, end.length-2)}</span>
             </p>
             }
             {/* <CarDateRange from={convertMomentToDate(date.start)} to={convertMomentToDate(date.end)} /> */}

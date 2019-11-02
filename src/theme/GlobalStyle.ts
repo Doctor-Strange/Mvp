@@ -3244,6 +3244,7 @@ button.Toastify__close-button.Toastify__close-button--success:hover {
 // 404 page
 ._404PageImage{
   display:block;
+  margin-top: 80px;
   margin:auto;
   @media (max-width:720px){
     width:100%

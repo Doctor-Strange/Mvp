@@ -49,38 +49,42 @@ const ContentCardTitle = styled.div`
 
 export default withTranslation("common")(
   class extends React.Component<{ t: any }> {
-    static async getInitialProps(props) {
-      if (typeof window === "undefined") {
-        //console.log('Server Side Router Query', props.query);
-      } else {
-        //console.log('Client side Router Query', props.query);
-      }
+    state={
+      items : null
+    }
+    async thisss() {
       let res = await REQUEST_getFAQ();
-      const qaArr1 = [];
-      res.items[0].question_set.map((value, index) => {
-        qaArr1.push({
-          key: `panel1-${index}`,
-          title: value.q,
-          content: value.a
-        });
-      });
-      const qaArr2 = [];
-      res.items[1].question_set.map((value, index) => {
-        qaArr2.push({
-          key: `panel2-${index}`,
-          title: value.q,
-          content: value.a
-        });
-      });
-      return {
-        namespacesRequired: ["common"],
-        qaArr1,
-        qaArr2,
-        ...res
-      };
+      // const qaArr1 = [];
+      // res.items[0].question_set.map((value, index) => {
+      //   qaArr1.push({
+      //     key: `panel1-${index}`,
+      //     title: value.q,
+      //     content: value.a
+      //   });
+      // });
+      // const qaArr2 = [];
+      // res.items[1].question_set.map((value, index) => {
+      //   qaArr2.push({
+      //     key: `panel2-${index}`,
+      //     title: value.q,
+      //     content: value.a
+      //   });
+      // });
+      
+     this.setState({
+      items: res.items
+     })   
+      // return {
+      //   namespacesRequired: ["common"],
+      //   qaArr1,
+      //   qaArr2,
+      //   ...res
+      // };
     }
 
-    componentDidMount = () => {};
+    componentDidMount = () => {
+      this.thisss()
+    };
 
     render() {
     //   console.log(this.props);
@@ -90,7 +94,7 @@ export default withTranslation("common")(
         end = null;
       let startDate,
         endDate = null;
-      const { items } = this.props;
+      const { items } = this.state;
       //console.log(qaArr1);
       return (
         <Layout haveSubHeader={true} pageTitle={"list Your Car"}>
@@ -116,7 +120,7 @@ export default withTranslation("common")(
                 <h1 style={{ fontSize: "22px" }}>{`سوالات پرتکرار`}</h1>
                 <span> پاسخگوی تمام نیازهای شما </span>
               </ContentCardTitle>
-              {items.map((item, i) => {
+              {items && items.map((item, i) => {
                   console.log(item)
                 return <div className="FQ_WRAPPER" key={item.id}>
                   {i === 0 ? null : <h2 style={{ fontSize: "22px" }}>{item.name.fa}</h2>}

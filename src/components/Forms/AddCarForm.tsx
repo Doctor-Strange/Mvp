@@ -669,12 +669,13 @@ export default withTranslation('common')(connect(state => state)(
             //   this.setState({ error: 'خود رو در کدام منطقه است؟' });
             //   actions.setSubmitting(false);
             //   return false;
-            // }else if (!carYear) {
-            //   // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
-            //   this.setState({ error: 'سال خودرو را به درستی انتخاب نکرده اید' });
-            //   actions.setSubmitting(false);
-            //   return false;
-            // }else
+            // }else 
+            if (!/^[0-9]*$/gm.test(convertNumbers2English(values.value))){
+              // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
+              this.setState({ error: 'ارزش خودرو به درستی وارد نشده است' });
+              actions.setSubmitting(false);
+              return false;
+            }
             if (this.state.picturesID.length <= 0) {
               // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
               this.setState({ error: 'لطفاً حداقل یک تصویر بارگذاری کنید.' });
@@ -822,11 +823,9 @@ export default withTranslation('common')(connect(state => state)(
             carKmDriven: Yup.number()
               .required(fieldErrorGenrator("کارکرد خودرو"))
               .typeError(fieldErrorGenrator("کارکرد خودرو")),
-              value: Yup.number()
+              value: Yup.string()
               .required(fieldErrorGenrator("ارزش خودرو"))
-              .typeError(fieldErrorGenrator("ارزش خودرو"))
-              .min(2000000)
-              .max(800000000000),
+              .typeError(fieldErrorGenrator("ارزش خودرو")),
             carVIN: Yup.string()
               .required(fieldErrorGenrator("VIN"))
               .typeError(fieldErrorGenrator("VIN"))
@@ -1540,33 +1539,34 @@ export default withTranslation('common')(connect(state => state)(
                         }
                         style={{ direction: 'ltr' }}
                       /> */}
-                        <p style={{
-                        position: 'absolute',
-                        left: '58px',
-                        top: '46px',
-                      }}>{convertNumbers2Persian(
-                          numberWithCommas(values.value)
-                        )}</p>
+                        {/* {console.log(numberWithCommas(
+                              values.value))} */}
                       <input
-                      className={["KESAFAT_KARI",Boolean(errors.value && touched.value) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"].join(" ")}
+                      className={Boolean(errors.value && touched.value) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
 
-                        type="number"
-                        min="2000000"
-                        max="8000000000"
+                        type="text"
+                        maxLength="17"
+                        minLength="7"
                         style={{
                           height: "50px",
                           marginTop: "4px",
-                          textIndent: '40px',
-                          color:'transparent',
-                          background:"transparent"
+                          paddingLeft: '52px',
+                          textAlign:"left",
+                          direction: 'ltr'
                         }}
                         // disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
                         onChange={(e) => { 
+                          e.persist()
                           setFieldValue("value", e.target.value);
+                          // if(!/^[0-9]*$/gm.test(e.target.value.slice(-1))){
+                          //   console.log( e.target.value)
+                          // }else{
+                          // }
                           // console.log("type",e.target.value);values.value = e.target.value 
                         }}
-                        value={values.value}
+                        // value={values.value}
+                        value={convertNumbers2Persian(values.value)}
                       />
                       <span style={{
                         position: 'absolute',

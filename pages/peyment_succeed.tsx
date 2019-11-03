@@ -166,7 +166,7 @@ const Page = ({id}) => {
                          <List>
                             <li>هزینه پرداختی
                                 <span className="float-left">
-                                  {convertNumbers2Persian(numberWithCommas(rentDump.discounted_total_price))}
+                                  {convertNumbers2Persian(numberWithCommas(rentDump.discounted_total_price))} تومان
                                 </span>
                              </li>
                              <li>محل تحویل

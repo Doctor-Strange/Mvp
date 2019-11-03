@@ -2829,13 +2829,13 @@ OTILI
   color:#0099ff !important;
 }
 
-input.KESAFAT_KARI::selection {
-  background: transparent;
-  color:transparent
-}
-input.KESAFAT_KARI::-moz-selection {
-  background: #ffb7b7;
-}
+// input.KESAFAT_KARI::selection {
+//   background: transparent;
+//   color:transparent
+// }
+// input.KESAFAT_KARI::-moz-selection {
+//   background: #ffb7b7;
+// }
 pre{
   font-size: 1rem !important;
     line-height: 1.6 !important;
@@ -3255,6 +3255,10 @@ button.Toastify__close-button.Toastify__close-button--success:hover {
     display: block;
     font-weight: 600;
     margin-bottom: 100px;
+}
+
+#sign-in-dialog .JustThisone {
+  width: 100%;
 }
 `;
 

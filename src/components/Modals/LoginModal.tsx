@@ -353,7 +353,7 @@ export default withTranslation('common')(
                     errors,
                     touched
                   }) => (
-                      <LoginForm className="sign-in-wrapper" style={{textAlign:"right"}}>
+                      <LoginForm className="sign-in-wrapper JustThisone" style={{textAlign:"right"}}>
                         <div className="form-group">
                           <label>
                             {/* {`کد ورود به شماره ${this.state.phone} پیامک شد `} */}
@@ -377,24 +377,21 @@ export default withTranslation('common')(
                               placeholder: "لطفا کد را وارد کنید"
                             }}
                           />
-                          <a
+                           <a
                               className="small"
                               onClick={this.prevPanel}
-                              style={{ cursor: 'pointer',marginTop:"-13px",display:"block",marginBottom: "18px" }}
+                              style={{textAlign:"left",width:'50%', cursor: 'pointer',marginTop:"0",display:"inline-block",verticalAlign:'top',marginBottom: "0" }}
                               tabIndex={this.state.showIndex === 1 ? 0 : -1}
                             >
                               ویرایش شماره
                             </a>
-                        </div>
-                        <span className="sui-error-message">
-                          {this.state.codeError || null}
-                        </span>
-                        {/* </div> */}
-                        <div className="clearfix add_bottom_15 flow-root">
+                          <div className="clearfix add_bottom_15 flow-root"
+                              style={{ cursor: 'pointer',width:"50%",marginTop:"0",display:"inline-block",verticalAlign:'top',marginBottom: "0" }}>
                           <a
                             tabIndex={this.state.showIndex === 1 ? 0 : -1}
                             className="small"
                             href="javascript:void(0);"
+                            style={{ color: '#0099ff'}}
                           >
                             <Countdown
                               date={this.state.timeToSendSMSAgain}
@@ -402,6 +399,12 @@ export default withTranslation('common')(
                             />
                           </a>
                         </div>
+                        </div>
+                        <span className="sui-error-message">
+                          {this.state.codeError || null}
+                        </span>
+                        {/* </div> */}
+                        
                         <div className="text-center">
                           <Button.Submit
                             loading={isSubmitting}

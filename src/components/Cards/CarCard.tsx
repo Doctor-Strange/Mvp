@@ -248,8 +248,12 @@ export const CarCard: React.FunctionComponent<{
   const [outofservice, setoutofservice] = useState(false);
   const [heightController, setheightController] = useState(0);
     let link = "";
-    let start_date = JSON.parse(localStorage['start'])
-    let end_date = JSON.parse(localStorage['end'])
+    // let start_date ;
+    // let end_date;
+    // if(localStorage['start']){
+    //   start_date = JSON.parse(localStorage['start'])
+    //   end_date = JSON.parse(localStorage['end'])
+    // }
     let carName = title.replace(/ /g, "-");
     if (simpleMode) {
       link = `/car/${id}/${carName}`;
@@ -258,6 +262,22 @@ export const CarCard: React.FunctionComponent<{
       link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`
     }
 
+    console.log(children,
+      title,
+      img,
+      description,
+      year,
+      score,
+      price,
+      deliver_at_renters_place,
+      id,
+      dateURL,
+      search_id,
+      simpleMode = true,
+      showEditButtons = false,
+      discount_percent,
+      discounted_price,
+      is_out_of_service = false,)
     useEffect(() => {
       setoutofservice(is_out_of_service)
   }, []);

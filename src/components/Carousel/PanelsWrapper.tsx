@@ -106,6 +106,9 @@ const PanelsWrapperStyle = styled.div`
     position: static;
     width: 100%;
   }
+  .element:last-child {
+    width: 91%;
+  }
 `;
 export class PanelsWrapper extends React.Component<{
   showIndex: number;

@@ -1,11 +1,9 @@
 function numberWithCommas(x) {
-  return x
-    .toString()
-    .replace(',', '')
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return x.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function convertNumbers2Persian(num) {
+  console.log(num)
   if (num !== null && num !== undefined) {
     const id = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
     return num.toString().replace(/[0-9]/g, function(w) {

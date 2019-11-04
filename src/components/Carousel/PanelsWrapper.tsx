@@ -113,39 +113,40 @@ const PanelsWrapperStyle = styled.div`
 export class PanelsWrapper extends React.Component<{
   showIndex: number;
   prevIndex: number;
+  style?:any;
 }> {
   state = {
     lastIndex: React.Children.count(this.props.children) - 1
   };
 
   render() {
-    const { prevIndex, showIndex, children } = this.props;
+    const { prevIndex, showIndex, children,style } = this.props;
     const { lastIndex } = this.state;
     let localExit = false;
     const slide = React.Children.map(children, (slide, i) => {
       if (localExit) return;
       else if (i === showIndex && i >= prevIndex) {
         return (
-          <CurrentElementFormLeft className="element">
+          <CurrentElementFormLeft className="element" style={style}>
             {slide}
           </CurrentElementFormLeft>
         );
       } else if (i === showIndex && i < prevIndex) {
         return (
-          <CurrentElementFromRight className="element">
+          <CurrentElementFromRight className="element" style={style}>
             {slide}
           </CurrentElementFromRight>
         );
       } else if (i === prevIndex && i < showIndex) {
         return (
-          <PrevElementGoLeft className="element">{slide}</PrevElementGoLeft>
+          <PrevElementGoLeft className="element" style={style}>{slide}</PrevElementGoLeft>
         );
       } else if (i === prevIndex && i > showIndex) {
         return (
-          <PrevElementGoRight className="element">{slide}</PrevElementGoRight>
+          <PrevElementGoRight className="element" style={style}>{slide}</PrevElementGoRight>
         );
       } else if (showIndex <= lastIndex && showIndex >= 0) {
-        return <OtherElement className="element">{slide}</OtherElement>;
+        return <OtherElement className="element" style={style}>{slide}</OtherElement>;
       }
       localExit = true;
       return <span>Error: something is not right with me.</span>;

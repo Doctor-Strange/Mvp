@@ -1,4 +1,6 @@
 import { i18n, withTranslation } from '../src/i18n';
+import NextSeo from "next-seo";
+
 import * as React from 'react';
 import Layout from '../src/components/Layout';
 import debounce from 'lodash.debounce';
@@ -486,9 +488,29 @@ export default withRouter(
                         lodingMore
                     } = this.state;
                     const showMore = page * 8 < total_count;
-                    // console.log({ num: page * 4, total_count, showMore });
+                    // console.log(cityName);
                     return (
                         <Layout haveSubHeader={true} pageTitle={'Hello World'}>
+                               <NextSeo
+        config={{
+          title: `جستجو برای تهران، از ${moment(this.state.startDate).format(
+            'jYYYY/jMM/jDD'
+        )} تا ${moment(this.state.endDate).format(
+            'jYYYY/jMM/jDD'
+        )} | اتولی`,
+          description: `اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.    `,
+          openGraph: {
+            title: `درباره اتولی`,
+            description: `درباره اتولی`,
+            site_name: "اتولی"
+          },
+          twitter: {
+            handle: "@otoli_net",
+            site: "@otoli_net",
+            cardType: "summary_large_image"
+          }
+        }}
+      />
                             <SearchBar
                                 count={total_count}
                                 t={t}

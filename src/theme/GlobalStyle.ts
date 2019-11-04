@@ -2,6 +2,16 @@ import { createGlobalStyle } from "styled-components";
 import { ITheme } from "./Interfaces";
 
 const GlobalStyle = createGlobalStyle`
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: 500;
+	src: url('./static/fonts/irans/IRANSansWeb(FaNum)_Medium.eot');
+	src: url('./static/fonts/irans/IRANSansWeb(FaNum)_Medium.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('./static/fonts/irans/IRANSansWeb(FaNum)_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('./static/fonts/irans/IRANSansWeb(FaNum)_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('./static/fonts/irans/IRANSansWeb(FaNum)_Medium.ttf') format('truetype');
+}
   @font-face {
     font-family: Vazir;
     src: url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.eot');
@@ -3259,6 +3269,10 @@ button.Toastify__close-button.Toastify__close-button--success:hover {
 
 #sign-in-dialog .JustThisone {
   width: 100%;
+}
+
+#JustPersian{
+  font-family: IRANSans !important;
 }
 `;
 

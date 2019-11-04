@@ -1,4 +1,5 @@
 import * as React from "react";
+import NextSeo from "next-seo";
 
 import { Section } from "../src/components/row/Sections";
 import Layout from "../src/components/Layout";
@@ -254,6 +255,22 @@ export default withTranslation("common")(
             pageTitle={"list Your Car"}
             onRef={this.doRef}
           >
+            <NextSeo
+        config={{
+          title: `ثبت درخواست اجاره ${car.brand.name.fa} ${car.name.fa} | اتولی`,
+          description: `اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.    `,
+          openGraph: {
+            title: `ثبت درخواست اجاره ${car.brand.name.fa} ${car.name.fa} | اتولی`,
+            description: `اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.    `,
+            site_name: "اتولی"
+          },
+          twitter: {
+            handle: "@otoli_net",
+            site: "@otoli_net",
+            cardType: "summary_large_image"
+          }
+        }}
+      />
             <Section
               id="checkout"
               justifyCenter={true}

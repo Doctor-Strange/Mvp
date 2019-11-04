@@ -127,7 +127,7 @@ export default withTranslation('common')(
         );
       } else {
         return (
-          <span style={{ cursor: 'default', paddingTop: '8px' }}>
+          <span style={{ cursor: 'default', paddingTop: '8px', color:"grey" }}>
             ارسال مجدد کد {seconds}
           </span>
         );
@@ -163,6 +163,7 @@ export default withTranslation('common')(
             <PanelsWrapper
               showIndex={this.state.showIndex}
               prevIndex={this.state.prevIndex}
+              style={{width:'100%'}}
             >
               <Panel>
                   <LawDiv className="LawsModal">

@@ -103,7 +103,7 @@ export default withTranslation('common')(
         );
       } else {
         return (
-          <span style={{ cursor: 'default', paddingTop: '8px' }}>
+          <span style={{ cursor: 'default', paddingTop: '8px', color:'#999' }}>
             ارسال مجدد کد {seconds}
           </span>
         );

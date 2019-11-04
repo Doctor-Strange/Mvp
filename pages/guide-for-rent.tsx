@@ -1,11 +1,28 @@
 import * as React from "react";
 import Layout from "../src/components/Layout";
+import NextSeo from "next-seo";
 import Link from "next/link";
 import { Section } from "../src/components/row/Sections";
 
 const guideForRent = () => {
   return (
     <Layout haveSubHeader={true} pageTitle={"Hello World"}>
+      <NextSeo
+        config={{
+          title: `راهنمای اجاره گیرنده | اتولی`,
+          description: `راهنمای کامل اتولی برای اجاره‌گیرنده`,
+          openGraph: {
+            title: `راهنمای اجاره گیرنده | اتولی`,
+            description: `راهنمای کامل اتولی برای اجاره‌گیرنده`,
+            site_name: "اتولی"
+          },
+          twitter: {
+            handle: "@otoli_net",
+            site: "@otoli_net",
+            cardType: "summary_large_image"
+          }
+        }}
+      />
       <Section justifyCenter={true}>
         <div className="AboutUsPage">
           <h1>راهنمای کامل اتولی برای اجاره‌گیرنده </h1>

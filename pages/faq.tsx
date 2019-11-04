@@ -26,7 +26,8 @@ import {
 import styled from "styled-components";
 import axios from "axios";
 import moment from "moment-jalaali";
-import Accordion from '../src/components/Accordion/Accordion'
+import Accordion from "../src/components/Accordion/Accordion";
+import ContentLoader from "react-content-loader";
 moment.loadPersian({ dialect: "persian-modern" });
 
 const ContentCardTitle = styled.div`
@@ -49,9 +50,9 @@ const ContentCardTitle = styled.div`
 
 export default withTranslation("common")(
   class extends React.Component<{ t: any }> {
-    state={
-      items : null
-    }
+    state = {
+      items: null
+    };
     async thisss() {
       let res = await REQUEST_getFAQ();
       // const qaArr1 = [];
@@ -70,10 +71,10 @@ export default withTranslation("common")(
       //     content: value.a
       //   });
       // });
-      
-     this.setState({
-      items: res.items
-     })   
+
+      this.setState({
+        items: res.items
+      });
       // return {
       //   namespacesRequired: ["common"],
       //   qaArr1,
@@ -83,11 +84,11 @@ export default withTranslation("common")(
     }
 
     componentDidMount = () => {
-      this.thisss()
+      this.thisss();
     };
 
     render() {
-    //   console.log(this.props);
+      //   console.log(this.props);
 
       const { t } = this.props;
       let start,
@@ -100,11 +101,11 @@ export default withTranslation("common")(
         <Layout haveSubHeader={true} pageTitle={"list Your Car"}>
           <NextSeo
             config={{
-              title: `سوالات پرتکرار اتولی`,
-              description: "سوالات پرتکرار در اتولی را اکنون بخوانید",
+              title: `سوال‌های پرتکرار | اتولی`,
+              description: " پاسخگوی تمام سوالات شما در بخش پرسش و پاسخ اتولی هستیم ",
               openGraph: {
-                title: `سوالات پرتکرار اتولی`,
-                description: "سوالات پرتکرار در اتولی را اکنون بخوانید"
+                title: `سوال‌های پرتکرار | اتولی`,
+                description: " پاسخگوی تمام سوالات شما در بخش پرسش و پاسخ اتولی هستیم "
               },
               twitter: {
                 handle: "@otoli_net",
@@ -120,14 +121,25 @@ export default withTranslation("common")(
                 <h1 style={{ fontSize: "22px" }}>{`سوالات پرتکرار`}</h1>
                 <span> پاسخگوی تمام نیازهای شما </span>
               </ContentCardTitle>
-              {items && items.map((item, i) => {
-                  console.log(item)
-                return <div className="FQ_WRAPPER" key={item.id}>
-                  {i === 0 ? null : <h2 style={{ fontSize: "22px" }}>{item.name.fa}</h2>}
-                  <Accordion question_set={item.question_set}/>
-                  {/* <Accordion styled fluid defaultActiveIndex={0} panels={item.question_set} /> */}
-                </div>;
-              })}
+              {items ?
+                items.map((item, i) => {
+                  console.log(item);
+                  return (
+                    <div className="FQ_WRAPPER" key={item.id}>
+                      {i === 0 ? null : (
+                        <h2 style={{ fontSize: "22px" }}>{item.name.fa}</h2>
+                      )}
+                      <Accordion question_set={item.question_set} />
+                      {/* <Accordion styled fluid defaultActiveIndex={0} panels={item.question_set} /> */}
+                    </div>
+                  );
+                })
+              :
+              <>
+              <ContentLoader/>
+              <ContentLoader/>
+              <ContentLoader/>
+              </>}
               {/* <Accordion styled fluid defaultActiveIndex={0} panels={qaArr1} />
                             <hr/>
                             <Accordion styled fluid defaultActiveIndex={0} panels={qaArr2} /> */}

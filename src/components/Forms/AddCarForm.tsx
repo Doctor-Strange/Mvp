@@ -1543,9 +1543,9 @@ export default withTranslation('common')(connect(state => state)(
                               values.value))} */}
                       <input
                       className={Boolean(errors.value && touched.value) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
-
+id="JustPersian"
                         type="text"
-                        maxLength="17"
+                        maxLength="14"
                         minLength="7"
                         style={{
                           height: "50px",
@@ -1566,7 +1566,7 @@ export default withTranslation('common')(connect(state => state)(
                           // console.log("type",e.target.value);values.value = e.target.value 
                         }}
                         // value={values.value}
-                        value={convertNumbers2Persian(values.value)}
+                        value={numberWithCommas(values.value)}
                       />
                       <span style={{
                         position: 'absolute',

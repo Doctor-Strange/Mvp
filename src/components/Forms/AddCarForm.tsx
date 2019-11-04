@@ -670,12 +670,12 @@ export default withTranslation('common')(connect(state => state)(
             //   actions.setSubmitting(false);
             //   return false;
             // }else 
-            if (!/^[0-9]*$/gm.test(convertNumbers2English(values.value))){
-              // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
-              this.setState({ error: 'ارزش خودرو به درستی وارد نشده است' });
-              actions.setSubmitting(false);
-              return false;
-            }
+            // if (!/^[0-9]*$/gm.test(convertNumbers2English(values.value))){
+            //   // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
+            //   this.setState({ error: 'ارزش خودرو به درستی وارد نشده است' });
+            //   actions.setSubmitting(false);
+            //   return false;
+            // }
             if (this.state.picturesID.length <= 0) {
               // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
               this.setState({ error: 'لطفاً حداقل یک تصویر بارگذاری کنید.' });

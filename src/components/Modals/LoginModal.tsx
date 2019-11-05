@@ -1,25 +1,25 @@
-import * as React from 'react';
-import Router from 'next/router';
-import { ThemeProvider } from 'styled-components';
-import { Button, Form, Input } from 'formik-semantic-ui';
-import { Formik, FormikActions } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import Countdown from 'react-countdown-now';
-import { LoginForm, PhoneRow } from './LoginStyle';
-import { ModalWrapper } from './ModalWrapper';
-import { PanelsWrapper } from '../Carousel/PanelsWrapper';
-import { Panel } from '../Carousel/Panel';
+import * as React from "react";
+import Router from "next/router";
+import { ThemeProvider } from "styled-components";
+import { Button, Form, Input } from "formik-semantic-ui";
+import { Formik, FormikActions } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import Countdown from "react-countdown-now";
+import { LoginForm, PhoneRow } from "./LoginStyle";
+import { ModalWrapper } from "./ModalWrapper";
+import { PanelsWrapper } from "../Carousel/PanelsWrapper";
+import { Panel } from "../Carousel/Panel";
 // import { mobileNumberOptions } from '../../constants/options';
-import { i18n, withTranslation } from '../../i18n';
-import { ltrTheme, rtlTheme } from '../../theme/Directions';
+import { i18n, withTranslation } from "../../i18n";
+import { ltrTheme, rtlTheme } from "../../theme/Directions";
 import { actions } from "../../store";
 
 function convertToEnglishNum(s) {
-  const a = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-  const p = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  const a = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+  const p = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
   for (let i = 0; i < 10; i++) {
-    s = s.replace(new RegExp(a[i], 'g'), i).replace(new RegExp(p[i], 'g'), i);
+    s = s.replace(new RegExp(a[i], "g"), i).replace(new RegExp(p[i], "g"), i);
   }
   return s;
 }
@@ -31,9 +31,9 @@ interface LoginModalCodeValues {
   code: number;
 }
 
-export default withTranslation('common')(
+export default withTranslation("common")(
   class extends React.Component<
-    { onRef?: any; t: any, updateInfo: any },
+    { onRef?: any; t: any; updateInfo: any },
     {
       showIndex: number;
       prevIndex: number;
@@ -43,12 +43,12 @@ export default withTranslation('common')(
       codeError?: string;
       height: number;
     }
-    > {
+  > {
     [x: string]: any;
     constructor(props) {
       super(props);
       this.state = {
-        phone: '',
+        phone: "",
         timeToSendSMSAgain: null,
         codeError: null,
         prevIndex: 0,
@@ -97,13 +97,13 @@ export default withTranslation('common')(
       const { t } = this.props;
       if (completed) {
         return (
-          <span style={{ cursor: 'pointer' }} onClick={() => this.prevPanel()}>
+          <span style={{ cursor: "pointer" }} onClick={() => this.prevPanel()}>
             ارسال مجدد
           </span>
         );
       } else {
         return (
-          <span style={{ cursor: 'default', paddingTop: '8px', color:'#999' }}>
+          <span style={{ cursor: "default", paddingTop: "8px", color: "#999" }}>
             ارسال مجدد کد {seconds}
           </span>
         );
@@ -112,7 +112,7 @@ export default withTranslation('common')(
 
     render() {
       const { t, updateInfo } = this.props;
-      const theme = i18n.language == 'fa' ? rtlTheme : ltrTheme;
+      const theme = i18n.language == "fa" ? rtlTheme : ltrTheme;
       return (
         <ThemeProvider
           theme={{
@@ -121,7 +121,7 @@ export default withTranslation('common')(
           }}
         >
           <ModalWrapper
-            title={''}
+            title={""}
             onRef={ref => (this.modalwrapper = ref)}
             direction={theme.direction}
             height={this.state.height}
@@ -142,14 +142,18 @@ export default withTranslation('common')(
                     if (/^[0][9][0-9][0-9]{8,8}$/.test(phone)) {
                       validPhoneFormated = phone;
                     } else if (/^[9][0-9][0-9]{8,8}$/.test(phone)) {
-                      validPhoneFormated = '0' + phone;
+                      validPhoneFormated = "0" + phone;
                     } else {
                       validPhoneFormated = phone;
                     }
                     axios
-                      .post(process.env.PRODUCTION_ENDPOINT + '/core/device/send-code', {
-                        cell: validPhoneFormated
-                      })
+                      .post(
+                        process.env.PRODUCTION_ENDPOINT +
+                          "/core/device/send-code",
+                        {
+                          cell: validPhoneFormated
+                        }
+                      )
                       .then(response => {
                         if (response.data.success) {
                           this.setState({
@@ -186,36 +190,36 @@ export default withTranslation('common')(
                     errors,
                     touched
                   }) => (
-                      <LoginForm
-                      style={{textAlign:"right"}}
-                        onSubmit={handleSubmit}
-                        className="sign-in-wrapper"
-                      >
-                        <label>شماره تلفن همراه</label>
-                        <Input
-                          name="phone"
-                          inputProps={{
-                            type: 'tel',
-                            tabIndex: this.state.showIndex === 0 ? 0 : -1,
-                            className: 'add_top_8',
-                            placeholder: "لطفا شماره همراه خود را وارد کنید"
-                          }}
-                        />
+                    <LoginForm
+                      style={{ textAlign: "right" }}
+                      onSubmit={handleSubmit}
+                      className="sign-in-wrapper"
+                    >
+                      <label>شماره تلفن همراه</label>
+                      <Input
+                        name="phone"
+                        inputProps={{
+                          type: "tel",
+                          tabIndex: this.state.showIndex === 0 ? 0 : -1,
+                          className: "add_top_8",
+                          placeholder: "لطفا شماره همراه خود را وارد کنید"
+                        }}
+                      />
 
-                        <div className="text-center">
-                          <Button.Submit
-                            loading={isSubmitting}
-                            primary
-                            type="submit"
-                            className="btn_1 full-width"
-                            tabIndex={this.state.showIndex === 0 ? 0 : -1}
-                          >
-                            ارسال کد ورود
-                          </Button.Submit>
-                          {/* <br />
+                      <div className="text-center">
+                        <Button.Submit
+                          loading={isSubmitting}
+                          primary
+                          type="submit"
+                          className="btn_1 full-width"
+                          tabIndex={this.state.showIndex === 0 ? 0 : -1}
+                        >
+                          ارسال کد ورود
+                        </Button.Submit>
+                        {/* <br />
                         <small>ما از شماره‌ی شما سوءاستفاده نمی‌کنیم </small> */}
-                        </div>
-                        {/* <div className="divider">
+                      </div>
+                      {/* <div className="divider">
                         <span>{t('or')}</span>
                       </div>
                       <Button
@@ -226,8 +230,8 @@ export default withTranslation('common')(
                         labelPosition="left"
                         tabIndex={this.state.showIndex === 0 ? 0 : -1}
                       /> */}
-                      </LoginForm>
-                    )}
+                    </LoginForm>
+                  )}
                 </Form>
               </Panel>
               <Panel>
@@ -238,10 +242,13 @@ export default withTranslation('common')(
                     formikActions: FormikActions<LoginModalCodeValues>
                   ) => {
                     axios
-                      .post(process.env.PRODUCTION_ENDPOINT + '/core/device/login', {
-                        cell: this.state.phone,
-                        code: convertToEnglishNum(values.code)
-                      })
+                      .post(
+                        process.env.PRODUCTION_ENDPOINT + "/core/device/login",
+                        {
+                          cell: this.state.phone,
+                          code: convertToEnglishNum(values.code)
+                        }
+                      )
                       .then(response => {
                         if (response.data.token && !response.data.has_name) {
                           this.setState({
@@ -256,25 +263,35 @@ export default withTranslation('common')(
                             token: response.data.token,
                             phone: this.state.phone,
                             // =====>
-                            complete_register: false,
+                            complete_register: false
                             // =====>
                           });
                           this.handleCloseModal();
                           let go_to_pathname = Router.pathname;
                           let go_to_queries = Router.query;
                           // console.log(go_to_queries);
-                          Router.push({
-                            pathname: '/complete-register', query: {
-                              cell: this.state.phone,
-                              token: response.data.token,
-                              go_to_pathname,
-                              go_to_queries: Object.keys(go_to_queries).map(function (k) {
-                                return encodeURIComponent(k) + '=' + encodeURIComponent(go_to_queries[k])
-                              }).join('&')
+                          Router.push(
+                            {
+                              pathname: "/complete-register",
+                              query: {
+                                cell: this.state.phone,
+                                token: response.data.token,
+                                go_to_pathname,
+                                go_to_queries: Object.keys(go_to_queries)
+                                  .map(function(k) {
+                                    return (
+                                      encodeURIComponent(k) +
+                                      "=" +
+                                      encodeURIComponent(go_to_queries[k])
+                                    );
+                                  })
+                                  .join("&")
+                              }
+                            },
+                            {
+                              pathname: "/complete-register"
                             }
-                          }, {
-                              pathname: '/complete-register'
-                            });
+                          );
                         } else if (
                           response.data.token &&
                           response.data.has_name
@@ -282,25 +299,27 @@ export default withTranslation('common')(
                           // let also get user name and last name and them sign them in
                           axios
                             .post(
-                              process.env.PRODUCTION_ENDPOINT + '/core/user/info',
+                              process.env.PRODUCTION_ENDPOINT +
+                                "/core/user/info",
                               {},
                               {
                                 headers: {
-                                  Authorization: 'Bearer ' + response.data.token
+                                  Authorization: "Bearer " + response.data.token
                                 }
                               }
                             )
 
                             .then(response2 => {
                               // now lets sign them in
-                              localStorage["ImageUrl"] = response.data.user_profile.image_url
+                              localStorage["ImageUrl"] =
+                                response.data.user_profile.image_url;
                               // localStorage["complete_register"] = true
                               actions.signin({
                                 first_name: response2.data.data.first_name,
                                 last_name: response2.data.data.last_name,
                                 user_id: response.data.user_profile.id,
                                 token: response.data.token,
-                                phone: this.state.phone,
+                                phone: this.state.phone
                               });
                               // let go_to_pathname = Router.pathname;
                               // let go_to_queries = Router.query;
@@ -317,13 +336,13 @@ export default withTranslation('common')(
                               // }, {
                               //     pathname: '/complete-register'
                               //   });
-                              
+
                               this.handleCloseModal();
                               updateInfo("ok");
                             });
                         } else {
                           // tslint:disable-next-line:no-console
-                          console.error('error');
+                          console.error("error");
                           // TODO: handle errors
                         }
                       })
@@ -341,7 +360,7 @@ export default withTranslation('common')(
                   }}
                   validationSchema={Yup.object().shape({
                     code: Yup.number()
-                      .required( "لطفاً کد را وارد کنید.")
+                      .required("لطفاً کد را وارد کنید.")
                       .typeError("لطفاً فیلد را پر کنید")
                   })}
                 >
@@ -353,12 +372,16 @@ export default withTranslation('common')(
                     errors,
                     touched
                   }) => (
-                      <LoginForm className="sign-in-wrapper JustThisone" style={{textAlign:"right"}}>
-                        <div className="form-group">
-                          <label>
-                            {/* {`کد ورود به شماره ${this.state.phone} پیامک شد `} */}
-                            کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید
-                            {/* <a
+                    <LoginForm
+                      className="sign-in-wrapper JustThisone"
+                      style={{ textAlign: "right" }}
+                    >
+                      <div className="form-group">
+                        <label>
+                          {/* {`کد ورود به شماره ${this.state.phone} پیامک شد `} */}
+                          کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد
+                          کنید
+                          {/* <a
                               className="small"
                               onClick={this.prevPanel}
                               style={{ cursor: 'pointer' }}
@@ -366,32 +389,49 @@ export default withTranslation('common')(
                             >
                               ویرایش شماره
                             </a> */}
-                          </label>
-                          {/* <div className="notShowErrors"> */}
-                          <Input
-                            name="code"
-                            inputProps={{
-                              type: 'number',
-                              tabIndex: this.state.showIndex === 1 ? 0 : -1,
-                              className: 'add_top_8',
-                              placeholder: "لطفا کد را وارد کنید"
-                            }}
-                          />
-                           <a
-                              className="small"
-                              onClick={this.prevPanel}
-                              style={{textAlign:"left",width:'50%', cursor: 'pointer',marginTop:"0",display:"inline-block",verticalAlign:'top',marginBottom: "0" }}
-                              tabIndex={this.state.showIndex === 1 ? 0 : -1}
-                            >
-                              ویرایش شماره
-                            </a>
-                          <div className="clearfix add_bottom_15 flow-root"
-                              style={{ cursor: 'pointer',width:"50%",marginTop:"0",display:"inline-block",verticalAlign:'top',marginBottom: "0" }}>
+                        </label>
+                        {/* <div className="notShowErrors"> */}
+                        <Input
+                          name="code"
+                          inputProps={{
+                            type: "number",
+                            tabIndex: this.state.showIndex === 1 ? 0 : -1,
+                            className: "add_top_8",
+                            placeholder: "لطفا کد را وارد کنید"
+                          }}
+                        />
+                        <a
+                          className="small"
+                          onClick={this.prevPanel}
+                          style={{
+                            textAlign: "left",
+                            width: "50%",
+                            cursor: "pointer",
+                            marginTop: "0",
+                            display: "inline-block",
+                            verticalAlign: "top",
+                            marginBottom: "0"
+                          }}
+                          tabIndex={this.state.showIndex === 1 ? 0 : -1}
+                        >
+                          ویرایش شماره
+                        </a>
+                        <div
+                          className="clearfix add_bottom_15 flow-root"
+                          style={{
+                            cursor: "pointer",
+                            width: "50%",
+                            marginTop: "0",
+                            display: "inline-block",
+                            verticalAlign: "top",
+                            marginBottom: "0"
+                          }}
+                        >
                           <a
                             tabIndex={this.state.showIndex === 1 ? 0 : -1}
                             className="small"
                             href="javascript:void(0);"
-                            style={{ color: '#0099ff'}}
+                            style={{ color: "#0099ff" }}
                           >
                             <Countdown
                               date={this.state.timeToSendSMSAgain}
@@ -399,25 +439,25 @@ export default withTranslation('common')(
                             />
                           </a>
                         </div>
-                        </div>
-                        <span className="sui-error-message">
-                          {this.state.codeError || null}
-                        </span>
-                        {/* </div> */}
-                        
-                        <div className="text-center">
-                          <Button.Submit
-                            loading={isSubmitting}
-                            primary
-                            type="submit"
-                            className="btn_1 full-width"
-                            tabIndex={this.state.showIndex === 0 ? 0 : -1}
-                          >
-                            ورود
-                          </Button.Submit>
-                        </div>
-                      </LoginForm>
-                    )}
+                      </div>
+                      <span className="sui-error-message">
+                        {this.state.codeError || null}
+                      </span>
+                      {/* </div> */}
+
+                      <div className="text-center">
+                        <Button.Submit
+                          loading={isSubmitting}
+                          primary
+                          type="submit"
+                          className="btn_1 full-width"
+                          tabIndex={this.state.showIndex === 0 ? 0 : -1}
+                        >
+                          ورود
+                        </Button.Submit>
+                      </div>
+                    </LoginForm>
+                  )}
                 </Form>
               </Panel>
             </PanelsWrapper>

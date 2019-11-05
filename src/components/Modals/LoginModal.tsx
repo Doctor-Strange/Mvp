@@ -400,22 +400,6 @@ export default withTranslation("common")(
                             placeholder: "لطفا کد را وارد کنید"
                           }}
                         />
-                        <a
-                          className="small"
-                          onClick={this.prevPanel}
-                          style={{
-                            textAlign: "left",
-                            width: "50%",
-                            cursor: "pointer",
-                            marginTop: "0",
-                            display: "inline-block",
-                            verticalAlign: "top",
-                            marginBottom: "0"
-                          }}
-                          tabIndex={this.state.showIndex === 1 ? 0 : -1}
-                        >
-                          ویرایش شماره
-                        </a>
                         <div
                           className="clearfix add_bottom_15 flow-root"
                           style={{
@@ -439,6 +423,23 @@ export default withTranslation("common")(
                             />
                           </a>
                         </div>
+                        
+                        <a
+                          className="small"
+                          onClick={this.prevPanel}
+                          style={{
+                            textAlign: "left",
+                            width: "50%",
+                            cursor: "pointer",
+                            marginTop: "0",
+                            display: "inline-block",
+                            verticalAlign: "top",
+                            marginBottom: "0"
+                          }}
+                          tabIndex={this.state.showIndex === 1 ? 0 : -1}
+                        >
+                          ویرایش شماره
+                        </a>
                       </div>
                       <span className="sui-error-message">
                         {this.state.codeError || null}

@@ -79,7 +79,7 @@ export class ResultsCards extends React.Component<{
       showInProfile = false,
       userOwnPage = false
     } = this.props;
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <>
         <Section

@@ -62,7 +62,7 @@ end?:string;
     user: any;
     reserveFunction: any;
 }> = ({ date, price, user, reserveFunction,start,end,loading }) => {
-    console.log("user",user)
+    // console.log("user",user)
     let Randprice= convertNumbers2Persian(getShortVersion(price).number);
     let  bo = convertNumbers2Persian(getShortVersion(price).number).indexOf(".") === -1
     let  pos = convertNumbers2Persian(getShortVersion(price).number).indexOf(".")

@@ -105,7 +105,7 @@ export class SearchBar extends React.Component<{
     if (!cityName) {
       loadingCity = true;
     }
-    console.log(count)
+    // console.log(count)
     const textDate = ` تاریخ ${convertNumbers2Persian(start)} تا ${convertNumbers2Persian(end)}`;
     return (
       <SearchResult id="results">
@@ -132,7 +132,7 @@ export class SearchBar extends React.Component<{
                   loading={citiesFarsi[0].value == null}
                   value={city}
                   onChange={(e, data) => {
-                    console.log(data);
+                    // console.log(data);
                     if (data && data.name) {
                       citiesFarsi.map((value, index) => {
                         if (value.value == data.value) {

@@ -157,7 +157,7 @@ const Page = ({id}) => {
                         </svg>
                         <div style={{textAlign:'center'}}>
                             <h1 className="center">پرداخت با موفقیت انجام شد</h1>
-                            {console.log(request.data.rent_search_dump.media_set[0].url)}
+                            {/* {console.log(request.data.rent_search_dump.media_set[0].url)} */}
                             <img src={request.data.rent_search_dump.media_set[0].url}/>
                             <h2 className="center">{rentDump.car.name.fa}</h2>
                             <h3 className="center">{rentDump.owner.name}</h3>

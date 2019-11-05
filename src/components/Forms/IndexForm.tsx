@@ -194,7 +194,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
     // });
     if(localStorage["start"] && localStorage["end"]){
       let start = JSON.parse(localStorage["start"]);
-      console.log(start.day , moment().jDate(), start.month, moment().jMonth()+1)
+      // console.log(start.day , moment().jDate(), start.month, moment().jMonth()+1)
       if(start.day > moment().jDate()){
         if(start.month >= moment().jMonth()+1 ){
           setDate({

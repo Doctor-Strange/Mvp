@@ -66,6 +66,7 @@ padding-top: 16px;
     }
     input{
       margin-bottom:15px;
+      font-family: inherit;
     }
     span{
       cursor:pointer;
@@ -215,6 +216,9 @@ export const UserCard: React.FunctionComponent<{
   const inputFile = useRef(null) 
   const Cookieuser = jsCookie.get("first_name")
   const Cookielast = jsCookie.get("last_name")
+  console.log(firstname,
+    lastname,
+    username)
   return (
     <Link route={link}>
     <a>
@@ -412,23 +416,23 @@ export const UserCard: React.FunctionComponent<{
                 />
               </div>
               <div
-                className="media-body hostDetailCard box"
+                className="media-body hostDetailCard box editBox"
               >
-                 <label>{'نام'}</label>
+                 <label style={{color:"#202020"}}>{'نام'}</label>
                 <Input
                   type="text"
                   className="firstname"
-                  placeholder="نام"
+                  placeholder={firstname}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.firstname}
                   name="firstname"
                 />
-                 <label>{'نام خانوادگی'}</label>
+                 <label  style={{color:"#202020"}}>{'نام خانوادگی'}</label>
                 <Input
                   type="text"
                   className="lastname"
-                  placeholder="نام خانوادگی"
+                  placeholder={lastname}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.lastname}
@@ -442,7 +446,7 @@ export const UserCard: React.FunctionComponent<{
                 </div>
                 {username || makeUsername ?
                   <>
-                    <label>{'نام کاربری'}</label>
+                    <label style={{color:"#202020"}}>{'نام کاربری'}</label>
                     <Input
                       iconPosition="left"
                       placeholder="نام کاربری"
@@ -479,6 +483,7 @@ export const UserCard: React.FunctionComponent<{
                   </Grid.Column>
                   <Grid.Column width={8} style={{width:`48%`,marginRight:`2%`}}>
                       <Button
+                      id="cancelBTN"
                         style={{ height: "48px", marginTop: "16px" }}
                         size="small"
                         basic

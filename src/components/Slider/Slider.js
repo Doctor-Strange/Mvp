@@ -15,7 +15,7 @@ class Slider extends Component {
   };
   positionController = e => {
     e.persist();
-    console.log(e);
+    // console.log(e);
     let w = e.target.naturalWidth;
     let h = e.target.naturalHeight;
     if (w / h < 1.2) {

@@ -123,7 +123,7 @@ export default withTranslation("common")(
               </ContentCardTitle>
               {items ?
                 items.map((item, i) => {
-                  console.log(item);
+                  // console.log(item);
                   return (
                     <div className="FQ_WRAPPER" key={item.id}>
                       {i === 0 ? null : (

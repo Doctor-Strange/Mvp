@@ -264,8 +264,8 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
             end = moment(endDate).format('jD jMMMM jYY');
             //console.log(start);
         }
-        console.log("this.props",
-        this.props)
+        // console.log("this.props",
+        // this.props)
         const { media_set, year, mileage_range, owner, body_style, color, color_code, cylinder, value,
             deliver_at_renters_place, cancellation_policy, transmission_type, location, facility_set,
             max_km_per_day, description, capacity, extra_km_price, car, loaded, avg_price_per_day, avg_discounted_price_per_day } = this.props;

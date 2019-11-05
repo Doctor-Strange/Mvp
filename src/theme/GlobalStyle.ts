@@ -3274,6 +3274,19 @@ button.Toastify__close-button.Toastify__close-button--success:hover {
 #JustPersian{
   font-family: IRANSans !important;
 }
+
+#cancelBTN{
+  box-shadow: none !important;
+    border: 1px solid #4ba3ce;
+    color: #4ba3ce !important;
+    font-weight: 500;
+}
+.editform {
+  width: 100%;
+  .editBox{
+    width: 100%;
+  }
+}
 `;
 
 enum Margin {

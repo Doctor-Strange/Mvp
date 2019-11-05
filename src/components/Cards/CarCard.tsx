@@ -262,22 +262,22 @@ export const CarCard: React.FunctionComponent<{
       link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`
     }
 
-    console.log(children,
-      title,
-      img,
-      description,
-      year,
-      score,
-      price,
-      deliver_at_renters_place,
-      id,
-      dateURL,
-      search_id,
-      simpleMode = true,
-      showEditButtons = false,
-      discount_percent,
-      discounted_price,
-      is_out_of_service = false,)
+    // console.log(children,
+    //   title,
+    //   img,
+    //   description,
+    //   year,
+    //   score,
+    //   price,
+    //   deliver_at_renters_place,
+    //   id,
+    //   dateURL,
+    //   search_id,
+    //   simpleMode = true,
+    //   showEditButtons = false,
+    //   discount_percent,
+    //   discounted_price,
+    //   is_out_of_service = false,)
     useEffect(() => {
       setoutofservice(is_out_of_service)
   }, []);
@@ -332,7 +332,7 @@ export const CarCard: React.FunctionComponent<{
               draggable: true
             })
             // console.log("outofservice" , outofservice);
-            console.log("new value" , is_out_of_service)
+            // console.log("new value" , is_out_of_service)
           }
       })
       .catch(error => {
@@ -370,7 +370,7 @@ export const CarCard: React.FunctionComponent<{
               a.persist()
               let w = a.target.naturalWidth; 
               let h = a.target.naturalHeight;
-              console.log(title,"==>",w/h)
+              // console.log(title,"==>",w/h)
               if(w/h < 1.2){
                 setheightController(w/h*100)
               }

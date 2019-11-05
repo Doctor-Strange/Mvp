@@ -63,13 +63,24 @@ end?:string;
     reserveFunction: any;
 }> = ({ date, price, user, reserveFunction,start,end,loading }) => {
     console.log("user",user)
+    let Randprice= convertNumbers2Persian(getShortVersion(price).number);
+    let  bo = convertNumbers2Persian(getShortVersion(price).number).indexOf(".") === -1
+    let  pos = convertNumbers2Persian(getShortVersion(price).number).indexOf(".")
+    if(!bo){
+        if(price > 1000000){
+            Randprice = convertNumbers2Persian(getShortVersion(price).number).slice(0, pos+2)
+        }else{
+            Randprice = convertNumbers2Persian(getShortVersion(price).number).slice(0, pos)
+        }
+    }
     return (
         <Card>
             {(price > 0) &&
                 <div className="price">
                     <span className="number" style={{ fontSize: 30 + 'px' }}>
                         <span>
-                            {convertNumbers2Persian(getShortVersion(price).number)}
+                            {/* {convertNumbers2Persian(getShortVersion(price).number)} */}
+                            {Randprice}
                         </span>
                     </span>
                     <span className="unit">

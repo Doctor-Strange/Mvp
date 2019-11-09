@@ -1,10 +1,14 @@
 function numberWithCommas(x) {
-  // return x.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return x
     .toString()
     .replace(',', '')
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+}
+
+
+function DnumberWithCommas(x) {
+  return x.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function convertNumbers2Persian(num) {
@@ -49,5 +53,6 @@ export {
   numberWithCommas,
   convertNumbers2Persian,
   convertNumbers2English,
-  getShortVersion
+  getShortVersion,
+  DnumberWithCommas
 };

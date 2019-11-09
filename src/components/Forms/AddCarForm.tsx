@@ -38,7 +38,7 @@ import { useDropzone } from 'react-dropzone';
 import Dropzone from 'react-dropzone';
 import scrollToElement from 'scroll-to-element';
 import AddCarImageUpload from "./AddCarImageUpload";
-import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
+import { numberWithCommas, convertNumbers2Persian, convertNumbers2English,DnumberWithCommas } from '../../utils/numbers';
 import jsCookie from 'js-cookie';
 import { toast } from 'react-toastify';
 import DropDownWithSearch from '../DropDownWithSearch/DropDownWithSearch'
@@ -1520,7 +1520,7 @@ export default withTranslation('common')(connect(state => state)(
                     </div>
 
 
-                    <Input
+                    {/* <Input
                       // icon="search"
                       // iconPosition="left"
                       name="availableInAllPrice"
@@ -1542,7 +1542,7 @@ export default withTranslation('common')(connect(state => state)(
                       }
                     >
                       <input inputMode="numeric" />
-                    </Input>
+                    </Input> */}
 
 
                     <div className="field">
@@ -1592,7 +1592,7 @@ id="JustPersian"
                           // console.log("type",e.target.value);values.value = e.target.value 
                         }}
                         // value={values.value}
-                        value={numberWithCommas(values.value)}
+                        value={DnumberWithCommas(values.value)}
                       />
                       <span style={{
                         position: 'absolute',

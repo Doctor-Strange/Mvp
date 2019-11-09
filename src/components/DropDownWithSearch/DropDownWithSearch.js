@@ -5,10 +5,12 @@ class DropDownWithSearch extends Component {
   state = {
     InputValue: "",
     ShowControler: false,
-    data: []
+    data: [],
+    leave: false
   };
 
   DropDownController = () => {
+    console.log("run");
     this.setState(pre => {
       return { ShowControler: !pre.ShowControler };
     });
@@ -21,13 +23,16 @@ class DropDownWithSearch extends Component {
   };
 
   render() {
+    console.log(this.state.ShowControler);
+
     return (
       <div
         className={[
           "searchBoxContainer",
           this.props.error ? "ErrorINPUT" : null
         ].join(" ")}
-        onMouseLeave={() => this.setState({ ShowControler: false })}
+        onMouseLeave={() => this.setState({ leave: true })}
+        onMouseMove = {() => this.setState({ leave: false })}
       >
         <label className={this.props.data.length < 2 ? "diz" : null}>
           {this.props.children}
@@ -36,6 +41,13 @@ class DropDownWithSearch extends Component {
           this.props.loading &&
           this.props.data.length < 1 && <span className="loader"> </span>}
         <input
+          onBlur={() => {
+            if (this.state.leave) {
+              this.setState(pre => {
+                return { ShowControler: !pre.ShowControler };
+              });
+            }
+          }}
           disabled={this.props.disabled}
           value={this.state.InputValue}
           placeholder={this.props.placeholder}

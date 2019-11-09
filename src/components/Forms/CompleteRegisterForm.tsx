@@ -87,7 +87,7 @@ interface ICompleteRegisterFormValues {
   firstName: string;
   lastName: string;
   nationalid: string;
-  emailAddress: string;
+  // emailAddress: string;
   password: string;
   day: number;
   month: number;
@@ -161,7 +161,7 @@ export default withTranslation('common')(
               firstName: '',
               lastName: '',
               nationalid: '',
-              emailAddress: '',
+              // emailAddress: '',
               password: '',
               day: null,
               month: null,
@@ -179,7 +179,7 @@ export default withTranslation('common')(
                 firstName,
                 lastName,
                 nationalid,
-                emailAddress,
+                // emailAddress,
                 password,
                 day,
                 month,
@@ -194,7 +194,7 @@ export default withTranslation('common')(
                     last_name: lastName,
                     national_id: convertNumbers2English(nationalid),
                     birth_date: `${year}/${month}/${day}`,
-                    email: emailAddress,
+                    // email: emailAddress,
                     is_ok_to_get_emails: false
                   },
                   {
@@ -270,25 +270,25 @@ export default withTranslation('common')(
             }}
             validationSchema={Yup.object().shape({
               firstName: Yup.string().required(
-                t('forms.error_filed_required1') +
+                t('لطفاً فیلد') +
                 $firstname +
-                t('forms.error_filed_required2')
-              ).min(2, t('forms.error_name_must_be_2_char_long'))
-                .max(30, t('forms.error_name_must_be_30_char_long')),
+                t(" را پر کنید. ")
+              ).min(2, t("نام باید حداقل ۲ حرف باشد"))
+                .max(30, t("نام می‌تواند حداکثر ۳۰ حرف باشد")),
               lastName: Yup.string().required(
-                t('forms.error_filed_required1') +
+                t(" لطفاً فیلد ") +
                 $lastname +
-                t('forms.error_filed_required2')
-              ).min(2, t('forms.error_lastname_must_be_2_char_long'))
-                .max(30, t('forms.error_lastname_must_be_30_char_long')),
+                t(" را پر کنید. ")
+              ).min(2, t("نام باید حداقل ۲ حرف باشد"))
+                .max(30, t("نام می‌تواند حداکثر ۳۰ حرف باشد")),
               nationalid: Yup.string()
                 .ensure() // convert undefined values to an empety string
                 .trim()
                 .required('')
-                .length(10, t('forms.error_nationalID_10_char'))
+                .length(10, t("کد ملی باید ۱۰ رقم باشد"))
                 .test(
                   'Validate National ID',
-                  t('forms.error_nationalID_not_valid'),
+                  t("کد ملی وارد شده معتبر نیست"),
                   value => {
                     const check = parseInt(value[9], 10);
                     let sum = 0;
@@ -304,46 +304,46 @@ export default withTranslation('common')(
                     );
                   }
                 ),
-              emailAddress: Yup.string().email(
-                t('forms.error_email_not_valid')
-              ),
+              // emailAddress: Yup.string().email(
+              //   t('forms.error_email_not_valid')
+              // ),
               day: Yup.number()
                 .typeError(
-                  t('forms.error_filed_required1') +
+                  t(" لطفاً فیلد ") +
                   $day +
-                  t('forms.error_filed_required2')
+                  t(" را پر کنید. ")
                 )
                 .required(
-                  t('forms.error_filed_required1') +
+                  t(" لطفاً فیلد ") +
                   $day +
-                  t('forms.error_filed_required2')
+                  t(" را پر کنید. ")
                 )
-                .min(1, t('forms.error_day_not_valid'))
-                .max(31, t('forms.error_day_not_valid')),
+                .min(1, t("روز تولد معتبر نیست"))
+                .max(31, t("روز تولد معتبر نیست")),
               month: Yup.number()
                 .typeError(
-                  t('forms.error_filed_required1') +
+                  t(" لطفاً فیلد ") +
                   $month +
-                  t('forms.error_filed_required2')
+                  t(" را پر کنید. ")
                 )
                 .required(
-                  t('forms.error_filed_required1') +
+                  t(" لطفاً فیلد ") +
                   $month +
-                  t('forms.error_filed_required2')
+                  t(" را پر کنید. ")
                 ),
               year: Yup.number()
                 .typeError(
-                  t('forms.error_filed_required1') +
+                  t(" لطفاً فیلد ") +
                   $year +
-                  t('forms.error_filed_required2')
+                  t(" را پر کنید. ")
                 )
                 .required(
-                  t('forms.error_filed_required1') +
+                  t(" لطفاً فیلد ") +
                   $year +
-                  t('forms.error_filed_required2')
+                  t(" را پر کنید. ")
                 )
-                .min(1300, t('forms.error_year_not_valid'))
-                .max(1398, t('forms.error_year_not_valid'))
+                .min(1300, t("سال تولد معتبر نیست"))
+                .max(1398, t("سال تولد معتبر نیست"))
             })}
           >
             {({
@@ -362,12 +362,12 @@ export default withTranslation('common')(
                 <BoxAccount className="box_account">
                   <Laws onRef={this.doRef} updateInfo={this.updateInfo} result= {this.onResult}/>
                   <Form onSubmit={handleSubmit}>
-                    <h3 className="new_client">{$new_client}</h3>
+                    <h3 className="new_client">تکمیل اطلاعات</h3>
                     {/* <small className="float-right pt-2">* {$required_fields}</small> */}
                     <Segment>
                       <Form.Group widths="2">
                         <Form.Input
-                          label={$firstname}
+                          label="نام"
                           name="firstName"
                           error={Boolean(errors.firstName && touched.firstName)}
                           onChange={handleChange}
@@ -376,7 +376,7 @@ export default withTranslation('common')(
                         />
 
                         <Form.Input
-                          label={$lastname}
+                          label="نام خانوادگی"
                           name="lastName"
                           error={Boolean(errors.lastName && touched.lastName)}
                           onChange={handleChange}
@@ -391,7 +391,7 @@ export default withTranslation('common')(
                       )}
 
                       <div className="field">
-                        <label>{$national_id}</label>
+                        <label>کد ملی</label>
                         <Input
                           // type={isMobile ? "number" : "text"}
                           name="nationalid"
@@ -424,11 +424,11 @@ export default withTranslation('common')(
                       <Form.Group widths="3" className="paddingInMobile">
 
                         <div className="field">
-                          <label>{$birthdate}</label>
+                          <label>تازیخ تولد</label>
                           <Input
                             name="day"
                             type="text"
-                            placeholder={$day}
+                            placeholder="روز"
                             // min="1"
                             // max="31"
                             error={Boolean(errors.day && touched.day)}
@@ -453,7 +453,7 @@ export default withTranslation('common')(
                             name="month"
                             id="month"
                             label={isMobile &&"ماه"}
-                            placeholder={$month}
+                            placeholder="ماه"
                             clearable
                             selection
                             options={
@@ -504,7 +504,7 @@ export default withTranslation('common')(
                             // min="1300"
                             // max="1397"
                             inputMode='numeric' /* novalidate pattern="[0-9]*/
-                            placeholder={$year + $year_hint}
+                            placeholder={"سال"}
                             style={{ marginTop: '25px' }}
                             error={Boolean(errors.year && touched.year)}
                             onChange={(e, data) => {
@@ -527,7 +527,7 @@ export default withTranslation('common')(
                               type="text"
                               // min="1300"
                               // max="1397"
-                              placeholder={$year + $year_hint}
+                              placeholder={"سال"}
                               error={Boolean(errors.year && touched.year)}
                               onChange={(e, data) => {
                                 if (data && data.name) {
@@ -552,7 +552,7 @@ export default withTranslation('common')(
                       </label>
                     )} */}
 
-                      <Form.Input
+                      {/* <Form.Input
                         label={$email}
                         name="emailAddress"
                         type="email"
@@ -567,7 +567,7 @@ export default withTranslation('common')(
                         <label className="sui-error-message sui-padd">
                           {errors.emailAddress}
                         </label>
-                      )}
+                      )} */}
 
                       {/* <Input
                 label={$password}

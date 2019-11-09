@@ -65,7 +65,7 @@ class Slider extends Component {
     return (
       <div className="carousel_container">
         {!this.state.colseModal && (
-          <Gallery Feed={Feed} CloseGallery={this.CloseGallery} />
+          <Gallery Feed={Feed} CloseGallery={this.CloseGallery} index = {this.state.slideIndex}/>
         )}
         {carousel ? (
           <>

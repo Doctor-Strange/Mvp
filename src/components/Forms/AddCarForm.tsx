@@ -201,7 +201,7 @@ interface IAddCarFormValues {
   carBodyStyle: number;
   carCapacity: number;
   carKmDriven: number;
-  carVIN: string;
+  // carVIN: string;
   carLicensePlates1: number;
   carLicensePlates2: string;
   carLicensePlates3: number;
@@ -644,7 +644,7 @@ export default withTranslation('common')(connect(state => state)(
             carBodyStyle: null,
             carCapacity: null,
             carKmDriven: null,
-            carVIN: null,
+            // carVIN: null,
             carLicensePlates1: null,
             carLicensePlates2: null,
             carLicensePlates3: null,
@@ -694,7 +694,7 @@ export default withTranslation('common')(connect(state => state)(
               carBodyStyle,
               carCapacity,
               carKmDriven,
-              carVIN,
+              // carVIN,
               carLicensePlates1,
               carLicensePlates2,
               carLicensePlates3,
@@ -740,7 +740,7 @@ export default withTranslation('common')(connect(state => state)(
                   mileage_range_id: carKmDriven,
                   color_id: this.state.colorId,
                   special_type_id: 1,
-                  vin: carVIN,
+                  // vin: carVIN,
                   registration_plate_first_part: carLicensePlates1,
                   registration_plate_second_part: carLicensePlates2,
                   registration_plate_third_part: carLicensePlates3,
@@ -826,10 +826,10 @@ export default withTranslation('common')(connect(state => state)(
               value: Yup.string()
               .required(fieldErrorGenrator("ارزش خودرو"))
               .typeError(fieldErrorGenrator("ارزش خودرو")),
-            carVIN: Yup.string()
-              .required(fieldErrorGenrator("VIN"))
-              .typeError(fieldErrorGenrator("VIN"))
-              .matches(/[a-zA-Z0-9]{17}/, t("کد VIN معتبر نیست")),
+            // carVIN: Yup.string()
+            //   .required(fieldErrorGenrator("VIN"))
+            //   .typeError(fieldErrorGenrator("VIN"))
+            //   .matches(/[a-zA-Z0-9]{17}/, t("کد VIN معتبر نیست")),
             carLicensePlates1: Yup.number()
               .required(fieldErrorGenrator("بخش نخست شماره پلاک باید ۲ رقم باشد"))
               .typeError(fieldErrorGenrator("بخش نخست شماره پلاک باید ۲ رقم باشد"))
@@ -1519,6 +1519,32 @@ export default withTranslation('common')(connect(state => state)(
                       </select>
                     </div>
 
+
+                    <Input
+                      // icon="search"
+                      // iconPosition="left"
+                      name="availableInAllPrice"
+                      className="extraKm"
+                      error={Boolean(errors.value && touched.value)}
+                      onChange={(e, data) => {
+                        if (data && data.name) {
+                          // setFieldValue(data.name, clearNumber(data.value));
+                          // setFieldTouched(data.name);
+                          setFieldValue("value",data.value);
+                        }
+                      }}
+                      value={
+                        values.value
+                          ? convertNumbers2Persian(
+                            numberWithCommas(values.value)
+                          )
+                          : values.value
+                      }
+                    >
+                      <input inputMode="numeric" />
+                    </Input>
+
+
                     <div className="field">
 
                       <label>ارزش خودرو</label>
@@ -1629,7 +1655,7 @@ id="JustPersian"
                         </div>
                       }
                     </Form.Group> */}
-                    <div className="field">
+                    {/* <div className="field">
                       <label>
                         {"کد شناسایی خودرو (VIN)"}
                       </label>
@@ -1655,9 +1681,9 @@ id="JustPersian"
                       <p style={{ fontSize: '12px', fontWeight: 400 }}>
                         کد شناسایی خودرو فقط جهت تنظیم قرارداد اجاره به کار می‌رود و در سایت نمایش داده نمی‌شود.
                         </p>
-                    </div>
+                    </div> */}
 
-                    <Form.Field style={{ margin: 0 }}>
+                    <Form.Field style={{ margin: 0 }} id="pelak_container">
                       <label>{"پلاک خودرو"}</label>
                     </Form.Field>
                     <Form.Group>
@@ -1850,7 +1876,7 @@ id="JustPersian"
                         label={"توضیحات"}
                         id="carDescription"
                         name="carDescription"
-                        placeholder={"توضیحات اضافی در مورد شرایط خودرو..."}
+                        placeholder={"برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود.\nاگر برای اجاره شرایط خاصی، مثل سیگار نکشیدن، دارید می‌توانید اینجا وارد کنید."}
                         style={{ minHeight: 150 }}
                         error={Boolean(
                           errors.carDescription && touched.carDescription

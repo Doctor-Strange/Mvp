@@ -3287,6 +3287,9 @@ button.Toastify__close-button.Toastify__close-button--success:hover {
     width: 100%;
   }
 }
+div#pelak_container {
+  margin-bottom: 0px !important;
+}
 `;
 
 enum Margin {

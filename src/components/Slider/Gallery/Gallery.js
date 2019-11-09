@@ -3,7 +3,7 @@ import { Icon } from "semantic-ui-react";
 
 class Gallery extends Component {
   state = {
-    index: 0,
+    index: null,
     rightV: 0,
     startPoint: 0,
     FromX: 0,
@@ -35,7 +35,7 @@ class Gallery extends Component {
   };
 
   render() {
-    const { Feed } = this.props;
+    const { Feed, index } = this.props;
     let carousel = Feed.length > 1 ? true : false;
 
     return (
@@ -45,7 +45,7 @@ class Gallery extends Component {
         </div>
         <div className="show_part">
           <img
-            src={Feed[this.state.index]}
+            src={Feed[this.state.index || index ]}
             alt="تصویر گالری"
             onTouchEnd={() => {
               this.setState({

@@ -203,9 +203,11 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     const [star1, setStar1] = useState();
     const [star2, setStar2] = useState();
     const [text, setText] = useState();
+    const [loader , setLoader] = useState(false)
     const [canRate, setCanRate] = useState(false);
     const doAction = async (data: IdoAction) => {
         const res = await REQUEST_setOrderStatus({ ...data, token: jsCookie.get('token') });
+        setLoader(false)
         if (data.action == 'pay') {
             Router.push(res.redirect_to, res.redirect_to, { shallow: false });
         }
@@ -260,9 +262,9 @@ export const RequestCard: React.SFC<IRequestCard> = ({
         //     refresh,
         //     reviewStatus,
         //     no_of_days)
-        let localStar1;
-        let localStar2;
-        let localText;
+        let localStar1 = 0;
+        let localStar2 = 0;
+        let localText = null;
         const settingStar1 = (e, data) => {
             localStar1 = data.rating;
         }
@@ -293,7 +295,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             />
                         </Form.Field>
                     }
-                        <img src={avatarImage} alt="تصویر خودرو" className="RATE_CAR_IMAGE"/>
+                        <img src={avatarImage} alt="تصویر کاربر" className="RATE_CAR_IMAGE"/>
                         <h4 className="CarName-RATE">{statusOwner === 'renter' ?
                             ownerInfo.first_name+" "+ownerInfo.last_name
                         : renterInfo.first_name +""+renterInfo.last_name
@@ -330,39 +332,44 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                 },
             })
             .then((value) => {
-                trigerDoAction(value,id,{localStar1,localStar2,localText});
+                
+                trigerDoAction(statusOwner,id,{localStar1,localStar2,localText});
             });
     }
 
     const trigerDoAction = async (value,id,localData) => {
+        setLoader(true)
+
+        console.log("value,id,localData",value,id,localData)
         const {localStar1,localStar2,localText} = localData;
         setStar1(localStar1);
         setStar2(localStar2);
         setText(localText);
-        switch (value) {
-            case "done":
-                try {
-                    const res1 = await doAction({
+        // switch (value) {
+        //     case "done":
+                // try {
+                    if(value !== "owner" )doAction({
                         id,
                         action: 'rate',
                         payload: {
                             toRate: statusOwner,
                             type: 'rent-order',
                             user_profile_id: userID,
-                            rate: localStar1,
+                            rate: localStar2,
                             review: localText,
                         }
-                    });
-                    const res2 = await doAction({
+                    }).then(()=>{})
+                    doAction({
                         id,
                         action: 'rate',
                         payload: {
+                            type: 'user',
                             toRate: statusOwner,
                             user_profile_id: userID,
-                            type: 'user',
-                            rate: localStar2,
+                            rate: localStar1,
                         }
-                    });
+                    }).then(()=>{})
+
                     // toast.success('نظر شما با موفقیت ثبت شد', {
                     //     position: "bottom-center",
                     //     autoClose: 5000,
@@ -371,24 +378,24 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                     //     pauseOnHover: true,
                     //     draggable: true
                     // });
-                }
-                catch(error) {
-                    toast.error("خطایی رخ داده است", {
-                        position: "bottom-center",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true
-                    });
-                }
+                // }
+                // catch(error) {
+                //     toast.error("خطایی رخ داده است", {
+                //         position: "bottom-center",
+                //         autoClose: 5000,
+                //         hideProgressBar: false,
+                //         closeOnClick: true,
+                //         pauseOnHover: true,
+                //         draggable: true
+                //     });
+                // }
                 setStar1(null);
                 setStar2(null);
                 setText(null);
-                break;
-            default:
-                //console.log('canceled');
-        }
+        //         break;
+        //     default:
+        //         //console.log('canceled');
+        // }
     }
 
     if(!canRate){
@@ -532,6 +539,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                         <Grid.Column width={16}>
                             <div style={{ marginLeft: '8px' }}>
                                 <Button
+                                loading={loader}
                                     primary
                                     fluid
                                     className="left"

@@ -20,7 +20,7 @@ const Requests = props => {
     const res = await REQUEST_getOrderRequests({
       token: jsCookie.get("token")
     });
-    console.log(res)
+    // console.log(res)
     setRequests(res.items);
     setRequestsCount(res.count || 0);
   }

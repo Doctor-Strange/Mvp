@@ -180,6 +180,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
     }
 
     componentDidMount() {
+        console.log(this.props.data)
         this.state.onRef(this);
         if (window.location.search === "") {
             this.setState({ hideTheseGuys: true, })

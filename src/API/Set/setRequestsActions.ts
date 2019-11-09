@@ -52,10 +52,11 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
           "امیدواریم تجربه خوبی از اجاره خودروتان داشته باشید. نظرتان در مورد اجاره گیرنده را با سایر کاربران در میان بگذارید.";
         break;
       case "rate":
-        console.log("rate Date ", data);
         if (data.payload.toRate === "renter") {
-          console.log("renter")
+
           if (data.payload.type === "user") {
+            message = "امتیاز شما برای اجاره دهنده ثبت شد.";
+
             ACTION_URL = SET_ORDER_RATE.RENTER.USER;
             more = {
               user_profile_id: data.payload.user_profile_id,
@@ -63,7 +64,7 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
             };
           }
           if (data.payload.type === "rent-order") {
-          console.log("rent-order")
+            message = "امتیاز شما برای خودرو ثبت شد.";
 
             ACTION_URL = SET_ORDER_RATE.RENTER.RENT_ORDER;
             more = {
@@ -73,9 +74,10 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
             };
           }
         } else if (data.payload.toRate === "owner") {
-          console.log("owner")
 
-          if (data.payload.type === "rent-order") {
+          if (data.payload.type === "user") {
+            message = "امتیاز شما برای اجاره گیرنده ثبت شد.";
+
             ACTION_URL = SET_ORDER_RATE.OWNER.USER;
             more = {
               user_profile_id: data.payload.user_profile_id,
@@ -102,7 +104,7 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
         }
       )
       .then(response => {
-        resolve(response.data);
+        resolve(response.data);      
         data.action !== "pay" &&
           toast.success(message, {
             position: "bottom-center",

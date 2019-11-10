@@ -91,7 +91,8 @@ export default withTranslation("common")(
       insurance: true,
       openModal: () => null,
       heightController:0,
-      loading:false
+      loading:false,
+      coupon_code:false
     };
 
     doRef = ref => {
@@ -201,6 +202,18 @@ export default withTranslation("common")(
           heightController :w/h*110
         })
       }      
+    }
+
+    CoupanController = (e) =>{
+      e.preventDefault()
+      toast.warn("کد تخفیف وارد شده اشتباه است!",{
+        position: "bottom-center",
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true
+      })
     }
 
     render() {
@@ -348,6 +361,19 @@ export default withTranslation("common")(
                       }
                       </span>
                     </span>
+                  </li>
+                  <li className ="DiscountCopon">
+                  {!this.state.coupon_code &&<span onClick={()=>{
+                      this.setState({
+                        coupon_code:true
+                      })
+                    }}>کد تخفیف دارید؟</span>
+                  }
+                    {this.state.coupon_code && <form onSubmit={this.CoupanController}>
+                      <input autoFocus type="text" name="COUPAN"/>
+                      <button type="submit">اعمال</button>
+                    </form>
+                    }
                   </li>
                   <li style={{ borderTop: "1px solid #ddd", fontSize: '20px' }} >
                     جمع کل

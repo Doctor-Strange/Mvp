@@ -3187,7 +3187,8 @@ height:100%;
     width: 100%;
   }
 }
-.Toastify__toast.Toastify__toast--success,.Toastify__toast.Toastify__toast--error  {
+.Toastify__toast.Toastify__toast--success,.Toastify__toast.Toastify__toast--error,
+.Toastify__toast--warning  {
   margin: 0;
 }
 
@@ -3305,6 +3306,51 @@ div#pelak_container {
     bottom: -20px;
     left: -75px;
   }
+}
+
+.DiscountCopon{
+  span{
+    cursor:pointer;
+  }
+  form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    input{
+      height: 36px !important;
+      font-family: inherit;
+      margin: 0;
+      direction: ltr;
+      margin-left: 10px;
+      outline: 0;
+      line-height: 2;
+      padding: 9px 10px;
+      font-size: 1em;
+      background: #fff;
+      border: 1px solid rgba(34,36,38,.15);
+      color: rgba(0,0,0,.87);
+      border-radius: .28571429rem;
+      box-shadow: 0 0 0 0 transparent inset;
+    }
+    button{
+      border: 1px solid rgb(75,163,206);
+      background: #fff;
+      padding: 9px 20px;
+      font-family: Vazir,sans-serif;
+      outline: none;
+      cursor: pointer;
+      color: #4ba3ce;
+      font-weight: 500;
+      font-weight: 600px;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      border-radius: 4px;
+      &:hover , &:focus{
+        color:#fff;
+      }
+    }
+  }
+
 }
 `;
 

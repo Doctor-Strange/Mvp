@@ -34,8 +34,14 @@ class Gallery extends Component {
     } else return;
   };
 
+  componentDidMount = () =>{
+    this.setState({
+      index : this.props.index
+    })
+  }
+
   render() {
-    const { Feed, index } = this.props;
+    const { Feed } = this.props;
     let carousel = Feed.length > 1 ? true : false;
 
     return (
@@ -45,7 +51,7 @@ class Gallery extends Component {
         </div>
         <div className="show_part">
           <img
-            src={Feed[this.state.index || index ]}
+            src={Feed[this.state.index ]}
             alt="تصویر گالری"
             onTouchEnd={() => {
               this.setState({

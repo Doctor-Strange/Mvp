@@ -323,7 +323,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
   const [carTimings, setCarTimings] = useState([]);
   const [carDiscounts, setCarDiscounts] = useState([]);
   const [isIsAllTime, setIsIsAllTime] = useState(true);
-  const [isAllTimePrice, setIsAllTimePrice] = useState(0);
+  const [isAllTimePrice, setIsAllTimePrice] = useState("");
   const [success, setSuccess] = useState('');
   const [disabledDays, setDisabledDays] = useState([]);
 
@@ -521,7 +521,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
             })
               setTimeout(() => {
                 actions.setSubmitting(false);
-                Router.push(`/car/${id}/${car.car.brand.name.fa}-${car.car.name.fa}`);
+                Router.push(`/car/${id}/${car.car.brand.name.fa.replace(/ /ig,"-")}-${car.car.name.fa.replace(/ /ig,"-")}`);
               }, 1000);
           })
         }

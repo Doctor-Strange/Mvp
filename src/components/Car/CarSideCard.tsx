@@ -62,15 +62,18 @@ end?:string;
     user: any;
     reserveFunction: any;
 }> = ({ date, price, user, reserveFunction,start,end,loading }) => {
-    // console.log("user",user)
-    let Randprice= convertNumbers2Persian(getShortVersion(price).number);
-    let  bo = convertNumbers2Persian(getShortVersion(price).number).indexOf(".") === -1
-    let  pos = convertNumbers2Persian(getShortVersion(price).number).indexOf(".")
-    if(!bo){
-        if(price > 1000000){
-            Randprice = convertNumbers2Persian(getShortVersion(price).number).slice(0, pos+2)
-        }else{
-            Randprice = convertNumbers2Persian(getShortVersion(price).number).slice(0, pos)
+    console.log("user",price)
+    let Randprice= "خطا"
+    if(price){
+        Randprice= convertNumbers2Persian(getShortVersion(price).number);
+        let  bo = convertNumbers2Persian(getShortVersion(price).number).indexOf(".") === -1
+        let  pos = convertNumbers2Persian(getShortVersion(price).number).indexOf(".")
+        if(!bo){
+            if(price > 1000000){
+                Randprice = convertNumbers2Persian(getShortVersion(price).number).slice(0, pos+2)
+            }else{
+                Randprice = convertNumbers2Persian(getShortVersion(price).number).slice(0, pos)
+            }
         }
     }
     return (

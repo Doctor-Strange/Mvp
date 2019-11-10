@@ -424,7 +424,7 @@ export default withTranslation('common')(
                       <Form.Group widths="3" className="paddingInMobile">
 
                         <div className="field">
-                          <label>تازیخ تولد</label>
+                          <label>تاریخ تولد</label>
                           <Input
                             name="day"
                             type="text"

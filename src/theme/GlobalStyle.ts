@@ -838,6 +838,8 @@ const GlobalStyle = createGlobalStyle`
     }
     .ui.header {
       margin-left: 0.75rem;
+      font-family: Vazir;
+    font-weight: bold;
       .icon:only-child {
         margin-left: .25rem;
       }
@@ -3289,6 +3291,20 @@ button.Toastify__close-button.Toastify__close-button--success:hover {
 }
 div#pelak_container {
   margin-bottom: 0px !important;
+}
+.ui.items>.item>.content>.header:not(.ui){
+  font-family:inherit
+}
+.ui.buttons:not(.vertical)>.basic.blue.button:not(:first-child){
+  font-weight: 500;
+}
+.BUTTONSINSTEP2{
+  @media (max-width:450px){
+    position: static !important;
+    width:100%;
+    bottom: -20px;
+    left: -75px;
+  }
 }
 `;
 

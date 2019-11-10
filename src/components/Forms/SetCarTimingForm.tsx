@@ -669,9 +669,12 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                           */}
                 </Item.Group>
                 {/* ===================================================================== */}
+                </Segment>
+                <Segment>
+
                 <Divider horizontal>
                   <Header as="h4">
-                    <Icon name="edit" />
+                    {/* <Icon name="edit" /> */}
                     شرایط اجاره
                   </Header>
                 </Divider>
@@ -854,9 +857,12 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 <br />
                 {/* ===================================================================== */}
                 {/* ===================================================================== */}
+                </Segment>
+                <Segment>
+
                 <Divider horizontal>
                   <Header as="h4">
-                    <Icon name="calendar alternate outline" />
+                    {/* <Icon name="calendar alternate outline" /> */}
                     تاریخ و نرخ اجاره
                   </Header>
                 </Divider>
@@ -951,13 +957,16 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   </>
                 )}
                  {/* ===================================================================== */}
+                 </Segment>
+                <Segment>
                  <Divider horizontal>
                   <Header as="h4">
-                    <Icon name="calendar alternate outline" />
+                    {/* <Icon name="calendar alternate outline" /> */}
                     تخفیف‌‌ها
                   </Header>
                 </Divider>
                 {/* ===================================================================== */}
+                <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید.</p>
                 <DiscountsSelector
                     carDiscounts={carDiscounts}
                     modifyCarDiscounts={modifyCarDiscounts}

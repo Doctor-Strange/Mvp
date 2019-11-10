@@ -272,6 +272,8 @@ const TimeRangesSelector: React.FC<{
             </Form.Input>
             <Button.Group
               size="tiny"
+              className ="BUTTONSINSTEP2"
+
               style={{
                 flexDirection: 'row-reverse',
                 position: 'relative',
@@ -336,7 +338,7 @@ const TimeRangesSelector: React.FC<{
             setOpenEditFor(null);
           }}
         >
-          افزودن
+          افزودن بازه زمانی
           <Icon name="plus" />
         </Button>
       }

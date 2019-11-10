@@ -43,7 +43,7 @@ const DiscountsSelector: React.FC<{
   // console.log("Car discounts: ", carDiscounts);
   return (
     <Component style={{ maxWidth: '370px' }}>
-      <Segment.Group style={{ marginBottom: '12px' }}>
+      <Segment.Group style={{ marginBottom: '12px',border: 'none',boxShadow: '0px 0px 1px #000' }}>
         {carDiscounts.map((val, index) => {
           if (val == undefined) {
             return <></>;
@@ -237,6 +237,7 @@ const DiscountsSelector: React.FC<{
             </Form.Input>
             <Button.Group
               size="tiny"
+              className ="BUTTONSINSTEP2"
               style={{
                 flexDirection: 'row-reverse',
                 position: 'relative',
@@ -301,7 +302,7 @@ const DiscountsSelector: React.FC<{
             setOpenEditFor(null);
           }}
         >
-          افزودن
+          افزودن تخفیف
           <Icon name="plus" />
         </Button>
        }

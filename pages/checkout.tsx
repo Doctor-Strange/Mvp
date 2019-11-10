@@ -206,7 +206,7 @@ export default withTranslation("common")(
 
     CoupanController = (e) =>{
       e.preventDefault()
-      toast.warn("کد تخفیف وارد شده اشتباه است!",{
+      toast.warn("کد تخفیف نادرست است.",{
         position: "bottom-center",
           autoClose: 7000,
           hideProgressBar: true,
@@ -362,7 +362,7 @@ export default withTranslation("common")(
                       </span>
                     </span>
                   </li>
-                  <li className ="DiscountCopon">
+                  {/* <li className ="DiscountCopon">
                   {!this.state.coupon_code &&<span onClick={()=>{
                       this.setState({
                         coupon_code:true
@@ -374,7 +374,7 @@ export default withTranslation("common")(
                       <button type="submit">اعمال</button>
                     </form>
                     }
-                  </li>
+                  </li> */}
                   <li style={{ borderTop: "1px solid #ddd", fontSize: '20px' }} >
                     جمع کل
                     <span className="float-left">

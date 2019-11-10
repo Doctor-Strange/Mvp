@@ -119,7 +119,7 @@ export default withTranslation("common")(
               ‍
               <ContentCardTitle>
                 <h1 style={{ fontSize: "22px" }}>{`سوالات پرتکرار`}</h1>
-                <span> پاسخگوی تمام نیازهای شما </span>
+                {/* <span> پاسخگوی تمام نیازهای شما </span> */}
               </ContentCardTitle>
               {items ?
                 items.map((item, i) => {

@@ -127,7 +127,9 @@ const BoxAccount = styled.div`
     @media (max-width:768px){
         position:static;
     font-size: 13px !important;
-
+    text-align: right;
+    margin-top: 4px !important;
+    margin-bottom: 8px !important;
     }
   }
 }

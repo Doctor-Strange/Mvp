@@ -153,19 +153,7 @@ padding-top: 16px;
       margin: 0 auto;
       display: table;
     }
-    input {
-      &[name="firstname"],
-      &[name="lastname"],
-      &[name="username"] {
-        font-family: Vazir;
-        font-family: Vazir;
-      }
-      &[name="firstname"],
-      &[name="lastname"] {
-        text-align: right !important;
-      }
-      margin-bottom: 16px;
-    }
+    
     .ui.icon.input>i.icon:after, .ui.icon.input>i.icon:before {
       top: 38%;
       font-size: 20px;  
@@ -174,8 +162,21 @@ padding-top: 16px;
         width: 100%;
         
     }
+    
   }
-
+  input {
+    &[name="firstname"],
+    &[name="lastname"],
+    &[name="username"] {
+      font-family: Vazir;
+      font-family: Vazir;
+    }
+    &[name="firstname"],
+    &[name="lastname"] {
+      text-align: right !important;
+    }
+    margin-bottom: 16px;
+  }
 .C{display: inline-block;
   vertical-align: sub;
   padding-left: 5px;

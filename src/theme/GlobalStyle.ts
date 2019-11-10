@@ -3352,6 +3352,20 @@ div#pelak_container {
   }
 
 }
+
+input {
+  &[name="firstname"],
+  &[name="lastname"],
+  &[name="username"] {
+    font-family: Vazir;
+    font-family: Vazir;
+  }
+  &[name="firstname"],
+  &[name="lastname"] {
+    text-align: right !important;
+  }
+  margin-bottom: 16px;
+}
 `;
 
 enum Margin {

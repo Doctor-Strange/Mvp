@@ -10,7 +10,6 @@ class DropDownWithSearch extends Component {
   };
 
   DropDownController = () => {
-    console.log("run");
     this.setState(pre => {
       return { ShowControler: !pre.ShowControler };
     });
@@ -23,8 +22,6 @@ class DropDownWithSearch extends Component {
   };
 
   render() {
-    console.log(this.state.ShowControler);
-
     return (
       <div
         className={[

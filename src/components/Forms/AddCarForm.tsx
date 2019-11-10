@@ -1108,7 +1108,7 @@ export default withTranslation('common')(connect(state => state)(
                                     this.setState({ checkboxes: newcheckboxes });
                                     //set car facilities checkboxes
                                     carInfo.facilities.map((value, index) => {
-                                      this.setFasalities(value, true);
+                                      this.setFasalities(value, false);
                                     });
                                   })
                                   .catch(function (error) {

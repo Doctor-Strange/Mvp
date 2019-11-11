@@ -1597,7 +1597,7 @@ id="JustPersian"
                           // console.log("type",e.target.value);values.value = e.target.value 
                         }}
                         // value={values.value}
-                        value={DnumberWithCommas(values.value)}
+                        value={DnumberWithCommas(convertNumbers2English(values.value))}
                       /> 
                       {values.value}
                       <span style={{

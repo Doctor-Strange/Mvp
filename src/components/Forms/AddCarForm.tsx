@@ -1548,6 +1548,27 @@ export default withTranslation('common')(connect(state => state)(
                     <div className="field">
 
                       <label>ارزش خودرو</label>
+                      <Form.Input
+                    // icon="search"
+                    // iconPosition="left"
+                    id="JustPersian"
+                    name="distanceLimit"
+                    className="distanceLimit"
+                    error={Boolean(errors.value && touched.value)}
+                    onChange={(e, data) => {
+                      if (data && data.name) {
+                        setFieldValue("value", data.value);
+                        setFieldTouched("value");
+                      }
+                    }}
+                    value={
+                      values.value
+                        ? DnumberWithCommas(values.value)
+                        : values.value
+                    }
+                  >
+                    <input inputMode="numeric" />
+                  </Form.Input>
                       {/* <Input
                       type="number"
                         name="value"

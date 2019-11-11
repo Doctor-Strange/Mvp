@@ -1549,22 +1549,27 @@ export default withTranslation('common')(connect(state => state)(
 
                       <label>ارزش خودرو</label>
                       {/* <Input
+                      type="number"
                         name="value"
                         error={Boolean(errors.value && touched.value)}
                         onChange={(e, data) => {
                           if (data && data.name) {
-                            setFieldValue(data.name, convertNumbers2English(data.value));
-                            setFieldTouched(data.name);
+                            setFieldValue("value", data.value);
+                            setFieldTouched("value");
                           }
                         }}
                         min="2000000"
                         max="5000000000"
                         value={values.value
-                          ? convertNumbers2Persian(values.value)
+                          ? convertNumbers2Persian(
+                            numberWithCommas(values.value)
+                          )
                           : values.value
                         }
                         style={{ direction: 'ltr' }}
-                      /> */}
+                      >
+                        <input inputMode="numeric" />
+                      </Input> */}
                         {/* {console.log(numberWithCommas(
                               values.value))} */}
                       <input
@@ -1584,8 +1589,8 @@ id="JustPersian"
                         // onBlur={(e)=> {;;}} 
                         onChange={(e) => { 
                           e.persist()
-                          setFieldValue("value", e.target.value);
-                          // if(!/^[0-9]*$/gm.test(e.target.value.slice(-1))){
+                            setFieldValue("value", e.target.value)
+                          // if(!/\d+|\d+\.\d+|\.\d+)([eE][-+]?\d+/gm.test(e.target.value.slice(-1))){
                           //   console.log( e.target.value)
                           // }else{
                           // }
@@ -1593,7 +1598,8 @@ id="JustPersian"
                         }}
                         // value={values.value}
                         value={DnumberWithCommas(values.value)}
-                      />
+                      /> 
+                      {values.value}
                       <span style={{
                         position: 'absolute',
                         left: '10px',

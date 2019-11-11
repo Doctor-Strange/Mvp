@@ -8,7 +8,7 @@ function numberWithCommas(x) {
 
 
 function DnumberWithCommas(x) {
-  return x.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return x.toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function convertNumbers2Persian(num) {

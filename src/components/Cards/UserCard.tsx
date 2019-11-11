@@ -214,6 +214,7 @@ export const UserCard: React.FunctionComponent<{
   const [editMode, setEditMode] = useState(false);
   const [makeUsername, setMakeUsername] = useState(false);
   const [img, setImg] = useState("");
+  const [isSubmitting, setisSubmitting] = useState(false);
   const inputFile = useRef(null) 
   const Cookieuser = jsCookie.get("first_name")
   const Cookielast = jsCookie.get("last_name")
@@ -314,22 +315,45 @@ export const UserCard: React.FunctionComponent<{
             username: username
           }}
           onSubmit={async (values, actions) => {
+            setisSubmitting(true)
+            if(values.username){
+              let userNameString = values.username.replace(/\s/g,"")
+              if(!/[A-Za-z0-9]+/g.test(userNameString)){
+                toast.error("نام کاربری باید انگلیسی باشد.", {
+                  position: "bottom-center",
+                  autoClose: 4000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true
+                });
+                setisSubmitting(false)
+                return
+              }
+            }
             if (values.firstname && values.lastname)
               await REQUEST_setUsetNameLastName({
                 token: jsCookie.get("token"),
                 first_name: values.firstname,
                 last_name: values.lastname
               });
-            if (values.username)
-              await REQUEST_setUsername({
+            if (values.username){
+              try{await REQUEST_setUsername({
                 token: jsCookie.get("token"),
                 username: values.username.replace(/\s/g,"")
-              });
+              })
+            }
+            catch{
+              setisSubmitting(false)
+              return
+            }
+            }
             if(values.image)
               await REQUEST_setUserImage({
                 token: jsCookie.get('token'),
                 file: values.image,
               });
+            
             actions.setSubmitting(false);
             toast.success("تغیرات با موفقیت اعمال شد", {
               position: "bottom-center",
@@ -339,6 +363,7 @@ export const UserCard: React.FunctionComponent<{
               pauseOnHover: true,
               draggable: true
             });
+            setisSubmitting(false)
             setEditMode(false);
             Router.push('/')
             // onUpdate({ id: id, username: values.username }); // call parent passed function so it will reload the page
@@ -350,7 +375,7 @@ export const UserCard: React.FunctionComponent<{
             touched,
             values,
             errors,
-            isSubmitting,
+            // isSubmitting,
             setFieldValue
           }) => (
             <form onSubmit={handleSubmit} className="editform">

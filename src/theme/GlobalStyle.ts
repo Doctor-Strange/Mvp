@@ -3366,6 +3366,11 @@ input {
   }
   margin-bottom: 16px;
 }
+.NoRequest{
+  min-height:400px;
+  padding-top:100px;
+  direction:rtl;
+}
 `;
 
 enum Margin {

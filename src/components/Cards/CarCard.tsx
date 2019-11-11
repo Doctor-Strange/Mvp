@@ -227,6 +227,7 @@ export const CarCard: React.FunctionComponent<{
   discount_percent?: string;
   discounted_price?: number;
   is_out_of_service: boolean;
+  // own?:boolean
 }> = ({
   children,
   title,
@@ -256,7 +257,7 @@ export const CarCard: React.FunctionComponent<{
     // }
     let carName = title.replace(/ /g, "-");
     if (simpleMode) {
-      link = `/car/${id}/${carName}`;
+      link = `/car/${id}/${carName}?notAllowed=true`;
     }
     else {
       link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`

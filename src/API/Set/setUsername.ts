@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_USERNAME = '/core/user/set-username';
@@ -23,6 +24,14 @@ export const REQUEST_setUsername = (data: IsetUsername) => {
         }
       })
       .catch(error => {
+        toast.error(error.response.data.message, {
+          position: "bottom-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        });
         reject(error.response);
       });
   });

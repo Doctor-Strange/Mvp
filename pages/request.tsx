@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import NextSeo from "next-seo";
+
 import styled from 'styled-components';
 import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
 import { Section } from '../src/components/row/Sections';
@@ -69,6 +71,21 @@ const Request = ({id}, props) => {
 
     return (
         <Layout haveSubHeader={true} pageTitle={'Hello World'}>
+            <NextSeo
+            config={{
+              title: `درخواست اجاره | اتولی`,
+              description:  `درخواست اجاره | اتولی`,
+              openGraph: {
+                title: `درخواست اجاره | اتولی`,
+              description:  `درخواست اجاره | اتولی`,
+              },
+              twitter: {
+                handle: "@otoli_net",
+                site: "@otoli_net",
+                cardType: "summary_large_image"
+              }
+            }}
+          />
             {/* <input type="text" ref={myRef}/>
             <div onClick={refcontroller}>a</div> */}
             <LoginModal

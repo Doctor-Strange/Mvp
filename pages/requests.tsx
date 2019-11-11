@@ -1,4 +1,5 @@
 import * as React from "react";
+import NextSeo from "next-seo";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Button, Icon, Image, Item, Label } from "semantic-ui-react";
@@ -41,6 +42,21 @@ const Requests = props => {
 
   return (
     <Layout haveSubHeader={true} pageTitle={"Hello World"}>
+      <NextSeo
+            config={{
+              title: `رزرو‌های من | اتولی`,
+              description: `رزرو‌های من | اتولی`,
+              openGraph: {
+                title:`رزرو‌های من | اتولی`,
+              description: `رزرو‌های من | اتولی`,
+              },
+              twitter: {
+                handle: "@otoli_net",
+                site: "@otoli_net",
+                cardType: "summary_large_image"
+              }
+            }}
+          />
       <Section justifyCenter={true}>
         <Flex className="wrapper">
           <Box width={2 / 2} px={2}>
@@ -52,7 +68,7 @@ const Requests = props => {
                   <RequestCardPlaceholder />
                 </>
               ) : requests.length === 0 ? (
-                <p>در حال حاضر درخواستی ثبت نشده.</p>
+                <p className="NoRequest">در حال حاضر درخواستی ثبت نشده.</p>
               ) : (
                 requests.map((value, index) => {
                   const rentDump = value.rent_search_dump;

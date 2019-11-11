@@ -58,10 +58,11 @@ const CarideCard: React.FunctionComponent<{
     price: any;
     start?:string;
     loading?: boolean;
+    allow?:any;
 end?:string;
     user: any;
     reserveFunction: any;
-}> = ({ date, price, user, reserveFunction,start,end,loading }) => {
+}> = ({ date, price, user, reserveFunction,start,end,loading,allow }) => {
     console.log("user",price)
     let Randprice= "خطا"
     if(price){
@@ -108,7 +109,7 @@ end?:string;
                 responceTime="میانگین زمان پاسخگویی: نامشخص"
                 image={user.image_url}
             />
-            {user.id.toString() !== jsCookie.get('user_id') ?
+            {user.id.toString() !== jsCookie.get('user_id') && allow !== "true" ?
             <>
             <Button
             loading = {loading}

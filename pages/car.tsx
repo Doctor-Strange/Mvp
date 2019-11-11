@@ -106,7 +106,7 @@ div:nth-child(4) {
 }
 }`
 
-export default class extends React.Component<{ t: any, rentalCarID: number, start_date: any, end_date: any, search_id: string }> {
+export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarID: number, start_date: any, end_date: any, search_id: string }> {
 
     static async getInitialProps(props) {
         if (typeof window === 'undefined') {
@@ -120,6 +120,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                 search_id: props.query.search_id,
             });
         else if (props.query.id)
+        console.log("props.query.notAllowed", props.query.notAllowed)
             res = await REQUEST_getCar({
                 id: props.query.id,
             });
@@ -127,6 +128,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
         return {
             // namespacesRequired: ['common'],
             rentalCarID: props.query.id,
+            isAllowed:props.query.notAllowed,
             // start: props.query.start,
             // end: props.query.end,
             search_id: props.query.search_id,
@@ -180,7 +182,6 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
     }
 
     componentDidMount() {
-        console.log(this.props.data)
         this.state.onRef(this);
         if (window.location.search === "") {
             this.setState({ hideTheseGuys: true, })
@@ -251,7 +252,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
 
     render() {
         // console.log("this. props ====> ", this.props)
-        const { t, start_date, end_date, search_id } = this.props;
+        const { t, start_date, end_date, search_id, isAllowed } = this.props;
         let start, end = null;
         let startDate, endDate = null;
         //console.log(start_date);
@@ -408,6 +409,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                     {isBrowser &&
                         <ContentSideCard shareBar={true} pushTopMargin={true}>
                             <CarSideCard
+                            allow = {isAllowed}
                         loading = {this.state.load}
 
                                 // date={{
@@ -524,7 +526,7 @@ export default class extends React.Component<{ t: any, rentalCarID: number, star
                     </ContentCard>
                 </Section>
                 <CommentSection />
-                {isMobile && !this.state.hideTheseGuys ?
+                {isMobile && !this.state.hideTheseGuys && isAllowed !== "true" ?
                     this.props.owner.id.toString() !== jsCookie.get('user_id') ? <Button
                         style={{
                             zIndex: '55',

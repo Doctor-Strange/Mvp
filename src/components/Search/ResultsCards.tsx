@@ -55,6 +55,7 @@ export class ResultsCards extends React.Component<{
   marginClass?: string;
   showInProfile?: boolean;
   userOwnPage?: boolean;
+  // own?:boolean
 }> {
   state = {
     error: ""
@@ -101,6 +102,7 @@ export class ResultsCards extends React.Component<{
             results.map((value, index) => {
               return (
                 <CarCard
+                // own = {own}
                   key={index}
                   id={value.id}
                   title={value.car.brand.name.fa + " " + value.car.name.fa}

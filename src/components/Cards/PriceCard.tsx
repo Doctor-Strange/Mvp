@@ -39,7 +39,7 @@ export const PriceCard: React.FunctionComponent<{
     style?: any;
     moreThan?: boolean;
 }> = ({ children, number, preNumber, fontSize = 24, style, moreThan = false }) => {
-    let price= "خطا"
+    let price= 0
     
     if(number){
     price= convertNumbers2Persian(getShortVersion(number).number);

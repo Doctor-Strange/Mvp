@@ -3411,6 +3411,15 @@ i.at.icon:before {
     color: #828282;
     font-weight: 500;
 }
+#carLicensePlates4{
+  font-family: IRANSans !important;
+}
+#carLicensePlates1{
+  font-family: IRANSans !important;
+}
+#carLicensePlates3{
+  font-family: IRANSans !important;
+}
 `;
 
 enum Margin {

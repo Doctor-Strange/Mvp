@@ -170,7 +170,7 @@ class Header extends React.Component<{
                           <span>
                             {jsCookie.get('first_name') ?
                             <a href={`/profile?id=${user_id}`}>
-                              {company_name?company_name:
+                              {company_name && company_name !== "null"?company_name:
                               first_name+" "+last_name}
                               {' '}
                               {/* <Icon name="user circle" size='big' className="img-header" /> */}
@@ -219,7 +219,7 @@ class Header extends React.Component<{
                           <span >
                             {jsCookie.get('first_name') ?
                             <a href={`/profile?id=${user_id}`}>
-                              {company_name?company_name:
+                              {company_name && company_name !== "null" ?company_name:
                               first_name+" "+last_name
   }
                               {' '}

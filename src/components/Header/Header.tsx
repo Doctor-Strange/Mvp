@@ -131,7 +131,12 @@ class Header extends React.Component<{
     if (!user) {
       user = { token: "", user_id: "", phone: "", first_name: "", last_name: "" };
     }
+    let company_name = ''
     const { token, user_id, phone, first_name, last_name } = user;
+    if(jsCookie.get('company_name')){
+      company_name =jsCookie.get('company_name')
+    }
+    console.log("company_name",company_name)
     return (
       <>
         <HeaderSticky>
@@ -165,7 +170,8 @@ class Header extends React.Component<{
                           <span>
                             {jsCookie.get('first_name') ?
                             <a href={`/profile?id=${user_id}`}>
-                              {first_name} {last_name}
+                              {company_name?company_name:
+                              first_name+" "+last_name}
                               {' '}
                               {/* <Icon name="user circle" size='big' className="img-header" /> */}
                               <img
@@ -213,7 +219,9 @@ class Header extends React.Component<{
                           <span >
                             {jsCookie.get('first_name') ?
                             <a href={`/profile?id=${user_id}`}>
-                              {first_name} {last_name}
+                              {company_name?company_name:
+                              first_name+" "+last_name
+  }
                               {' '}
                               {/* <Icon name="user circle" size='big' className="img-header" /> */}
                               <img

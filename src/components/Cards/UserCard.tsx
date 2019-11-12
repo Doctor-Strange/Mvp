@@ -345,7 +345,7 @@ export const UserCard: React.FunctionComponent<{
                 first_name: values.firstname,
                 last_name: values.lastname
               });
-              if(values.company_name){
+              if(values.company_name || !values.company_name){
                 await REQUEST_setCompanyName({
                   token: jsCookie.get("token"),
                   company_name: values.company_name

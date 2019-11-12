@@ -318,6 +318,7 @@ export default withTranslation("common")(
                                 first_name: response2.data.data.first_name,
                                 last_name: response2.data.data.last_name,
                                 user_id: response.data.user_profile.id,
+                                company_name: response.data.user_profile.company_name,
                                 token: response.data.token,
                                 phone: this.state.phone
                               });

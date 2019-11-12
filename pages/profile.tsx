@@ -61,7 +61,7 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
         <Layout haveSubHeader={true} pageTitle={'list Your Car'}>
             <NextSeo
             config={{
-              title: `اجاره خودرو از ${company_name? company_name: first_name} ${company_name? null :last_name} | اتولی`,
+              title: `اجاره خودرو از ${company_name? company_name: first_name} ${company_name? "" :last_name} | اتولی`,
               description: " حساب کاربری",
               openGraph: {
                 title: `اجاره خودرو از ${first_name} ${last_name} | اتولی`,

@@ -10,7 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   REQUEST_setUserImage,
   REQUEST_setUsetNameLastName,
-  REQUEST_setUsername
+  REQUEST_setUsername,
+  REQUEST_setCompanyName
 } from "../../API";
 import {
   numberWithCommas,
@@ -194,11 +195,13 @@ export const UserCard: React.FunctionComponent<{
   own?: boolean;
   onUpdate?: any;
   showexit?: boolean;
+  company_name?:string;
 }> = ({
   t,
   firstname,
   lastname,
   username,
+  company_name,
   responceTime,
   image,
   id,
@@ -213,14 +216,17 @@ export const UserCard: React.FunctionComponent<{
     link = (username ? `/@${username}` : `/user/${id}`);
   const [editMode, setEditMode] = useState(false);
   const [makeUsername, setMakeUsername] = useState(false);
+  const [showcompName, setcompanyname] = useState(false);
   const [img, setImg] = useState("");
   const [isSubmitting, setisSubmitting] = useState(false);
   const inputFile = useRef(null) 
   const Cookieuser = jsCookie.get("first_name")
   const Cookielast = jsCookie.get("last_name")
-  console.log(firstname,
-    lastname,
-    username)
+  useEffect(()=>{
+    if(company_name){
+      setcompanyname(true)
+    }
+  },[])
   return (
     <Link route={link}>
     <a>
@@ -231,7 +237,8 @@ export const UserCard: React.FunctionComponent<{
           style={{textAlign: !own  ? "center" :'right', marginBottom: !own ?"10px": 0}}
           >
                 <span className="name">
-                  {firstname ? firstname :Cookieuser } {lastname ? lastname : Cookielast }
+
+                  {company_name ? company_name :firstname ? firstname :Cookieuser } {company_name ? null:lastname ? lastname : Cookielast }
                 </span>
                 {own && (
                 <span 
@@ -312,7 +319,8 @@ export const UserCard: React.FunctionComponent<{
             id: id,
             image: null,
             shownImage: image,
-            username: username
+            username: username,
+            company_name:company_name
           }}
           onSubmit={async (values, actions) => {
             setisSubmitting(true)
@@ -337,6 +345,12 @@ export const UserCard: React.FunctionComponent<{
                 first_name: values.firstname,
                 last_name: values.lastname
               });
+              if(values.company_name){
+                await REQUEST_setCompanyName({
+                  token: jsCookie.get("token"),
+                  company_name: values.company_name
+                })
+              }
             if (values.username){
               try{await REQUEST_setUsername({
                 token: jsCookie.get("token"),
@@ -470,19 +484,39 @@ export const UserCard: React.FunctionComponent<{
                 <div className="hostDetailCard-responseTime">
                   {values.responceTime}
                 </div>
+                {!showcompName ? <p
+                className="addCompanyName"
+                    onClick={() => setcompanyname(true)}
+                  >
+                    افزودن نام شرکت
+                  </p>
+                :<><label style={{color:"#202020"}}>نام شرکت</label>
+                    <Input
+                      placeholder="نام شرکت"
+                      name="company_name"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.company_name}
+                    >
+                      <input id="SETINPUT"/>
+                    </Input>
+                    </>
+                    }
                 {username || makeUsername ?
                   <>
-                    <label style={{color:"#202020"}}>{'نام کاربری'}</label>
+                    <label style={{color:"#202020"}}>آدرس اختصاصی</label>
                     <Input
+                    id="userNameWraper"
                       iconPosition="left"
-                      placeholder="نام کاربری"
+                      placeholder="آدرس اختصاصی"
                       name="username"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.username}
                     >
-                      <Icon name="at" />
-                      <input />
+                      {/* <Icon name="at" /> */}
+                      <span id="PrefixUsername">otoli.net/@</span>
+                      <input  id="USERNAMEProfile_Input"/>
                     </Input>
                   </>
                   : 

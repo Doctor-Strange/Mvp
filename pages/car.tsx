@@ -125,6 +125,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                 id: props.query.id,
             });
             // console.log(props.query.id)
+            debugger
         return {
             // namespacesRequired: ['common'],
             rentalCarID: props.query.id,
@@ -425,7 +426,8 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                                     image_url: owner.image_url,
                                     username: owner.username,
                                     first_name: owner.first_name,
-                                    last_name: owner.last_name
+                                    last_name: owner.last_name,
+                                    company_name: owner.company_name
                                 }}
                                 reserveFunction={() => { this.reserve(search_id) }}
                             />
@@ -515,6 +517,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                             <div style={{ margin: '10px auto', direction: 'ltr' }}>
                                 <UserCard
                                     id={owner.id}
+                                    company_name={owner.company_name}
                                     firstname={owner.first_name}
                                     lastname={owner.last_name}
                                     username={owner.username}

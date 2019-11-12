@@ -158,6 +158,7 @@ interface IRequestCard {
     refresh?: any;
     reviewStatus?: any;
     no_of_days?:Number;
+    company_name?:string
 }
 
 interface IdoAction {
@@ -198,7 +199,8 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     refresh,
     reviewStatus,
     no_of_days,
-    renterInfo
+    renterInfo,
+    company_name
 }) => {
     const [star1, setStar1] = useState();
     const [star2, setStar2] = useState();
@@ -297,7 +299,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                     }
                         <img src={avatarImage} alt="تصویر کاربر" className="RATE_CAR_IMAGE"/>
                         <h4 className="CarName-RATE">{statusOwner === 'renter' ?
-                            ownerInfo.first_name+" "+ownerInfo.last_name
+                            company_name? company_name: ownerInfo.first_name+" "+ownerInfo.last_name
                         : renterInfo.first_name +""+renterInfo.last_name
                         }</h4>
                         <label style={{fontWeight: '100'}}>امتیاز به
@@ -618,7 +620,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                 <Grid.Row columns={2} centered className="property DD">
                                     <Grid.Column width={10} className="right" style={{ paddingRight: '0' }}>
                                         <Link route={(ownerInfo.username ? `/@${ownerInfo.username}` : `/user/${ownerInfo.id}`)}>
-                                        <strong style={{color: '#4ba3ce',cursor: 'pointer'}}><Icon name="user circle" /> {ownerName} </strong>
+                                        <strong style={{color: '#4ba3ce',cursor: 'pointer'}}><Icon name="user circle" /> {company_name? company_name:ownerName} </strong>
                                         </Link>
                                     </Grid.Column>
                                     <Grid.Column width={6} className="left" style={{ padding: 0, }}>

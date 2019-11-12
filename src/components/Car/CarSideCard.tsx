@@ -66,6 +66,7 @@ end?:string;
     console.log("user",price)
     let Randprice= "خطا"
     if(price){
+        
         Randprice= convertNumbers2Persian(getShortVersion(price).number);
         let  bo = convertNumbers2Persian(getShortVersion(price).number).indexOf(".") === -1
         let  pos = convertNumbers2Persian(getShortVersion(price).number).indexOf(".")
@@ -106,6 +107,7 @@ end?:string;
                 firstname={user.first_name}
                 lastname={user.last_name}
                 username={user.username}
+                company_name={user.company_name}
                 responceTime="میانگین زمان پاسخگویی: نامشخص"
                 image={user.image_url}
             />

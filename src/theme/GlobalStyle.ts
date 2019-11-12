@@ -3371,6 +3371,46 @@ input {
   padding-top:100px;
   direction:rtl;
 }
+.addCompanyName{
+  color:rgb(0, 153, 255);
+  // font-weight:500;
+  cursor:pointer;
+}
+#ControlFORMIKDIVITIONS{
+  margin-bottom:0px !important;
+}
+.removeCompanyName{
+  cursor:pointer;
+  margin: 14px 20px !important;
+  color: #0099ff;
+}
+#IinputCompany{
+  direction: rtl;
+  text-align: right;
+  width:auto !important;
+}
+i.at.icon:before {
+  top: 38%;
+}
+#SETINPUT{
+  direction: rtl;
+  text-align: right;
+}
+#userNameWraper{
+  position:relative;
+}
+#USERNAMEProfile_Input{
+  direction: ltr;
+  padding-left: 84px !important;
+}
+#PrefixUsername{
+  position: absolute;
+    top: 13px;
+    left: 10px;
+    direction: ltr;
+    color: #828282;
+    font-weight: 500;
+}
 `;
 
 enum Margin {

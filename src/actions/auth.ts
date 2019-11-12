@@ -25,6 +25,9 @@ export const signin = (authData: Iuser) => {
   if (authData.first_name) {
     jsCookie.set('first_name', authData.first_name, cook_option);
   }
+  if (authData.company_name) {
+    jsCookie.set('company_name', authData.company_name, cook_option);
+  }
   if (authData.last_name) {
     jsCookie.set('last_name', authData.last_name, cook_option);
   }
@@ -35,6 +38,7 @@ export const signin = (authData: Iuser) => {
 export const completeRegister = (user: IuserNames) => {
   jsCookie.set('first_name', user.first_name, cook_option);
   jsCookie.set('last_name', user.last_name, cook_option);
+  jsCookie.set('company_name', user.company_name, cook_option);
   jsCookie.set('complete_register', user.complete_register, cook_option);
   return user;
 };
@@ -43,6 +47,7 @@ interface IuserNames {
   first_name: string;
   last_name: string;
   complete_register?: boolean;
+  company_name?:string
 }
 
 interface Iuser {
@@ -52,4 +57,5 @@ interface Iuser {
   first_name?: string;
   last_name?: string;
   user_id?: number;
+  company_name?:string
 }

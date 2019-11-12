@@ -222,7 +222,7 @@ export default withTranslation("common")(
         end = null;
       let startDate,
         endDate = null;
-      //console.log(start_date);
+      console.log("this.props",this.props);
       if (start_date && end_date) {
         startDate = moment(start_date, "jYYYY/jMM/jDD");
         endDate = moment(end_date, "jYYYY/jMM/jDD");
@@ -468,7 +468,7 @@ export default withTranslation("common")(
                           </div>
                           <div>
                             <span style={{ fontWeight: "bold" }}>
-                              {owner.first_name} {owner.last_name}
+                              {owner.company_name ? owner.company_name :owner.first_name} {owner.company_name ? null:owner.last_name}
                             </span>
                           </div>
                         </div>

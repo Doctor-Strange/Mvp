@@ -21,7 +21,6 @@ const Requests = props => {
     const res = await REQUEST_getOrderRequests({
       token: jsCookie.get("token")
     });
-    // console.log(res)
     setRequests(res.items);
     setRequestsCount(res.count || 0);
   }
@@ -87,6 +86,7 @@ const Requests = props => {
                       statusOwner={value.role}
                       ownerInfo={rentDump.owner}
                       renterInfo={value.renter}
+                      company_name={rentDump.owner.company_name}
                       carName={`${rentDump.car.brand.name.fa} ${rentDump.car.name.fa}`}
                       start={moment(rentDump.start_date, "jYYYY/jMM/jDD")}
                       end={moment(rentDump.end_date, "jYYYY/jMM/jDD")}

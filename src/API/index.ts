@@ -15,6 +15,7 @@ import { REQUEST_getUser } from './Get/getUser';
 import { REQUEST_getUserCars } from './Get/getUserCars';
 import { REQUEST_getCarIsMine } from './Get/getCarIsMine';
 import { REQUEST_setUserImage } from './Set/setUserImage';
+import {REQUEST_setCompanyName} from './Set/REQUEST_setCompanyName'
 import { REQUEST_setUsetNameLastName } from './Set/setUserNameLastName';
 import { REQUEST_setUsername  } from './Set/setUsername';
 
@@ -43,6 +44,8 @@ import { REQUEST_getFAQ } from "./Get/getFAQ";
 // Out of service
 import {REQUEST_set_out_of_service} from './Set/setOutOfServie'
 
+
+
 export {
   REQUEST_getCar,
   REQUEST_getLocations,
@@ -68,5 +71,6 @@ export {
   REQUEST_newCarMedia,
   REQUEST_getOrderRequest,
   REQUEST_getFAQ,
-  REQUEST_set_out_of_service
+  REQUEST_set_out_of_service,
+  REQUEST_setCompanyName
 };

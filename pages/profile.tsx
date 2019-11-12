@@ -36,9 +36,10 @@ interface IProfile {
     last_name?: string;
     image_url?: string;
     username?: string;
+    company_name?: string;
 }
 
-const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url, username }) => {
+const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url, username, company_name }) => {
     const [results, setRresults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [own, setOwnership] = useState(false);
@@ -54,14 +55,13 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
         fetchAPI();
         if (jsCookie.get('user_id') == id) {
             setOwnership(true);
-        }
+        }        
     }, []);
-console.log("own ===> ", own)
     return (
         <Layout haveSubHeader={true} pageTitle={'list Your Car'}>
             <NextSeo
             config={{
-              title: `اجاره خودرو از ${first_name} ${last_name} | اتولی`,
+              title: `اجاره خودرو از ${company_name? company_name: first_name} ${company_name? null :last_name} | اتولی`,
               description: " حساب کاربری",
               openGraph: {
                 title: `اجاره خودرو از ${first_name} ${last_name} | اتولی`,
@@ -104,6 +104,7 @@ console.log("own ===> ", own)
                             firstname={first_name}
                             lastname={last_name}
                             username={username}
+                            company_name={company_name}
                             showexit = {true}
                             responceTime="میانگین زمان پاسخگویی: نامشخص"
                             image={image_url}

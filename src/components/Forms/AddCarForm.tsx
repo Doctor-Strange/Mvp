@@ -1548,7 +1548,7 @@ export default withTranslation('common')(connect(state => state)(
                     <div className="field">
 
                       <label>ارزش خودرو</label>
-                      <Form.Input
+                      {/* <Form.Input
                     // icon="search"
                     // iconPosition="left"
                     id="JustPersian"
@@ -1568,7 +1568,7 @@ export default withTranslation('common')(connect(state => state)(
                     }
                   >
                     <input inputMode="numeric" />
-                  </Form.Input>
+                  </Form.Input> */}
                       {/* <Input
                       type="number"
                         name="value"

@@ -60,6 +60,7 @@ const BoxAccount = styled.div`
     }
   }
   #selectBox {
+    margin-bottom:0;
     height:18px;
     display: inline-block;
     width:27px !important;
@@ -93,6 +94,7 @@ interface ICompleteRegisterFormValues {
   month: number;
   year: number;
   subscribe: boolean;
+  company_name?:string
 }
 
 export default withTranslation('common')(
@@ -107,7 +109,8 @@ export default withTranslation('common')(
       error: '',
       name: null,
       success: false,
-      checkbox: false
+      checkbox: false,
+      ShowInput:false
     };
 
     constructor(props) {
@@ -127,6 +130,14 @@ export default withTranslation('common')(
       this.setState(pre =>{
         return {
           checkbox : !pre.checkbox
+        }
+      })
+    }
+
+    ShowInputHandller =() =>{
+      this.setState(p =>{
+        return{
+          ShowInput: !p.ShowInput
         }
       })
     }
@@ -164,6 +175,7 @@ export default withTranslation('common')(
               // emailAddress: '',
               password: '',
               day: null,
+              company_name:null,
               month: null,
               year: null,
               subscribe: false
@@ -182,6 +194,7 @@ export default withTranslation('common')(
                 // emailAddress,
                 password,
                 day,
+                company_name = null,
                 month,
                 year,
                 subscribe
@@ -194,6 +207,7 @@ export default withTranslation('common')(
                     last_name: lastName,
                     national_id: convertNumbers2English(nationalid),
                     birth_date: `${year}/${month}/${day}`,
+                    company_name:company_name,
                     // email: emailAddress,
                     is_ok_to_get_emails: false
                   },
@@ -214,6 +228,7 @@ export default withTranslation('common')(
                     actions.completeRegister({
                       first_name: firstName,
                       last_name: lastName,
+                      company_name:company_name,
                       complete_register: false
                     });
                     // let path_to_go = `/profile?id=${userId}`;
@@ -390,7 +405,7 @@ export default withTranslation('common')(
                         </label>
                       )}
 
-                      <div className="field">
+                      <div className="field" id = "ControlFORMIKDIVITIONS">
                         <label>کد ملی</label>
                         <Input
                           // type={isMobile ? "number" : "text"}
@@ -415,11 +430,22 @@ export default withTranslation('common')(
                           </span>
                         )}
                       </div>
-
-                      {/* <Form.Field>
-                <label>{$phone_number}</label>
-                <input name="phone" value={this.state.phone} disabled />
-              </Form.Field> */}
+                      {!this.state.ShowInput ?<p onClick={this.ShowInputHandller} className="addCompanyName">افزودن نام شرکت</p>
+                      :<><Form.Field>
+                        <Form.Input
+                          label="نام شرکت"
+                          name="company_name"
+                          error={Boolean(errors.company_name && touched.company_name)}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.company_name}
+                        >
+                         <p onClick={this.ShowInputHandller} className="removeCompanyName">حذف</p> 
+                          <input id="IinputCompany"/>
+                        </Form.Input>
+              </Form.Field>
+                        </>
+               }
 
                       <Form.Group widths="3" className="paddingInMobile">
 

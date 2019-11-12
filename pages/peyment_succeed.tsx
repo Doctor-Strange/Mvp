@@ -132,6 +132,7 @@ const Page = ({id}) => {
         REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  })
         .then(res=>{
           setRequest(res);
+          console.log(res)
         })
         .catch(e=>{
           // console.log(e)
@@ -160,7 +161,7 @@ const Page = ({id}) => {
                             {/* {console.log(request.data.rent_search_dump.media_set[0].url)} */}
                             <img src={request.data.rent_search_dump.media_set[0].url}/>
                             <h2 className="center">{rentDump.car.name.fa}</h2>
-                            <h3 className="center">{rentDump.owner.name}</h3>
+                            <h3 className="center">{rentDump.owner.company_name?rentDump.owner.company_name :rentDump.owner.name}</h3>
                             <br/>
                         </div>
                          <List>

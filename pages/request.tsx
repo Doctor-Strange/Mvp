@@ -123,6 +123,8 @@ const Request = ({id}, props) => {
                                             end={moment(rentDump.end_date, 'jYYYY/jMM/jDD')}
                                             price={rentDump.discounted_total_price}
                                             ownerInfo = {rentDump.owner}
+                                            company_name={rentDump.owner.company_name}
+
                                             ownerName={
                                                 (value.role === "owner")
                                                     ? `${value.renter.first_name} ${value.renter.last_name}`

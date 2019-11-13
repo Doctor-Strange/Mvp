@@ -261,7 +261,8 @@ export default withTranslation('common')(connect(state => state)(
       picturesID: [],
       picturesPreview: [],
       cylinder_id: null,
-      value: ''
+      value: '',
+      cylinderList:[]
     };
 
     constructor(props) {
@@ -275,6 +276,32 @@ export default withTranslation('common')(connect(state => state)(
       // changed by sajad 980528
       // disable Auto scroll because of small screens
       // scrollToElement('#form');
+      // get cylinder's list
+      axios
+        .post(process.env.PRODUCTION_ENDPOINT + '/core/cylinder/list?limit=16')
+        .then(response => {
+          if (response.data.success) {
+            // console.log(response.data.items)
+            this.setState({
+              cylinderList : response.data.items
+            })
+            // const citiesFarsi = response.data.items.map((value, index) => ({
+            //   key: value.id,
+            //   text: value.name.fa,
+            //   value: value.id
+            // }));
+            // const citiesEnglish = response.data.items.map((value, index) => ({
+            //   key: value.id,
+            //   text: value.name.en,
+            //   value: value.id
+            // }));
+            // this.setState({ citiesFarsi, citiesEnglish });
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          this.setState({ error: error, success: false });
+        });
 
       //get cities and genrate a dropdown input in form
       axios
@@ -712,7 +739,6 @@ export default withTranslation('common')(connect(state => state)(
             //   mileage_range_id: carKmDriven,
             //   color_id: this.state.colorId,
             //   special_type_id: 1,
-            //   vin: carVIN,
             //   registration_plate_first_part: carLicensePlates1,
             //   registration_plate_second_part: carLicensePlates2,
             //   registration_plate_third_part: carLicensePlates3,
@@ -1344,12 +1370,10 @@ export default withTranslation('common')(connect(state => state)(
                         style={{ display: 'block' }}
                       >
                         <option value={""} hidden></option>
-                        <option value={3}>۳</option>
-                        <option value={4}>۴</option>
-                        <option value={5}>۵</option>
-                        <option value={6}>۶</option>
-                        <option value={8}>۸</option>
-                        <option value={10}>۱۰</option>
+
+                        {this.state.cylinderList.map(item=>{
+                          return <option value={item.id} key={item.id}>{item.name.fa}</option>
+                        })}
                       </select>
                     </div>
                     {/* <Form.Dropdown

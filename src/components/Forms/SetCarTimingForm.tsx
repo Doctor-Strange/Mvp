@@ -62,6 +62,8 @@ import {
 import TimeRangesSelector from './TimeRangesSelector';
 import DiscountsSelector from './DiscountsSelector';
 import { toast } from 'react-toastify';
+import * as PelakTemplate from '../../../static/pelak2.png';
+
 
 function clearNumber(x) {
   return convertNumbers2English(x.toString())
@@ -164,6 +166,37 @@ const BoxAccount = styled.div`
       }
     }
   }
+  .pelakTemp {
+    background: url(${PelakTemplate}) no-repeat;
+    height: 53px;
+    width: 231px;
+    background-size: contain;
+    position: relative;
+    margin-top: 10px;
+    text-align: center;
+  .first{
+    position: absolute;
+    right: 13px;
+    font-size: 21px;
+    font-weight: 500;
+    color: rgba(72,72,72,0.87);
+    top: 15px;
+  }
+.third, .second , .forth{
+  position: absolute;
+    right: 65px;
+    font-size: 23px;
+    color: rgba(72,72,72,0.87);
+    top: 8px;
+    font-weight: 500;
+}
+.second{
+  right: 119px;
+}
+.forth{
+  right: 165px;
+}
+}
 
   i.close,
   i.edit.outline {
@@ -656,8 +689,28 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                         {`${car.car.brand.name.fa} - ${car.car.name.fa}`}
                       </Item.Header>
                       {/* <Item.Meta>{carDescription}</Item.Meta> */}
+                      <div className="pelakTemp" style={{}}>
+                        <div className="first">
+                        {convertNumbers2Persian(
+                            car.registration_plate_first_part
+                          )}
+                        </div>
+                        <div className="second">
+                            <span>{car.registration_plate_second_part}</span>
+                        </div>
+                        <div className="third">
+                        {convertNumbers2Persian(
+                            car.registration_plate_third_part
+                          )}
+                        </div>
+                        <div className="forth">
+                        {convertNumbers2Persian(
+                            car.registration_plate_forth_part
+                          )}
+                        </div>
+                      </div>
                       <Item.Description>
-                        <Pelak
+                        {/* <Pelak
                           first={convertNumbers2Persian(
                             car.registration_plate_first_part
                           )}
@@ -671,7 +724,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                           type={1}
                           size={'small'}
                           style={{ maxWidth: '150px' }}
-                        />
+                        /> */}
                       </Item.Description>
                       {/* <Item.Extra>{carLocation}</Item.Extra> */}
                     </Item.Content>

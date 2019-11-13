@@ -36,11 +36,13 @@ const TimeRangesSelector: React.FC<{
   carTimings: any;
   disabledDays: any;
   modifyCarTimings: any;
+  error?:any
 }> = ({
   t,
   carTimings = [],
   disabledDays, 
-  modifyCarTimings
+  modifyCarTimings,
+  error
 }) => {
   const empetyDate = {
     from: null,
@@ -48,12 +50,12 @@ const TimeRangesSelector: React.FC<{
   };
   const [price, setPrice] = useState(null);
   const [date, setDate] = useState(empetyDate);
-  const [showNewEntery, setShowNewEntery] = useState(true);
+  const [showNewEntery, setShowNewEntery] = useState(false);
   const [openEditFor, setOpenEditFor] = useState(null);
   // console.log("Car timings: ", carTimings);
   return (
       <div style={{ maxWidth: '370px' }} className="DOOOOOD">
-      <Segment.Group style={{ marginBottom: '12px' }}>
+      <Segment.Group style={{ marginBottom: '12px', boxShadow:'0px 0px 1px #000 ', border:'none' }}>
         {carTimings.map((val, index) => {
           if (val == undefined) {
             return <></>;
@@ -240,6 +242,7 @@ const TimeRangesSelector: React.FC<{
               </Form.Field>
             </Form.Group>
             <Form.Input
+            error={error}
               style={{ width: '47%',
               //  direction: 'ltr' 
                }}

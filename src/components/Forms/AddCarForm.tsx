@@ -1620,7 +1620,7 @@ id="JustPersian"
                         // value={values.value}
                         value={DnumberWithCommas(convertNumbers2English(values.value))}
                       /> 
-                      {values.value}
+                      {/* {values.value} */}
                       <span style={{
                         position: 'absolute',
                         left: '10px',

@@ -318,6 +318,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
   };
 
   const [error, setError] = useState(false);
+  const [CustomeError, SEtCtomeError] = useState("");
   const [car, setCar] = useState({ ...carSample });
   const [mapApiToFormik, setMapApiToFormik] = useState(false);
   const [carTimings, setCarTimings] = useState([]);
@@ -362,7 +363,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
       token: jsCookie.get('token')
     });
     setCar(carRes);
-    // console.log(carRes)
+    // console.log("carRes",carRes)
 
     // 2. fetch car availablity data and parse it and set it to state
     const timeRes = await REQUEST_getCarAvailabilities({
@@ -370,10 +371,13 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
       token: jsCookie.get('token')
     });
     const parsedTimes = timeRes.map((value, index) => {
+      // console.log("value",value);
+      
       if (value.is_all_time) {
         setIsIsAllTime(true);
         setIsAllTimePrice(value.price_per_day);
       } else {
+        setIsIsAllTime(false);
         const s = value.start_date.jalali;
         const e = value.end_date.jalali;
         return {
@@ -457,7 +461,11 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
       ) => {
         actions.setSubmitting(true);
         setError(false);
-        // console.log(values);
+        if(!values.availableInAllPrice && carTimings.length <= 0){
+          setError(true);
+          SEtCtomeError("بازه قیمت خودرو را به درستی وارد نکرده اید")
+          return
+        }
         let {
           availableInAllPrice,
           cancellationPolicy,
@@ -589,8 +597,9 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
               .typeError(fieldErrorGenrator(t('carTiming.price'))),
             otherwise: Yup.number()
           })
-          .when('$other', (other, schema) =>
+          .when('$other', (other, schema) =>{                      
             other === 4 ? schema.max(6) : schema
+          }
           )
       })}
     >
@@ -613,6 +622,8 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           radioPad = '0px';
         }
         if (mapApiToFormik) {
+          // console.log("mapApiToFormik",isAllTimePrice);
+          
           setMapApiToFormik(false);
           setFieldValue('distanceLimit', car.max_km_per_day);
           setFieldValue('extraKm', car.extra_km_price);
@@ -622,6 +633,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           setFieldValue('minDaysToRent', car.min_days_to_rent);
           // console.log('isAllTimePrice: ', isAllTimePrice);
           if (isIsAllTime) {
+          
             // console.log('setting is all time price', isAllTimePrice);
             setFieldValue('availableInAllPrice', isAllTimePrice);
           } else {
@@ -950,6 +962,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   <>
                   {/* {console.log("car timings before ",carTimings)} */}
                   <TimeRangesSelector
+                  error = {error}
                     carTimings={carTimings}
                     disabledDays={disabledDays}
                     modifyCarTimings={modifyCarTimings}
@@ -996,7 +1009,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 {/* ===================================================================== */}
                 <Form.Field style={{ textAlign: 'center', fontSize: '0.8em' }}>
                   <Button
-                    loading={isSubmitting}
+                    loading={isSubmitting && !error}
                     primary
                     type="submit"
                     className="btn_1 full-width"
@@ -1014,7 +1027,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Form.Field>
                 {error && (
                   <Label attached="bottom" color="red">
-                    {t('forms.error')}
+                {CustomeError ? "قیمت خودرو را وارد کنید." :t('forms.error')}
                   </Label>
                 )}
                 {Object.keys(errors).length >= 1 && submitCount >= 1 && (

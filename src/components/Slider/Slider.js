@@ -65,75 +65,88 @@ class Slider extends Component {
     return (
       <div className="carousel_container">
         {!this.state.colseModal && (
-          <Gallery Feed={Feed} CloseGallery={this.CloseGallery} index = {this.state.slideIndex}/>
+          <Gallery
+            Feed={Feed}
+            CloseGallery={this.CloseGallery}
+            index={this.state.slideIndex}
+          />
         )}
         {carousel ? (
           <>
-            <img
-              onClick={this.CloseGallery}
-              onTouchEnd={() => {
-                this.setState({
-                  rightV: 0,
-                  falgControl: false
-                });
-              }}
-              onTouchStart={e => {
-                e.persist();
-                this.setState({
-                  startPoint: e.changedTouches[0].screenX,
-                  FromX: e.target.x,
-                  falgControl: true
-                });
-              }}
-              onTouchMoveCapture={e => {
-                e.persist();
-                if (e.changedTouches[0].screenX > this.state.startPoint) {
-                  let right =
-                    e.changedTouches[0].screenX - this.state.startPoint;
-                  if (right < 100 && this.state.falgControl) {
-                    this.setState(
-                      {
-                        rightV: 0,
-                        falgControl: false
-                      },
-                      () => {
-                        this.SliderNav("left");
-                        return;
-                      }
-                    );
-                  } else {
+            {Feed.map((item, i) => {
+              return (
+                <img
+                  onClick={this.CloseGallery}
+                  onTouchEnd={() => {
                     this.setState({
-                      rightV: "-" + 0
+                      rightV: 0,
+                      falgControl: false
                     });
-                  }
-                } else {
-                  let left =
-                    this.state.startPoint - e.changedTouches[0].screenX;
-                  if (left > 100 && this.state.falgControl) {
-                    this.setState(
-                      {
-                        rightV: 0,
-                        falgControl: false
-                      },
-                      () => {
-                        this.SliderNav("right");
-                        return;
-                      }
-                    );
-                  } else {
+                  }}
+                  onTouchStart={e => {
+                    e.persist();
                     this.setState({
-                      rightV: 0
+                      startPoint: e.changedTouches[0].screenX,
+                      FromX: e.target.x,
+                      falgControl: true
                     });
-                  }
-                }
-              }}
-              style={{
-                right: this.state.rightV + "px"
-              }}
-              className="carousel_FrontImage"
-              src={Feed[this.state.slideIndex]}
-              alt="تصویر اسلایدر"
-            />
+                  }}
+                  onTouchMoveCapture={e => {
+                    e.persist();
+                    if (e.changedTouches[0].screenX > this.state.startPoint) {
+                      let right =
+                        e.changedTouches[0].screenX - this.state.startPoint;
+
+                      if (right > 100 && this.state.falgControl) {
+                        console.log("this", right);
+                        
+                        this.setState(
+                          {
+                            rightV: 0,
+                            falgControl: false
+                          },
+                          () => {
+                            this.SliderNav("left");
+                            return;
+                          }
+                        );
+                      } else {
+                        this.setState({
+                          rightV: "-" + 0
+                        });
+                      }
+                    } else {
+                      let left =
+                        this.state.startPoint - e.changedTouches[0].screenX;
+                      if (left > 100 && this.state.falgControl) {
+                        console.log("this left", left);
+                        this.setState(
+                          {
+                            rightV: 0,
+                            falgControl: false
+                          },
+                          () => {
+                            this.SliderNav("right");
+                            return;
+                          }
+                        );
+                      } else {
+                        this.setState({
+                          rightV: 0
+                        });
+                      }
+                    }
+                  }}
+                  style={{
+                    right: this.state.rightV + "px"
+                  }}
+                  className={["carousel_FrontImage", this.state.slideIndex === i ? null
+                :"HiddenSlide"].join(" ")}
+                  src={item}
+                  alt="تصویر اسلایدر"
+                />
+              );
+            })}
             <img
               className="carousel_BackImage"
               // className={[

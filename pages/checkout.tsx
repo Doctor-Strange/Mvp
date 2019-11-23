@@ -13,7 +13,7 @@ import { Details, CarNav } from "../src/components/Car";
 import { List } from "../src/components/List";
 import { i18n, withTranslation } from "../src/i18n";
 import { connect } from "../src/store";
-import { REQUEST_getCar, REQUEST_newRentRequest } from "../src/API";
+import { REQUEST_getCar, REQUEST_newRentRequest,REQUEST_setCarCoupan } from "../src/API";
 import {
   numberWithCommas,
   convertNumbers2Persian,
@@ -33,6 +33,7 @@ moment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 import swal from "@sweetalert/with-react";
 import Insurance from '../src/components/insurance/Insurance'
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export default withTranslation("common")(
   class extends React.Component<{
@@ -92,7 +93,8 @@ export default withTranslation("common")(
       openModal: () => null,
       heightController:0,
       loading:false,
-      coupon_code:false
+      coupon_code:false,
+      coupan:""
     };
 
     doRef = ref => {
@@ -205,24 +207,54 @@ export default withTranslation("common")(
     }
 
     CoupanController = (e) =>{
-      e.preventDefault()
-      toast.warn("کد تخفیف نادرست است.",{
-        position: "bottom-center",
-          autoClose: 7000,
-          hideProgressBar: true,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true
+      e.preventDefault();
+      const DOMAIN = process.env.PRODUCTION_ENDPOINT;
+const SET_CAR_COUPAN = '/core/coupon/add';
+      let coupan= this.state.coupan
+      let token=jsCookie.get("token")
+      console.log("token",jsCookie.get("token"), coupan);
+      
+      axios
+      .post(
+        DOMAIN + SET_CAR_COUPAN,
+        {
+          coupon_code: coupan
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        }
+      )
+      .then(response => {
+          console.log("response",response);
+          
+        if (response.data.success) {
+          // resolve(response.data.success);
+        }
       })
+      .catch(error => {
+        // reject(error.response);
+        console.log(error.response);
+        
+      });
+      // toast.warn("کد تخفیف نادرست است.",{
+      //   position: "bottom-center",
+      //     autoClose: 7000,
+      //     hideProgressBar: true,
+      //     closeOnClick: false,
+      //     pauseOnHover: true,
+      //     draggable: true
+      // })
     }
 
     render() {
+      console.log("token",jsCookie.get("token"));
       const { t, start_date, end_date, search_id } = this.props;
       let start,
         end = null;
       let startDate,
         endDate = null;
-      console.log("this.props",this.props);
       if (start_date && end_date) {
         startDate = moment(start_date, "jYYYY/jMM/jDD");
         endDate = moment(end_date, "jYYYY/jMM/jDD");
@@ -362,7 +394,7 @@ export default withTranslation("common")(
                       </span>
                     </span>
                   </li>
-                  {/* <li className ="DiscountCopon">
+                  <li className ="DiscountCopon">
                   {!this.state.coupon_code &&<span onClick={()=>{
                       this.setState({
                         coupon_code:true
@@ -370,11 +402,15 @@ export default withTranslation("common")(
                     }}>کد تخفیف دارید؟</span>
                   }
                     {this.state.coupon_code && <form onSubmit={this.CoupanController}>
-                      <input autoFocus type="text" name="COUPAN"/>
+                      <input autoFocus type="text" name="COUPAN" onChange={(e)=>{
+                      this.setState({
+                        coupan: e.target.value
+                      })
+                      }}/>
                       <button type="submit">اعمال</button>
                     </form>
                     }
-                  </li> */}
+                  </li>
                   <li style={{ borderTop: "1px solid #ddd", fontSize: '20px' }} >
                     جمع کل
                     <span className="float-left">

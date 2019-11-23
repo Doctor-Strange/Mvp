@@ -388,42 +388,42 @@ export default withRouter(
                                     'jYYYY/jMM/jDD'
                                 )}&end=${moment(this.state.endDate).format('jYYYY/jMM/jDD')}&`;
                         }
-                        // if (this.state.brand) {
-                        //     queryString = queryString + `brand_id=${this.state.brand}&`;
-                        //     shownURL = shownURL + `brand=${this.state.brand}&`;
-                        // }
-                        // if (this.state.model) {
-                        //     queryString = queryString + `car_id=${this.state.model}&`;
-                        //     shownURL = shownURL + `model=${this.state.model}&`;
-                        // }
-                        // if (this.state.deliverAtRentersPlace) {
-                        //     queryString = queryString + `deliver_at_renters_place=1&`;
-                        //     shownURL = shownURL + `deliver=1&`;
-                        // }
-                        // if (this.state.price) {
-                        //     let max = this.state.price[1];
-                        //     if (max === 2000000) {
-                        //         max = 100000000;
-                        //     }
-                        //     queryString =
-                        //         queryString +
-                        //         `min_price=${this.state.price[0]}&max_price=${max}&`;
-                        //     shownURL =
-                        //         shownURL +
-                        //         `min_price=${this.state.price[0]}&max_price=${
-                        //         this.state.price[1]
-                        //         }&`;
-                        // }
-                        // if (this.state.carBodyType) {
-                        //     queryString =
-                        //         queryString + `body_style_id=${this.state.carBodyType.join()}&`;
-                        //     shownURL =
-                        //         shownURL + `bodytype=${this.state.carBodyType.join()}&`;
-                        // }
-                        // if (this.state.priceSort) {
-                        //     queryString = queryString + `o=${this.state.priceSort}&`;
-                        //     shownURL = shownURL + `order=${this.state.priceSort}&`;
-                        // }
+                        if (this.state.brand) {
+                            queryString = queryString + `brand_id=${this.state.brand}&`;
+                            shownURL = shownURL + `brand=${this.state.brand}&`;
+                        }
+                        if (this.state.model) {
+                            queryString = queryString + `car_id=${this.state.model}&`;
+                            shownURL = shownURL + `model=${this.state.model}&`;
+                        }
+                        if (this.state.deliverAtRentersPlace) {
+                            queryString = queryString + `deliver_at_renters_place=1&`;
+                            shownURL = shownURL + `deliver=1&`;
+                        }
+                        if (this.state.price) {
+                            let max = this.state.price[1];
+                            if (max === 2000000) {
+                                max = 100000000;
+                            }
+                            queryString =
+                                queryString +
+                                `min_price=${this.state.price[0]}&max_price=${max}&`;
+                            shownURL =
+                                shownURL +
+                                `min_price=${this.state.price[0]}&max_price=${
+                                this.state.price[1]
+                                }&`;
+                        }
+                        if (this.state.carBodyType) {
+                            queryString =
+                                queryString + `body_style_id=${this.state.carBodyType.join()}&`;
+                            shownURL =
+                                shownURL + `bodytype=${this.state.carBodyType.join()}&`;
+                        }
+                        if (this.state.priceSort) {
+                            queryString = queryString + `o=${this.state.priceSort}&`;
+                            shownURL = shownURL + `order=${this.state.priceSort}&`;
+                        }
 
                         const res = await REQUEST_getSearchForRent({
                             page,

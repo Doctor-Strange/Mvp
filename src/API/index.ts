@@ -29,6 +29,9 @@ import { REQUEST_deleteCarAvailability } from "./Set/deleteCarAvailability";
 import { REQUEST_getCarDiscounts } from "./Get/getCarDiscounts";
 import { REQUEST_setCarDiscounts } from "./Set/setCarDiscount";
 
+//COUPAN
+import { REQUEST_setCarCoupan } from "./Set/setCarCoupan";
+
 // Car Media
 import { REQUEST_newCarMedia } from './Set/newCarMedia';
 
@@ -72,5 +75,6 @@ export {
   REQUEST_getOrderRequest,
   REQUEST_getFAQ,
   REQUEST_set_out_of_service,
-  REQUEST_setCompanyName
+  REQUEST_setCompanyName,
+  REQUEST_setCarCoupan
 };

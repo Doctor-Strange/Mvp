@@ -71,7 +71,7 @@ class Gallery extends Component {
               e.persist();
               if (e.changedTouches[0].screenX > this.state.startPoint) {
                 let right = e.changedTouches[0].screenX - this.state.startPoint;
-                if (right < 50 && this.state.falgControl) {
+                if (right > 100 && this.state.falgControl) {
                   this.setState(
                     {
                       rightV: 0,
@@ -88,7 +88,7 @@ class Gallery extends Component {
                 }
               } else {
                 let left = this.state.startPoint - e.changedTouches[0].screenX;
-                if (left > 50 && this.state.falgControl) {
+                if (left > 100 && this.state.falgControl) {
                   this.setState(
                     {
                       rightV: 0,

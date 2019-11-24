@@ -2906,12 +2906,15 @@ width: 40px !important;
   width:100%;
   height:550px;
   background-color:#e6e6e6;
-  overflow:hidden
+  overflow:hidden;
+  transition: 0.5s all;
 }
 .carousel_container .carousel_FrontImage{
+  transition: 0.5s all;
   max-width: auto;
   height: 100%;
   box-shadow:0px 0px 105px #3c3c3c;
+  // transform: translate(0);
   display: block;
   margin: auto;
   right:0;
@@ -2919,6 +2922,13 @@ width: 40px !important;
   position: absolute;
   z-index: 2;
   max-width: 100%;
+}
+img.TranslateRight{
+  transform:translateX(3000px)
+}
+img.TranslateLeft{
+  transform:translateX(-3000px)
+
 }
 .carousel_BackImage{
   transform: scale(1.7);
@@ -3037,13 +3047,14 @@ right:0;
 }
 .show_part{
   width: 80%;
-  height: 70vh;
+  height: 90vh;
     margin: auto;
 }
 .show_part img{
   height: 100%;
   display: block;
   margin: auto;
+  height: 80vh !important;
 }
 .thumbnail_part{
   width: 80%;
@@ -3091,13 +3102,16 @@ right:0;
   position:relative;
     height: 360px;
     margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .show_part img{
 position:absolute;
 margin:auto;
 left:0;
 right:0;
-height:100%;
+height: auto !important;
   }
   .closeButton {
     right: 10px;
@@ -3137,21 +3151,21 @@ height:100%;
 }
 
 @media (max-width:660px){
-  .show_part {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    width: 96%;
-    height: auto;
-}
-.thumbnail_part {
-  position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-.show_part img {
-  height: auto;
-    width: 100%;
-}
+//   .show_part {
+//     margin-top: 40px;
+//     margin-bottom: 20px;
+//     width: 96%;
+//     height: auto;
+// }
+// .thumbnail_part {
+//   position: fixed;
+//     bottom: 0;
+//     width: 100%;
+// }
+// .show_part img {
+//   height: auto;
+//     width: 100%;
+// }
   .closeButton {
     right: 10px;
   }

@@ -4,7 +4,6 @@ import { Icon } from "semantic-ui-react";
 class Gallery extends Component {
   state = {
     index: null,
-    leftV: 0,
     rightV: 0,
     startPoint: 0,
     FromX: 0,
@@ -35,11 +34,11 @@ class Gallery extends Component {
     } else return;
   };
 
-  componentDidMount = () => {
+  componentDidMount = () =>{
     this.setState({
-      index: this.props.index
-    });
-  };
+      index : this.props.index
+    })
+  }
 
   render() {
     const { Feed } = this.props;
@@ -51,21 +50,14 @@ class Gallery extends Component {
           <Icon name="window close outline" size="big" />
         </div>
         <div className="show_part">
-          <img
-            src={Feed[this.state.index]}
+        {Feed.map((item, i) => {
+              return (
+              <img
+            src={item}
             alt="تصویر گالری"
             onTouchEnd={() => {
-              console.log("Touch end ", Number(this.state.rightV));
-              
-              if(this.state.rightV < -200){
-                this.SliderNav("right");
-              }
-              if(this.state.leftV < -200){
-                this.SliderNav("left");
-              }
               this.setState({
                 rightV: 0,
-                leftV: 0,
                 falgControl: false
               });
             }}
@@ -81,56 +73,52 @@ class Gallery extends Component {
               e.persist();
               if (e.changedTouches[0].screenX > this.state.startPoint) {
                 let right = e.changedTouches[0].screenX - this.state.startPoint;
-                this.setState({
-                  rightV: "-" + right,
-                  leftV: 0
-                });
                 if (right > 100 && this.state.falgControl) {
                   this.setState(
                     {
-                      // rightV: 0,
+                      rightV: 0,
                       falgControl: false
                     },
                     () => {
-                      // this.SliderNav("left");
+                      this.SliderNav("left");
                     }
                   );
                 } else {
-                  // this.setState({
-                  //   rightV: "-" + 0
-                  // });
+                  this.setState({
+                    rightV: "-" + 0
+                  });
                 }
               } else {
                 let left = this.state.startPoint - e.changedTouches[0].screenX;
-                this.setState(
-                  {
-                    rightV: 0,
-                    leftV: "-" + left
-                  },
-                  () => console.log(this.state.rightV)
-                );
                 if (left > 100 && this.state.falgControl) {
                   this.setState(
                     {
-                      // rightV: 0,
+                      rightV: 0,
                       falgControl: false
                     },
                     () => {
-                      // this.SliderNav("right");
+                      this.SliderNav("right");
                     }
                   );
                 } else {
-                  // this.setState({
-                  //   rightV:0,
-                  // });
+                  this.setState({
+                    rightV:0,
+                  });
                 }
               }
             }}
+            className={[
+              this.state.index === i && "carousel_FrontImage",
+              this.state.index < i && "carousel_FrontImage TranslateRight",
+              this.state.index > i && "carousel_FrontImage TranslateLeft"
+            ].join(" ")}
             style={{
               right: this.state.rightV + "px",
-              left: this.state.leftV + "px"
+
             }}
           />
+          );
+        })}
         </div>
         <div className="thumbnail_part">
           {Feed.map((item, i) => {

@@ -143,8 +143,9 @@ class Slider extends Component {
                     right: this.state.rightV + "px"
                   }}
                   className={[
-                    "carousel_FrontImage",
-                    this.state.slideIndex === i ? null : "HiddenSlide"
+                    this.state.slideIndex === i && "carousel_FrontImage",
+                    this.state.slideIndex < i && "carousel_FrontImage TranslateRight",
+                    this.state.slideIndex > i && "carousel_FrontImage TranslateLeft"
                   ].join(" ")}
                   src={item}
                   alt="تصویر اسلایدر"

@@ -96,13 +96,13 @@ class Slider extends Component {
                     if (e.changedTouches[0].screenX > this.state.startPoint) {
                       let right =
                         e.changedTouches[0].screenX - this.state.startPoint;
-
+                      this.setState({
+                        rightV: "-" + right
+                      });
                       if (right > 100 && this.state.falgControl) {
-                        console.log("this", right);
-                        
                         this.setState(
                           {
-                            rightV: 0,
+                            // rightV: 0,
                             falgControl: false
                           },
                           () => {
@@ -111,18 +111,20 @@ class Slider extends Component {
                           }
                         );
                       } else {
-                        this.setState({
-                          rightV: "-" + 0
-                        });
+                        // this.setState({
+                        //   rightV: "-" + 0
+                        // });
                       }
                     } else {
                       let left =
                         this.state.startPoint - e.changedTouches[0].screenX;
+                      this.setState({
+                        rightV: left
+                      });
                       if (left > 100 && this.state.falgControl) {
-                        console.log("this left", left);
                         this.setState(
                           {
-                            rightV: 0,
+                            // rightV: 0,
                             falgControl: false
                           },
                           () => {
@@ -131,17 +133,19 @@ class Slider extends Component {
                           }
                         );
                       } else {
-                        this.setState({
-                          rightV: 0
-                        });
+                        // this.setState({
+                        //   rightV: 0
+                        // });
                       }
                     }
                   }}
                   style={{
                     right: this.state.rightV + "px"
                   }}
-                  className={["carousel_FrontImage", this.state.slideIndex === i ? null
-                :"HiddenSlide"].join(" ")}
+                  className={[
+                    "carousel_FrontImage",
+                    this.state.slideIndex === i ? null : "HiddenSlide"
+                  ].join(" ")}
                   src={item}
                   alt="تصویر اسلایدر"
                 />

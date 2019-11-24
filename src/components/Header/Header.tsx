@@ -136,7 +136,7 @@ class Header extends React.Component<{
     if(jsCookie.get('company_name')){
       company_name =jsCookie.get('company_name')
     }
-    console.log("company_name",company_name)
+    // console.log("company_name",company_name)
     return (
       <>
         <HeaderSticky>

@@ -85,18 +85,19 @@ const BoxAccount = styled.div`
     margin-top: 5px;
   }
   h3 {
-    font-size: 21px;
-    font-size: 1.3125rem;
+    font-size: 16px;
+    color: #313131;
     padding-left: 30px;
     padding-right: 30px;
     height: 30px;
-    padding-top: 5px;
+    padding-top: 8px;
     display: inline-block;
     margin-bottom: 15px;
     display: flex;
     flex-direction: row;
     &.new_client {
       background: url(${NewUser}) center left no-repeat;
+      background-size: 18px;
     }
   }
   .ui.input {
@@ -155,6 +156,15 @@ const BoxAccount = styled.div`
       }
     }
   }
+  .extraKm,.distanceLimit {
+    
+    display: inline-block;
+    vertical-align: middle;
+    float: none,
+  }
+  .extraKm{
+    margin:0
+  }
   .extraKm,
   .distanceLimit {
     max-width: 150px !important;
@@ -166,35 +176,44 @@ const BoxAccount = styled.div`
       }
     }
   }
+  #Step2Item{
+    // position:relative;
+    margin: 0;
+  }
   .pelakTemp {
     background: url(${PelakTemplate}) no-repeat;
-    height: 53px;
+    height: 30px;
     width: 231px;
+    background-position: right;
     background-size: contain;
     position: relative;
-    margin-top: 10px;
-    text-align: center;
+    margin-top: 8px;
+    text-align: right;
+    @media (max-width:768px){
+      margin: 0;
+    }
   .first{
     position: absolute;
-    right: 13px;
-    font-size: 21px;
+    right: 11px;
+    font-size: 12px;
     font-weight: 500;
     color: rgba(72,72,72,0.87);
-    top: 15px;
+    top: 12px;
   }
 .third, .second , .forth{
   position: absolute;
-    right: 65px;
-    font-size: 23px;
+    right: 40px;
+    font-size: 16px;
     color: rgba(72,72,72,0.87);
-    top: 8px;
+    top: 4px;
     font-weight: 500;
 }
 .second{
-  right: 119px;
+  right: 76px;
+  top: 1px;
 }
 .forth{
-  right: 165px;
+  right: 100px;
 }
 }
 
@@ -676,15 +695,15 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           }
         }
         return (
-          <BoxAccount className="box_account">
+          <BoxAccount className="box_account" id="Step2InAddCar">
             <Form onSubmit={handleSubmit}>
-              <h3 className="new_client">{t('اضافه کردن خودرو')}</h3>
+              <h3 className="new_client">اضافه کردن خودرو</h3>
               {/* <small className="float-right pt-2">* {$required_fields}</small> */}
               <Segment>
                 <Item.Group>
-                  <Item>
-                    <Item.Image src={(car.media_set[0] || { url: '' }).url} />
-                    <Item.Content>
+                  <Item id="Step2Item">
+                    <Item.Image src={(car.media_set[0] || { url: '' }).url}  />
+                    <Item.Content id ="partOneInStepTwoOfAddCar">
                       <Item.Header as="a">
                         {`${car.car.brand.name.fa} - ${car.car.name.fa}`}
                       </Item.Header>
@@ -737,7 +756,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Segment>
                 <Segment>
 
-                <Divider horizontal>
+                <Divider horizontal id="DividerInStep2">
                   <Header as="h4">
                     {/* <Icon name="edit" /> */}
                     شرایط اجاره
@@ -745,7 +764,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Divider>
                 {/* ===================================================================== */}
                 <Form.Field style={{ margin: 0 }}>
-                  <label>زمان اطلاع از اجاره</label>
+                  <label id="Step2Lable">زمان اطلاع از اجاره</label>
                   <Input
                     name="daysToGetReminded"
                     style={{direction:'ltr', display: 'contents'}}
@@ -789,7 +808,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Form.Field>
                 {/* ===================================================================== */}
                 <Form.Field style={{ margin: 0 }}>
-                  <label>حداقل مدت اجاره</label>
+                  <label id="Step2Lable">حداقل مدت اجاره</label>
                   <Input
                     name="minDaysToRent"
                     style={{direction:'ltr', display: 'contents'}}
@@ -833,8 +852,8 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   </Input>
                 </Form.Field>
                 {/* ===================================================================== */}
-                <Form.Field style={{ margin: 0 }}>
-                  <label>محدودیت مسافت</label>
+                <Form.Field style={{ margin: 0 }} id="exceptioninstep2">
+                  <label id="Step2Lable">محدودیت مسافت</label>
 
                   <Form.Input
                     // icon="search"
@@ -858,11 +877,13 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                         : values.distanceLimit
                     }
                   >
-                    <input inputMode="numeric" />
+                    <input inputMode="numeric"  
+                  
+                    />
                   </Form.Input>
                   <span
                     style={{
-                      float: 'right',
+                      float: 'none',
                       lineHeight: '48px',
                       marginRight: '8px'
                     }}
@@ -871,13 +892,15 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   </span>
                 </Form.Field>
                 {/* ===================================================================== */}
-                <Form.Field style={{ margin: 0 }}>
-                  <label>هزینه هر کیلومتر اضافه</label>
-
+                <Form.Field style={{ margin: 0 }} id="exceptioninstep2">
+                  <label id="Step2Lable">هزینه هر کیلومتر اضافه</label>
+<div className="extraKm" id="DudeComeOn">
                   <Form.Input
+                  
                     // icon="search"
                     // iconPosition="left"
                     name="extraKm"
+                    
                     className="extraKm"
                     inputMode="numeric"
                     //   type="number"
@@ -898,9 +921,10 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   >
                     <input inputMode="numeric" />
                   </Form.Input>
+                  </div>
                   <span
                     style={{
-                      float: 'right',
+                      float: 'none',
                       lineHeight: '48px',
                       marginRight: '8px'
                     }}
@@ -919,13 +943,12 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                     checked={values.deliverAtRentersPlace}
                   />
                 </Form.Field>
-                <br />
                 {/* ===================================================================== */}
                 {/* ===================================================================== */}
                 </Segment>
                 <Segment>
 
-                <Divider horizontal>
+                <Divider horizontal id="DividerInStep2">
                   <Header as="h4">
                     {/* <Icon name="calendar alternate outline" /> */}
                     تاریخ و نرخ اجاره
@@ -1025,7 +1048,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                  {/* ===================================================================== */}
                  </Segment>
                 <Segment>
-                 <Divider horizontal>
+                 <Divider horizontal id="DividerInStep2">
                   <Header as="h4">
                     {/* <Icon name="calendar alternate outline" /> */}
                     تخفیف‌‌ها
@@ -1042,7 +1065,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   <Form.Field
                     control={TextArea}
                     label="شرایط اجاره و کنسلی"
-                    id="cancellationPolicy"
+                    id="cancellationPolicy Step2Lable"
                     name="cancellationPolicy"
                     placeholder="شرایط اجاره و کنسلی"
                     style={{ minHeight: 150 }}

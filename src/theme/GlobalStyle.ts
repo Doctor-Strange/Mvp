@@ -3434,6 +3434,69 @@ i.at.icon:before {
 #carLicensePlates3{
   font-family: IRANSans !important;
 }
+
+// step two in add car page
+#Step2InAddCar .field input[type='text']{
+  margin-bottom:0px !important;
+}
+#Step2InAddCar #exceptioninstep2 {
+  margin-bottom:0px !important;
+}
+#Step2InAddCar #DudeComeOn{
+  margin-bottom: -20px !important;
+}
+#Step2InAddCar .field{
+  margin-bottom: 24px !important;
+}
+#DividerInStep2{
+    text-align: right;
+    margin: 0;
+    margin-bottom: 24px;
+    font-size: 16px;
+}
+#Step2Lable{
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+#partOneInStepTwoOfAddCar{
+  padding-right:16px;
+  @media (max-width:768px){
+    // position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.85);
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px;
+    width: 100%;
+    bottom: 0;
+    padding-top:8px;
+    padding-right:0px !important;
+  }
+  a{
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 8px;
+    @media (max-width:768px){
+      width: 50%;
+    text-align: right;
+    }
+  }
+}
+
+#carDescription::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #b3b3b3;
+    opacity: 1; /* Firefox */
+  }
+  
+  #carDescription:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #b3b3b3;
+  }
+  
+  #carDescription::-ms-input-placeholder { /* Microsoft Edge */
+    color:  #b3b3b3;
+  }
 `;
 
 enum Margin {

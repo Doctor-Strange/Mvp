@@ -61,7 +61,7 @@ const DiscountsSelector: React.FC<{
                   <Form.Field
                     style={{ margin: 0, maxWidth: '47%' }}
                   >
-                    <label>{t('carTiming.from')}</label>
+                    <label id='Step2Lable'>{t('carTiming.from')}</label>
                   </Form.Field>
                 </Form.Group>
                 {/* duration picker */}
@@ -160,7 +160,7 @@ const DiscountsSelector: React.FC<{
             return (
               <Segment key={index} style={{ textAlign: 'right' }}>
                 <span>
-                  <label>برای اجاره‌ بیشتر از </label>{' '} {convertNumbers2Persian(val.duration)} روز
+                  <label >برای اجاره‌ بیشتر از </label>{' '} {convertNumbers2Persian(val.duration)} روز
                   <br />
                   {' '} {convertNumbers2Persian(val.percent)}{' '}
                   درصد تخفیف

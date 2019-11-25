@@ -120,7 +120,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                 search_id: props.query.search_id,
             });
         else if (props.query.id)
-        console.log("props.query.notAllowed", props.query.notAllowed)
+        // console.log("props.query.notAllowed", props.query.notAllowed)
             res = await REQUEST_getCar({
                 id: props.query.id,
             });

@@ -66,6 +66,7 @@ export default withRouter(
                         }
                         queryString = queryString + `o=${order}&`;
                     }
+                    
                     const res = await REQUEST_getSearchForRent({
                         page: 0,
                         limit: 8,
@@ -443,7 +444,8 @@ export default withRouter(
                         const res = await REQUEST_getSearchForRent({
                             page,
                             limit: 8,
-                            result_key: this.state.latest_result_key
+                            result_key: this.state.latest_result_key,
+                            o:this.state.priceSort
                         });
                         const stateTemp = this.state.results;
                         const resultsTemp = res.results;

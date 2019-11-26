@@ -3485,6 +3485,14 @@ i.at.icon:before {
   }
 }
 
+#carDescription{
+  font-family: inherit;
+}
+
+input::placeholder{
+  color: #b3b3b3 !important;
+}
+
 #carDescription::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #b3b3b3;
     opacity: 1; /* Firefox */

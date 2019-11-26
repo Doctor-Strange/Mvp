@@ -159,6 +159,8 @@ interface IRequestCard {
     reviewStatus?: any;
     no_of_days?:Number;
     company_name?:string
+//     coupon?:number,
+// insurance_total_price?:number
 }
 
 interface IdoAction {
@@ -200,7 +202,9 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     reviewStatus,
     no_of_days,
     renterInfo,
-    company_name
+    company_name,
+//     coupon,
+// insurance_total_price
 }) => {
     const [star1, setStar1] = useState();
     const [star2, setStar2] = useState();
@@ -217,6 +221,23 @@ export const RequestCard: React.SFC<IRequestCard> = ({
             refresh();
         }
     }
+
+    // useEffect(() =>{
+    //         console.log("===>",insurance_total_price, price , coupon);
+            
+    //         ()=>{
+    //             if(insurance_total_price){
+    //             if(coupon){
+    //                 price = coupon + insurance_total_price
+    //             }else{
+    //                 price = price + insurance_total_price
+    //             }
+    //         }else if(coupon){
+    //             price = coupon
+    //         } 
+    //         console.log(price)
+    //     } 
+    // },[])
 
 
     const openPhoneModal = (id) => {
@@ -342,7 +363,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     const trigerDoAction = async (value,id,localData) => {
         setLoader(true)
 
-        console.log("value,id,localData",value,id,localData)
+        // console.log("value,id,localData",value,id,localData)
         const {localStar1,localStar2,localText} = localData;
         setStar1(localStar1);
         setStar2(localStar2);
@@ -416,6 +437,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
 
     let title;
     let actions;
+    
     switch (status) {
         case 'new':
             statusOwner === "owner"

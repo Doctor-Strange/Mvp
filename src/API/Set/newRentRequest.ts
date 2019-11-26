@@ -5,9 +5,11 @@ const GET_FACTORY_BRANDS = '/core/rental-car/rent-request/new';
 
 export const REQUEST_newRentRequest = (data: InewRentRequest) => {
   return new Promise((resolve, reject) => {
+    // console.log(data,
+    //   data.coupon_code ? DOMAIN + GET_FACTORY_BRANDS + `?coupon_code=${data.coupon_code}`:  DOMAIN + GET_FACTORY_BRANDS);
     axios
       .post(
-        DOMAIN + GET_FACTORY_BRANDS,
+        data.coupon_code ? DOMAIN + GET_FACTORY_BRANDS + `?coupon_code=${data.coupon_code}`:  DOMAIN + GET_FACTORY_BRANDS,
         {
           search_id: data.search_id,
           has_insurance: data.has_insurance
@@ -33,4 +35,5 @@ interface InewRentRequest {
   token: string;
   has_insurance: boolean,
   search_id: string;
+  coupon_code?: string
 }

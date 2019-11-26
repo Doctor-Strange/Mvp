@@ -5,6 +5,7 @@ const GET_ORDER_REQUESTS = '/core/rental-car/order/list';
 
 export const REQUEST_getOrderRequests = (data: IgetOrderRequests) => {
   return new Promise((resolve, reject) => {
+    
     axios
       .post(DOMAIN + GET_ORDER_REQUESTS + '?limit=50', null, {
         headers: {
@@ -12,6 +13,7 @@ export const REQUEST_getOrderRequests = (data: IgetOrderRequests) => {
         }
       })
       .then(response => {
+    // console.log("response",response);
         if (response.data.success) {
           resolve(response.data);
         }

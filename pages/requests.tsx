@@ -42,20 +42,20 @@ const Requests = props => {
   return (
     <Layout haveSubHeader={true} pageTitle={"Hello World"}>
       <NextSeo
-            config={{
-              title: `رزرو‌های من | اتولی`,
-              description: `رزرو‌های من | اتولی`,
-              openGraph: {
-                title:`رزرو‌های من | اتولی`,
-              description: `رزرو‌های من | اتولی`,
-              },
-              twitter: {
-                handle: "@otoli_net",
-                site: "@otoli_net",
-                cardType: "summary_large_image"
-              }
-            }}
-          />
+        config={{
+          title: `رزرو‌های من | اتولی`,
+          description: `رزرو‌های من | اتولی`,
+          openGraph: {
+            title: `رزرو‌های من | اتولی`,
+            description: `رزرو‌های من | اتولی`
+          },
+          twitter: {
+            handle: "@otoli_net",
+            site: "@otoli_net",
+            cardType: "summary_large_image"
+          }
+        }}
+      />
       <Section justifyCenter={true}>
         <Flex className="wrapper">
           <Box width={2 / 2} px={2}>
@@ -77,6 +77,8 @@ const Requests = props => {
                     has_renter_reviewed_owner,
                     has_renter_reviewed_rent_order
                   } = value;
+                  // console.log(rentDump.coupon);
+                  
                   return (
                     <RequestCard
                       no_of_days={rentDump.no_of_days}
@@ -90,15 +92,27 @@ const Requests = props => {
                       carName={`${rentDump.car.brand.name.fa} ${rentDump.car.name.fa}`}
                       start={moment(rentDump.start_date, "jYYYY/jMM/jDD")}
                       end={moment(rentDump.end_date, "jYYYY/jMM/jDD")}
-                      price={rentDump.discounted_total_price}
+                      price={
+                        rentDump.insurance_total_price
+                          ? rentDump.coupon
+                            ? rentDump.coupon.total_price +
+                              rentDump.insurance_total_price
+                            : rentDump.insurance_total_price +
+                              rentDump.discounted_total_price
+                          : rentDump.coupon
+                          ? rentDump.coupon.total_price
+                          : rentDump.discounted_total_price
+                      }
                       ownerName={
                         value.role === "owner"
                           ? `${value.renter.first_name} ${value.renter.last_name}`
                           : `${rentDump.owner.first_name} ${rentDump.owner.last_name}`
                       }
-                      avatarImage= {value.role === "owner" ? 
-                      value.renter.image_url
-                      :rentDump.owner.thumbnail_url}
+                      avatarImage={
+                        value.role === "owner"
+                          ? value.renter.image_url
+                          : rentDump.owner.thumbnail_url
+                      }
                       ownerPhone={
                         value.role === "renter" ? null : value.renter.cell
                       }

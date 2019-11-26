@@ -8,20 +8,19 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
     //console.log("let's search", data);
     let queryString;
     if (data.result_key) {
-      queryString = 'result_key=' + data.result_key;
+      queryString = 'result_key=' + data.result_key + '&o=' + data.o;
     } else {
       queryString = data.queryString;
     }
     axios
-      .post(
+      .get(
         DOMAIN +
           GET_SEARCH_FOR_RENT +
-          ('?limit=' + data.limit + '&page=' + data.page) +
+          ('?limit=' + data.limit + '&page=' + data.page ) +
           ('&' + queryString)
       )
       .then(response => {
         if (response.data.success) {
-          //console.log(response.data.items[1]);
           const results = response.data.items.map((value, index) => ({
             key: value.index,
             id: value.id,
@@ -93,4 +92,5 @@ interface IgetSearchForRent {
   page: number;
   queryString?: string;
   result_key?: string;
+  o?: string;
 }

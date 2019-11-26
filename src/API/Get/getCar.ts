@@ -11,6 +11,8 @@ export const REQUEST_getCar = (data: IgetCar) => {
     } else if (data.id) {
       queryString = queryString + `rental_car_id=${data.id}`;
     }
+    // console.log("DOMAIN + GET_RENTAL_CAR + '?' + queryString",DOMAIN + GET_RENTAL_CAR + '?' + queryString);
+    
     axios.post(DOMAIN + GET_RENTAL_CAR + '?' + queryString).then(response => {
       if (response.data.id) {
         const data = response.data;

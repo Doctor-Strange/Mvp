@@ -94,7 +94,9 @@ export default withTranslation("common")(
       heightController:0,
       loading:false,
       coupon_code:false,
-      coupan:""
+      coupan:"",
+      CoupanErr:null,
+      coupanPrice:0,
     };
 
     doRef = ref => {
@@ -148,7 +150,8 @@ export default withTranslation("common")(
         const res = await REQUEST_newRentRequest({
           search_id,
           has_insurance:this.state.insurance,
-          token: jsCookie.get("token")
+          token: jsCookie.get("token"),
+          coupon_code : this.state.coupan
         });
         if (res) {
         toast.success("درخواست شما ثبت شد. اجاره‌ دهنده پس از بررسی، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.", {
@@ -206,37 +209,37 @@ export default withTranslation("common")(
       }      
     }
 
-    CoupanController = (e) =>{
+    CoupanController = (e,search_i) =>{
       e.preventDefault();
       const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-const SET_CAR_COUPAN = '/core/coupon/add';
-      let coupan= this.state.coupan
+      const SET_CAR_COUPAN = '/core/rental-car/search-for-rent/get';
+      let coupan= this.state.coupan;
       let token=jsCookie.get("token")
-      console.log("token",jsCookie.get("token"), coupan);
-      
+      // console.log("token",DOMAIN + SET_CAR_COUPAN + '?' + `search_id=${search_i}` + `&coupon_code=` + coupan);
+      // return
       axios
-      .post(
-        DOMAIN + SET_CAR_COUPAN,
-        {
-          coupon_code: coupan
-        },
+      .get(
+        DOMAIN + SET_CAR_COUPAN + '?' + `search_id=${search_i}` + `&coupon_code=` + coupan,
         {
           headers: {
             Authorization: 'Bearer ' + token
           }
         }
       )
-      .then(response => {
-          console.log("response",response);
-          
-        if (response.data.success) {
-          // resolve(response.data.success);
-        }
+      .then(response => {       
+          this.setState({
+            coupanPrice : response.data.coupon.total_price,
+            coupon_code:false
+          })
       })
       .catch(error => {
         // reject(error.response);
+        if (!error.response.data.success) {
+          this.setState({
+            CoupanErr:error.response.data.message
+          })
+        }
         console.log(error.response);
-        
       });
       // toast.warn("کد تخفیف نادرست است.",{
       //   position: "bottom-center",
@@ -395,13 +398,24 @@ const SET_CAR_COUPAN = '/core/coupon/add';
                     </span>
                   </li>
                   <li className ="DiscountCopon">
-                  {!this.state.coupon_code &&<span onClick={()=>{
+                  {!this.state.coupon_code && !this.state.coupanPrice ?<span onClick={()=>{
                       this.setState({
                         coupon_code:true
                       })
                     }}>کد تخفیف دارید؟</span>
+                    : this.state.coupanPrice ? <p
+                    style={{cursor:'pointer',
+                    color: '#4ba3ce'
+                    }}
+                     onClick={()=>{
+                      this.setState({
+                        coupon_code:false,
+                        coupanPrice : 0
+                      })
+                    }}>حذف کد تخفیف</p>
+                    : null
                   }
-                    {this.state.coupon_code && <form onSubmit={this.CoupanController}>
+                    {this.state.coupon_code && <><form onSubmit={(e)=>this.CoupanController(e,search_id)}>
                       <input autoFocus type="text" name="COUPAN" onChange={(e)=>{
                       this.setState({
                         coupan: e.target.value
@@ -409,6 +423,14 @@ const SET_CAR_COUPAN = '/core/coupon/add';
                       }}/>
                       <button type="submit">اعمال</button>
                     </form>
+                      {this.state.CoupanErr && <p style ={{
+                        color: '#de0000',
+                        fontWeight: '400',
+                        marginTop: '8px',
+                        fontSize: '12px',
+                        direction: 'rtl',
+                      }}>{this.state.CoupanErr}</p>}
+                      </>
                     }
                   </li>
                   <li style={{ borderTop: "1px solid #ddd", fontSize: '20px' }} >
@@ -416,12 +438,18 @@ const SET_CAR_COUPAN = '/core/coupon/add';
                     <span className="float-left">
                       <span >
                         {this.state.insurance ?
+                        this.state.coupanPrice ? convertNumbers2Persian(
+                          numberWithCommas(this.state.coupanPrice + insurance_total_price
+                          ))
+                        :
                           convertNumbers2Persian(
-                            numberWithCommas(discounted_total_price + insurance_total_price || 0)
+                            numberWithCommas(discounted_total_price + insurance_total_price )
                           )
-                          :
+                          :this.state.coupanPrice ?convertNumbers2Persian(
+                            numberWithCommas(this.state.coupanPrice
+                            )) :
                           convertNumbers2Persian(
-                            numberWithCommas(discounted_total_price || 0)
+                            numberWithCommas( discounted_total_price)
                           )}
                       </span>
                       <span style={{ fontWeight: 100 }}> تومان </span>

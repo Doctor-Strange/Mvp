@@ -121,7 +121,18 @@ const Request = ({id}, props) => {
                                             carName={`${rentDump.car.brand.name.fa} ${rentDump.car.name.fa}`}
                                             start={moment(rentDump.start_date, 'jYYYY/jMM/jDD')}
                                             end={moment(rentDump.end_date, 'jYYYY/jMM/jDD')}
-                                            price={rentDump.discounted_total_price}
+                                            // price={rentDump.discounted_total_price}
+                                            price={
+                                                rentDump.insurance_total_price
+                                                  ? rentDump.coupon
+                                                    ? rentDump.coupon.total_price +
+                                                      rentDump.insurance_total_price
+                                                    : rentDump.insurance_total_price +
+                                                      rentDump.discounted_total_price
+                                                  : rentDump.coupon
+                                                  ? rentDump.coupon.total_price
+                                                  : rentDump.discounted_total_price
+                                              }
                                             ownerInfo = {rentDump.owner}
                                             company_name={rentDump.owner.company_name}
 

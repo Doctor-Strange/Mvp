@@ -5,7 +5,6 @@ const GET_SEARCH_FOR_RENT = '/core/rental-car/search-for-rent/list';
 
 export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
   return new Promise((resolve, reject) => {
-    //console.log("let's search", data);
     let queryString;
     if (data.result_key) {
       queryString = 'result_key=' + data.result_key + '&o=' + data.o;
@@ -20,6 +19,8 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
           ('&' + queryString)
       )
       .then(response => {
+        // console.log("let's search", response);
+
         if (response.data.success) {
           const results = response.data.items.map((value, index) => ({
             key: value.index,
@@ -74,6 +75,7 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
             }
             resolve({
               results,
+              remained_count:response.data.remained_count,
               loadingResults: false,
               noResult: false,
               lodingMore: false,

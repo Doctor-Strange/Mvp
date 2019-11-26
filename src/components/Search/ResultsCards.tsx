@@ -46,7 +46,7 @@ export class ResultsCards extends React.Component<{
   t?: any;
   results?: any;
   loadingResults: boolean;
-  showMore: boolean;
+  remained_count: Number;
   lodingMore: boolean;
   noResult: boolean;
   nextPage?: any;
@@ -71,7 +71,7 @@ export class ResultsCards extends React.Component<{
       results,
       loadingResults,
       noResult,
-      showMore = false,
+      remained_count,
       nextPage,
       dateURL,
       lodingMore,
@@ -80,7 +80,7 @@ export class ResultsCards extends React.Component<{
       showInProfile = false,
       userOwnPage = false
     } = this.props;
-    // console.log(this.props)
+    console.log(this.props)
     return (
       <>
         <Section
@@ -147,7 +147,7 @@ export class ResultsCards extends React.Component<{
           ) : (
             <></>
           )}
-          {showMore && !noResult ? (
+          {remained_count > 0 && !noResult ? (
             <p
               className="text-center"
               style={{ width: "100%", margin: "20px auto 50px" }}

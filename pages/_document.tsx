@@ -53,7 +53,7 @@ export default class extends Document {
     return (
       <html lang="fa">
         <Head>
-        <script  dangerouslySetInnerHTML={{
+        {/* <script  dangerouslySetInnerHTML={{
           __html: `<!-- Hotjar Tracking Code for http://otoli.net/ -->
           <script>
               (function(h,o,t,j,a,r){
@@ -66,7 +66,7 @@ export default class extends Document {
               })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
           </script>`,
         }}>
-        </script> 
+        </script>  */}
         {/* <script  dangerouslySetInnerHTML={{
           __html: `<!-- Google Tag Manager -->
           <script>

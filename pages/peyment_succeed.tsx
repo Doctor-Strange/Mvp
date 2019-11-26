@@ -132,7 +132,7 @@ const Page = ({id}) => {
         REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  })
         .then(res=>{
           setRequest(res);
-          console.log(res)
+          // console.log(res)
         })
         .catch(e=>{
           // console.log(e)
@@ -167,7 +167,22 @@ const Page = ({id}) => {
                          <List>
                             <li>هزینه پرداختی
                                 <span className="float-left">
-                                  {convertNumbers2Persian(numberWithCommas(rentDump.discounted_total_price))} تومان
+                                  {/* {convertNumbers2Persian(numberWithCommas(rentDump.discounted_total_price))} تومان */}
+                               
+                                  {
+                                                convertNumbers2Persian(numberWithCommas(
+                                                  request.data.has_insurance
+                                                  ? rentDump.coupon
+                                                    ? rentDump.coupon.total_price +
+                                                      rentDump.insurance_total_price
+                                                    : rentDump.insurance_total_price +
+                                                      rentDump.discounted_total_price
+                                                  : rentDump.coupon
+                                                  ? rentDump.coupon.total_price
+                                                  : rentDump.discounted_total_price
+                                                  )) 
+                                              } تومان
+
                                 </span>
                              </li>
                              <li>محل تحویل

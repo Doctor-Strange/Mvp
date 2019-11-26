@@ -75,9 +75,9 @@ const Requests = props => {
                     has_owner_reviewed_rent_order,
                     has_owner_reviewed_renter,
                     has_renter_reviewed_owner,
-                    has_renter_reviewed_rent_order
+                    has_renter_reviewed_rent_order,
+                    has_insurance
                   } = value;
-                  // console.log(rentDump.coupon);
                   
                   return (
                     <RequestCard
@@ -93,7 +93,7 @@ const Requests = props => {
                       start={moment(rentDump.start_date, "jYYYY/jMM/jDD")}
                       end={moment(rentDump.end_date, "jYYYY/jMM/jDD")}
                       price={
-                        rentDump.insurance_total_price
+                        has_insurance
                           ? rentDump.coupon
                             ? rentDump.coupon.total_price +
                               rentDump.insurance_total_price

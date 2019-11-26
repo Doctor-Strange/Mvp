@@ -80,6 +80,7 @@ export default withRouter(
                 }
 
                 state = {
+                    remained_count:10,
                     error: '',
                     city: 1,
                     cityName: null,
@@ -431,6 +432,8 @@ export default withRouter(
                             limit: 8,
                             queryString
                         });
+                        console.log("res1", res);
+                        
                         this.setState({
                             ...res,
                             page: 1
@@ -447,6 +450,8 @@ export default withRouter(
                             result_key: this.state.latest_result_key,
                             o:this.state.priceSort
                         });
+                        console.log("res2", res);
+
                         const stateTemp = this.state.results;
                         const resultsTemp = res.results;
                         delete res.results;
@@ -487,9 +492,10 @@ export default withRouter(
                         total_count,
                         stats,
                         page,
-                        lodingMore
+                        lodingMore,
+                        remained_count
                     } = this.state;
-                    const showMore = page * 8 < total_count;
+                    // const showMore = page * 8 < total_count;
                     // console.log(cityName);
                     return (
                         <Layout haveSubHeader={true} pageTitle={'Hello World'}>
@@ -560,7 +566,7 @@ export default withRouter(
                                     loadingResults={loadingResults}
                                     lodingMore={lodingMore}
                                     noResult={noResult}
-                                    showMore={showMore}
+                                    remained_count={this.state.remained_count}
                                     dateURL={''}
                                 />
                             </div>

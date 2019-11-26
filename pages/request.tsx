@@ -106,7 +106,8 @@ const Request = ({id}, props) => {
                                         has_owner_reviewed_rent_order,
                                         has_owner_reviewed_renter,
                                         has_renter_reviewed_owner,
-                                        has_renter_reviewed_rent_order
+                                        has_renter_reviewed_rent_order,
+                                        has_insurance
                                     } = value;
                                     const rentDump = value.rent_search_dump;
                                     return (
@@ -123,7 +124,7 @@ const Request = ({id}, props) => {
                                             end={moment(rentDump.end_date, 'jYYYY/jMM/jDD')}
                                             // price={rentDump.discounted_total_price}
                                             price={
-                                                rentDump.insurance_total_price
+                                                has_insurance
                                                   ? rentDump.coupon
                                                     ? rentDump.coupon.total_price +
                                                       rentDump.insurance_total_price

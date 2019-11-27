@@ -98,6 +98,11 @@ const Card = styled.div`
       right: 16px;
       text-align: right;
     }
+    .Edit_car{
+      top: 20px;
+      left: 16px;
+      text-align: left;
+    }
   }
   a.wish_bt {
     position: absolute;
@@ -460,7 +465,15 @@ export const CarCard: React.FunctionComponent<{
                 deleteCarHandller();
               }}
             >
-              {own && <span>{simpleMode ? "حذف خودرو" : "مشاهده مشخصات"}</span>}
+              {own && <span>{simpleMode ? "حذف خودرو" : "حذف خودرو"}</span>}
+            </div>
+            <div className=" read_more Edit_car"
+            onClick={e => {
+              e.preventDefault();
+              Router.push(`/add-car?edit=true&car_id=${id}`)
+            }}
+            >
+              {own && <span>{simpleMode ? "ویرایش اطلاعات" : "ویرایش اطلاعات"}</span>}
             </div>
             {/* <small>Restaurant</small> */}
           </figure>

@@ -10,8 +10,10 @@ import { FORMS_WIDTH } from '../src/constants/env';
 
 export default withTranslation('common')(
   class extends React.Component<{ t: any; openModal?: any; }> {
-    static async getInitialProps() {
+    static async getInitialProps(props) {
       return {
+        edit_mode : props.query.edit === 'true' ? true: false,
+        car_id : props.query.edit === 'true' ? props.query.car_id: false,
         namespacesRequired: ['common']
       };
     }
@@ -27,8 +29,7 @@ export default withTranslation('common')(
     };
 
     render() {
-      //console.log(t)
-      const { t } = this.props;
+      const { t, edit_mode ,car_id} = this.props;
       return (
         <Layout haveSubHeader={true} pageTitle={'list Your Car'} onRef={this.doRef}>
           <NextSeo
@@ -50,6 +51,8 @@ export default withTranslation('common')(
             <Flex justifyContent="space-around" style={{ width: FORMS_WIDTH }}>
               <Box width={1 / 1} px={2}>
                 <AddCarForm
+                  edit_mode = {edit_mode}
+                  car_id={car_id}
                   t={t}
                   openModal={this.state.openModal}
                 />

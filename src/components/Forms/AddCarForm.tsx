@@ -41,7 +41,10 @@ import AddCarImageUpload from "./AddCarImageUpload";
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English,DnumberWithCommas } from '../../utils/numbers';
 import jsCookie from 'js-cookie';
 import { toast } from 'react-toastify';
-import DropDownWithSearch from '../DropDownWithSearch/DropDownWithSearch'
+import DropDownWithSearch from '../DropDownWithSearch/DropDownWithSearch';
+import { REQUEST_getCar } from '../../API';
+import { async } from 'q';
+
 
 const BoxAccount = styled.div`
   margin-bottom: 25px;
@@ -209,6 +212,8 @@ interface IAddCarFormValues {
   carDescription: string;
   cylinder_id: any;
   value: any;
+  edit_mode?:boolean;
+  car_id?:string;
 }
 
 export default withTranslation('common')(connect(state => state)(
@@ -218,6 +223,9 @@ export default withTranslation('common')(connect(state => state)(
     name: string;
     openModal?: any;
     user: any;
+    edit_mode?:boolean;
+    car_id?:string;
+
   }> {
     state = {
       error: '',
@@ -269,7 +277,25 @@ export default withTranslation('common')(connect(state => state)(
       super(props);
     }
 
+    getCarPropsForEdit = async() =>{
+      const res = await REQUEST_getCar({
+        id:this.props.car_id,
+    });
+    const incomming = res.data;
+    console.log(incomming);
+    
+    this.setState({
+      bodyStyle:incomming.body_style.id
+    })
+    
+    }
+
     componentDidMount() {
+      console.log(this.props.edit_mode);
+      
+      if(this.props.edit_mode){
+        this.getCarPropsForEdit()
+      }
       if (!this.props.user.token ){
         localStorage["URL"] = Router.router.asPath        
       }
@@ -668,7 +694,7 @@ export default withTranslation('common')(connect(state => state)(
             carModel: null,
             carYear: null,
             carGearboxType: null,
-            carBodyStyle: null,
+            carBodyStyle: this.state.bodyStyle,
             carCapacity: null,
             carKmDriven: null,
             // carVIN: null,
@@ -730,6 +756,7 @@ export default withTranslation('common')(connect(state => state)(
               cylinder_id,
               value
             } = values;
+            
             // console.log({
             //   car_id: carModel,
             //   location_id: (carDistrict || carCity),

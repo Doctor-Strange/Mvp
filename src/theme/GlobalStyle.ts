@@ -2865,6 +2865,7 @@ OTILI
 //   background: #ffb7b7;
 // }
 pre{
+  white-space: inherit;
   font-size: 1rem !important;
     line-height: 1.6 !important;
     font-family: Vazir,sans-serif !important;

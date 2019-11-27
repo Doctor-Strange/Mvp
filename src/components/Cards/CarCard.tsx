@@ -318,7 +318,7 @@ export const CarCard: React.FunctionComponent<{
     console.log("test");
     swal(
       <div>
-        <h3>شماره تلفن اجاره‌گیرنده</h3>
+        <h3>حذف خودرو</h3>
         <span dir="rtl">اطلاعات خودرو به طور کامل پاک شود؟</span>
       </div>,
       {

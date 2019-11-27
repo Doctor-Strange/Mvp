@@ -460,9 +460,6 @@ export const CarCard: React.FunctionComponent<{
                 deleteCarHandller();
               }}
             >
-              {
-                console.log(own)                
-              }
               {own && <span>{simpleMode ? "حذف خودرو" : "مشاهده مشخصات"}</span>}
             </div>
             {/* <small>Restaurant</small> */}

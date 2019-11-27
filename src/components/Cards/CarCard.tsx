@@ -244,7 +244,7 @@ export const CarCard: React.FunctionComponent<{
   is_out_of_service: boolean;
   fetchAPI?:any;
   showInProfile?: boolean; 
-  // own?:boolean
+  own?:boolean
 }> = ({
   children,
   title,
@@ -263,7 +263,8 @@ export const CarCard: React.FunctionComponent<{
   discounted_price,
   is_out_of_service = false,
   fetchAPI,
-  showInProfile
+  showInProfile,
+  own
 }) => {
   const [outofservice, setoutofservice] = useState(false);
   const [heightController, setheightController] = useState(0);
@@ -459,7 +460,10 @@ export const CarCard: React.FunctionComponent<{
                 deleteCarHandller();
               }}
             >
-              {showInProfile && <span>{simpleMode ? "حذف خودرو" : "مشاهده مشخصات"}</span>}
+              {
+                console.log(own)                
+              }
+              {own && <span>{simpleMode ? "حذف خودرو" : "مشاهده مشخصات"}</span>}
             </div>
             {/* <small>Restaurant</small> */}
           </figure>

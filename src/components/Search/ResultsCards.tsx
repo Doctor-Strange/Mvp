@@ -56,6 +56,7 @@ export class ResultsCards extends React.Component<{
   showInProfile?: boolean;
   userOwnPage?: boolean;
   fetchAPI?:any;
+  own?: boolean;
   // own?:boolean
 }> {
   state = {
@@ -80,7 +81,8 @@ export class ResultsCards extends React.Component<{
       marginClass = "margin_16",
       showInProfile = false,
       userOwnPage = false,
-      fetchAPI
+      fetchAPI,
+      own
     } = this.props;
     return (
       <>
@@ -103,7 +105,7 @@ export class ResultsCards extends React.Component<{
             results.map((value, index) => {
               return (
                 <CarCard
-                // own = {own}
+                own = {own}
                 fetchAPI={fetchAPI}
                   key={index}
                   id={value.id}

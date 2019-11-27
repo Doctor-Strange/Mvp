@@ -96,6 +96,7 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
                     colClass="col-lg-8"
                     marginClass=""
                     showInProfile={true}
+                    own={own}
                     userOwnPage={own ? true : false}
                 />
                 <aside className="col-lg-4" id="sidebar" >

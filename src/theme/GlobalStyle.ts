@@ -1478,6 +1478,22 @@ textarea {
     }
 }
 
+.swal-button--cancel{
+  background : #fff !important;
+  color:#4BA3CE !important;
+  border:1px solid #4BA3CE !important;
+  :hover{
+    background-color: #fff !important;
+  }
+  :focus {
+    background-color: #fff;
+  }
+  :focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
 .ui.horizontal.divider {
   &:before, &:after{
     display:none;

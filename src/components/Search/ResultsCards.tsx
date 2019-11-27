@@ -55,6 +55,7 @@ export class ResultsCards extends React.Component<{
   marginClass?: string;
   showInProfile?: boolean;
   userOwnPage?: boolean;
+  fetchAPI?:any;
   // own?:boolean
 }> {
   state = {
@@ -78,9 +79,9 @@ export class ResultsCards extends React.Component<{
       colClass = "col-lg-9",
       marginClass = "margin_16",
       showInProfile = false,
-      userOwnPage = false
+      userOwnPage = false,
+      fetchAPI
     } = this.props;
-    console.log(this.props)
     return (
       <>
         <Section
@@ -103,6 +104,7 @@ export class ResultsCards extends React.Component<{
               return (
                 <CarCard
                 // own = {own}
+                fetchAPI={fetchAPI}
                   key={index}
                   id={value.id}
                   title={value.car.brand.name.fa + " " + value.car.name.fa}

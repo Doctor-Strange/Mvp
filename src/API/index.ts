@@ -24,6 +24,7 @@ import { REQUEST_getCarAvailabilities } from './Get/getCarAvailabilities';
 import { REQUEST_newCarAvailability } from "./Set/newCarAvailability";
 import { REQUEST_setCarAvailability } from "./Set/setCarAvailablity";
 import { REQUEST_deleteCarAvailability } from "./Set/deleteCarAvailability";
+import { REQUEST_deleteCar } from "./Set/deleteCar";
 
 // Car Discounts
 import { REQUEST_getCarDiscounts } from "./Get/getCarDiscounts";
@@ -69,6 +70,7 @@ export {
   REQUEST_setCarAvailability,
   REQUEST_editCarPartial,
   REQUEST_deleteCarAvailability,
+  REQUEST_deleteCar,
   REQUEST_getCarDiscounts,
   REQUEST_setCarDiscounts,
   REQUEST_newCarMedia,

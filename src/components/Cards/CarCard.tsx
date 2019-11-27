@@ -1,20 +1,23 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import jsCookie from 'js-cookie';
-import styled from 'styled-components';
-import { Box, Flex } from '@rebass/grid';
-import Link from 'next/link';
-import Router from 'next/router';
-import StarRatingComponent from 'react-star-rating-component';
-import { Icon, Button, Grid } from 'semantic-ui-react';
-import { PriceCard } from './index'
-import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../../utils/numbers';
+import * as React from "react";
+import { useState, useEffect } from "react";
+import jsCookie from "js-cookie";
+import styled from "styled-components";
+import { Box, Flex } from "@rebass/grid";
+import Link from "next/link";
+import Router from "next/router";
+import StarRatingComponent from "react-star-rating-component";
+import { Icon, Button, Grid } from "semantic-ui-react";
+import { PriceCard } from "./index";
+import {
+  numberWithCommas,
+  convertNumbers2Persian,
+  convertNumbers2English
+} from "../../utils/numbers";
 import { ITheme } from "../../theme/Interfaces";
-import { REQUEST_set_out_of_service } from '../../API';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-
-
+import { REQUEST_set_out_of_service, REQUEST_deleteCar } from "../../API";
+import axios from "axios";
+import { toast } from "react-toastify";
+import swal from "@sweetalert/with-react";
 
 const Card = styled.div`
   max-height: 300px;
@@ -22,12 +25,13 @@ const Card = styled.div`
   width: 340px;
   max-width: 100%;
   margin: 10px 10px;
-  background-color: ${({theme}:{theme:ITheme}) => theme.color.whiteBackground};
+  background-color: ${({ theme }: { theme: ITheme }) =>
+    theme.color.whiteBackground};
   display: block;
   position: relative;
   border-radius: 4px;
   box-shadow: 0px 1px 5px 1px #0000000f;
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     width: 97vw;
     max-width: 400px;
   }
@@ -45,7 +49,7 @@ const Card = styled.div`
     border-radius: 3px 3px 0 0;
     margin: 0;
     a {
-       img {
+      img {
         position: absolute;
         left: 50%;
         top: 50%;
@@ -53,13 +57,14 @@ const Card = styled.div`
         backface-visibility: hidden;
         width: 100%;
         transition: all 0.3s ease-in-out;
-       }
-       &:hover img {
+      }
+      &:hover img {
         transform: translate(-50%, -50%) scale(1.1);
       }
     }
     &:hover {
-      .read_more {
+      .read_more,
+      .delete_car {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
@@ -78,14 +83,20 @@ const Card = styled.div`
       transition: all 0.6s;
       z-index: 2;
       span {
-        background-color: ${({theme}:{theme:ITheme}) => theme.color.cardLabels};
+        background-color: ${({ theme }: { theme: ITheme }) =>
+          theme.color.cardLabels};
         border-radius: 20px;
         display: inline-block;
-        color: ${({theme}:{theme:ITheme}) => theme.color.textMain};
+        color: ${({ theme }: { theme: ITheme }) => theme.color.textMain};
         font-size: 12px;
         font-size: 0.75rem;
         padding: 5px 10px;
       }
+    }
+    .delete_car {
+      top: 20px;
+      right: 16px;
+      text-align: right;
     }
   }
   a.wish_bt {
@@ -93,15 +104,16 @@ const Card = styled.div`
     left: 12px;
     bottom: 28px;
     z-index: 1;
-    background-color: ${({theme}:{theme:ITheme}) => theme.color.fadedGray};
+    background-color: ${({ theme }: { theme: ITheme }) =>
+      theme.color.fadedGray};
     padding: 5px 10px;
     display: inline-block;
-    color: ${({theme}:{theme:ITheme}) => theme.color.whiteBackground};
+    color: ${({ theme }: { theme: ITheme }) => theme.color.whiteBackground};
     border-radius: 3px;
   }
   .wrapper {
     padding: 0px 0px 60px 0px;
-    .col-8{
+    .col-8 {
       top: 15px;
       right: 15px;
     }
@@ -117,8 +129,9 @@ const Card = styled.div`
       font-size: 13px;
       font-size: 0.8125rem;
     }
-    .number span , .unit span{
-      color: #2A2A2A;
+    .number span,
+    .unit span {
+      color: #2a2a2a;
     }
     p {
       margin-bottom: 15px;
@@ -161,15 +174,17 @@ const Card = styled.div`
           padding: 10px;
           display: inline-block;
         }
-        }
+      }
     }
   }
 
   .delivery {
-    color: ${({theme}:{theme:ITheme}) => theme.color.successColor};
-    border: 1px solid ${({theme}:{theme:ITheme}) => theme.color.successColor};
+    color: ${({ theme }: { theme: ITheme }) => theme.color.successColor};
+    border: 1px solid
+      ${({ theme }: { theme: ITheme }) => theme.color.successColor};
   }
-  .delivery, .loc_closed {
+  .delivery,
+  .loc_closed {
     position: relative;
     font-size: 11px;
     font-size: 0.6875rem;
@@ -178,34 +193,34 @@ const Card = styled.div`
     line-height: 1;
     border-radius: 3px;
   }
-  .col-8{
+  .col-8 {
     top: -8px;
   }
-  .leftbox{
+  .leftbox {
     position: absolute;
     left: -8px;
     bottom: 48px;
   }
-  .edit{
+  .edit {
     width: 100%;
     margin: 0 !important;
-     .property{
-       display:flex !important;
-       width:100% !important;
-       justify-content: center !important;
-       align-items: center !important;
-       .item {
-         padding: 0 !important;
-         text-align:center !important;
-         button{
+    .property {
+      display: flex !important;
+      width: 100% !important;
+      justify-content: center !important;
+      align-items: center !important;
+      .item {
+        padding: 0 !important;
+        text-align: center !important;
+        button {
           padding: 5px 5px;
           font-size: 12px;
-         }
-       }
-      } 
+        }
+      }
+    }
   }
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     margin-right: auto;
     margin-left: auto;
   }
@@ -227,6 +242,8 @@ export const CarCard: React.FunctionComponent<{
   discount_percent?: string;
   discounted_price?: number;
   is_out_of_service: boolean;
+  fetchAPI?:any;
+  showInProfile?: boolean; 
   // own?:boolean
 }> = ({
   children,
@@ -245,206 +262,273 @@ export const CarCard: React.FunctionComponent<{
   discount_percent,
   discounted_price,
   is_out_of_service = false,
+  fetchAPI,
+  showInProfile
 }) => {
   const [outofservice, setoutofservice] = useState(false);
   const [heightController, setheightController] = useState(0);
-    let link = "";
-    // let start_date ;
-    // let end_date;
-    // if(localStorage['start']){
-    //   start_date = JSON.parse(localStorage['start'])
-    //   end_date = JSON.parse(localStorage['end'])
-    // }
-    let carName = title.replace(/ /g, "-");
-    if (simpleMode) {
-      link = `/car/${id}/${carName}?notAllowed=true`;
-    }
-    else {
-      link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`
-    }
+  let link = "";
+  // let start_date ;
+  // let end_date;
+  // if(localStorage['start']){
+  //   start_date = JSON.parse(localStorage['start'])
+  //   end_date = JSON.parse(localStorage['end'])
+  // }
+  let carName = title.replace(/ /g, "-");
+  if (simpleMode) {
+    link = `/car/${id}/${carName}?notAllowed=true`;
+  } else {
+    link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`;
+  }
 
-    // console.log(children,
-    //   title,
-    //   img,
-    //   description,
-    //   year,
-    //   score,
-    //   price,
-    //   deliver_at_renters_place,
-    //   id,
-    //   dateURL,
-    //   search_id,
-    //   simpleMode = true,
-    //   showEditButtons = false,
-    //   discount_percent,
-    //   discounted_price,
-    //   is_out_of_service = false,)
-    useEffect(() => {
-      setoutofservice(is_out_of_service)
+  // console.log(children,
+  //   title,
+  //   img,
+  //   description,
+  //   year,
+  //   score,
+  //   price,
+  //   deliver_at_renters_place,
+  //   id,
+  //   dateURL,
+  //   search_id,
+  //   simpleMode = true,
+  //   showEditButtons = false,
+  //   discount_percent,
+  //   discounted_price,
+  //   is_out_of_service = false,)
+  useEffect(() => {
+    setoutofservice(is_out_of_service);
   }, []);
-    const setCarTiming = () => {
-      const href = `/set-car-timing?id=${id}`;
-      Router.push(href, href);
-      // console.log("/set-car-timing")
-      // return
-      // Router.push({
-      //   pathname: '/set-car-timing',
-      //   query: {
-      //     id: id
-      //   }
-      // });
-    }
+  const setCarTiming = () => {
+    const href = `/set-car-timing?id=${id}`;
+    Router.push(href, href);
+    // console.log("/set-car-timing")
+    // return
+    // Router.push({
+    //   pathname: '/set-car-timing',
+    //   query: {
+    //     id: id
+    //   }
+    // });
+  };
 
-    const pauseCar = (id, value) => {
-      // console.log("pass" , value)
-      const token = jsCookie.get('token');
+  const deleteCarHandller = () => {
+    console.log("test");
+    swal(
+      <div>
+        <h3>شماره تلفن اجاره‌گیرنده</h3>
+        <span dir="rtl">اطلاعات خودرو به طور کامل پاک شود؟</span>
+      </div>,
+      {
+        buttons: {
+          cancel: "لغو",
+          catch: {
+            text: "تایید",
+            value: "done"
+          }
+        }
+      }
+    ).then(value => {
+      if(value === "done"){
       const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-      const SETOUTOFSERVICE = '/core/rental-car/set-is-out-of-service';
+      const token = jsCookie.get("token");
+      const DELETE_CAR = "/core/rental-car/delete";
       axios
+        .post(
+          DOMAIN + DELETE_CAR,
+          {
+            id
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + token
+            }
+          }
+        )
+        .then(response => {
+          console.log("res", response.data.success, fetchAPI);
+          fetchAPI()
+        })
+        .catch(error => {
+          console.log(error.response.data.message);
+        });
+      }
+      // if (data.action == 'pay') {
+      //     Router.push(res.redirect_to, res.redirect_to, { shallow: false });
+      // }
+      // else {
+      //     refresh();
+      // }
+    });
+  };
+  const pauseCar = (id, value) => {
+    // console.log("pass" , value)
+    const token = jsCookie.get("token");
+    const DOMAIN = process.env.PRODUCTION_ENDPOINT;
+    const SETOUTOFSERVICE = "/core/rental-car/set-is-out-of-service";
+    axios
       .post(
         DOMAIN + SETOUTOFSERVICE,
         {
-          id, 
+          id,
           value: !value
         },
         {
           headers: {
-            Authorization: 'Bearer ' + token
+            Authorization: "Bearer " + token
           }
         }
-        )
-        .then(response => {
-          // console.log("response" ,response.data.data.is_out_of_service)
-          if (response.data.success) {
-            setoutofservice(response.data.data.is_out_of_service)
-            is_out_of_service = response.data.data.is_out_of_service
-            let message = "";
-            if(is_out_of_service){
-              message = `خودروی ${carName} شما در نتایج جستجو نمایش داده نخواهد شد.`
-            }else{
-              message = `خودروی ${carName} شما در نتایج جستجو نمایش داده خواهد شد.`
-            }
-            toast.success(message,{
-              position: "bottom-center",
-              autoClose: 7000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true
-            })
-            // console.log("outofservice" , outofservice);
-            // console.log("new value" , is_out_of_service)
+      )
+      .then(response => {
+        // console.log("response" ,response.data.data.is_out_of_service)
+        if (response.data.success) {
+          setoutofservice(response.data.data.is_out_of_service);
+          is_out_of_service = response.data.data.is_out_of_service;
+          let message = "";
+          if (is_out_of_service) {
+            message = `خودروی ${carName} شما در نتایج جستجو نمایش داده نخواهد شد.`;
+          } else {
+            message = `خودروی ${carName} شما در نتایج جستجو نمایش داده خواهد شد.`;
           }
+          toast.success(message, {
+            position: "bottom-center",
+            autoClose: 7000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true
+          });
+          // console.log("outofservice" , outofservice);
+          // console.log("new value" , is_out_of_service)
+        }
       })
       .catch(error => {
-        console.log(error.response)
+        console.log(error.response);
 
         // reject(error.response);
       });
-      // fetchAPI();
-      // console.log("pauseCar", id, value)
-      // const href = `/set-car-timing?id=${id}`;
-      // Router.push(href, href, { shallow: true });
-      return
-      alert("خودروی شما از دیده‌ها پنهان شد.");
-    }
-    
-    // async function fetchAPI() {
-    //   const res = await REQUEST_set_out_of_service({  token: jsCookie.get('token'),id:11 , value : true });
-    //   // console.log(res);
-    // }
-    return (
-      <Card className="strip grid carcard">
-        {/* {console.log("body",outofservice)} */}
-        <Link href={link}> 
-          <a> 
+    // fetchAPI();
+    // console.log("pauseCar", id, value)
+    // const href = `/set-car-timing?id=${id}`;
+    // Router.push(href, href, { shallow: true });
+    return;
+    alert("خودروی شما از دیده‌ها پنهان شد.");
+  };
+
+  // async function fetchAPI() {
+  //   const res = await REQUEST_set_out_of_service({  token: jsCookie.get('token'),id:11 , value : true });
+  //   // console.log(res);
+  // }
+  return (
+    <Card className="strip grid carcard">
+      {/* {console.log("body",outofservice)} */}
+      <Link href={link}>
+        <a>
           <figure>
-            {discount_percent &&
-              <a className="wish_bt" >
-              ٪{convertNumbers2Persian(discount_percent)} تخفیف
+            {discount_percent && (
+              <a className="wish_bt">
+                ٪{convertNumbers2Persian(discount_percent)} تخفیف
               </a>
-            }
-            <img 
-            style={{position:"absolute",top:-heightController+"px"}}
-            src={img} className="img-fluid" alt=""
-             onLoad = {(a)=>{
-              a.persist()
-              let w = a.target.naturalWidth; 
-              let h = a.target.naturalHeight;
-              // console.log(title,"==>",w/h)
-              if(w/h < 1.2){
-                setheightController(w/h*100)
-              }
-              if(w/h < 0.9){
-                setheightController(w/h*220)
-              }
-            }}
+            )}
+            <img
+              style={{ position: "absolute", top: -heightController + "px" }}
+              src={img}
+              className="img-fluid"
+              alt=""
+              onLoad={a => {
+                a.persist();
+                let w = a.target.naturalWidth;
+                let h = a.target.naturalHeight;
+                // console.log(title,"==>",w/h)
+                if (w / h < 1.2) {
+                  setheightController((w / h) * 100);
+                }
+                if (w / h < 0.9) {
+                  setheightController((w / h) * 220);
+                }
+              }}
             />
             <div className="read_more">
               <span>{simpleMode ? "مشاهده" : "مشاهده مشخصات"}</span>
             </div>
+            <div
+              className=" read_more delete_car"
+              onClick={e => {
+                e.preventDefault();
+                deleteCarHandller();
+              }}
+            >
+              {showInProfile && <span>{simpleMode ? "حذف خودرو" : "مشاهده مشخصات"}</span>}
+            </div>
             {/* <small>Restaurant</small> */}
           </figure>
-                    </a>
-                  </Link>
-          
-          <div className="wrapper row">
-            <div className="col-8">
-              <Link href={link}>
-                <a>
-                  <h3>
-                    {title}<br />
-                    <small>{year}</small><br />
-                    {/* <StarRatingComponent
+        </a>
+      </Link>
+
+      <div className="wrapper row">
+        <div className="col-8">
+          <Link href={link}>
+            <a>
+              <h3>
+                {title}
+                <br />
+                <small>{year}</small>
+                <br />
+                {/* <StarRatingComponent
                           name="rate1"
                           starCount={5}
                           value={3}
                         /> */}
-                  </h3>
-                </a>
-              </Link>
-            </div>
-            {!simpleMode &&
-              <div className="col-4 leftbox" style={{cursor:"default"}}>
-                <PriceCard number={discounted_price? discounted_price : price}>
-                  در روز
-              </PriceCard>
-              </div>
-            }
-            
-            {/* <small>{text2}</small> */}
-            {/* <p>{description}</p> */}
-            {/* <a className="address" href={`/car?id=${id}`}>Get directions</a> */}
-            {!simpleMode &&
-              <ul style={{cursor:"default"}}>
-                {deliver_at_renters_place ?
-                  (
-                    <li>
-                      <span className="delivery">تحویل در محل</span>
-                    </li>
-                  ) : (<li></li>)
-                }
-              </ul>
-            }
-            {showEditButtons &&
-              <Grid className="edit">
-                <Grid.Row columns={2} centered className="property">
-                  <Grid.Column width={8} className="item">
-                    <Button basic onClick={setCarTiming}>
-                      <Icon name='calendar alternate outline' /> تغیر تاریخ و قیمت
-                      </Button>
-                  </Grid.Column>
-                  <Grid.Column width={8} className="item">
-                    <Button basic onClick={() =>pauseCar(id,outofservice)}>
-                    { outofservice? "نمایش مجدد خودرو"
-                    : <><Icon name='pause circle outline' /> توقف نمایش</>
-                    }
-                      </Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            }
-          </div>   
-      </Card>
-    );
-  }
+              </h3>
+            </a>
+          </Link>
+        </div>
+        {!simpleMode && (
+          <div className="col-4 leftbox" style={{ cursor: "default" }}>
+            <PriceCard number={discounted_price ? discounted_price : price}>
+              در روز
+            </PriceCard>
+          </div>
+        )}
+
+        {/* <small>{text2}</small> */}
+        {/* <p>{description}</p> */}
+        {/* <a className="address" href={`/car?id=${id}`}>Get directions</a> */}
+        {!simpleMode && (
+          <ul style={{ cursor: "default" }}>
+            {deliver_at_renters_place ? (
+              <li>
+                <span className="delivery">تحویل در محل</span>
+              </li>
+            ) : (
+              <li></li>
+            )}
+          </ul>
+        )}
+        {showEditButtons && (
+          <Grid className="edit">
+            <Grid.Row columns={2} centered className="property">
+              <Grid.Column width={8} className="item">
+                <Button basic onClick={setCarTiming}>
+                  <Icon name="calendar alternate outline" /> تغیر تاریخ و قیمت
+                </Button>
+              </Grid.Column>
+              <Grid.Column width={8} className="item">
+                <Button basic onClick={() => pauseCar(id, outofservice)}>
+                  {outofservice ? (
+                    "نمایش مجدد خودرو"
+                  ) : (
+                    <>
+                      <Icon name="pause circle outline" /> توقف نمایش
+                    </>
+                  )}
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        )}
+      </div>
+    </Card>
+  );
+};

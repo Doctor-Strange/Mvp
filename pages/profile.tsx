@@ -27,6 +27,7 @@ import {
 import styled from 'styled-components';
 import axios from 'axios';
 import moment from 'moment-jalaali';
+import { log } from 'util';
 moment.loadPersian({ dialect: 'persian-modern' });
 
 interface IProfile {
@@ -45,9 +46,11 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
     const [own, setOwnership] = useState(false);
 
     async function fetchAPI() {
-        
+        setRresults([])
+        setLoading(true);
         const res = await REQUEST_getUserCars({ id });
         setRresults(res);
+        console.log(res)
         setLoading(false);
     }
     
@@ -79,9 +82,11 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
             } */}
             {/* {console.log(results)} */}
             <Section justifyCenter={true} style={{ marginTop: '24px' }} rowClassName="profile_page">
-                <ResultsCards
+            
+          <ResultsCards
                     t={t}
                     // own = {own}
+                    fetchAPI = {fetchAPI}
                     results={results}
                     loadingResults={loading}
                     lodingMore={false}

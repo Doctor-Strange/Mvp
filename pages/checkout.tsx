@@ -296,7 +296,7 @@ export default withTranslation("common")(
         insurance_total_price
       } = this.props;
       if (loaded) {
-        // console.log(this.props);
+        console.log(this.props);
         return (
           <Layout
             haveSubHeader={true}
@@ -398,21 +398,30 @@ export default withTranslation("common")(
                     </span>
                   </li>
                   <li className ="DiscountCopon">
-                  {!this.state.coupon_code && !this.state.coupanPrice ?<span onClick={()=>{
+                    
+                  {!this.state.coupon_code && !this.state.coupanPrice ?
+                  <span onClick={()=>{
                       this.setState({
                         coupon_code:true
                       })
                     }}>کد تخفیف دارید؟</span>
-                    : this.state.coupanPrice ? <p
+                    : this.state.coupanPrice ? <><p
                     style={{cursor:'pointer',
-                    color: '#4ba3ce'
+                    color: '#4ba3ce',
+                    display:"inline-block"
                     }}
                      onClick={()=>{
                       this.setState({
                         coupon_code:false,
                         coupanPrice : 0
                       })
-                    }}>حذف کد تخفیف</p>
+                    }}
+                    >کد تخفیف</p>
+                    <span 
+                    style={{float:'left',direction:"rtl"}}>{convertNumbers2Persian(
+                            numberWithCommas(discounted_total_price -this.state.coupanPrice  )
+                          )} تومان</span>
+                    </>
                     : null
                   }
                     {this.state.coupon_code && <><form onSubmit={(e)=>this.CoupanController(e,search_id)}>

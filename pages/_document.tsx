@@ -79,7 +79,7 @@ export default class extends Document {
         <!-- End Google Tag Manager -->`,
       }}>
     </script> */}
-        <script  dangerouslySetInnerHTML={{
+        {/* <script  dangerouslySetInnerHTML={{
           __html: `<!-- Google Tag Manager -->
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -88,7 +88,7 @@ export default class extends Document {
         })(window,document,'script','dataLayer','GTM-TN3MV4L');
         <!-- End Google Tag Manager -->`,
       }}>
-        </script>
+        </script> */}
           <meta
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"

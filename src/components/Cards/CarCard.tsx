@@ -522,23 +522,35 @@ export const CarCard: React.FunctionComponent<{
         )}
         {showEditButtons && (
           <Grid className="edit">
-            <Grid.Row columns={2} centered className="property">
-              <Grid.Column width={8} className="item">
-                <Button basic onClick={setCarTiming}>
-                  <Icon name="calendar alternate outline" /> تغیر تاریخ و قیمت
+            <Grid.Row columns={2} centered className="property" id="Profile_BOX_details">
+              {/* <Grid.Column width={8} className="item"> */}
+                <Button basic onClick={setCarTiming} id="Profile_button">
+                  {/* <Icon name="calendar alternate outline" />  */}
+                  تغیر تاریخ و قیمت
                 </Button>
-              </Grid.Column>
-              <Grid.Column width={8} className="item">
-                <Button basic onClick={() => pauseCar(id, outofservice)}>
+              {/* </Grid.Column> */}
+              {/* <Grid.Column width={8} className="item"> */}
+                <Button basic onClick={() => pauseCar(id, outofservice)} id="Profile_button">
                   {outofservice ? (
                     "نمایش مجدد خودرو"
                   ) : (
                     <>
-                      <Icon name="pause circle outline" /> توقف نمایش
+                      {/* <Icon name="pause circle outline" /> */}
+                       توقف نمایش
                     </>
                   )}
                 </Button>
-              </Grid.Column>
+                <Button
+              className="delete_car_ICON"
+              onClick={e => {
+                e.preventDefault();
+                deleteCarHandller();
+              }}
+            >
+              <span>{<Icon name="trash icon" size="small"/>}</span>
+            </Button>
+
+              {/* </Grid.Column> */}
             </Grid.Row>
           </Grid>
         )}

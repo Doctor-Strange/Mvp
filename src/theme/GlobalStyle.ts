@@ -345,7 +345,7 @@ const GlobalStyle = createGlobalStyle`
     }
       @media (min-width: 1200px){
       .carcard{
-        width: 375px;
+        width: 317x;
       }
     }
   }
@@ -3522,6 +3522,34 @@ input::placeholder{
   #carDescription::-ms-input-placeholder { /* Microsoft Edge */
     color:  #b3b3b3;
   }
+  #Profile_BOX_details{
+    text-align: right;
+    display: block !important;
+    width: 91% !important;
+    margin: auto !important;
+    padding-top: 18px !important;
+
+  }
+  button#Profile_button {
+    width: auto;
+    display: inline-block;
+    padding: 0 10px 0;
+    font-size: 11px;
+    font-weight: 500;
+    box-shadow: none;
+}
+.delete_car_ICON{
+  color: #4BA3CE !important;
+  background: none !important;
+  font-size: 18px !important;
+  padding: 0 !important;
+    float: left !important;
+    padding-left: 10px !important;
+    padding-top: 4px !important;
+    &:hover{
+      background: none !important;
+    }
+}
 `;
 
 enum Margin {

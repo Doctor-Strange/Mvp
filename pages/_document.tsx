@@ -67,7 +67,7 @@ export default class extends Document {
           </script>`,
         }}>
         </script>  */}
-        {/* <script  dangerouslySetInnerHTML={{
+        <script  dangerouslySetInnerHTML={{
           __html: `<!-- Google Tag Manager -->
           <script>
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -78,7 +78,7 @@ export default class extends Document {
         </script>
         <!-- End Google Tag Manager -->`,
       }}>
-    </script> */}
+    </script>
         {/* <script  dangerouslySetInnerHTML={{
           __html: `<!-- Google Tag Manager -->
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

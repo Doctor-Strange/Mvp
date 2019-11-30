@@ -270,7 +270,8 @@ export default withTranslation('common')(connect(state => state)(
       picturesPreview: [],
       cylinder_id: null,
       value: '',
-      cylinderList:[]
+      cylinderList:[],
+      fetchDataFromApi : false
     };
 
     constructor(props) {
@@ -282,17 +283,16 @@ export default withTranslation('common')(connect(state => state)(
         id:this.props.car_id,
     });
     const incomming = res.data;
-    console.log(incomming);
     
     this.setState({
-      bodyStyle:incomming.body_style.id
+      fetchDataFromApi:true,
+      incomming
     })
     
     }
 
     componentDidMount() {
-      console.log(this.props.edit_mode);
-      
+
       if(this.props.edit_mode){
         this.getCarPropsForEdit()
       }
@@ -919,7 +919,39 @@ export default withTranslation('common')(connect(state => state)(
             values,
             errors,
             touched
-          }) => (
+          }) => {
+            // if(this.state.fetchDataFromApi && this.state.checkboxes.length > 2){
+            //   this.setState({
+            //     fetchDataFromApi:false
+            //   })
+            //   console.log("this.state.incomming",this.state.incomming);
+            //   this.setCityDistrict(1)
+            //   values.carCity = 1;
+            //   values.carDistrict = this.state.incomming.location.id;
+            //   setFieldValue("carBrand", this.state.incomming.car.brand.id);                           
+            //   this.setModels(this.state.incomming.car.brand.id);
+            //   setFieldValue("carModel", this.state.incomming.car.id);
+            //   values.carYear = this.state.incomming.year.id;
+            //   setFieldValue(
+            //     'carGearboxType',
+            //     this.state.incomming.transmission_type.id
+            //     );
+            //   setFieldValue('carBodyStyle', this.state.incomming.body_style.id);
+
+            //   setFieldValue('carCapacity', this.state.incomming.capacity);
+            //   setFieldValue('cylinder_id',this.state.incomming.cylinder.id);
+            //   values.carKmDriven = this.state.incomming.mileage_range.id;
+            //   setFieldValue("value",'1');
+              
+            //   setFieldValue('carLicensePlates1', convertNumbers2English(this.state.incomming.registration_plate_first_part));
+            //   setFieldValue('carLicensePlates2', `${this.state.incomming.registration_plate_second_part}`);
+            //   setFieldValue('carLicensePlates3', convertNumbers2English(this.state.incomming.registration_plate_third_part));
+            //   setFieldValue('carLicensePlates4', convertNumbers2English(this.state.incomming.registration_plate_forth_part));
+            //   this.state.incomming.facility_set.map((value, index) => {
+            //     this.setFasalities(value, false);
+            //   });
+            // }
+            return (
               <BoxAccount className="box_account" id="form">
                 <Form onSubmit={handleSubmit}>
                   <h3 className="new_client">{t('add_car')}</h3>
@@ -932,7 +964,7 @@ export default withTranslation('common')(connect(state => state)(
                     <div className="field">
                       <label>ماشین شما کجاست؟</label>
                       <select
-                        // onBlur={(e)=> {;;}} 
+                        // onBlur={(e)=> {;;}}
                         error={Boolean(errors.carCity && touched.carCity)}
                         onChange={(e) => { this.setCityDistrict(e.target.value); values.carCity = e.target.value }}>
                         <option value=""></option>
@@ -1561,6 +1593,7 @@ export default withTranslation('common')(connect(state => state)(
 
                         disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
+                        // value = { values.carKmDriven}
                         onChange={(e) => { values.carKmDriven = e.target.value }}>
                         <option value=""></option>
                         {kmDrivenFarsi.map(i =>
@@ -1657,6 +1690,9 @@ id="JustPersian"
                           textAlign:"left",
                           direction: 'ltr'
                         }}
+                        // value = {
+                        //   values.value
+                        // }
                         // disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
                         onChange={(e) => { 
@@ -2008,7 +2044,7 @@ id="JustPersian"
                   </Segment>
                 </Form>
               </BoxAccount>
-            )
+            )}
           }
         </Formik>
       );

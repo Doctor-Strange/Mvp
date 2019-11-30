@@ -458,7 +458,7 @@ export const CarCard: React.FunctionComponent<{
             <div className="read_more">
               <span>{simpleMode ? "مشاهده" : "مشاهده مشخصات"}</span>
             </div>
-            <div
+            {/* <div
               className=" read_more delete_car"
               onClick={e => {
                 e.preventDefault();
@@ -474,7 +474,7 @@ export const CarCard: React.FunctionComponent<{
             }}
             >
               {own && <span>{simpleMode ? "ویرایش اطلاعات" : "ویرایش اطلاعات"}</span>}
-            </div>
+            </div> */}
             {/* <small>Restaurant</small> */}
           </figure>
         </a>

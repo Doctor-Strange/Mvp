@@ -345,7 +345,7 @@ const GlobalStyle = createGlobalStyle`
     }
       @media (min-width: 1200px){
       .carcard{
-        width: 317x;
+        width: 370px;
       }
     }
   }

@@ -74,20 +74,20 @@ export default class extends Document {
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-TN3MV4L');
-          </script>
-          <!-- End Google Tag Manager -->`,
-        }}>
-        </script> */}
+        })(window,document,'script','dataLayer','GTM-TN3MV4L');
+        </script>
+        <!-- End Google Tag Manager -->`,
+      }}>
+    </script> */}
         <script  dangerouslySetInnerHTML={{
           __html: `<!-- Google Tag Manager -->
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-TN3MV4L');
-          <!-- End Google Tag Manager -->`,
-        }}>
+        })(window,document,'script','dataLayer','GTM-TN3MV4L');
+        <!-- End Google Tag Manager -->`,
+      }}>
         </script>
           <meta
             name="viewport"
@@ -135,18 +135,19 @@ export default class extends Document {
 <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="##4ba3ce"/>
 <meta name="msapplication-TileColor" content="#000000"/>
 <meta name="theme-color" content="#000000"/>
+          <meta name="google-site-verification" content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto" />
 {/* 980624 */}
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.find,Array.prototype.includes,String.prototype.includes,Array.prototype.findIndex,Object.entries" />
           {!DEV && FB_TRACKING_ID && (
             <script
-              dangerouslySetInnerHTML={{
-                __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '${FB_TRACKING_ID}');
-fbq('track', 'PageView'); `
-              }}
+            dangerouslySetInnerHTML={{
+              __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
+              
+              fbq('init', '${FB_TRACKING_ID}');
+              fbq('track', 'PageView'); `
+            }}
             />
-          )}
+            )}
           {!DEV && FB_TRACKING_ID && (
             <noscript>
               <img

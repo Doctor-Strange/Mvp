@@ -778,7 +778,7 @@ export default withTranslation('common')(connect(state => state)(
             //   description: carDescription,
             //   media_id: this.state.picturesID,
             //   cylinder_id: cylinder_id,
-            //   value: value
+            //   value: Number(value.replace(/,/g,""))
             // })
             // return
             axios
@@ -806,7 +806,7 @@ export default withTranslation('common')(connect(state => state)(
                   description: carDescription,
                   media_id: this.state.picturesID,
                   cylinder_id: cylinder_id,
-                  value: value
+                  value: Number(value.replace(/,/g,""))
                 },
                 {
                   headers: {

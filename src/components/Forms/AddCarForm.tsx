@@ -282,10 +282,10 @@ export default withTranslation('common')(connect(state => state)(
 
     getCarPropsForEdit = async() =>{
       let INterid = this.props.car_id;
-      if(localStorage["CarEditId"] !== undefined ){
-        // console.log('INterid',"WTF");
-        INterid  = localStorage["CarEditId"] === "false" ? this.props.car_id : localStorage["CarEditId"]
-       }
+      // if(localStorage["CarEditId"] !== undefined ){
+      //   // console.log('INterid',"WTF");
+      //   INterid  = localStorage["CarEditId"] === "false" ? this.props.car_id : localStorage["CarEditId"]
+      //  }
 
       // console.log('INterid',INterid);
       
@@ -465,9 +465,9 @@ export default withTranslation('common')(connect(state => state)(
               });
             });
             this.setState({ checkboxes },() =>{
-              if(this.props.edit_mode || localStorage["CarEditId"]){
                 this.getCarPropsForEdit()
-              }
+              // if(this.props.edit_mode || localStorage["CarEditId"] ! ===){
+              // }
             });
           }
         })
@@ -808,7 +808,9 @@ export default withTranslation('common')(connect(state => state)(
               .post(
                 process.env.PRODUCTION_ENDPOINT +  '/core/rental-car/new',
                 {
-                  id :this.props.car_id || localStorage["CarEditId"],
+                  id :this.props.car_id
+                  //  || localStorage["CarEditId"]
+                   ,
                   car_id: carModel,
                   location_id: (carDistrict || carCity),
                   year_id: carYear,
@@ -841,9 +843,9 @@ export default withTranslation('common')(connect(state => state)(
               .then(response => {
                 // console.log("response.data response ====>", response);
                 if (response.data.success) {
-                  localStorage["CarEditId"] =  `${this.props.car_id}`
+                  // localStorage["CarEditId"] =  `${this.props.car_id}`
                   if(this.props.edit_mode){
-                    localStorage.removeItem("CarEditId")
+                    // localStorage.removeItem("CarEditId")
                     Router.push({
                       pathname: `/user/${jsCookie.get('user_id')}`,
                     });

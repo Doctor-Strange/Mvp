@@ -3535,7 +3535,7 @@ input::placeholder{
     width: auto !important;
     display: inline-block;
     padding: 0 10px 0;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     box-shadow: none;
 }

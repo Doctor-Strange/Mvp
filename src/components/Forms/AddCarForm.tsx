@@ -954,7 +954,7 @@ export default withTranslation('common')(connect(state => state)(
             touched
           }) => {
             if(this.state.fetchDataFromApi && this.state.checkboxes.length > 2){
-              // console.log("this.state.incomming",this.state.incomming);
+              console.log("this.state.incomming",this.state.incomming);
               this.setCityDistrict(1)
               values.carCity = 1;
               values.carDistrict = this.state.incomming.location.id;
@@ -966,12 +966,13 @@ export default withTranslation('common')(connect(state => state)(
                 'carGearboxType',
                 this.state.incomming.transmission_type.id
                 );
-           console.log(values.carGearboxType ,this.state.incomming.transmission_type.id);
+          //  console.log(values.carGearboxType ,this.state.incomming.transmission_type.id);
               
               setFieldValue('carBodyStyle', this.state.incomming.body_style.id);
 
               setFieldValue('carCapacity', this.state.incomming.capacity);
-              setFieldValue('cylinder_id',this.state.incomming.cylinder.id);
+              setFieldValue('cylinder_id',this.state.incomming.cylinder?this.state.incomming.cylinder.id
+              :1);
               setFieldValue('carKmDriven',this.state.incomming.mileage_range.id);
               // values.carKmDriven = this.state.incomming.mileage_range.id;
               setFieldValue("value",this.state.incomming.value ? this.state.incomming.value.toString() : '1000');

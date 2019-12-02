@@ -21,6 +21,8 @@ const Requests = props => {
     const res = await REQUEST_getOrderRequests({
       token: jsCookie.get("token")
     });
+    console.log(res.items)
+
     setRequests(res.items);
     setRequestsCount(res.count || 0);
   }

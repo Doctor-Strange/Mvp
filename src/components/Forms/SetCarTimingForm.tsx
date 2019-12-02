@@ -579,6 +579,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
               pauseOnHover: false,
               draggable: true
             })
+              localStorage.removeItem["CarEditId"]
               setTimeout(() => {
                 actions.setSubmitting(false);
                 Router.push(`/car/${id}/${car.car.brand.name.fa.replace(/ /ig,"-")}-${car.car.name.fa.replace(/ /ig,"-")}`);

@@ -7,6 +7,7 @@ import { REQUEST_newCarMedia } from '../../API';
 import jsCookie from 'js-cookie';
 import { useDropzone } from 'react-dropzone';
 import Dropzone from 'react-dropzone';
+import axios from 'axios';
 
 const DropZoneDiv = styled.section`
   display: flex;
@@ -133,10 +134,12 @@ const AddCarImageUpload: React.FC<{
   picturesID: any;
   setPicturesID: any;
   removePictureID: any;
+  DefaultVal:any;
 }> = ({
   t,
   picturesID,
   setPicturesID,
+  DefaultVal,
   removePictureID,
 }) => {
   const [picturesPreview, setPicturesPreview] = useState([]);
@@ -148,6 +151,37 @@ const AddCarImageUpload: React.FC<{
     // console.log(picturesID);
     setPicturesPreview(picturesPreview);
   }
+
+  const removeimageFunc = (index) =>{
+const DOMAIN = process.env.PRODUCTION_ENDPOINT;
+const       token =  jsCookie.get('token');
+    
+    axios.post(DOMAIN+"/core/rental-car/media/delete",{id : index},
+    {
+      headers: {
+        Authorization: 'Bearer ' +   token
+
+      }
+    })
+    .then((r)=>{console.log(r)})
+    .catch(e => console.log(e.response))
+    
+  }
+
+  useEffect(()=>{
+    // console.log("DefaultVal",DefaultVal);
+    if(DefaultVal.length > 0 ){
+      DefaultVal.map(i=>{
+        picturesPreview.push(i.thumbnail_url);
+        setPicturesPreview(picturesPreview);
+        picturesID.push(i.id);
+        setPicturesID(picturesID);
+
+      })
+    }
+    
+  },[DefaultVal])
+
   return (
     <Dropzone
     // onChange ={acceptedFiles => {
@@ -246,8 +280,10 @@ const AddCarImageUpload: React.FC<{
                 (image, index) => (
                   <div className="flexItem">
                     <Label
-                      onClick={() =>
+                      onClick={() =>{
+                        removeimageFunc(picturesID[index])
                         removePicture(index)
+                      }
                       }
                       index={index}
                     >

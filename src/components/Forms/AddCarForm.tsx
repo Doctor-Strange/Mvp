@@ -267,11 +267,13 @@ export default withTranslation('common')(connect(state => state)(
         { id: 0, label: 'کمی صبر کنید...', checked: true, parsedID: null }
       ],
       picturesID: [],
+      defaultImage : [],
       picturesPreview: [],
       cylinder_id: null,
       value: '',
       cylinderList:[],
-      fetchDataFromApi : false
+      fetchDataFromApi : false,
+      fieldsEdited : false
     };
 
     constructor(props) {
@@ -279,8 +281,16 @@ export default withTranslation('common')(connect(state => state)(
     }
 
     getCarPropsForEdit = async() =>{
+      let INterid = this.props.car_id;
+      if(localStorage["CarEditId"] !== undefined ){
+        // console.log('INterid',"WTF");
+        INterid  = localStorage["CarEditId"] === "false" ? this.props.car_id : localStorage["CarEditId"]
+       }
+
+      // console.log('INterid',INterid);
+      
       const res = await REQUEST_getCar({
-        id:this.props.car_id,
+        id:INterid,
     });
     const incomming = res.data;
     
@@ -293,9 +303,6 @@ export default withTranslation('common')(connect(state => state)(
 
     componentDidMount() {
 
-      if(this.props.edit_mode){
-        this.getCarPropsForEdit()
-      }
       if (!this.props.user.token ){
         localStorage["URL"] = Router.router.asPath        
       }
@@ -457,7 +464,11 @@ export default withTranslation('common')(connect(state => state)(
                 parsedID: null
               });
             });
-            this.setState({ checkboxes });
+            this.setState({ checkboxes },() =>{
+              if(this.props.edit_mode || localStorage["CarEditId"]){
+                this.getCarPropsForEdit()
+              }
+            });
           }
         })
         .catch(error => {
@@ -559,10 +570,10 @@ export default withTranslation('common')(connect(state => state)(
     }
 
     setFasalities(id, OnlyActive = false) {
+      // console.log("run")
       const cblist = this.state.checkboxes;
       let IDs = [...this.state.checkboxesID];
-      //console.log(id);
-      //console.log(cblist[i].id);
+      let index
       // try {
       if (!OnlyActive) {
         cblist.map((value, index) => {
@@ -579,8 +590,13 @@ export default withTranslation('common')(connect(state => state)(
         })
       }
       else {
+        cblist.map((value, index) => {
+        if (value.id === id) {
+          
         cblist[index].checked = true;
         IDs.push(id);
+        }
+      })
       }
       // console.log(
       //   `"id" is ${cblist[index].label} and "checkboxes[${index}]" is ${
@@ -601,6 +617,8 @@ export default withTranslation('common')(connect(state => state)(
     }
 
     getCarInfo(modelID) {
+      // console.log("Is this execute?");
+      
       return new Promise(function (resolve, reject) {
         axios
           .post(process.env.PRODUCTION_ENDPOINT + '/core/car/get?id=' + modelID)
@@ -674,6 +692,8 @@ export default withTranslation('common')(connect(state => state)(
     // }
 
     render() {
+      // console.log("fieldsEdited at render block",this.state.fieldsEdited)
+
       const { checkboxes, error } = this.state;
       const { token } = this.props.user;
       const { t } = this.props;
@@ -735,6 +755,8 @@ export default withTranslation('common')(connect(state => state)(
               actions.setSubmitting(false);
               return false;
             }
+            // console.log(this.props.edit_mode ? `/core/rental-car/new?id=${this.props.car_id}` : '/core/rental-car/new')
+            // return
             this.setState({ error: '' });
             //console.log(values);
             const {
@@ -758,6 +780,7 @@ export default withTranslation('common')(connect(state => state)(
             } = values;
             
             // console.log({
+            //   id :this.props.car_id || localStorage["CarEditId"],
             //   car_id: carModel,
             //   location_id: (carDistrict || carCity),
             //   year_id: carYear,
@@ -783,8 +806,9 @@ export default withTranslation('common')(connect(state => state)(
             // return
             axios
               .post(
-                process.env.PRODUCTION_ENDPOINT + '/core/rental-car/new',
+                process.env.PRODUCTION_ENDPOINT +  '/core/rental-car/new',
                 {
+                  id :this.props.car_id || localStorage["CarEditId"],
                   car_id: carModel,
                   location_id: (carDistrict || carCity),
                   year_id: carYear,
@@ -817,6 +841,7 @@ export default withTranslation('common')(connect(state => state)(
               .then(response => {
                 // console.log("response.data response ====>", response);
                 if (response.data.success) {
+                  localStorage["CarEditId"] =  `${this.props.car_id}`
                   Router.push({
                     pathname: '/set-car-timing',
                     query: {
@@ -920,37 +945,50 @@ export default withTranslation('common')(connect(state => state)(
             errors,
             touched
           }) => {
-            // if(this.state.fetchDataFromApi && this.state.checkboxes.length > 2){
-            //   this.setState({
-            //     fetchDataFromApi:false
-            //   })
-            //   console.log("this.state.incomming",this.state.incomming);
-            //   this.setCityDistrict(1)
-            //   values.carCity = 1;
-            //   values.carDistrict = this.state.incomming.location.id;
-            //   setFieldValue("carBrand", this.state.incomming.car.brand.id);                           
-            //   this.setModels(this.state.incomming.car.brand.id);
-            //   setFieldValue("carModel", this.state.incomming.car.id);
-            //   values.carYear = this.state.incomming.year.id;
-            //   setFieldValue(
-            //     'carGearboxType',
-            //     this.state.incomming.transmission_type.id
-            //     );
-            //   setFieldValue('carBodyStyle', this.state.incomming.body_style.id);
-
-            //   setFieldValue('carCapacity', this.state.incomming.capacity);
-            //   setFieldValue('cylinder_id',this.state.incomming.cylinder.id);
-            //   values.carKmDriven = this.state.incomming.mileage_range.id;
-            //   setFieldValue("value",'1');
+            if(this.state.fetchDataFromApi && this.state.checkboxes.length > 2){
+              // console.log("this.state.incomming",this.state.incomming);
+              this.setCityDistrict(1)
+              values.carCity = 1;
+              values.carDistrict = this.state.incomming.location.id;
+              setFieldValue("carBrand", this.state.incomming.car.brand.id);                           
+              this.setModels(this.state.incomming.car.brand.id);
+              setFieldValue("carModel", this.state.incomming.car.id);
+              values.carYear = this.state.incomming.year.id;
+              setFieldValue(
+                'carGearboxType',
+                this.state.incomming.transmission_type.id
+                );
+           console.log(values.carGearboxType ,this.state.incomming.transmission_type.id);
               
-            //   setFieldValue('carLicensePlates1', convertNumbers2English(this.state.incomming.registration_plate_first_part));
-            //   setFieldValue('carLicensePlates2', `${this.state.incomming.registration_plate_second_part}`);
-            //   setFieldValue('carLicensePlates3', convertNumbers2English(this.state.incomming.registration_plate_third_part));
-            //   setFieldValue('carLicensePlates4', convertNumbers2English(this.state.incomming.registration_plate_forth_part));
-            //   this.state.incomming.facility_set.map((value, index) => {
-            //     this.setFasalities(value, false);
-            //   });
-            // }
+              setFieldValue('carBodyStyle', this.state.incomming.body_style.id);
+
+              setFieldValue('carCapacity', this.state.incomming.capacity);
+              setFieldValue('cylinder_id',this.state.incomming.cylinder.id);
+              setFieldValue('carKmDriven',this.state.incomming.mileage_range.id);
+              // values.carKmDriven = this.state.incomming.mileage_range.id;
+              setFieldValue("value",this.state.incomming.value ? this.state.incomming.value.toString() : '1000');
+              
+              setFieldValue('carLicensePlates1', convertNumbers2English(this.state.incomming.registration_plate_first_part));
+              setFieldValue('carLicensePlates2', `${this.state.incomming.registration_plate_second_part}`);
+              setFieldValue('carLicensePlates3', convertNumbers2English(this.state.incomming.registration_plate_third_part));
+              setFieldValue('carLicensePlates4', convertNumbers2English(this.state.incomming.registration_plate_forth_part));
+              this.state.incomming.facility_set.map((value, index) => {
+                this.setFasalities(value.id, true);
+              });
+              this.state.incomming.media_set.map(i => {
+                this.setState( p=> { return{ defaultImage: [...p.defaultImage, i] }})
+              })
+              setFieldValue('carDescription', this.state.incomming.description);
+              setFieldValue('carColor', this.state.incomming.color.name.fa);
+              this.setState({
+                color: this.state.incomming.color.name.fa,
+                colorCode: this.state.incomming.color.code,
+                colorIcon: 'car',
+                colorId: this.state.incomming.color.id,
+                fetchDataFromApi:false,
+                fieldsEdited : true
+              });
+            }
             return (
               <BoxAccount className="box_account" id="form">
                 <Form onSubmit={handleSubmit}>
@@ -965,6 +1003,7 @@ export default withTranslation('common')(connect(state => state)(
                       <label>ماشین شما کجاست؟</label>
                       <select
                         // onBlur={(e)=> {;;}}
+                        value = {values.carCity && values.carCity}
                         error={Boolean(errors.carCity && touched.carCity)}
                         onChange={(e) => { this.setCityDistrict(e.target.value); values.carCity = e.target.value }}>
                         <option value=""></option>
@@ -1034,6 +1073,7 @@ export default withTranslation('common')(connect(state => state)(
                     {/* {this.state.shouldCityDistrictShow ? ( */}
                     <div className="fieldEmulator field">
                       <DropDownWithSearch
+                      defaultVal = {values.carDistrict}
                         loading={true}
                         data={this.state.cityDistrictFarsi}
                         Select={(e) => {
@@ -1109,6 +1149,7 @@ export default withTranslation('common')(connect(state => state)(
                       <div className="field">
 
                         <DropDownWithSearch
+                         defaultVal = {values.carBrand}
                           disabled={false}
                           data={this.state.brandsFarsi}
                           IconTop="42"
@@ -1156,6 +1197,8 @@ export default withTranslation('common')(connect(state => state)(
                       <div className="field">
 
                         <DropDownWithSearch
+                         defaultVal = {values.carModel}
+
                           loading={true}
                           disabled={values.carBrand === null
                           }
@@ -1168,6 +1211,8 @@ export default withTranslation('common')(connect(state => state)(
                           Select={(e) => {
                             setFieldValue("carModel", e.value);
                             // this.setModels(e.value);
+                            if(!this.state.fieldsEdited){
+                              // console.log("this.state.fetchDataFromApi",this.state.fieldsEdited)
                             this.getCarInfo(e.value)
                                   .then(carInfo => {
                                     //set car options
@@ -1199,6 +1244,9 @@ export default withTranslation('common')(connect(state => state)(
                                   .catch(function (error) {
                                     //console.log(error.message);
                                   });
+                                }else{
+                                  this.setState({ fieldsEdited:false });
+                                }
                             }}
                           placeholder="مدل">مدل</DropDownWithSearch>
                       </div>
@@ -1267,6 +1315,7 @@ export default withTranslation('common')(connect(state => state)(
                       <div className="field">
 
                         <DropDownWithSearch
+                          defaultVal = {values.carYear}
                           disabled={false}
                           data={this.state.yearsFarsi}
                           error={Boolean(errors.carYear && touched.carYear)}
@@ -1590,11 +1639,11 @@ export default withTranslation('common')(connect(state => state)(
                           marginTop: "4px"
                         }}
                         className={Boolean(errors.carKmDriven && touched.carKmDriven) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
-
+                        
                         disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
-                        // value = { values.carKmDriven}
-                        onChange={(e) => { values.carKmDriven = e.target.value }}>
+                        value = { values.carKmDriven}
+                        onChange={(e) => {setFieldValue('carKmDriven', e.target.value)}}>
                         <option value=""></option>
                         {kmDrivenFarsi.map(i =>
                           <option value={i.value} key={i.key} >{i.text}</option>
@@ -1931,6 +1980,7 @@ id="JustPersian"
                     <Form.Field style={{ margin: 0 }}>
                       <label>{"بارگذاری عکس‌ها"}</label>
                       <AddCarImageUpload
+                        DefaultVal  = {this.state.defaultImage}
                         picturesID={this.state.picturesID}
                         setPicturesID={(val) => this.setState({ picturesID: val })}
                         removePictureID={(i) => this.removePicture(i)}

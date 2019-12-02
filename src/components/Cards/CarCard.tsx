@@ -320,7 +320,7 @@ export const CarCard: React.FunctionComponent<{
   };
 
   const deleteCarHandller = () => {
-    console.log("test");
+    // console.log("test");
     swal(
       <div>
         <h3>حذف خودرو</h3>
@@ -466,8 +466,8 @@ export const CarCard: React.FunctionComponent<{
               }}
             >
               {own && <span>{simpleMode ? "حذف خودرو" : "حذف خودرو"}</span>}
-            </div>
-            <div className=" read_more Edit_car"
+            </div> */}
+            {/* <div className=" read_more Edit_car"
             onClick={e => {
               e.preventDefault();
               Router.push(`/add-car?edit=true&car_id=${id}`)

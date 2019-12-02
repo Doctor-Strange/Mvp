@@ -16,9 +16,26 @@ class DropDownWithSearch extends Component {
   };
 
   componentWillReceiveProps = props => {
-    this.setState({
-      data: props.data
-    });
+    this.setState(
+      {
+        data: props.data
+      },
+      () => {
+        if (
+          props.defaultVal &&
+          props.data.length > 0 &&
+          this.state.InputValue === ""
+        ) {
+          this.state.data.find(i => {
+            if (i.key === props.defaultVal) {
+              this.setState({ InputValue: i.text });
+              this.props.Select(i);
+              // this.DropDownController();
+            }
+          });
+        }
+      }
+    );
   };
 
   render() {
@@ -29,7 +46,7 @@ class DropDownWithSearch extends Component {
           this.props.error ? "ErrorINPUT" : null
         ].join(" ")}
         onMouseLeave={() => this.setState({ leave: true })}
-        onMouseMove = {() => this.setState({ leave: false })}
+        onMouseMove={() => this.setState({ leave: false })}
       >
         <label className={this.props.data.length < 2 ? "diz" : null}>
           {this.props.children}
@@ -49,7 +66,7 @@ class DropDownWithSearch extends Component {
           value={this.state.InputValue}
           placeholder={this.props.placeholder}
           // onBlur={() => {
-          //   console.log(1)
+            // console.log(1)
           //   if (this.state.ShowControler) {
 
           //   }

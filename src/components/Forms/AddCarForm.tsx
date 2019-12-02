@@ -779,31 +779,31 @@ export default withTranslation('common')(connect(state => state)(
               value
             } = values;
             
-            // console.log({
-            //   id :this.props.car_id || localStorage["CarEditId"],
-            //   car_id: carModel,
-            //   location_id: (carDistrict || carCity),
-            //   year_id: carYear,
-            //   transmission_type_id: carGearboxType,
-            //   body_style_id: carBodyStyle,
-            //   mileage_range_id: carKmDriven,
-            //   color_id: this.state.colorId,
-            //   special_type_id: 1,
-            //   registration_plate_first_part: carLicensePlates1,
-            //   registration_plate_second_part: carLicensePlates2,
-            //   registration_plate_third_part: carLicensePlates3,
-            //   registration_plate_forth_part: carLicensePlates4,
-            //   days_to_get_reminded: 3, // sample
-            //   min_days_to_rent: 1, // sample
-            //   capacity: carCapacity,
-            //   deliver_at_renters_place: 0, // sample
-            //   facility_id: this.state.checkboxesID,
-            //   description: carDescription,
-            //   media_id: this.state.picturesID,
-            //   cylinder_id: cylinder_id,
-            //   value: Number(value.replace(/,/g,""))
-            // })
-            // return
+            console.log({
+              id :this.props.car_id || localStorage["CarEditId"],
+              car_id: carModel,
+              location_id: (carDistrict || carCity),
+              year_id: carYear,
+              transmission_type_id: carGearboxType,
+              body_style_id: carBodyStyle,
+              mileage_range_id: carKmDriven,
+              color_id: this.state.colorId,
+              special_type_id: 1,
+              registration_plate_first_part: carLicensePlates1,
+              registration_plate_second_part: carLicensePlates2,
+              registration_plate_third_part: carLicensePlates3,
+              registration_plate_forth_part: carLicensePlates4,
+              days_to_get_reminded: 3, // sample
+              min_days_to_rent: 1, // sample
+              capacity: carCapacity,
+              deliver_at_renters_place: 0, // sample
+              facility_id: this.state.checkboxesID,
+              description: carDescription,
+              media_id: this.state.picturesID,
+              cylinder_id: cylinder_id,
+              value: Number(value.replace(/,/g,""))
+            })
+            return
             axios
               .post(
                 process.env.PRODUCTION_ENDPOINT +  '/core/rental-car/new',

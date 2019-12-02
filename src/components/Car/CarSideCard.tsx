@@ -114,18 +114,19 @@ end?:string;
             {user.id.toString() !== jsCookie.get('user_id') && allow !== "true" ?
             <>
             <Button
+            className ="CONTINUE_TO_RENT_CAR"
             loading = {loading}
                 style={{ height: '48px' }}
                 size='large'
                 fluid
                 onClick={reserveFunction}
-                color='teal'>درخواست اجاره</Button>
+                color='teal'>تکمیل درخواست اجاره</Button>
                 
             <div
                 style={{ marginTop: '8px' }}
                 className="text-center"
             >
-                <small>دراین مرحله هزینه‌ای اخذ نمی‌شود.</small>
+                <small>.دراین مرحله هزینه‌ای اخذ نمی‌شود</small>
             </div>
             </>
             : null}

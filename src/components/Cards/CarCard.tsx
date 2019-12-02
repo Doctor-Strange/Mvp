@@ -427,7 +427,7 @@ export const CarCard: React.FunctionComponent<{
   //   // console.log(res);
   // }
   return (
-    <Card className="strip grid carcard">
+    <Card className={`strip grid carcard CAR_CART_${title}`}>
       {/* {console.log("body",outofservice)} */}
       <Link href={link}>
         <a>
@@ -526,14 +526,15 @@ export const CarCard: React.FunctionComponent<{
             // id="Profile_BOX_details"
             >
               <Grid.Column width={8} className="item">
-                <Button basic onClick={setCarTiming} 
+                <Button basic onClick={setCarTiming}
+                className="EDIT_PRPICE_AND_TIME" 
                 // id="Profile_button"
                 >
                   <Icon name="calendar alternate outline" /> تغیر تاریخ و قیمت
                 </Button>
               </Grid.Column>
               <Grid.Column width={8} className="item">
-                <Button basic onClick={() => pauseCar(id, outofservice)} 
+                <Button className="OUT_OF_SERVICE" basic onClick={() => pauseCar(id, outofservice)} 
                 // id="Profile_button"
                 >
                   {outofservice ? (

@@ -154,7 +154,7 @@ class Header extends React.Component<{
                           <a
                             href="#"
                             id="sign-in"
-                            className="login"
+                            className="login SHOW_LOGIN_BOX"
                             // commented by sajad saderi 
                             // title={t('signin')}
                             title={t('ورود/ثبت نام')}
@@ -167,7 +167,7 @@ class Header extends React.Component<{
                           </a>
                         )}
                         {token && (
-                          <span>
+                          <span className="CLICK_ON_PROFILE_NAME">
                             {jsCookie.get('first_name') ?
                             <a href={`/profile?id=${user_id}`}>
                               {company_name && company_name !== "null"?company_name:
@@ -205,7 +205,7 @@ class Header extends React.Component<{
                           <a
                             href="#"
                             id="sign-in"
-                            className="login"
+                            className="login SHOW_LOGIN_BOX"
                             // commented by sajad saderi 
                             // title={t('signin')}
                             title={t('ورود/ثبت نام')}
@@ -216,7 +216,7 @@ class Header extends React.Component<{
                           </a>
                         )}
                         {token && (
-                          <span >
+                          <span className="CLICK_ON_PROFILE_NAME">
                             {jsCookie.get('first_name') ?
                             <a href={`/profile?id=${user_id}`}>
                               {company_name && company_name !== "null" ?company_name:

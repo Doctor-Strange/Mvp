@@ -477,6 +477,7 @@ export default withTranslation("common")(
                   <>
                     <br />
                     <Button
+                    className="REQUEST_TO_BOOK_A_CAR"
                     loading={this.state.loading}
                       style={{ height: "48px" }}
                       size="large"
@@ -672,7 +673,7 @@ export default withTranslation("common")(
                 primary
                 type="submit"
                 onClick={() => this.reserve(search_id)}
-                className="btn_1 full-width"
+                className="btn_1 full-width REQUEST_TO_BOOK_A_CAR"
               >
                 ثبت درخواست
               </Button>

@@ -231,7 +231,7 @@ export class FilterAndSortBar extends React.Component<{
                       value="all"
                       checked={priceSort == "price"}
                     />
-                    <label onClick={(e) => { togglePriceSort("price") }}>قیمت کم به زیاد</label>
+                    <label className="SORT_ASCENDING" onClick={(e) => { togglePriceSort("price") }}>قیمت کم به زیاد</label>
                     <input
                       type="radio"
                       id="latest"
@@ -239,7 +239,7 @@ export class FilterAndSortBar extends React.Component<{
                       value="latest"
                       checked={priceSort == "-price"}
                     />
-                    <label onClick={(e) => { togglePriceSort("-price") }} >قیمت زیاد به کم</label>
+                    <label className="SORT_DESCENDING" onClick={(e) => { togglePriceSort("-price") }} >قیمت زیاد به کم</label>
                   </div>
                 </li>
                 <li className="MoreFilterLoad">

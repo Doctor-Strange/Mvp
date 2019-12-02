@@ -457,7 +457,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                     // }}
                                     primary
                                     fluid
-                                    className="left">
+                                    className="left ACCEPTED_INCOMMING_REQUEST">
                                     قبول
                             </Button>
                             </div>
@@ -468,7 +468,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                     onClick={() => doAction({ id, action: 'reject' })}
                                     basic
                                     fluid
-                                    className="right">
+                                    className="right REJECT_INCOMMING_REQUEST">
                                     رد
                                 </Button>
                             </div>
@@ -488,7 +488,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                     onClick={() => doAction({ id, action: 'pay' })}
                                     primary
                                     fluid
-                                    className="left">
+                                    className="left GO_TO_BANK">
                                     پرداخت
                                 </Button>
                             </div>
@@ -566,7 +566,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                 loading={loader}
                                     primary
                                     fluid
-                                    className="left"
+                                    className="left WRITE_A_COMMENT"
                                     onClick={() => openRatingModal(id)}
                                 >
                                     ثبت نظر

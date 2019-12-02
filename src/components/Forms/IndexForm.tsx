@@ -422,7 +422,7 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                             loading={isSubmitting}
                             primary
                             type="submit"
-                            className="btn_1 full-width"
+                            className="btn_1 full-width SEARCH_BUTTON"
                           >
                             {'جستجو'}
                           </Button>

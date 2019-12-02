@@ -176,7 +176,8 @@ const GlobalStyle = createGlobalStyle`
   .heightControl{
     height:90vh
     @media (max-width:768px){
-      height:105vh
+      height:105vh;
+      background-position: left top !important;
     }
     @media (max-width:480px){
       height:74vh

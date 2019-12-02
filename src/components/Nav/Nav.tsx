@@ -134,7 +134,7 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
       <ul>
         {/* commented by sajad bug fix */}
         {/* {!isMobile && */}
-        <li>
+        <li className= "CLICK_ON_GUID">
           <span>
             <a href="#">راهنما</a>
           </span>
@@ -169,7 +169,7 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
         </li>
         {
           jsCookie.get('first_name') ?
-            <li>
+            <li className="CLICK_ON_MY_REQUESTS">
               <span>
                 <Link href="/requests">
                   <a>رزروهای من</a>

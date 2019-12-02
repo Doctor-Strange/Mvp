@@ -571,6 +571,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
             }])
           })
           .then(response => {
+            localStorage.removeItem("CarEditId")
             toast.success(`خودرو ${car.car.name.fa} با موفقیت ثبت شد`,{
               position: "bottom-center",
               autoClose: 7000,
@@ -579,7 +580,6 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
               pauseOnHover: false,
               draggable: true
             })
-              localStorage.removeItem["CarEditId"]
               setTimeout(() => {
                 actions.setSubmitting(false);
                 Router.push(`/car/${id}/${car.car.brand.name.fa.replace(/ /ig,"-")}-${car.car.name.fa.replace(/ /ig,"-")}`);

@@ -157,6 +157,7 @@ export class ResultsCards extends React.Component<{
               style={{ width: "100%", margin: "20px auto 50px" }}
             >
               <Button
+              className="LOAD_MORE_CAR"
                 basic
                 loading={lodingMore}
                 onClick={() => {

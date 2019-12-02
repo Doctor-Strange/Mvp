@@ -125,7 +125,6 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                 id: props.query.id,
             });
             // console.log(props.query.id)
-            debugger
         return {
             // namespacesRequired: ['common'],
             rentalCarID: props.query.id,
@@ -545,9 +544,15 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                         onClick={
                             () => this.reserve(search_id)
                         }
-                        className="btn_1 full-width"
+                        className="btn_1 full-width CONTINUE_TO_RENT_CAR"
                     >
-                        درخواست اجاره
+                        تکمیل درخواست اجاره
+                        
+                        <br/><small style={{
+                            marginTop: '8px',
+                            display: 'block',
+                        }}>.دراین مرحله هزینه‌ای اخذ نمی‌شود</small>
+
                     </Button> : null
                     : null
                 }

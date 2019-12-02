@@ -242,6 +242,7 @@ export const UserCard: React.FunctionComponent<{
                 </span>
                 {own && (
                 <span 
+                className="EDIT_PROFILE"
                 onClick={() => {
                   setEditMode(true);
                   setImg(image)
@@ -266,7 +267,7 @@ export const UserCard: React.FunctionComponent<{
           <div className="G">
           {own && (
           <Link href="/add-car">
-          <a className="B">
+          <a className="B ADD_CAR_FROM_PROFILE">
             افزودن خودرو 
             <span className="C">+ </span>
           </a>
@@ -296,7 +297,9 @@ export const UserCard: React.FunctionComponent<{
                 }
               }
                 >
-                <span style={{
+                <span
+                className="LOG_OUT"
+                style={{
                   fontSize: '14px',
                   verticalAlign: 'middle',
                   display: 'inline',
@@ -531,6 +534,7 @@ export const UserCard: React.FunctionComponent<{
               <Grid.Row className="buttons" style={{width: `100%`,margin: '0 auto'}}>
                   <Grid.Column width={8} style={{width:`48%`,marginLeft:`2%`}}>
                       <Button
+                      className="SAVE_EDIT_ACCOUNT"
                         style={{ height: "48px", marginTop: "16px" }}
                         size="small"
                         fluid
@@ -543,6 +547,7 @@ export const UserCard: React.FunctionComponent<{
                   </Grid.Column>
                   <Grid.Column width={8} style={{width:`48%`,marginRight:`2%`}}>
                       <Button
+                      className="CANCEL_EDIT_PROFILE"
                       id="cancelBTN"
                         style={{ height: "48px", marginTop: "16px" }}
                         size="small"

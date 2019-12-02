@@ -548,10 +548,10 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                     >
                         تکمیل درخواست اجاره
                         
-                        <br/><small style={{
+                        {/* <br/><small style={{
                             marginTop: '8px',
                             display: 'block',
-                        }}>.دراین مرحله هزینه‌ای اخذ نمی‌شود</small>
+                        }}>.دراین مرحله هزینه‌ای اخذ نمی‌شود</small> */}
 
                     </Button> : null
                     : null

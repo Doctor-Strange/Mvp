@@ -249,7 +249,7 @@ export class FilterAndSortBar extends React.Component<{
                     aria-expanded="false"
                     aria-controls="filters"
                     onClick={() => { toggleShowFilters(!showFilters) }}
-                  ><Icon name='options' /> {showFilters ? "جستجو پیشرفته" : "جستجو پیشرفته"}</a
+                  ><Icon name='options' /> {showFilters ? "جستجوی پیشرفته" : "جستجوی پیشرفته"}</a
                   >
                 </li>
                 <li>

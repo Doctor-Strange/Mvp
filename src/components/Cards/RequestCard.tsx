@@ -641,9 +641,15 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             <Grid className="property-row">
                                 <Grid.Row columns={2} centered className="property DD">
                                     <Grid.Column width={10} className="right" style={{ paddingRight: '0' }}>
-                                        <Link route={(ownerInfo.username ? `/@${ownerInfo.username}` : `/user/${ownerInfo.id}`)}>
+                                    {statusOwner === "owner" ?
+                                    <Link route={(renterInfo.username ? `/@${renterInfo.username}` : `/user/${renterInfo.id}`)}>
+                                        <strong style={{color: '#4ba3ce',cursor: 'pointer'}}><Icon name="user circle" /> {company_name? company_name:renterInfo.username} </strong>
+                                        </Link>
+
+:<Link route={(ownerInfo.username ? `/@${ownerInfo.username}` : `/user/${ownerInfo.id}`)}>
                                         <strong style={{color: '#4ba3ce',cursor: 'pointer'}}><Icon name="user circle" /> {company_name? company_name:ownerName} </strong>
                                         </Link>
+}
                                     </Grid.Column>
                                     <Grid.Column width={6} className="left" style={{ padding: 0, }}>
                                         {statusOwner === "owner" &&

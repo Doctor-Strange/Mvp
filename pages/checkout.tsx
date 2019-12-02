@@ -226,9 +226,11 @@ export default withTranslation("common")(
           }
         }
       )
-      .then(response => {       
+      .then(response => { 
+        // console.log(response);
+             
           this.setState({
-            coupanPrice : response.data.coupon.total_price,
+            coupanPrice : response.data.coupon.discounted_price,
             coupon_code:false
           })
       })
@@ -418,9 +420,11 @@ export default withTranslation("common")(
                     }}
                     >کد تخفیف</p>
                     <span 
-                    style={{float:'left',direction:"rtl"}}>{convertNumbers2Persian(
-                            numberWithCommas(discounted_total_price -this.state.coupanPrice  )
-                          )} تومان</span>
+                    style={{float:'left',direction:"rtl"}}>
+                      <span dir="ltr">{convertNumbers2Persian(
+                            numberWithCommas(this.state.coupanPrice - discounted_total_price )
+                          )}</span> تومان
+                          </span>
                     </>
                     : null
                   }

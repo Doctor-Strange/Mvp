@@ -842,12 +842,20 @@ export default withTranslation('common')(connect(state => state)(
                 // console.log("response.data response ====>", response);
                 if (response.data.success) {
                   localStorage["CarEditId"] =  `${this.props.car_id}`
+                  if(this.props.edit_mode){
+                    localStorage.removeItem("CarEditId")
+                    Router.push({
+                      pathname: `/user/${jsCookie.get('user_id')}`,
+                    });
+                  }else{
                   Router.push({
                     pathname: '/set-car-timing',
                     query: {
                       id: response.data.data.id
                     }
                   });
+                }
+
                 }
               })
               .catch(error => {
@@ -992,7 +1000,10 @@ export default withTranslation('common')(connect(state => state)(
             return (
               <BoxAccount className="box_account" id="form">
                 <Form onSubmit={handleSubmit}>
-                  <h3 className="new_client">{t('add_car')}</h3>
+                {!this.props.edit_mode?
+                <h3 className="new_client">{t('add_car')}</h3>
+                :<h3 className="new_client">ویرایش مشخصات خودرو</h3>
+                }
                   {/* <small className="float-right pt-2">* {$required_fields}</small> */}
                   <Segment>
                     <p>مشخصات خودرو را با مطابق با مدارک آن پر کنید. </p>

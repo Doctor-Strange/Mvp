@@ -571,7 +571,6 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
             }])
           })
           .then(response => {
-            localStorage.removeItem("CarEditId")
             toast.success(`خودرو ${car.car.name.fa} با موفقیت ثبت شد`,{
               position: "bottom-center",
               autoClose: 7000,

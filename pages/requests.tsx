@@ -95,12 +95,12 @@ const Requests = props => {
                       price={
                         has_insurance
                           ? rentDump.coupon
-                            ? rentDump.coupon.total_price +
+                            ? rentDump.coupon.discounted_price +
                               rentDump.insurance_total_price
                             : rentDump.insurance_total_price +
                               rentDump.discounted_total_price
                           : rentDump.coupon
-                          ? rentDump.coupon.total_price
+                          ? rentDump.coupon.discounted_price
                           : rentDump.discounted_total_price
                       }
                       ownerName={

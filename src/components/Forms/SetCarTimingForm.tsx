@@ -698,7 +698,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
         return (
           <BoxAccount className="box_account" id="Step2InAddCar">
             <Form onSubmit={handleSubmit}>
-              <h3 className="new_client">اضافه کردن خودرو</h3>
+              <h3 className="new_client">تعیین شرایط اجاره</h3>
               {/* <small className="float-right pt-2">* {$required_fields}</small> */}
               <Segment>
                 <Item.Group>

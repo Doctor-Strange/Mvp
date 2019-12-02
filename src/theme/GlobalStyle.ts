@@ -3532,7 +3532,7 @@ input::placeholder{
 
   }
   button#Profile_button {
-    width: auto;
+    width: auto !important;
     display: inline-block;
     padding: 0 10px 0;
     font-size: 11px;

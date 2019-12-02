@@ -2077,7 +2077,7 @@ id="JustPersian"
                         type="submit"
                         className="btn_1 full-width"
                       >
-                        {t('ثبت خودرو')}
+                        {t('ثبت')}
                       </Button>
                     </Form.Field>
 

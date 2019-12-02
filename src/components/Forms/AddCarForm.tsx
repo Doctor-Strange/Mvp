@@ -465,9 +465,9 @@ export default withTranslation('common')(connect(state => state)(
               });
             });
             this.setState({ checkboxes },() =>{
+              if(this.props.edit_mode){
                 this.getCarPropsForEdit()
-              // if(this.props.edit_mode || localStorage["CarEditId"] ! ===){
-              // }
+              }
             });
           }
         })

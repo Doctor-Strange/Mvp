@@ -287,7 +287,7 @@ export default withTranslation('common')(connect(state => state)(
       //   INterid  = localStorage["CarEditId"] === "false" ? this.props.car_id : localStorage["CarEditId"]
       //  }
 
-      // console.log('INterid',INterid);
+      console.log('INterid',INterid);
       
       const res = await REQUEST_getCar({
         id:INterid,
@@ -570,10 +570,10 @@ export default withTranslation('common')(connect(state => state)(
     }
 
     setFasalities(id, OnlyActive = false) {
-      // console.log("run")
       const cblist = this.state.checkboxes;
-      let IDs = [...this.state.checkboxesID];
-      let index
+      // console.log("run")
+      let IDs = this.state.checkboxesID;
+      // let index
       // try {
       if (!OnlyActive) {
         cblist.map((value, index) => {
@@ -584,7 +584,7 @@ export default withTranslation('common')(connect(state => state)(
               IDs.splice(indexItem, 1)
             } else {
               cblist[index].checked = true;
-              IDs.push(id)
+              IDs.push(id);
             }
           }
         })
@@ -595,6 +595,8 @@ export default withTranslation('common')(connect(state => state)(
           
         cblist[index].checked = true;
         IDs.push(id);
+        console.log("IDs",IDs);
+
         }
       })
       }
@@ -613,6 +615,8 @@ export default withTranslation('common')(connect(state => state)(
       this.setState({
         checkboxes: cblist,
         checkboxesID: IDs
+      },() =>{
+        console.log(this.state.checkboxesID)
       });
     }
 
@@ -731,6 +735,9 @@ export default withTranslation('common')(connect(state => state)(
             values: IAddCarFormValues,
             actions: FormikActions<IAddCarFormValues>
           ) => {
+            let HoleValues = {...this.state.incomming}
+            console.log("start", HoleValues);
+            
             actions.setSubmitting(true);
             // if (!values.carCity) {
             //   // alert("لطفاً حداقل یک تصویر بارگذاری کنید.");
@@ -778,62 +785,89 @@ export default withTranslation('common')(connect(state => state)(
               cylinder_id,
               value
             } = values;
+            if(this.props.edit_mode){
+              HoleValues.id = this.props.car_id,
+              HoleValues.car_id =  carModel,
+              HoleValues.location_id =  (carDistrict || carCity),
+              HoleValues.year_id =  carYear,
+              HoleValues.transmission_type_id =  carGearboxType,
+              HoleValues.body_style_id =  carBodyStyle,
+              HoleValues.mileage_range_id =  carKmDriven,
+              HoleValues.color_id =  this.state.colorId,
+              HoleValues.special_type_id =  1,
+              HoleValues.registration_plate_first_part =  carLicensePlates1,
+              HoleValues.registration_plate_second_part =  carLicensePlates2,
+              HoleValues.registration_plate_third_part =  carLicensePlates3,
+              HoleValues.registration_plate_forth_part =  carLicensePlates4,
+              HoleValues.days_to_get_reminded =  3, // sample
+              HoleValues.min_days_to_rent =  1, // sample
+              HoleValues.capacity =  carCapacity,
+              HoleValues.deliver_at_renters_place =  0, // sample
+              HoleValues.facility_id =  this.state.checkboxesID,
+              HoleValues.description =  carDescription,
+              HoleValues.media_id =  this.state.picturesID,
+              HoleValues.cylinder_id =  cylinder_id,
+              HoleValues.value =  Number(value.replace(/,/g,""))
+            }
+            console.log("after",HoleValues);
             
-            // console.log({
-            //   id :this.props.car_id || localStorage["CarEditId"],
-            //   car_id: carModel,
-            //   location_id: (carDistrict || carCity),
-            //   year_id: carYear,
-            //   transmission_type_id: carGearboxType,
-            //   body_style_id: carBodyStyle,
-            //   mileage_range_id: carKmDriven,
-            //   color_id: this.state.colorId,
-            //   special_type_id: 1,
-            //   registration_plate_first_part: carLicensePlates1,
-            //   registration_plate_second_part: carLicensePlates2,
-            //   registration_plate_third_part: carLicensePlates3,
-            //   registration_plate_forth_part: carLicensePlates4,
-            //   days_to_get_reminded: 3, // sample
-            //   min_days_to_rent: 1, // sample
-            //   capacity: carCapacity,
-            //   deliver_at_renters_place: 0, // sample
-            //   facility_id: this.state.checkboxesID,
-            //   description: carDescription,
-            //   media_id: this.state.picturesID,
-            //   cylinder_id: cylinder_id,
-            //   value: Number(value.replace(/,/g,""))
-            // })
+            console.log({
+              id :this.props.car_id ,
+              car_id: carModel,
+              location_id: (carDistrict || carCity),
+              year_id: carYear,
+              transmission_type_id: carGearboxType,
+              body_style_id: carBodyStyle,
+              mileage_range_id: carKmDriven,
+              color_id: this.state.colorId,
+              special_type_id: 1,
+              registration_plate_first_part: carLicensePlates1,
+              registration_plate_second_part: carLicensePlates2,
+              registration_plate_third_part: carLicensePlates3,
+              registration_plate_forth_part: carLicensePlates4,
+              days_to_get_reminded: 3, // sample
+              min_days_to_rent: 1, // sample
+              capacity: carCapacity,
+              deliver_at_renters_place: 0, // sample
+              facility_id: this.state.checkboxesID,
+              description: carDescription,
+              media_id: this.state.picturesID,
+              cylinder_id: cylinder_id,
+              value: Number(value.replace(/,/g,""))
+            })
             // return
+            let data = this.props.edit_mode ? HoleValues 
+            :{
+              id :this.props.car_id
+              //  || localStorage["CarEditId"]
+               ,
+              car_id: carModel,
+              location_id: (carDistrict || carCity),
+              year_id: carYear,
+              transmission_type_id: carGearboxType,
+              body_style_id: carBodyStyle,
+              mileage_range_id: carKmDriven,
+              color_id: this.state.colorId,
+              special_type_id: 1,
+              // vin: carVIN,
+              registration_plate_first_part: carLicensePlates1,
+              registration_plate_second_part: carLicensePlates2,
+              registration_plate_third_part: carLicensePlates3,
+              registration_plate_forth_part: carLicensePlates4,
+              days_to_get_reminded: 3, // sample
+              min_days_to_rent: 1, // sample
+              capacity: carCapacity,
+              deliver_at_renters_place: 0, // sample
+              facility_id: this.state.checkboxesID,
+              description: carDescription,
+              media_id: this.state.picturesID,
+              cylinder_id: cylinder_id,
+              value: Number(value.replace(/,/g,""))
+            }
             axios
               .post(
                 process.env.PRODUCTION_ENDPOINT +  '/core/rental-car/new',
-                {
-                  id :this.props.car_id
-                  //  || localStorage["CarEditId"]
-                   ,
-                  car_id: carModel,
-                  location_id: (carDistrict || carCity),
-                  year_id: carYear,
-                  transmission_type_id: carGearboxType,
-                  body_style_id: carBodyStyle,
-                  mileage_range_id: carKmDriven,
-                  color_id: this.state.colorId,
-                  special_type_id: 1,
-                  // vin: carVIN,
-                  registration_plate_first_part: carLicensePlates1,
-                  registration_plate_second_part: carLicensePlates2,
-                  registration_plate_third_part: carLicensePlates3,
-                  registration_plate_forth_part: carLicensePlates4,
-                  days_to_get_reminded: 3, // sample
-                  min_days_to_rent: 1, // sample
-                  capacity: carCapacity,
-                  deliver_at_renters_place: 0, // sample
-                  facility_id: this.state.checkboxesID,
-                  description: carDescription,
-                  media_id: this.state.picturesID,
-                  cylinder_id: cylinder_id,
-                  value: Number(value.replace(/,/g,""))
-                },
+                data,
                 {
                   headers: {
                     Authorization: 'Bearer ' + token

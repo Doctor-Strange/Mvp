@@ -50,9 +50,14 @@ const TimeRangesSelector: React.FC<{
   };
   const [price, setPrice] = useState(null);
   const [date, setDate] = useState(empetyDate);
-  const [showNewEntery, setShowNewEntery] = useState(false);
+  const [showNewEntery, setShowNewEntery] = useState(true);
   const [openEditFor, setOpenEditFor] = useState(null);
   // console.log("Car timings: ", carTimings);
+
+  const showNewEnteryHandller = (bol) =>{
+    setShowNewEntery(bol)
+    setDate(empetyDate)
+  }
   return (
       <div style={{ maxWidth: '370px' }} className="DOOOOOD">
       <Segment.Group style={{ marginBottom: '12px', boxShadow:'0px 0px 1px #000 ', border:'none' }}>
@@ -141,7 +146,8 @@ const TimeRangesSelector: React.FC<{
                     onClick={e => {
                       setDate(empetyDate);
                       setPrice('');
-                      setShowNewEntery(false);
+                      showNewEnteryHandller(false)
+                      // setShowNewEntery(false);
                       setOpenEditFor(null);
                     }}
                   >
@@ -164,7 +170,8 @@ const TimeRangesSelector: React.FC<{
                         modifyCarTimings(data);
                         setDate(empetyDate);
                         setPrice('');
-                        setShowNewEntery(false);
+                        showNewEnteryHandller(false)
+                        // setShowNewEntery(false);
                         setOpenEditFor(null);
                       }
                     }}
@@ -204,7 +211,8 @@ const TimeRangesSelector: React.FC<{
                     data.splice(index, 1);
                     // console.log(data);
                     modifyCarTimings(data);
-                    setShowNewEntery(false);
+                    showNewEnteryHandller(false)
+                    // setShowNewEntery(false);
                     setPrice(null);
                     setDate(empetyDate);
                   }}
@@ -212,7 +220,8 @@ const TimeRangesSelector: React.FC<{
                 <Icon
                   name="edit outline"
                   onClick={e => {
-                    setShowNewEntery(false);
+                    showNewEnteryHandller(false)
+                    // setShowNewEntery(false);
                     setOpenEditFor(index);
                     setPrice(null);
                     setDate(empetyDate);
@@ -224,7 +233,7 @@ const TimeRangesSelector: React.FC<{
         })}
 
         {/* ======================  new form ========================= */}
-        {showNewEntery && (
+        {showNewEntery && carTimings.length <= 0 && (
           <Segment className="timingEntery">
             <Form.Group>
               <Form.Field style={{ margin: 0, maxWidth: '100%' }}>
@@ -289,7 +298,8 @@ const TimeRangesSelector: React.FC<{
                 type="button"
                 className="pos_bott"
                 onClick={e => {
-                  setShowNewEntery(false);
+                  showNewEnteryHandller(false)
+                  // setShowNewEntery(false);
                 }}
               >
                 حذف
@@ -312,7 +322,8 @@ const TimeRangesSelector: React.FC<{
                     modifyCarTimings(data);
                     setDate(empetyDate);
                     setPrice('');
-                    setShowNewEntery(false);
+                    showNewEnteryHandller(false)
+                    // setShowNewEntery(false);
                   }
                 }}
               >
@@ -337,7 +348,8 @@ const TimeRangesSelector: React.FC<{
           onClick={e => {
             setDate(empetyDate);
             setPrice('');
-            setShowNewEntery(true);
+            showNewEnteryHandller(true)
+            // setShowNewEntery(true);
             setOpenEditFor(null);
           }}
         >

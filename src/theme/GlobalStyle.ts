@@ -3538,6 +3538,9 @@ input::placeholder{
     font-size: 12px;
     font-weight: 500;
     box-shadow: none;
+    &:focus{
+      color: #4BA3CE !important;
+    }
 }
 .delete_car_ICON{
   color: #4BA3CE !important;
@@ -3550,6 +3553,10 @@ input::placeholder{
     &:hover{
       background: none !important;
     }
+}
+
+.fieldError{
+  border:1px solid red !important;
 }
 `;
 

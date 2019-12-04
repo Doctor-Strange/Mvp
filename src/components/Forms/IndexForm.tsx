@@ -154,6 +154,8 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   const [activeField2, setactiveField2] = useState(false);
   const [CalenderWork, SetCalenderWork] = useState(false);
   const [locationAlert,setAlert] = useState(false)
+  const [errDateFrom,SeterrDateFrom] = useState(false)
+  const [errDateTo,SeterrDateTo] = useState(false)
   const [datepicker_animation, setDPA] = useState(`.DatePicker__calendarContainer {
   transform: translateX(-22%);
 }
@@ -239,6 +241,9 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
 
 
   const setCalEnd = () => {
+    SeterrDateFrom(false)
+SeterrDateTo(false)
+    
     setDPA(`.DatePicker__calendarContainer {
       transform: translateX(-75%);
     }`);
@@ -259,6 +264,15 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
         actions: FormikActions<IIndexFormValues>
       ) => {
         actions.setSubmitting(true);
+        if(date.from === null || date.to === null){
+          actions.setSubmitting(false);
+          console.log("date.from ===>",date.from , "date.to ===>",date.to);
+          
+          if(!date.from)SeterrDateFrom(true)
+          if(!date.to)SeterrDateTo(true)
+          
+          return
+        }
         let queryString = '';
         let shownURL = '';
         if (values.carCity) {
@@ -386,11 +400,13 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           onClick={() => { 
                             // setCalStart();
                              onFocus();
-                             setactiveField1(true) }}
+                             setactiveField1(true);
+                             SeterrDateFrom(false) }}
 
                           value={getSelectedDayValue(date.from)}
                           placeholder={"از تاریخ"}
-                          className={["DatePicker__input index", activeField1 ? "activefield":null].join(" ")}
+                          className={["DatePicker__input index", activeField1 ? "activefield":null,
+                        errDateTo ? "fieldError" : null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
                         {CalenderWork ? null : <span className="loader"></span>}
@@ -405,11 +421,13 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
                           onBlur={()=>{setactiveField2(true) }}
                           onFocus={() => {
                             //  setCalEnd(); 
+                            SeterrDateTo(false) 
                             onFocus(); setactiveField2(true) }}
                           // onBlur={() => { console.log("on Blur for To")}}
                           value={getSelectedDayValue(date.to)}
                           placeholder={"تا تاریخ"}
-                          className={["DatePicker__input", activeField2  || (date.from&&!date.to) ? "activefield":null].join(" ")}
+                          className={["DatePicker__input", activeField2  || (date.from&&!date.to) ? "activefield":null,
+                          errDateFrom ? "fieldError" : null].join(" ")}
                           aria-label="انتخاب تاریخ"
                         />
                         {CalenderWork ? null : <span className="loader"></span>}

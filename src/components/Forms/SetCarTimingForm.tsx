@@ -511,9 +511,17 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
         values: ISetCarTimingFormValues,
         actions: FormikActions<ISetCarTimingFormValues>
       ) => {
+        // console.log("availableInAllPrice",values.availableInAllPrice,"values.availableInAllPrice",
+        // values.availableInAllPrice ,"carTimings.length", carTimings.length);
+        // if(!values.availableInAllPrice && carTimings.length === 0){
+        //   setError(true);
+        //   SEtCtomeError("بازه قیمت خودرو را به درستی وارد نکرده اید")
+        //   return
+        // }
+        // return 
         actions.setSubmitting(true);
         setError(false);
-        if(!values.availableInAllPrice && carTimings.length <= 0){
+        if(!values.availableInAllPrice && carTimings.length === 0){
           setError(true);
           SEtCtomeError("بازه قیمت خودرو را به درستی وارد نکرده اید")
           return
@@ -1103,7 +1111,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Form.Field>
                 {error && (
                   <Label attached="bottom" color="red">
-                {CustomeError ? "قیمت خودرو را وارد کنید." :t('forms.error')}
+                {CustomeError ? "لطفا نرخ اجاره را وارد کنید." :t('forms.error')}
                   </Label>
                 )}
                 {Object.keys(errors).length >= 1 && submitCount >= 1 && (

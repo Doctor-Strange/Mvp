@@ -510,14 +510,14 @@ export class FilterAndSortBar extends React.Component<{
         <aside className="col-lg-3 hide_on_mobile margin_16 " id="sidebar">
           <Form>
             <div id="filters_col">
-              <a
+              {/* <a
                 data-toggle="collapse"
                 href="#collapseFilters"
                 aria-expanded="false"
                 aria-controls="collapseFilters"
                 id="filters_col_bt"
               >گزینه‌ها
-              </a>
+              </a> */}
               <div className="collapse show" id="collapseFilters">
                 <FilterType title='قیمت'>
                   <div className="rangeclass">

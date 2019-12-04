@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const FilterTypeStyled = styled.div`
     h6 {
-        border-top: 1px solid #ededed;
-        margin: 15px 0;
-        padding: 15px 0 0 0;
+        // border-top: 1px solid #ededed;
+        margin: 0px 0 8px;
+        padding: 0px 0 0 0;
         font-size: 13px !important;
         font-size: 0.8125rem;
         direction: rtl;

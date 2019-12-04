@@ -425,6 +425,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                   <Icon size='large' name='telegram' />
                 </a>
               </div>
+              <p style={{ color: '#929292',    marginTop: '16px', fontWeight: '500' }} >شماره تماس: <a href="tel:02188567759">۰۲۱۸۸۵۶۷۷۵۹</a></p>
               {/* <Icon name='youtube' /> */}
             </div>
           </div>
@@ -471,7 +472,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           <div className="col-lg-12">
             <AdditionalLinks>
               <span className="ver">
-                1.5.11
+                1.5.12
                 </span>
               <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>

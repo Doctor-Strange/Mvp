@@ -52,7 +52,7 @@ const ContentCardTitle = styled.div`
 const Spinner = styled.div`
   display: inline-block;
   position: relative;
-  width: 150px;
+  width: 61px;
   height: 42px;
   color: #666;
 div {
@@ -251,7 +251,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
       }
 
     render() {
-        // console.log("this. props ====> ", this.props)
+        console.log("this. props ====> ", this.props)
         const { t, start_date, end_date, search_id, isAllowed } = this.props;
         let start, end = null;
         let startDate, endDate = null;
@@ -300,7 +300,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                         },
                     }}
                 />
-                {isMobile &&
+                {isMobile &&  start &&
                     <CarNav startDate={start} endDate={end} />
                 }
                  {this.state.carousel
@@ -318,7 +318,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                                 transition: "border 0.24s ease-in-out",
                                 borderRadius: "0.28571429rem",
                             }}>
-                                <Spinner >در حال بارگذاری<div></div><div></div><div></div><div></div></Spinner>
+                                <Spinner ><div></div><div></div><div></div><div></div></Spinner>
                             </div>
                  }
                 {/* <div className="hero_mother">
@@ -435,7 +435,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                     <ContentCard style={{ top: '-30px' }}>
                         ‍<ContentCardTitle>
                             {/* commented by sajad 980609======> */}
-                            {isMobile && !this.state.hideTheseGuys ?
+                            {isMobile && avg_discounted_price_per_day > 0 && !this.state.hideTheseGuys ?
                                 <PriceCard style={{
                                     display: 'inline-grid',
                                     left: '10px',

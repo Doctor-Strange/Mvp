@@ -419,11 +419,16 @@ SeterrDateTo(false)
                           readOnly
                           ref={ref}
                           onBlur={()=>{setactiveField2(true) }}
-                          onFocus={() => {
-                            //  setCalEnd(); 
-                            SeterrDateTo(false) 
-                            onFocus(); setactiveField2(true) }}
+                          // onFocus={() => {
+                          //   //  setCalEnd(); 
+                          //   SeterrDateTo(false) 
+                          //   onFocus(); setactiveField2(true) }}
                           // onBlur={() => { console.log("on Blur for To")}}
+                          onClick={() => { 
+                            // setCalStart();
+                             onFocus();
+                             setactiveField1(true);
+                             SeterrDateFrom(false) }}
                           value={getSelectedDayValue(date.to)}
                           placeholder={"تا تاریخ"}
                           className={["DatePicker__input", activeField2  || (date.from&&!date.to) ? "activefield":null,

@@ -302,6 +302,11 @@ export default withTranslation('common')(connect(state => state)(
     }
 
     componentDidMount() {
+// if(!this.props.edit_mode){
+//   if( localStorage["CarEditId"] && localStorage["CarEditId"]!== 'false'){
+//     console.log("localStorage[CarEditId]",localStorage["CarEditId"])
+//   }
+// }
 
       if (!this.props.user.token ){
         localStorage["URL"] = Router.router.asPath        

@@ -282,13 +282,13 @@ export default withTranslation('common')(connect(state => state)(
 
     getCarPropsForEdit = async() =>{
       let INterid = this.props.car_id;
-      // if(localStorage["CarEditId"] !== undefined ){
-      //   // console.log('INterid',"WTF");
-      //   INterid  = localStorage["CarEditId"] === "false" ? this.props.car_id : localStorage["CarEditId"]
-      //  }
+
+      if(!this.props.edit_mode && localStorage["CarEditId"]){
+        // console.log('INterid',"WTF");
+        INterid  = localStorage["CarEditId"]
+       }
 
       console.log('INterid',INterid);
-      
       const res = await REQUEST_getCar({
         id:INterid,
     });
@@ -302,11 +302,9 @@ export default withTranslation('common')(connect(state => state)(
     }
 
     componentDidMount() {
-// if(!this.props.edit_mode){
-//   if( localStorage["CarEditId"]){
-//     console.log("localStorage[CarEditId]",localStorage["CarEditId"])
-//   }
-// }
+if(!this.props.edit_mode && localStorage["CarEditId"]){
+  this.getCarPropsForEdit()
+}
 
       if (!this.props.user.token ){
         localStorage["URL"] = Router.router.asPath        
@@ -816,36 +814,34 @@ export default withTranslation('common')(connect(state => state)(
             }
             console.log("after",HoleValues);
             
-            console.log({
-              id :this.props.car_id ,
-              car_id: carModel,
-              location_id: (carDistrict || carCity),
-              year_id: carYear,
-              transmission_type_id: carGearboxType,
-              body_style_id: carBodyStyle,
-              mileage_range_id: carKmDriven,
-              color_id: this.state.colorId,
-              special_type_id: 1,
-              registration_plate_first_part: carLicensePlates1,
-              registration_plate_second_part: carLicensePlates2,
-              registration_plate_third_part: carLicensePlates3,
-              registration_plate_forth_part: carLicensePlates4,
-              days_to_get_reminded: 3, // sample
-              min_days_to_rent: 1, // sample
-              capacity: carCapacity,
-              deliver_at_renters_place: 0, // sample
-              facility_id: this.state.checkboxesID,
-              description: carDescription,
-              media_id: this.state.picturesID,
-              cylinder_id: cylinder_id,
-              value: Number(value.replace(/,/g,""))
-            })
+            // console.log({
+            //   id :this.props.car_id ,
+            //   car_id: carModel,
+            //   location_id: (carDistrict || carCity),
+            //   year_id: carYear,
+            //   transmission_type_id: carGearboxType,
+            //   body_style_id: carBodyStyle,
+            //   mileage_range_id: carKmDriven,
+            //   color_id: this.state.colorId,
+            //   special_type_id: 1,
+            //   registration_plate_first_part: carLicensePlates1,
+            //   registration_plate_second_part: carLicensePlates2,
+            //   registration_plate_third_part: carLicensePlates3,
+            //   registration_plate_forth_part: carLicensePlates4,
+            //   days_to_get_reminded: 3, // sample
+            //   min_days_to_rent: 1, // sample
+            //   capacity: carCapacity,
+            //   deliver_at_renters_place: 0, // sample
+            //   facility_id: this.state.checkboxesID,
+            //   description: carDescription,
+            //   media_id: this.state.picturesID,
+            //   cylinder_id: cylinder_id,
+            //   value: Number(value.replace(/,/g,""))
+            // })
             // return
             let data = this.props.edit_mode ? HoleValues 
             :{
-              id :this.props.car_id
-              //  || localStorage["CarEditId"]
-               ,
+              id : localStorage["CarEditId"] ? localStorage["CarEditId"]: this.props.car_id,
               car_id: carModel,
               location_id: (carDistrict || carCity),
               year_id: carYear,
@@ -882,13 +878,13 @@ export default withTranslation('common')(connect(state => state)(
               .then(response => {
                 // console.log("response.data response ====>", response);
                 if (response.data.success) {
-                  // localStorage["CarEditId"] =  `${this.props.car_id}`
                   if(this.props.edit_mode){
                     // localStorage.removeItem("CarEditId")
                     Router.push({
                       pathname: `/user/${jsCookie.get('user_id')}`,
                     });
                   }else{
+                  localStorage["CarEditId"] =  response.data.data.id
                   Router.push({
                     pathname: '/set-car-timing',
                     query: {

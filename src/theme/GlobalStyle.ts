@@ -3558,6 +3558,11 @@ input::placeholder{
 .fieldError{
   border:1px solid red !important;
 }
+
+.SmallHeightControllerinHomepage{
+  @media (max-width:768px){
+    height: 500px !important;
+}
 `;
 
 enum Margin {

@@ -303,7 +303,7 @@ export default withTranslation('common')(connect(state => state)(
 
     componentDidMount() {
 // if(!this.props.edit_mode){
-//   if( localStorage["CarEditId"] && localStorage["CarEditId"]!== 'false'){
+//   if( localStorage["CarEditId"]){
 //     console.log("localStorage[CarEditId]",localStorage["CarEditId"])
 //   }
 // }

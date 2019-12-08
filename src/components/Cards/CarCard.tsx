@@ -549,7 +549,7 @@ export const CarCard: React.FunctionComponent<{
                 </Button>
                 
                 <Button
-              className="delete_car_ICON"
+              className="delete_car_ICON Padding_right"
               onClick={e => {
                 e.preventDefault();
                 deleteCarHandller();

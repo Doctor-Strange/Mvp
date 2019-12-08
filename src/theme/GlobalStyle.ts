@@ -3550,6 +3550,9 @@ input::placeholder{
     float: left !important;
     padding-left: 16px !important;
     padding-top: 4px !important;
+    &.Padding_right{
+      padding-left: 6px !important;
+    }
     &:hover{
       background: none !important;
     }

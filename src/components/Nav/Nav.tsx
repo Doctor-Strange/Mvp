@@ -118,6 +118,7 @@ const Navigation = styled.div`
           } 
           @media (max-width:480px){
             font-size: 11px;
+            padding: 0 8px 16px 8px;
           }
         }
         :hover > a {

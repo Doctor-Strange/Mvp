@@ -55,6 +55,7 @@ class DropDownWithSearch extends Component {
           this.props.loading &&
           this.props.data.length < 1 && <span className="loader"> </span>}
         <input
+        data-hj-whitelist
           onBlur={() => {
             if (this.state.leave) {
               this.setState(pre => {

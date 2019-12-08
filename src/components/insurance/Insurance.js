@@ -5,7 +5,7 @@ class Insurance extends Component {
     EventChecker = (e) => {
         this.props.hasInsurance(e)
     }
-    render() {
+    render() {        
         return (
             <div className="DIvIN_Checkout deskTop">
                 <div className="innerDiv_DIvIN_Checkout">

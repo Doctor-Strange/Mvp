@@ -233,7 +233,7 @@ const TimeRangesSelector: React.FC<{
         })}
 
         {/* ======================  new form ========================= */}
-        {showNewEntery && carTimings.length <= 0 && (
+        {showNewEntery && (
           <Segment className="timingEntery">
             <Form.Group>
               <Form.Field style={{ margin: 0, maxWidth: '100%' }}>

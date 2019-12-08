@@ -277,7 +277,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                 url: value,
                 alt: 'Og Image Alt',
             })
-        ) : <img src="https://i.kinja-img.com/gawker-media/image/upload/s--8Dk6Uk5v--/c_scale,f_auto,fl_progressive,q_80,w_800/qssqrb3mvffcipwl9jn0.jpg" />
+        ) : null
         // console.log(this.props)
         return (
             <Layout haveSubHeader={true} pageTitle={'list Your Car'}>
@@ -304,7 +304,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                     <CarNav startDate={start} endDate={end} />
                 }
                  {this.state.carousel
-                ?<Slider Feed={media_set}/>
+                ?<Slider Feed={media_set} alt = {`${car.brand.name.fa} ${car.name.fa}`}/>
                 :
                             <div style={{
                                 display: "flex",

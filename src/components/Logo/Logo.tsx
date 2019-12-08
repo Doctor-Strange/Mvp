@@ -10,7 +10,7 @@ export const Logo: React.FunctionComponent = props => (
           src={LogoSVG}
           width="165"
           height="35"
-          alt=""
+          alt="لوگو اتولی"
           className="logo_sticky"
         />
       </a>

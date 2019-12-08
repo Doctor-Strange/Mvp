@@ -441,7 +441,7 @@ export const CarCard: React.FunctionComponent<{
               style={{ position: "absolute", top: -heightController + "px" }}
               src={img}
               className="img-fluid"
-              alt=""
+              alt={title}
               onLoad={a => {
                 a.persist();
                 let w = a.target.naturalWidth;

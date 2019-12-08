@@ -109,7 +109,8 @@ export class ResultsCards extends React.Component<{
                 fetchAPI={fetchAPI}
                   key={index}
                   id={value.id}
-                  title={value.car.brand.name.fa + " " + value.car.name.fa}
+                  title={showInProfile ? value.car.name.fa : 
+                  value.car.brand.name.fa + " " + value.car.name.fa}
                   year={value.year.name.fa}
                   img={
                     value.media_set[0] ? value.media_set[0].thumbnail_url : null

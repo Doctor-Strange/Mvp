@@ -60,8 +60,9 @@ class Slider extends Component {
   };
 
   render() {
-    const { Feed } = this.props;
+    const { Feed , alt} = this.props;
     let carousel = Feed.length > 1 ? true : false;
+    
     return (
       <div className="carousel_container">
         {!this.state.colseModal && (
@@ -69,6 +70,7 @@ class Slider extends Component {
             Feed={Feed}
             CloseGallery={this.CloseGallery}
             index={this.state.slideIndex}
+            alt ={alt}
           />
         )}
         {carousel ? (
@@ -148,7 +150,7 @@ class Slider extends Component {
                     this.state.slideIndex > i && "carousel_FrontImage TranslateLeft"
                   ].join(" ")}
                   src={item}
-                  alt="تصویر اسلایدر"
+                  alt = {alt}
                 />
               );
             })}
@@ -162,7 +164,7 @@ class Slider extends Component {
                 top: `-${this.state.heightController}px`
               }}
               src={Feed[this.state.slideIndex]}
-              alt="تصویر اسلایدر"
+              alt={alt}
               onLoad={this.positionController}
             />
           </>
@@ -171,7 +173,7 @@ class Slider extends Component {
             <img
               className="carousel_FrontImage"
               src={Feed[0]}
-              alt="تصویر خودرو"
+              alt={alt}
               onLoad={this.positionController}
             />
             <img
@@ -180,7 +182,7 @@ class Slider extends Component {
               style={{
                 top: `-${this.state.heightController}px`
               }}
-              alt="تصویر خودرو"
+              alt={alt}
               onLoad={this.positionController}
             />
           </>

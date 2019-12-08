@@ -1051,6 +1051,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                     <div className="field">
                       <label>ماشین شما کجاست؟</label>
                       <select
+                      data-hj-whitelist
                         // onBlur={(e)=> {;;}}
                         value = {values.carCity && values.carCity}
                         error={Boolean(errors.carCity && touched.carCity)}
@@ -1776,6 +1777,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                         {/* {console.log(numberWithCommas(
                               values.value))} */}
                       <input
+                      data-hj-whitelist
                       className={Boolean(errors.value && touched.value) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
 id="JustPersian"
                         type="text"
@@ -1901,6 +1903,7 @@ id="JustPersian"
                     <Form.Group>
                       <div className="pelak" style={{}}>
                         <Form.Input
+                        data-hj-whitelist
                           name="carLicensePlates1"
                           id="carLicensePlates1"
                           inputmode="numeric"
@@ -1921,6 +1924,7 @@ id="JustPersian"
                           value={values.carLicensePlates1}
                         />
                         <Form.Input
+                        data-hj-whitelist
                           name="carLicensePlates2"
                           id="carLicensePlates2"
                           control="select"
@@ -1957,6 +1961,7 @@ id="JustPersian"
                           id="carLicensePlates3"
                           inputmode="numeric"
                           type="number"
+                          data-hj-whitelist
                           pattern="[0-9]*"
                           min="100"
                           max="999"
@@ -1973,6 +1978,7 @@ id="JustPersian"
                           value={values.carLicensePlates3}
                         />
                         <Form.Input
+                        data-hj-whitelist
                           name="carLicensePlates4"
                           id="carLicensePlates4"
                           inputmode="numeric"

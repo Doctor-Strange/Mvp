@@ -41,7 +41,7 @@ class Gallery extends Component {
   }
 
   render() {
-    const { Feed } = this.props;
+    const { Feed ,alt } = this.props;
     let carousel = Feed.length > 1 ? true : false;
 
     return (
@@ -54,7 +54,7 @@ class Gallery extends Component {
               return (
               <img
             src={item}
-            alt="تصویر گالری"
+            alt={alt}
             onTouchEnd={() => {
               this.setState({
                 rightV: 0,
@@ -126,7 +126,7 @@ class Gallery extends Component {
               <img
                 src={item}
                 onClick={() => this.showController(i)}
-                alt="تصویر گالری"
+                alt={alt}
               />
             );
           })}

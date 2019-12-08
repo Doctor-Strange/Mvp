@@ -90,8 +90,19 @@ font-weight: 400;
         margin-top: 8px;
         .column {
             font-size: 1.2em;
+            &#HardControlright{
+                @media (max-width:480px){
+                    width: 100%!important;
+                }
+            }
             &.right{
                 text-align: right !important;
+            }
+            &#HardControlleft{
+                @media (max-width:480px){
+                    width: 100%!important;
+                    text-align: right !important;
+                }
             }
             &.left {
                 text-align: left !important;
@@ -355,7 +366,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                 },
             })
             .then((value) => {
-                
+                if(value === 'done')
                 trigerDoAction(statusOwner,id,{localStar1,localStar2,localText});
             });
     }
@@ -640,7 +651,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                         <Grid.Column>
                             <Grid className="property-row">
                                 <Grid.Row columns={2} centered className="property DD">
-                                    <Grid.Column width={10} className="right" style={{ paddingRight: '0' }}>
+                                    <Grid.Column width={10} className="right" id="HardControlright" style={{ paddingRight: '0' }}>
                                     {statusOwner === "owner" ?
                                     <Link route={(renterInfo.username ? `/@${renterInfo.username}` : `/user/${renterInfo.id}`)}>
                                         <strong style={{color: '#4ba3ce',cursor: 'pointer'}}><Icon name="user circle" /> {company_name? company_name:`${renterInfo.first_name +renterInfo.last_name}` } </strong>
@@ -651,7 +662,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                         </Link>
 }
                                     </Grid.Column>
-                                    <Grid.Column width={6} className="left" style={{ padding: 0, }}>
+                                    <Grid.Column width={6} className="left" id="HardControlleft" style={{ padding: 0, }}>
                                         {statusOwner === "owner" &&
                                             <>
                                                 {isMobile &&

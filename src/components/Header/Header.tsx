@@ -177,7 +177,8 @@ class Header extends React.Component<{
                               <img
                                 src={localStorage["ImageUrl"] || "https://core.otoli.net/static/core/default_profile_pic.png" }
                                 className="img-header"
-                                alt=""
+                                alt={company_name && company_name !== "null"?company_name:
+                                first_name ? first_name+" "+last_name : "آیکون کاربر"}
                               />
                             </a>
                             : 

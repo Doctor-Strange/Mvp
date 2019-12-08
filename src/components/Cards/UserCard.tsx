@@ -262,7 +262,7 @@ export const UserCard: React.FunctionComponent<{
           <div
           //  className="boxi" style={{width: !own ? "100%" :"30%",textAlign: !own  ? "center" :'left'}}
            >
-              <img src={image} className="img-fluid" alt="" />
+              <img src={image} className="img-fluid" alt={company_name ? company_name :firstname ? `${firstname} ${lastname}` :`${Cookieuser} ${Cookielast}`}/>
           </div>
           <div className="G">
           {own && (

@@ -776,6 +776,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 <Form.Field style={{ margin: 0 }}>
                   <label id="Step2Lable">زمان اطلاع از اجاره</label>
                   <Input
+                  
                     name="daysToGetReminded"
                     style={{direction:'ltr', display: 'contents'}}
                     className="numstep daysToGetReminded"
@@ -801,7 +802,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                     >
                       <Icon name="plus" />
                     </Label>
-                    <input inputMode="numeric" />
+                    <input data-hj-whitelist inputMode="numeric" />
                     <Label
                       basic
                       onClick={(e, data) => {
@@ -846,7 +847,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                     >
                       <Icon name="plus" />
                     </Label>
-                    <input inputMode="numeric" />
+                    <input data-hj-whitelist inputMode="numeric" />
                     <Label
                       basic
                       onClick={(e, data) => {
@@ -887,7 +888,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                         : values.distanceLimit
                     }
                   >
-                    <input inputMode="numeric"  
+                    <input data-hj-whitelist inputMode="numeric"  
                   
                     />
                   </Form.Input>
@@ -929,7 +930,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                         : values.extraKm
                     }
                   >
-                    <input inputMode="numeric" />
+                    <input data-hj-whitelist inputMode="numeric" />
                   </Form.Input>
                   </div>
                   <span
@@ -1012,7 +1013,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                           : values.availableInAllPrice
                       }
                     >
-                      <input inputMode="numeric" />
+                      <input data-hj-whitelist inputMode="numeric" />
                     </Input>
                     <span
                       style={{

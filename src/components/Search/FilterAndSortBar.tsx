@@ -39,7 +39,7 @@ const FilterAndSort = styled.div`
         display: flow-root;
         margin: 0;
         li {
-            margin-right: 10px;
+            margin-right: 0px;
             &:first-child {
                 float: left;
             }

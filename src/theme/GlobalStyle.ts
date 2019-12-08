@@ -2281,6 +2281,9 @@ input[type="number"] {
   text-align: right;
   margin: 50px auto;
   min-height: 400px;
+  @media (max-width: 768px){
+    padding: 0px 15px;
+}
 }
 .AboutUsPage h1{
   font-size:30px;
@@ -2301,10 +2304,7 @@ input[type="number"] {
 .intends{
   padding-right:50px !important;
 }
-@media (max-width: 768px)
-.AboutUsPage {
-    padding: 0px 15px;
-}
+
 
 /* The container */
 .RadioButtonContainer {
@@ -3545,10 +3545,10 @@ input::placeholder{
 .delete_car_ICON{
   color: #4BA3CE !important;
   background: none !important;
-  font-size: 18px !important;
+  font-size: 20px !important;
   padding: 0 !important;
     float: left !important;
-    padding-left: 10px !important;
+    padding-left: 16px !important;
     padding-top: 4px !important;
     &:hover{
       background: none !important;

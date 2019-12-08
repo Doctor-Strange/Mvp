@@ -503,7 +503,7 @@ export default withTranslation("common")(
                 )}
               </ContentSideCard>
               <div className="mobileView">
-                <Insurance hasInsurance={this.insuranceCalculator}  insurance_total_price/>
+                <Insurance hasInsurance={this.insuranceCalculator}  insuranvePrice={insurance_total_price}/>
               </div>
               <ContentCard className="DesignReally">
                 <Grid>
@@ -542,7 +542,13 @@ export default withTranslation("common")(
                         </div>
                         <div className="ownerInCheckOut">
                           <div>
-                            <img src={owner.thumbnail_url} />
+                            <img src={owner.thumbnail_url} alt ={
+                              owner.company_name 
+                              ? owner.company_name 
+                              : owner.first_name  
+                                ? `${owner.first_name} ${owner.last_name}`  
+                                :null}/>
+                              
                           </div>
                           <div>
                             <span style={{ fontWeight: "bold" }}>
@@ -556,6 +562,7 @@ export default withTranslation("common")(
                           <div className="COMEOOON" style={{display:"inline-block",width: "170px",height:"120px", position:'relative',overflow:"hidden"}}>
                             <img
                             key="1"
+                            alt={`${car.brand.name.fa} ${car.name.fa}`}
                             src={media_set[0]}
                             onLoad = {(a)=>{this.setheightController(a)}}
                             style={{

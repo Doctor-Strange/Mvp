@@ -322,7 +322,7 @@ swal(
 
 
     deleteCarHandller = (userid , carid) => {
-      // console.log("test");
+      // console.log("test",carid);
      
         const DOMAIN = process.env.PRODUCTION_ENDPOINT;
         const token = jsCookie.get("token");
@@ -331,7 +331,7 @@ swal(
           .post(
             DOMAIN + DELETE_CAR,
             {
-              carid
+              id : carid
             },
             {
               headers: {
@@ -340,12 +340,16 @@ swal(
             }
           )
           .then(response => {
+            // console.log("test",response);
+
             localStorage.removeItem("CarEditId")
 
-            Router.push(`/user/id=${userid}`)
+            location.reload();
           })
           .catch(error => {
-            console.log(error.response.data.message);
+            // console.log("test",error.response);
+
+            console.log(error);
           });
         }
 

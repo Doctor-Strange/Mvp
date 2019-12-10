@@ -468,11 +468,12 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                                 <li>{extra_km_price ? `هزینه هر کیلومتر اضافه ${convertNumbers2Persian(numberWithCommas(extra_km_price))} تومان` : ""}</li>
                             </ul>
                         </Details>
-                        <Details title="توضیحات">
+                        {description && <Details title="توضیحات">
                             <pre>
-                            {description ? description : "ندارد"}
+                            { description}
                             </pre>
                         </Details>
+                        }
                         <Details title="مشخصات فنی">
                             <ul className="bullets">
                                 <li>نوع بدنه: {body_style.fa}</li>

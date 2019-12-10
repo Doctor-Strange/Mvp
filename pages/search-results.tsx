@@ -69,7 +69,7 @@ export default withRouter(
                     
                     const res = await REQUEST_getSearchForRent({
                         page: 0,
-                        limit: 8,
+                        limit: 14,
                         queryString
                     });
                     // console.log("result page props =>> ",res)
@@ -429,7 +429,7 @@ export default withRouter(
 
                         const res = await REQUEST_getSearchForRent({
                             page,
-                            limit: 8,
+                            limit: 14,
                             queryString
                         });
                         console.log("res1", res);

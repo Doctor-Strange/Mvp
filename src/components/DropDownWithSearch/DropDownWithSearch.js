@@ -56,6 +56,7 @@ class DropDownWithSearch extends Component {
           this.props.data.length < 1 && <span className="loader"> </span>}
         <input
         data-hj-whitelist
+        readOnly = {this.props.InputDisable}
           onBlur={() => {
             if (this.state.leave) {
               this.setState(pre => {
@@ -76,6 +77,8 @@ class DropDownWithSearch extends Component {
           onChange={e => {
             this.setState({
               data: this.props.data.filter(i => {
+                console.log(i.text , e.target.value);
+                
                 return i.text.match(e.target.value);
               })
             });

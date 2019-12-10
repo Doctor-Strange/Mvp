@@ -48,6 +48,9 @@ import { REQUEST_getFAQ } from "./Get/getFAQ";
 // Out of service
 import {REQUEST_set_out_of_service} from './Set/setOutOfServie'
 
+// Get Landing page
+import {REQUEST_getLanding} from './Get/getLanding'
+
 
 
 export {
@@ -78,5 +81,6 @@ export {
   REQUEST_getFAQ,
   REQUEST_set_out_of_service,
   REQUEST_setCompanyName,
-  REQUEST_setCarCoupan
+  REQUEST_setCarCoupan,
+  REQUEST_getLanding
 };

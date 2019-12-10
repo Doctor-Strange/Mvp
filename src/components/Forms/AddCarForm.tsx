@@ -288,18 +288,66 @@ export default withTranslation('common')(connect(state => state)(
         INterid  = localStorage["CarEditId"]
        }
 
-      console.log('INterid',INterid);
+      // console.log('INterid',INterid);
       const res = await REQUEST_getCar({
         id:INterid,
     });
     const incomming = res.data;
-    
+    if(!this.props.edit_mode && localStorage["CarEditId"]){
+      
+swal(
+  <div>
+      <h2>ثبت خودرو {incomming.car.brand.name.fa +" "+ incomming.car.name.fa} کامل نشده است</h2>
+  </div>, {
+      buttons: {
+        cancel: "ثبت خودرو",
+        catch: {
+          text: "حذف خودرو",
+          value: "done",
+        },
+      },
+  })
+  .then((value) => {
+      if(value === 'done'){
+        this.deleteCarHandller(incomming.owner.id , incomming.id)
+      }
+  });
+    }
     this.setState({
       fetchDataFromApi:true,
       incomming
     })
     
     }
+
+
+    deleteCarHandller = (userid , carid) => {
+      // console.log("test");
+     
+        const DOMAIN = process.env.PRODUCTION_ENDPOINT;
+        const token = jsCookie.get("token");
+        const DELETE_CAR = "/core/rental-car/delete";
+        axios
+          .post(
+            DOMAIN + DELETE_CAR,
+            {
+              carid
+            },
+            {
+              headers: {
+                Authorization: "Bearer " + token
+              }
+            }
+          )
+          .then(response => {
+            localStorage.removeItem("CarEditId")
+
+            Router.push(`/user/id=${userid}`)
+          })
+          .catch(error => {
+            console.log(error.response.data.message);
+          });
+        }
 
     componentDidMount() {
 if(!this.props.edit_mode && localStorage["CarEditId"]){
@@ -598,7 +646,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
           
         cblist[index].checked = true;
         IDs.push(id);
-        console.log("IDs",IDs);
+        // console.log("IDs",IDs);
 
         }
       })
@@ -739,7 +787,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
             actions: FormikActions<IAddCarFormValues>
           ) => {
             let HoleValues = {...this.state.incomming}
-            console.log("start", HoleValues);
+            // console.log("start", HoleValues);
             
             actions.setSubmitting(true);
             // if (!values.carCity) {
@@ -812,7 +860,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
               HoleValues.cylinder_id =  cylinder_id,
               HoleValues.value =  Number(value.replace(/,/g,""))
             }
-            console.log("after",HoleValues);
+            // console.log("after",HoleValues);
             
             // console.log({
             //   id :this.props.car_id ,
@@ -991,7 +1039,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
             touched
           }) => {
             if(this.state.fetchDataFromApi && this.state.checkboxes.length > 2){
-              console.log("this.state.incomming",this.state.incomming);
+              // console.log("this.state.incomming",this.state.incomming);
               this.setCityDistrict(1)
               values.carCity = 1;
               values.carDistrict = this.state.incomming.location.id;
@@ -1373,6 +1421,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                           clearField={()=>{
                             values.carYear =''
                           }}
+                          InputDisable = {true}
                           Select={(e) => {
                             values.carYear = e.value
                           }}

@@ -197,6 +197,7 @@ export default withTranslation("common")(
                     >
                       <label>شماره تلفن همراه</label>
                       <Input
+        data-hj-whitelist
                         name="phone"
                         inputProps={{
                           type: "tel",

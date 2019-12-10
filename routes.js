@@ -18,3 +18,4 @@ module.exports = routes()
   .add("guide-renter")
   .add("guide-for-rent")
   .add("otoli")
+  .add("rent", "/rent/:name");

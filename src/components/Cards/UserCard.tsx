@@ -292,6 +292,9 @@ export const UserCard: React.FunctionComponent<{
                 jsCookie.remove("first_name")
                 localStorage.removeItem("ImageUrl")
                 localStorage.removeItem("complete_register")
+                if(localStorage["CarEditId"]){
+                  localStorage.removeItem("CarEditId")
+                }
                 window.location.href = process.env.SITE_URL;
                 // window.location.href = "http://localhost:8080/";
                 }

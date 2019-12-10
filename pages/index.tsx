@@ -10,6 +10,7 @@ import * as seoImage from "../static/index-landing.jpg";
 import NextSeo from "next-seo";
 import { i18n, Link, withTranslation } from "../src/i18n";
 import insurance from "../static/SamanInsurance.png";
+import Router from 'next/router';
 import { GlobalStyle } from "../src/theme";
 
 const Page = props => {
@@ -48,7 +49,14 @@ const Page = props => {
         <div className="hero_single version_4">
           <Flex justifyContent="space-around" className="wrapper">
             <Box width={2 / 2} px={2}>
-              <h1>اتولی، اجاره آسان خودرو</h1>
+              <h1
+              onClick={()=>{
+                // console.log(`/rent/'اجاره-اتومبیل'`);
+                // return
+                Router.push({
+                  pathname:   `/rent/${decodeURIComponent('اجاره-اتومبیل')}`,
+                });
+              }}>اتولی، اجاره آسان خودرو</h1>
               <h2>
                 ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید.
               </h2>

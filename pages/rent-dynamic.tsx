@@ -507,7 +507,7 @@ export default withRouter(
             );
             queryString = `${searchParamKey}=${this.props.DynamicRes.data.search_params[searchParamKey]}&start_date=${startDate}&end_date=${endDate}&o=-price`;
             const res = await REQUEST_getSearchForRent({
-              page,
+              page : 0,
               limit: 14,
               queryString
             });
@@ -588,7 +588,7 @@ export default withRouter(
             // console.log('here we go again...!');
             const res = await REQUEST_getSearchForRent({
               page,
-              limit: 8,
+              limit: 14,
               result_key: this.state.latest_result_key,
               o: this.state.priceSort
             });

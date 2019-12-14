@@ -49,14 +49,7 @@ const Page = props => {
         <div className="hero_single version_4">
           <Flex justifyContent="space-around" className="wrapper">
             <Box width={2 / 2} px={2}>
-              <h1
-              onClick={()=>{
-                // console.log(`/rent/'اجاره-اتومبیل'`);
-                // return
-                Router.push({
-                  pathname:   `/rent/${decodeURIComponent('اجاره-اتومبیل-در-تهران')}`,
-                });
-              }}>اتولی، اجاره آسان خودرو</h1>
+              <h1>اتولی، اجاره آسان خودرو</h1>
               <h2>
                 ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید.
               </h2>

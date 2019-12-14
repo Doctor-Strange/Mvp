@@ -446,7 +446,7 @@ export default withRouter(
                         // console.log('here we go again...!');
                         const res = await REQUEST_getSearchForRent({
                             page,
-                            limit: 8,
+                            limit: 14,
                             result_key: this.state.latest_result_key,
                             o:this.state.priceSort
                         });

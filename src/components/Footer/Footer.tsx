@@ -388,6 +388,9 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                 <li>
                   <Link href="/insurance-policies"><a>شرایط و پوشش‌های بیمه</a></Link>
                 </li>
+                <li>
+                  <Link href={`/rent/${decodeURIComponent('اجاره-اتومبیل-در-تهران')}`}><a>اجاره اتومبیل در تهران</a></Link>
+                </li>
                 {/* <li>
                   <a href="#0">نمونه قرارداد فی‌مابین</a>
                 </li> */}

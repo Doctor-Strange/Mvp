@@ -18,4 +18,5 @@ module.exports = routes()
   .add("guide-renter")
   .add("guide-for-rent")
   .add("otoli")
-  .add("rent", "/rent/:name");
+  .add("rent-dynamic", "/rent/:name")
+  .add("rent", "/rent");

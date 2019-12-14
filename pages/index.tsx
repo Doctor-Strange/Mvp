@@ -54,7 +54,7 @@ const Page = props => {
                 // console.log(`/rent/'اجاره-اتومبیل'`);
                 // return
                 Router.push({
-                  pathname:   `/rent/${decodeURIComponent('اجاره-اتومبیل')}`,
+                  pathname:   `/rent/${decodeURIComponent('اجاره-اتومبیل-در-تهران')}`,
                 });
               }}>اتولی، اجاره آسان خودرو</h1>
               <h2>

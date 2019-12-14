@@ -11,6 +11,11 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
     } else {
       queryString = data.queryString;
     }
+    console.log(DOMAIN +
+      GET_SEARCH_FOR_RENT +
+      ('?limit=' + data.limit + '&page=' + data.page ) +
+      ('&' + queryString));
+    
     axios
       .get(
         DOMAIN +
@@ -22,6 +27,8 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
         // console.log("let's search", response);
 
         if (response.data.success) {
+          // console.log("dynamic ===> ",response.data );
+          
           const results = response.data.items.map((value, index) => ({
             key: value.index,
             id: value.id,

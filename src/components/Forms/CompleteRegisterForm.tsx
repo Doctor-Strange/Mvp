@@ -87,7 +87,7 @@ const BoxAccount = styled.div`
 interface ICompleteRegisterFormValues {
   firstName: string;
   lastName: string;
-  nationalid: string;
+  nationalid?: string;
   // emailAddress: string;
   password: string;
   day: number;
@@ -171,7 +171,7 @@ export default withTranslation('common')(
             initialValues={{
               firstName: '',
               lastName: '',
-              nationalid: '',
+              // nationalid: '',
               // emailAddress: '',
               password: '',
               day: null,
@@ -190,7 +190,7 @@ export default withTranslation('common')(
               const {
                 firstName,
                 lastName,
-                nationalid,
+                // nationalid,
                 // emailAddress,
                 password,
                 day,
@@ -205,7 +205,7 @@ export default withTranslation('common')(
                   {
                     first_name: firstName,
                     last_name: lastName,
-                    national_id: convertNumbers2English(nationalid),
+                    // national_id: convertNumbers2English(nationalid),
                     birth_date: `${year}/${month}/${day}`,
                     company_name:company_name,
                     // email: emailAddress,
@@ -219,7 +219,7 @@ export default withTranslation('common')(
                 )
                 .then(response => {
                   if (response.data.success) {
-                    // console.log(response.data);
+                    console.log(response.data);
                     // localStorage["complete_register"] = true
                     this.setState({
                       success: response.data.success,
@@ -296,29 +296,29 @@ export default withTranslation('common')(
                 t(" را پر کنید. ")
               ).min(2, t("نام باید حداقل ۲ حرف باشد"))
                 .max(30, t("نام می‌تواند حداکثر ۳۰ حرف باشد")),
-              nationalid: Yup.string()
-                .ensure() // convert undefined values to an empety string
-                .trim()
-                .required('')
-                .length(10, t("کد ملی باید ۱۰ رقم باشد"))
-                .test(
-                  'Validate National ID',
-                  t("کد ملی وارد شده معتبر نیست"),
-                  value => {
-                    const check = parseInt(value[9], 10);
-                    let sum = 0;
-                    let i;
-                    for (i = 0; i < 9; ++i) {
-                      sum += parseInt(value[i], 10) * (10 - i);
-                    }
-                    sum %= 11;
+              // nationalid: Yup.string()
+              //   .ensure() // convert undefined values to an empety string
+              //   .trim()
+              //   .required('')
+              //   .length(10, t("کد ملی باید ۱۰ رقم باشد"))
+              //   .test(
+              //     'Validate National ID',
+              //     t("کد ملی وارد شده معتبر نیست"),
+              //     value => {
+              //       const check = parseInt(value[9], 10);
+              //       let sum = 0;
+              //       let i;
+              //       for (i = 0; i < 9; ++i) {
+              //         sum += parseInt(value[i], 10) * (10 - i);
+              //       }
+              //       sum %= 11;
 
-                    return (
-                      (sum < 2 && check == sum) ||
-                      (sum >= 2 && check + sum == 11)
-                    );
-                  }
-                ),
+              //       return (
+              //         (sum < 2 && check == sum) ||
+              //         (sum >= 2 && check + sum == 11)
+              //       );
+              //     }
+              //   ),
               // emailAddress: Yup.string().email(
               //   t('forms.error_email_not_valid')
               // ),
@@ -405,7 +405,7 @@ export default withTranslation('common')(
                         </label>
                       )}
 
-                      <div className="field" id = "ControlFORMIKDIVITIONS">
+                      {/* <div className="field" id = "ControlFORMIKDIVITIONS">
                         <label>کد ملی</label>
                         <Input
                           // type={isMobile ? "number" : "text"}
@@ -422,14 +422,14 @@ export default withTranslation('common')(
                             : values.nationalid
                           }
                         >
-                          <input style={{ marginBottom: '0px !important' }} inputMode='numeric' /* novalidate pattern="[0-9]*/ />
+                          <input style={{ marginBottom: '0px !important' }} inputMode='numeric'  />
                         </Input>
                         {errors.nationalid && touched.nationalid && (
                           <span className="sui-error-message">
                             {errors.nationalid}
                           </span>
                         )}
-                      </div>
+                      </div> */}
                       {!this.state.ShowInput ?<p onClick={this.ShowInputHandller} className="addCompanyName">افزودن نام شرکت</p>
                       :<><Form.Field>
                         <Form.Input

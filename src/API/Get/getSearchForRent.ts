@@ -11,10 +11,10 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
     } else {
       queryString = data.queryString;
     }
-    console.log(DOMAIN +
-      GET_SEARCH_FOR_RENT +
-      ('?limit=' + data.limit + '&page=' + data.page ) +
-      ('&' + queryString));
+    // console.log(DOMAIN +
+    //   GET_SEARCH_FOR_RENT +
+    //   ('?limit=' + data.limit + '&page=' + data.page ) +
+    //   ('&' + queryString));
     
     axios
       .get(

@@ -79,6 +79,7 @@ export class SearchBar extends React.Component<{
   endDate: any;
   setfocusedInput: any;
   focusedInput: any;
+  DynamicSearch?:boolean
 }> {
   state = {
     error: '',
@@ -91,17 +92,22 @@ export class SearchBar extends React.Component<{
   }
 
   render() {
-    const { t, count, cities, startDate, endDate, focusedInput, city, cityName } = this.props;
+    const { t, count, cities, startDate, endDate, focusedInput, city, cityName, DynamicSearch } = this.props;
     const { setCity, setDate, setfocusedInput } = this.props;
     const { citiesFarsi, citiesEnglish } = cities;
     let start = "";
     let end = "";
     let loadingCity = false;
     let text = "نتیجه برای جستجو در ";
-    if (startDate && endDate) {
+    if (startDate && endDate) { 
+      if(DynamicSearch){ 
+        start = startDate;
+      end =endDate}
+    else{
       start = moment(startDate).format('jD jMMMM jYY');
       end = moment(endDate).format('jD jMMMM jYY');
     }
+  }
     if (!cityName) {
       loadingCity = true;
     }

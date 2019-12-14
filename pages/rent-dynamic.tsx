@@ -133,7 +133,7 @@ export default withRouter(
           return {
             namespacesRequired: ["common"],
             DynamicRes,
-            SSRender : true
+            SSRender: true
           };
         }
 
@@ -339,6 +339,11 @@ export default withRouter(
         }
 
         componentWillMount() {
+          if (this.props.SSRender) {
+            this.setState({
+              SSRender: this.props.SSRender
+            });
+          }
           // if ssr was working below line may help:
           // this.setState(this.props.results);
           // commented By ME ===>
@@ -429,27 +434,93 @@ export default withRouter(
 
         async renderResults(page = 1) {
           // send search resluts request
-          let queryString = "";
-
-          if (this.props.DynamicRes) {
-            console.log(this.props.DynamicRes);
-            let searchParamKey = Object.keys(this.props.DynamicRes.data.search_params);
-            queryString = `${searchParamKey}=${this.props.DynamicRes.data.search_params[searchParamKey]}&start_date=1398/10/01&end_date=1398/10/30&o=-price`;
+          const today = new Date().getDay();
+          let startDate = null;
+          let endDate = null;
+          const Tday = moment().format("jYYYY/jM/jD");
+          switch (today) {
+            case 0:
+              startDate = moment(Tday)
+                .add(3, "day")
+                .format("YYYY/M/D");
+              endDate = moment(Tday)
+                .add(5, "day")
+                .format("YYYY/M/D");
+              break;
+            case 1:
+              startDate = moment(Tday)
+                .add(2, "day")
+                .format("YYYY/M/D");
+              endDate = moment(Tday)
+                .add(4, "day")
+                .format("YYYY/M/D");
+              break;
+            case 2:
+              startDate = moment(Tday)
+                .add(1, "day")
+                .format("YYYY/M/D");
+              endDate = moment(Tday)
+                .add(3, "day")
+                .format("YYYY/M/D");
+              break;
+            case 3:
+              startDate = moment(Tday)
+                .add(1, "day")
+                .format("YYYY/M/D");
+              endDate = moment(Tday)
+                .add(2, "day")
+                .format("YYYY/M/D");
+              break;
+            case 4:
+              startDate = moment(Tday)
+                .add(1, "day")
+                .format("YYYY/M/D");
+              endDate = moment(Tday)
+                .add(2, "day")
+                .format("YYYY/M/D");
+              break;
+            case 5:
+              startDate = moment(Tday)
+                .add(1, "day")
+                .format("YYYY/M/D");
+              endDate = moment(Tday)
+                .add(2, "day")
+                .format("YYYY/M/D");
+              break;
+            case 6:
+              startDate = moment(Tday)
+                .add(4, "day")
+                .format("YYYY/M/D");
+              endDate = moment(Tday)
+                .add(6, "day")
+                .format("YYYY/M/D");
+              break;
+            default:
+              break;
+          }
+          // console.log(startDate,
+          //   endDate);
+          if (this.state.SSRender) {
+            let queryString = "";
+            let searchParamKey = Object.keys(
+              this.props.DynamicRes.data.search_params
+            );
+            queryString = `${searchParamKey}=${this.props.DynamicRes.data.search_params[searchParamKey]}&start_date=${startDate}&end_date=${endDate}&o=-price`;
             const res = await REQUEST_getSearchForRent({
               page,
               limit: 14,
               queryString
             });
-            console.log("res1", res);
+            // console.log("res1 SSR", res);
 
             this.setState({
               ...res,
-              page: 1
+              SSRender: false,
+              startDate,
+              endDate
             });
-            return;
-          }
-
-          if (page === 1) {
+          } else if (page === 1) {
+            let queryString = "";
             let shownURL = "";
             if (this.state.city) {
               queryString = queryString + `location_id=${this.state.city}&`;
@@ -458,16 +529,10 @@ export default withRouter(
             if (this.state.startDate && this.state.endDate) {
               queryString =
                 queryString +
-                `start_date=${moment(this.state.startDate).format(
-                  "jYYYY/jMM/jDD"
-                )}&end_date=${moment(this.state.endDate).format(
-                  "jYYYY/jMM/jDD"
-                )}&`;
+                `start_date=${this.state.startDate}&end_date=${this.state.endDate}&`;
               shownURL =
                 shownURL +
-                `start=${moment(this.state.startDate).format(
-                  "jYYYY/jMM/jDD"
-                )}&end=${moment(this.state.endDate).format("jYYYY/jMM/jDD")}&`;
+                `start=${this.state.startDate}&end=${this.state.endDate}&`;
             }
             if (this.state.brand) {
               queryString = queryString + `brand_id=${this.state.brand}&`;
@@ -509,7 +574,7 @@ export default withRouter(
               limit: 14,
               queryString
             });
-            console.log("res1", res);
+            // console.log("res1", res);
 
             this.setState({
               ...res,
@@ -527,8 +592,6 @@ export default withRouter(
               result_key: this.state.latest_result_key,
               o: this.state.priceSort
             });
-            console.log("res2", res);
-
             const stateTemp = this.state.results;
             const resultsTemp = res.results;
             delete res.results;
@@ -578,11 +641,7 @@ export default withRouter(
             <Layout haveSubHeader={true} pageTitle={"Hello World"}>
               <NextSeo
                 config={{
-                  title: `جستجو برای تهران، از ${moment(
-                    this.state.startDate
-                  ).format("jYYYY/jMM/jDD")} تا ${moment(
-                    this.state.endDate
-                  ).format("jYYYY/jMM/jDD")} | اتولی`,
+                  title: `جستجو برای تهران، از ${this.state.startDate} تا ${this.state.endDate} | اتولی`,
                   description: `اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.    `,
                   openGraph: {
                     title: `درباره اتولی`,
@@ -597,6 +656,7 @@ export default withRouter(
                 }}
               />
               <SearchBar
+                DynamicSearch = {true}
                 count={total_count}
                 t={t}
                 setDate={this.setDate}

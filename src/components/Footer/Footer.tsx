@@ -1,18 +1,19 @@
 /* tslint:disable */
-import * as React from 'react';
-import Link from 'next/link';
-import styled from 'styled-components';
-import { Button, Icon } from 'semantic-ui-react'
-import * as CardsAll from '../../../static/cards_all.svg';
+import * as React from "react";
+import Link from "next/link";
+import styled from "styled-components";
+import { Button, Icon } from "semantic-ui-react";
+import * as CardsAll from "../../../static/cards_all.svg";
 import { ITheme } from "../../theme/Interfaces";
 
 const FooterTag = styled.footer`
-  border-top: 1px solid ${({ theme }: { theme: ITheme }) => theme.color.cardLabels};
+  border-top: 1px solid
+    ${({ theme }: { theme: ITheme }) => theme.color.cardLabels};
   background-color: #fff;
-  .container{
+  .container {
     padding-top: 60px;
     padding-bottom: 15px;
-    @media (max-width:480px){
+    @media (max-width: 480px) {
       padding-top: 20px;
     }
   }
@@ -26,7 +27,7 @@ const FooterTag = styled.footer`
       // margin: 0;
     }
   }
-  .jus{
+  .jus {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +37,8 @@ const FooterTag = styled.footer`
     display: block;
     cursor: default;
     @media (max-width: 575px) {
-      border-bottom: 1px solid ${({ theme }: { theme: ITheme }) => theme.color.cardLabels};
+      border-bottom: 1px solid
+        ${({ theme }: { theme: ITheme }) => theme.color.cardLabels};
       padding: 12px 0;
     }
     .circle-plus {
@@ -63,7 +65,7 @@ const FooterTag = styled.footer`
         transition: all 0.3s ease-in-out;
         display: inline-block;
         position: relative;
-        color:${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
+        color: ${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
         :hover {
           opacity: 1;
         }
@@ -82,7 +84,8 @@ const FooterTag = styled.footer`
         }
         :hover:after {
           opacity: 1;
-          color: ${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
+          color: ${({ theme }: { theme: ITheme }) =>
+            theme.color.mainForeground};
         }
       }
     }
@@ -112,17 +115,17 @@ const FooterTag = styled.footer`
     // justify-content: center;
     // align-items: center;
     // flex-direction: column;
-    .iconContainer{
-      a{
-        i{
-          @media (max-width:575px){
+    .iconContainer {
+      a {
+        i {
+          @media (max-width: 575px) {
             font-size: 2em;
           }
         }
       }
     }
-    a{
-      margin:10px;
+    a {
+      margin: 10px;
     }
     h5 {
       font-size: 16px;
@@ -170,23 +173,23 @@ const AdditionalLinks = styled.div`
   font-size: 13px;
   font-size: 0.8125rem;
   // float: right;
-  position:relative;
+  position: relative;
   @media (max-width: 991px) {
     float: none;
     margin-top: 10px;
   }
-  @media (max-width: 480px){
+  @media (max-width: 480px) {
     margin-top: 26px;
-}
-  .ver{
-    color:#ccc;
-    position:absolute;
+  }
+  .ver {
+    color: #ccc;
+    position: absolute;
     left: 20px;
-    @media (max-width:480px){
-      left:2px;
+    @media (max-width: 480px) {
+      left: 2px;
     }
   }
-  p{
+  p {
     text-align: center;
   }
   li {
@@ -196,7 +199,7 @@ const AdditionalLinks = styled.div`
       margin-right: 20px;
     }
     :last-child:after {
-      content: '';
+      content: "";
     }
     span {
       color: #555;
@@ -241,7 +244,7 @@ const Newsletter = styled.div`
     position: relative;
   }
 
-  input[type='email'] {
+  input[type="email"] {
     border: 0;
     height: 40px;
     border-radius: 0;
@@ -255,7 +258,7 @@ const Newsletter = styled.div`
       box-shadow: none;
     }
   }
-  input[type='submit'] {
+  input[type="submit"] {
     position: absolute;
     right: 0;
     color: #fff;
@@ -269,7 +272,8 @@ const Newsletter = styled.div`
     line-height: 42px;
     cursor: pointer;
     border-radius: 0 3px 3px 0;
-    background-color: ${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
+    background-color: ${({ theme }: { theme: ITheme }) =>
+      theme.color.mainForeground};
     transition: all 0.3s ease-in-out;
     outline: none;
 
@@ -357,7 +361,10 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               </ul>
             </div>
           </div> */}
-          <div className="col-lg-3 col-md-6 col-sm-6" style={{ borderLeft: "1px solid #e8e8e8" }}>
+          <div
+            className="col-lg-3 col-md-6 col-sm-6"
+            style={{ borderLeft: "1px solid #e8e8e8" }}
+          >
             {/* <a
               data-toggle="collapse"
               data-target="#collapse_ft_2"
@@ -374,22 +381,38 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
             <div className="collapse show" id="collapse_ft_2">
               <ul className="links">
                 <li>
-                  <Link href="/about-us"><a>درباره ما</a></Link>
+                  <Link href="/about-us">
+                    <a>درباره ما</a>
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/otoli"><a>اتولی چگونه کار می‌کند؟</a></Link>
+                  <Link href="/otoli">
+                    <a>اتولی چگونه کار می‌کند؟</a>
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/faq"><a>سوالات متداول</a></Link>
+                  <Link href="/faq">
+                    <a>سوالات متداول</a>
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/our-policies"><a>شرایط و قوانین استفاده</a></Link>
+                  <Link href="/our-policies">
+                    <a>شرایط و قوانین استفاده</a>
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/insurance-policies"><a>شرایط و پوشش‌های بیمه</a></Link>
+                  <Link href="/insurance-policies">
+                    <a>شرایط و پوشش‌های بیمه</a>
+                  </Link>
                 </li>
                 <li>
-                  <Link href={`/rent/${decodeURIComponent('اجاره-اتومبیل-در-تهران')}`}><a>اجاره اتومبیل در تهران</a></Link>
+                  <Link
+                    href={`/rent/${decodeURIComponent(
+                      "اجاره-اتومبیل-در-تهران"
+                    )}`}
+                  >
+                    <a>اجاره اتومبیل در تهران</a>
+                  </Link>
                 </li>
                 {/* <li>
                   <a href="#0">نمونه قرارداد فی‌مابین</a>
@@ -411,24 +434,34 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
               </div>
               <h3>Keep in touch</h3>
             </a> */}
-            <div className="follow_us" >
-              <h3 style={{ color: '#929292' }}>ما را در شبکه‌های اجتماعی دنبال کنید:</h3>
+            <div className="follow_us">
+              <h3 style={{ color: "#929292" }}>
+                ما را در شبکه‌های اجتماعی دنبال کنید:
+              </h3>
               {/* <Icon name='facebook' /> */}
               <div className="iconContainer">
                 <a target="_black" href="https://www.instagram.com/otoli_net/">
-                  <Icon size='large' name='instagram' />
+                  <Icon size="large" name="instagram" />
                 </a>
                 {/* <Icon name='google plus' /> */}
                 {/* <Icon name='vk' /> */}
 
                 <a target="_black" href="https://twitter.com/otoli_net">
-                  <Icon size='large' name='twitter' />
+                  <Icon size="large" name="twitter" />
                 </a>
                 <a target="_black" href="https://t.me/otoli_net">
-                  <Icon size='large' name='telegram' />
+                  <Icon size="large" name="telegram" />
                 </a>
               </div>
-              <p style={{ color: '#929292',    marginTop: '16px', fontWeight: '500' }} >شماره تماس: <a href="tel:02188567759">۰۲۱۸۸۵۶۷۷۵۹</a></p>
+              <p
+                style={{
+                  color: "#929292",
+                  marginTop: "16px",
+                  fontWeight: "500"
+                }}
+              >
+                شماره تماس: <a href="tel:02188567759">۰۲۱۸۸۵۶۷۷۵۹</a>
+              </p>
               {/* <Icon name='youtube' /> */}
             </div>
           </div>
@@ -474,9 +507,17 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           </div> */}
           <div className="col-lg-12">
             <AdditionalLinks>
-              <span className="ver">
-                1.5.22
-                </span>
+              <span className="ver">1.5.23</span>
+              <Link href="/site-map">
+                <a
+                  style={{
+                    // color: "transparent",
+                    display: "inline-block"
+                  }}
+                >
+                  site map
+                </a>
+              </Link>
               <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
             </AdditionalLinks>
           </div>

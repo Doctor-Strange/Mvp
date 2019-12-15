@@ -12,12 +12,15 @@ import {
 } from '../src/constants/env';
 import * as Sentry from '@sentry/browser';
 
+// import ReactGA from 'react-ga';
+// ReactGA.initialize('UA-147651642-1');
 
-import TagManager from 'react-gtm-module'
 
-const tagManagerArgs = {
-  gtmId: 'GTM-TN3MV4L'
-}
+// import TagManager from 'react-gtm-module'
+
+// const tagManagerArgs = {
+//   gtmId: 'GTM-TN3MV4L'
+// }
 
 process.on('unhandledRejection', (err) => {
   Sentry.captureException(err);
@@ -30,7 +33,10 @@ process.on('uncaughtException', (err) => {
 
 export default class extends Document {
   componentDidMount () {
-    TagManager.initialize(tagManagerArgs)
+    // TagManager.initialize(tagManagerArgs)
+    // ReactGA.pageview(window.location.pathname + window.location.search);
+    
+
   }
   static async getInitialProps(...args) {
     const { req, renderPage } = args[0];
@@ -64,7 +70,15 @@ export default class extends Document {
                   a.appendChild(r);
               })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
         }}>
-        </script> 
+        </script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147651642-1"></script>
+        <script dangerouslySetInnerHTML={{
+          __html:`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-147651642-1');`}}>
+</script> 
         <script  dangerouslySetInnerHTML={{
           __html: `<!-- Google Tag Manager -->
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

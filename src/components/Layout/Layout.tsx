@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { i18n, withTranslation } from '../../i18n';
 import { actions } from "../../store";
 import { ITheme } from "../../theme/Interfaces";
-import { initGA, logPageView } from '../../utils/analytics.js'
+// import { initGA, logPageView } from '../../utils/analytics.js'
 
 
 class Layout extends React.Component<{
@@ -40,10 +40,10 @@ class Layout extends React.Component<{
   handleSidebarHide = () => this.setState({ visible: false });
 
   componentDidMount() {
-    if (!window.GA_INITIALIZED) {
-      initGA()
-      window.GA_INITIALIZED = true
-    }
+    // if (!window.GA_INITIALIZED) {
+    //   initGA()
+    //   window.GA_INITIALIZED = true
+    // }
     // document.addEventListener("click",(e)=>{
     //     console.log(document.querySelector(".DatePicker").children)
     //   })

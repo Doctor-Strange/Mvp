@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { i18n, withTranslation } from '../../i18n';
 import { actions } from "../../store";
 import { ITheme } from "../../theme/Interfaces";
+import { initGA, logPageView } from '../../utils/analytics.js'
 
 
 class Layout extends React.Component<{
@@ -45,6 +46,11 @@ class Layout extends React.Component<{
     if (this.props.onRef) this.props.onRef(this);
   }
   componentWillUnmount() {
+    if (!window.GA_INITIALIZED) {
+      initGA()
+      window.GA_INITIALIZED = true
+    }
+    logPageView()
     if (this.props.onRef) this.props.onRef(undefined);
   }
 

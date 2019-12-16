@@ -9,7 +9,8 @@ export const REQUEST_getLanding = (data: Iunique_id) => {
     axios
       .post(DOMAIN + GET_LANDING_PAGE + "?unique_id=" + encodeURI(data.name))
       .then(response => {
-
+        // console.log(response);
+        
         if (response.data.success) {
           resolve(response.data);
         } else {

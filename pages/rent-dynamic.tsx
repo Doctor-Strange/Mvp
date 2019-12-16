@@ -339,6 +339,8 @@ export default withRouter(
         }
 
         componentWillMount() {
+          // console.log(this.props.DynamicRes);
+          
           if (this.props.SSRender) {
             this.setState({
               SSRender: this.props.SSRender

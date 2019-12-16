@@ -40,17 +40,16 @@ class Layout extends React.Component<{
   handleSidebarHide = () => this.setState({ visible: false });
 
   componentDidMount() {
+    if (!window.GA_INITIALIZED) {
+      initGA()
+      window.GA_INITIALIZED = true
+    }
     // document.addEventListener("click",(e)=>{
     //     console.log(document.querySelector(".DatePicker").children)
     //   })
     if (this.props.onRef) this.props.onRef(this);
   }
   componentWillUnmount() {
-    if (!window.GA_INITIALIZED) {
-      initGA()
-      window.GA_INITIALIZED = true
-    }
-    logPageView()
     if (this.props.onRef) this.props.onRef(undefined);
   }
 

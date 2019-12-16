@@ -10,13 +10,17 @@ import { ToastContainer } from 'react-toastify';
 import { i18n, appWithTranslation } from '../src/i18n';
 import { Provider, actions } from '../src/store';
 import * as Sentry from '@sentry/browser';
+import ReactGA from 'react-ga';
 
 Sentry.init({
   dsn: 'https://5457324b508844abba775737bc14838e@sentry.io/1547488'
 });
 
 Router.events.on('routeChangeStart', url => {
-  //console.log(`Loading: ${url}`);
+
+  console.log(`routeChangeStart: ${url}`);
+  var ga = ReactGA.ga();
+ga('send', 'pageview', `${url}`);
   // console.log('App is changing to: ', url)
   NProgress.start();
 });

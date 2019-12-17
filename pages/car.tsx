@@ -530,14 +530,34 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                 </Section>
                 <CommentSection />
                 {isMobile && !this.state.hideTheseGuys && isAllowed !== "true" ?
-                    this.props.owner.id.toString() !== jsCookie.get('user_id') ? <Button
+                    this.props.owner.id.toString() !== jsCookie.get('user_id') ? <div 
+                    style={{
+                        zIndex: "55",
+                        position: "fixed",
+                        borderRadius: "0px",
+                        margin: "0px",
+                        boxShadow: "0px -1px 3px #ccc",
+                        width: "100%",
+                        bottom: "0",
+                        padding: "10px 15px",
+                        display: "flex",
+                        justifyContent: "start",
+                        alignItems: "center",
+                        background: "#fff"
+                    }}
+                    >
+                    <span
+                    style={{
+                        fontSize: '12px',
+                        paddingRight: '10px',
+                    }}>.دراین مرحله هزینه‌ای اخذ نمی‌شود</span>
+                        <Button
                         style={{
-                            zIndex: '55',
-                            bottom: '0',
-                            position: 'fixed',
-                            borderRadius: '0',
-                            margin: '0',
-                            height: '56px'
+                            width: "50%",
+                            textAlign: "center",
+                            height: "40px",
+                            fontSize: "12px",
+                            padding: "4px 10px",
                         }}
                         primary
                         type="submit"
@@ -554,7 +574,9 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                             display: 'block',
                         }}>.دراین مرحله هزینه‌ای اخذ نمی‌شود</small> */}
 
-                    </Button> : null
+                    </Button>
+                    </div>
+                     : null
                     : null
                 }
             </Layout >

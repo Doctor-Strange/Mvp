@@ -18,7 +18,7 @@ Sentry.init({
 
 Router.events.on('routeChangeStart', url => {
 
-  console.log(`routeChangeStart: ${url}`);
+  // console.log(`routeChangeStart: ${url}`);
   // var ga = ReactGA.ga();
 // ga('send', 'pageview', `${url}`);
   // console.log('App is changing to: ', url)

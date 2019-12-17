@@ -671,15 +671,42 @@ export default withTranslation("common")(
               </ContentCard>
             </Section>
             {isMobile && (
+              <div 
+              style={{
+                  zIndex: "55",
+                  position: "fixed",
+                  borderRadius: "0px",
+                  margin: "0px",
+                  boxShadow: "0px -1px 3px #ccc",
+                  width: "100%",
+                  bottom: "0",
+                  padding: "10px 15px",
+                  display: "flex",
+                  justifyContent: "start",
+                  alignItems: "center",
+                  background: "#fff"
+              }}
+              >
+              <span
+              style={{
+                  fontSize: '12px',
+                  paddingRight: '10px',
+              }}>.هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت
+              خواهید کرد</span>
               <Button
               loading={this.state.loading}
                 style={{
-                  zIndex: "55",
-                  bottom: "0",
-                  position: "fixed",
-                  borderRadius: "0",
-                  margin: "0",
-                  height: "56px"
+                  // zIndex: "55",
+                  // bottom: "0",
+                  // position: "fixed",
+                  // borderRadius: "0",
+                  // margin: "0",
+                  // height: "56px"
+                  width: "50%",
+                            textAlign: "center",
+                            height: "40px",
+                            fontSize: "12px",
+                            padding: "4px 10px",
                 }}
                 primary
                 type="submit"
@@ -688,6 +715,7 @@ export default withTranslation("common")(
               >
                 ثبت درخواست
               </Button>
+              </div>
             )}
           </Layout>
         );

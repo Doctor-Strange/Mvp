@@ -654,7 +654,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                     <Grid.Column width={10} className="right" id="HardControlright" style={{ paddingRight: '0' }}>
                                     {statusOwner === "owner" ?
                                     <Link route={(renterInfo.username ? `/@${renterInfo.username}` : `/user/${renterInfo.id}`)}>
-                                        <strong style={{color: '#4ba3ce',cursor: 'pointer'}}><Icon name="user circle" /> {company_name? company_name:`${renterInfo.first_name +renterInfo.last_name}` } </strong>
+                                        <strong style={{color: '#4ba3ce',cursor: 'pointer'}}><Icon name="user circle" /> {renterInfo.company_name? company_name:`${renterInfo.first_name +" "+renterInfo.last_name}` } </strong>
                                         </Link>
 
 :<Link route={(ownerInfo.username ? `/@${ownerInfo.username}` : `/user/${ownerInfo.id}`)}>

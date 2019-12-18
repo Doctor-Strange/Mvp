@@ -20,6 +20,7 @@ const SET_ORDER_RATE = {
 };
 
 export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
+  // console.log(data)
   return new Promise((resolve, reject) => {
     let ACTION_URL;
     let more;
@@ -104,6 +105,7 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
         }
       )
       .then(response => {
+        console.log(response)
         resolve(response.data);      
         data.action !== "pay" &&
           toast.success(message, {
@@ -116,7 +118,7 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
           });
       })
       .catch(error => {
-        console.log(error.responce)
+        console.log(error.response)
         reject(error);
       });
   });

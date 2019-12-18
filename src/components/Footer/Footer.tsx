@@ -405,7 +405,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                     <a>شرایط و پوشش‌های بیمه</a>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     href={`/rent/${decodeURIComponent(
                       "اجاره-اتومبیل-در-تهران"
@@ -413,7 +413,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
                   >
                     <a>اجاره اتومبیل در تهران</a>
                   </Link>
-                </li>
+                </li> */}
                 {/* <li>
                   <a href="#0">نمونه قرارداد فی‌مابین</a>
                 </li> */}
@@ -507,11 +507,11 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           </div> */}
           <div className="col-lg-12">
             <AdditionalLinks>
-              <span className="ver">1.6.5</span>
+              <span className="ver">1.6.6</span>
               <Link href="/site-map">
                 <a
                   style={{
-                    // color: "transparent",
+                    color: "transparent",
                     display: "inline-block"
                   }}
                 >

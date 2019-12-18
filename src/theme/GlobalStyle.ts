@@ -3566,6 +3566,16 @@ input::placeholder{
   @media (max-width:768px){
     height: 500px !important;
 }
+}
+#Add-Car_box{
+  width: 60%;
+    padding: 10px;
+    margin: auto;
+    border-radius: 4px;
+    flex-direction: column;
+    margin-top: 103px;
+    margin-bottom: 20vh;
+}
 `;
 
 enum Margin {

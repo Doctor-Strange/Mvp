@@ -2207,7 +2207,9 @@ id="JustPersian"
         </Formik>
       );
       else return (
-        <Error404 token={token} openModal={this.props.openModal} />
+        <div id ="Add-Car_box">
+          <Error404 token={token} openModal={this.props.openModal} />
+        </div>
       )
     }
   }

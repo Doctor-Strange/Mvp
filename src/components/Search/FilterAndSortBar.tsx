@@ -33,7 +33,7 @@ const FilterAndSort = styled.div`
     padding: 10px 0 5px 0;
     // background: ${({theme}:{theme:ITheme}) => theme.color.whiteBackground};
     border-bottom: 1px solid ${({theme}:{theme:ITheme}) => theme.color.fadedGray};
-    z-index: 99 !important;
+    // z-index: 99 !important;
     position: relative;
     ul {
         display: flow-root;

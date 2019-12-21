@@ -489,7 +489,6 @@ export default withTranslation("common")(
                       onClick={() => {
                         this.reserve(search_id);
                       }}
-                      color="teal"
                     >
                       ثبت درخواست
                     </Button>

@@ -542,7 +542,6 @@ export const UserCard: React.FunctionComponent<{
                         style={{ height: "48px", marginTop: "16px" }}
                         size="small"
                         fluid
-                        color="teal"
                         type="submit"
                         loading={isSubmitting}
                       >
@@ -557,7 +556,6 @@ export const UserCard: React.FunctionComponent<{
                         size="small"
                         basic
                         fluid
-                        color="teal"
                         onClick={() => {
                           setEditMode(false);
                         }}

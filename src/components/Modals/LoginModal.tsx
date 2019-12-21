@@ -207,7 +207,7 @@ export default withTranslation("common")(
                         }}
                       />
 
-                      <div className="text-center">
+                      <div className="text-center" data-hj-whitelist>
                         <Button.Submit
                           loading={isSubmitting}
                           primary
@@ -394,6 +394,7 @@ export default withTranslation("common")(
                         </label>
                         {/* <div className="notShowErrors"> */}
                         <Input
+                        data-hj-whitelist
                           name="code"
                           inputProps={{
                             type: "number",

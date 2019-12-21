@@ -120,13 +120,14 @@ end?:string;
                 size='large'
                 fluid
                 onClick={reserveFunction}
-                color='teal'>تکمیل درخواست اجاره</Button>
+                color='teal'>ادامه</Button>
                 
             <div
                 style={{ marginTop: '8px' }}
                 className="text-center"
             >
-                <small>.دراین مرحله هزینه‌ای اخذ نمی‌شود</small>
+                <small dir="rtl">هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت
+                    خواهید کرد.</small>
             </div>
             </>
             : null}

@@ -641,6 +641,7 @@ export default withTranslation("common")(
               <div className="DeskView">
                 <Insurance hasInsurance={this.insuranceCalculator} insuranvePrice={insurance_total_price} />
               </div>
+              <div style={{marginTop:'-23px'}}>
               <ContentCard className="Nadarim">
                 <List boldLastItem={false}>
                   <div className="dateFatherCheckout" style={{ fontWeight: 100 }}>
@@ -669,6 +670,7 @@ export default withTranslation("common")(
                   </div>
                 </List>
               </ContentCard>
+              </div>
             </Section>
             {isMobile && (
               <div 
@@ -688,12 +690,21 @@ export default withTranslation("common")(
               }}
               >
               <span
+              dir="rtl"
               style={{
-                  fontSize: '12px',
+                width: '50%',
+                fontSize: '12px',
                   paddingRight: '10px',
-              }}>.هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت
-              خواهید کرد</span>
-              <Button
+              }}>هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت
+              خواهید کرد.</span>
+              
+              <div
+                        style ={{
+                            width: '50%',
+                            textAlign: 'right',
+                            direction: 'rtl',
+                        }}
+                        ><Button
               loading={this.state.loading}
                 style={{
                   // zIndex: "55",
@@ -702,7 +713,7 @@ export default withTranslation("common")(
                   // borderRadius: "0",
                   // margin: "0",
                   // height: "56px"
-                  width: "50%",
+                  width: "138px",
                             textAlign: "center",
                             height: "40px",
                             fontSize: "12px",
@@ -715,6 +726,7 @@ export default withTranslation("common")(
               >
                 ثبت درخواست
               </Button>
+              </div>
               </div>
             )}
           </Layout>

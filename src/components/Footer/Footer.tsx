@@ -1,7 +1,9 @@
 /* tslint:disable */
 import * as React from "react";
+import { useState,useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import Router from 'next/router';
 import { Button, Icon } from "semantic-ui-react";
 import * as CardsAll from "../../../static/cards_all.svg";
 import { ITheme } from "../../theme/Interfaces";
@@ -302,10 +304,16 @@ const FooterSelector = styled.ul`
   }
 `;
 
-const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
+const Footer: React.FunctionComponent = ({ changeLangFunc }) => {
+  const [hider,setHider] = useState(false)
+
+  useEffect(()=>{
+    if(Router.route==="/checkout") setHider(true)
+  },[])
+  return(
   <>
     <div id="toTop" />
-    <FooterTag className="plus_border">
+    <FooterTag className={["plus_border",  hider ? "removeFooter" : ""].join(" ")}>
       <div className="container" dir="rtl">
         <div className="row">
           {/* <div className="col-lg-3 col-md-6 col-sm-6">
@@ -507,7 +515,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
           </div> */}
           <div className="col-lg-12">
             <AdditionalLinks>
-              <span className="ver">1.6.7</span>
+              <span className="ver">1.6.9</span>
               <Link href="/site-map">
                 <a
                   style={{
@@ -525,6 +533,6 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => (
       </div>
     </FooterTag>
   </>
-);
+)};
 
 export default Footer;

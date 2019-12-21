@@ -66,7 +66,7 @@ const Rent = props => {
         </div>
       </Section>
 
-      <div style={{ background: "#fafafa" , marginBottom:'30px' }}>
+      <div style={{ background: "#fafafa" }}>
         <section className="insurance responsive">
           <div>
             <div className="insuranceBox">
@@ -85,7 +85,7 @@ const Rent = props => {
             </div>
           </div>
         </section>
-       {/* <section className="responsive WHITE whyOtoli">
+       <section className="responsive WHITE whyOtoli">
            <h2>چرا از اتولی ماشین اجاره کنیم؟</h2>
           <div className="WhyOtolicontainer">
             <section className="WhyOtolibox">
@@ -149,7 +149,7 @@ const Rent = props => {
               <a>ماشین‌تان را اضافه کنید</a>
             </Link>
           </div>
-        </section>*/}
+        </section>
       </div>
     </Layout>
   );

@@ -2197,13 +2197,13 @@ input[type="number"] {
   .Nadarim{
   display:block;
   border-radius: 3px;
-  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
+  // box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
     position: relative;
     width: 100%;
     min-height: 1px;
     background: #fff;
     padding-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: -8px;
   }
   .DesignReally{
     background-color: #fff;
@@ -2236,7 +2236,8 @@ input[type="number"] {
   width: 55%;
   @media (max-width:991px){
     width: 00%;
-    
+    font-size: 22px;
+    margin-left: -21px;
   }
 }
 .mobileView{
@@ -3575,6 +3576,28 @@ input::placeholder{
     flex-direction: column;
     margin-top: 103px;
     margin-bottom: 20vh;
+}
+@media (max-width:768px){
+  .removeFooter {
+    display:none !important
+  }
+}
+.D_h1{
+  font-size:22px !important;
+  color:#2a2a2a !important;
+  margin:20px 0 12px !important;
+}
+.D_h4{
+  font-size:16px !important;
+  color:#2a2a2a !important;
+  font-weight:400
+}
+.D_Content{
+  direction: rtl;
+  background:#fff;
+  padding: 24px;
+  margin-bottom:16px;
+  box-shadow: 0px 1px 5px 1px #0000000f;
 }
 `;
 

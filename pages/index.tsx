@@ -17,6 +17,8 @@ const Page = props => {
   const [heightSetter, SetHeight] = useState(false)
   // <Layout haveSubHeader={true} pageTitle={'Hello World'} bgImage={backgroundImage}>
   useEffect(()=>{
+    console.log(`https://otoli.net${seoImage}`);
+    
       if(window.innerHeight <= 666){
         SetHeight(true)
       }

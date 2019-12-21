@@ -4,6 +4,8 @@ const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_SEARCH_FOR_RENT = '/core/rental-car/search-for-rent/list';
 
 export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
+  console.log("data ===>", data);
+  
   return new Promise((resolve, reject) => {
     let queryString;
     if (data.result_key) {

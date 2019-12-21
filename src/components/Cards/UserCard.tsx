@@ -290,6 +290,7 @@ export const UserCard: React.FunctionComponent<{
                 jsCookie.remove("phone")
                 jsCookie.remove("last_name")
                 jsCookie.remove("first_name")
+                jsCookie.remove("company_name")
                 localStorage.removeItem("ImageUrl")
                 localStorage.removeItem("complete_register")
                 if(localStorage["CarEditId"]){

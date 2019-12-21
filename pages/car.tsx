@@ -546,14 +546,23 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                         background: "#fff"
                     }}
                     >
-                    <span
+                    <span dir="rtl"
                     style={{
-                        fontSize: '12px',
+                            width: '50%',
+                            fontSize: '12px',
                         paddingRight: '10px',
-                    }}>.دراین مرحله هزینه‌ای اخذ نمی‌شود</span>
-                        <Button
+                    }}>هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت
+                    خواهید کرد.</span>
+                        <div
+                        style ={{
+                            width: '50%',
+                            textAlign: 'right',
+                            direction: 'rtl',
+                        }}
+                        >
+                            <Button
                         style={{
-                            width: "50%",
+                            width: "138px",
                             textAlign: "center",
                             height: "40px",
                             fontSize: "12px",
@@ -567,7 +576,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                         }
                         className="btn_1 full-width CONTINUE_TO_RENT_CAR"
                     >
-                        تکمیل درخواست اجاره
+                        ادامه
                         
                         {/* <br/><small style={{
                             marginTop: '8px',
@@ -575,6 +584,8 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                         }}>.دراین مرحله هزینه‌ای اخذ نمی‌شود</small> */}
 
                     </Button>
+                    </div>
+
                     </div>
                      : null
                     : null

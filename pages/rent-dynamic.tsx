@@ -161,6 +161,7 @@ export default withRouter(
           deliverAtRentersPlace: false,
           loadingResults: true,
           lodingMore: false,
+          DynamicRes:null,
           noResult: false,
           results: [{}],
           SSRender: false,
@@ -338,11 +339,12 @@ export default withRouter(
           });
         }
 
-        componentWillMount() {
+        componentWillMount() {  
           console.log(this.props.DynamicRes);
-          
+                  
           if (this.props.SSRender) {
             this.setState({
+              DynamicRes:this.props.DynamicRes.data,
               SSRender: this.props.SSRender
             });
           }
@@ -399,7 +401,7 @@ export default withRouter(
           }
         }
 
-        async componentDidMount() {
+        async componentDidMount() {          
           this.renderResults();
           // if ssr was activeted then discomment below line:
           // this.setState(this.props.results);
@@ -475,18 +477,18 @@ export default withRouter(
               break;
             case 4:
               startDate = moment(Tday)
-                .add(1, "day")
+                .add(6, "day")
                 .format("YYYY/M/D");
               endDate = moment(Tday)
-                .add(2, "day")
+                .add(8, "day")
                 .format("YYYY/M/D");
               break;
             case 5:
               startDate = moment(Tday)
-                .add(1, "day")
+                .add(9, "day")
                 .format("YYYY/M/D");
               endDate = moment(Tday)
-                .add(2, "day")
+                .add(8, "day")
                 .format("YYYY/M/D");
               break;
             case 6:
@@ -675,6 +677,14 @@ export default withRouter(
                 className="row container_on_desktop"
                 style={{ margin: "auto auto", flexDirection: "row-reverse" }}
               >
+                <article>
+                {this.state.DynamicRes.title &&<h1 dir="rtl" className ="D_h1">
+                    {this.state.DynamicRes.title}
+                  </h1>}
+                  {this.state.DynamicRes.short_description &&<h4 dir="rtl" className ="D_h4">
+                    {this.state.DynamicRes.short_description}
+                  </h4>}
+                </article>
                 <FilterAndSortBar
                   toggleToCarBodyType={this.toggleToCarBodyType}
                   priceSort={priceSort}
@@ -708,6 +718,10 @@ export default withRouter(
                   remained_count={this.state.remained_count}
                   dateURL={""}
                 />
+              <article className="D_Content" dangerouslySetInnerHTML = {{__html:`${
+                this.state.DynamicRes.content
+              }`}}>
+              </article>
               </div>
             </Layout>
           );

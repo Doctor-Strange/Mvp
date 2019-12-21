@@ -25,11 +25,11 @@ const Rent = props => {
       />
       <ul>
         <li>
-          <Link href={`/rent/${decodeURIComponent("اجاره-اتومبیل")}`}>
-            <a>اجاره-اتومبیل</a>
+          <Link href={`/rent/tehran`}>
+            <a>tehran</a>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href={`/rent/${decodeURIComponent("اجاره-اتومبیل-در-تهران")}`}>
             <a>اجاره-اتومبیل-در-تهران</a>
           </Link>
@@ -383,7 +383,7 @@ const Rent = props => {
           <Link href={`/rent/${decodeURIComponent("کرایه-ماشین-در-کیش")}`}>
             <a>کرایه-ماشین-در-کیش</a>
           </Link>
-        </li>
+        </li> */}
       </ul>
     </Layout>
   );

@@ -430,7 +430,7 @@ export const CarCard: React.FunctionComponent<{
     <Card className={`strip grid carcard CAR_CART_${title}`}>
       {/* {console.log("body",outofservice)} */}
       <Link href={link}>
-        <a>
+        <a className={`strip grid carcard CAR_CART_${title}`}>
           <figure>
             {discount_percent && (
               <a className="wish_bt">

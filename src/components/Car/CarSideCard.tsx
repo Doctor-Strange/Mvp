@@ -120,7 +120,7 @@ end?:string;
                 size='large'
                 fluid
                 onClick={reserveFunction}
-                color='teal'>ادامه</Button>
+                color='red'>ادامه</Button>
                 
             <div
                 style={{ marginTop: '8px' }}

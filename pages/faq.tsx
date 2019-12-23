@@ -2,33 +2,11 @@ import * as React from "react";
 import NextSeo from "next-seo";
 import { Section } from "../src/components/row/Sections";
 import Layout from "../src/components/Layout";
-import SetCarTimingForm from "../src/components/Forms/SetCarTimingForm";
-import { Box, Flex } from "@rebass/grid";
-import { Icon, Segment, Button } from "semantic-ui-react";
-import Router from "next/router";
-import Carousel from "nuka-carousel";
-import {
-  PriceCard,
-  UserCard,
-  ContentCard,
-  ContentSideCard
-} from "../src/components/Cards";
-import { CommentSection } from "../src/components/Comments";
-import { Details, CarNav, CarSideCard } from "../src/components/Car";
-import { i18n, withTranslation } from "../src/i18n";
+import { ContentCard } from "../src/components/Cards";
 import { REQUEST_getFAQ } from "../src/API";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile
-} from "react-device-detect";
 import styled from "styled-components";
-import axios from "axios";
-import moment from "moment-jalaali";
 import Accordion from "../src/components/Accordion/Accordion";
 import ContentLoader from "react-content-loader";
-moment.loadPersian({ dialect: "persian-modern" });
 
 const ContentCardTitle = styled.div`
   margin-bottom: 25px;
@@ -48,105 +26,72 @@ const ContentCardTitle = styled.div`
   }
 `;
 
-export default withTranslation("common")(
-  class extends React.Component<{ t: any }> {
-    state = {
-      items: null
-    };
-    async thisss() {
-      let res = await REQUEST_getFAQ();
-      // const qaArr1 = [];
-      // res.items[0].question_set.map((value, index) => {
-      //   qaArr1.push({
-      //     key: `panel1-${index}`,
-      //     title: value.q,
-      //     content: value.a
-      //   });
-      // });
-      // const qaArr2 = [];
-      // res.items[1].question_set.map((value, index) => {
-      //   qaArr2.push({
-      //     key: `panel2-${index}`,
-      //     title: value.q,
-      //     content: value.a
-      //   });
-      // });
-
-      this.setState({
-        items: res.items
-      });
-      // return {
-      //   namespacesRequired: ["common"],
-      //   qaArr1,
-      //   qaArr2,
-      //   ...res
-      // };
-    }
-
-    componentDidMount = () => {
-      this.thisss();
-    };
-
-    render() {
-      //   console.log(this.props);
-
-      const { t } = this.props;
-      let start,
-        end = null;
-      let startDate,
-        endDate = null;
-      const { items } = this.state;
-      //console.log(qaArr1);
-      return (
-        <Layout haveSubHeader={true} pageTitle={"list Your Car"}>
-          <NextSeo
-            config={{
-              title: `سوال‌های پرتکرار | اتولی`,
-              description: " پاسخگوی تمام سوالات شما در بخش پرسش و پاسخ اتولی هستیم ",
-              openGraph: {
-                title: `سوال‌های پرتکرار | اتولی`,
-                description: " پاسخگوی تمام سوالات شما در بخش پرسش و پاسخ اتولی هستیم "
-              },
-              twitter: {
-                handle: "@otoli_net",
-                site: "@otoli_net",
-                cardType: "summary_large_image"
-              }
-            }}
-          />
-          <Section justifyCenter={true} style={{ marginTop: "24px" }}>
-            <ContentCard style={{ zIndex: 1 }}>
-              ‍
-              <ContentCardTitle>
-                <h1 style={{ fontSize: "22px" }}>{`سوالات پرتکرار`}</h1>
-                {/* <span> پاسخگوی تمام نیازهای شما </span> */}
-              </ContentCardTitle>
-              {items ?
-                items.map((item, i) => {
-                  // console.log(item);
-                  return (
-                    <div className="FQ_WRAPPER" key={item.id}>
-                      {i === 0 ? null : (
-                        <h2 style={{ fontSize: "22px" }}>{item.name.fa}</h2>
-                      )}
-                      <Accordion question_set={item.question_set} />
-                      {/* <Accordion styled fluid defaultActiveIndex={0} panels={item.question_set} /> */}
-                    </div>
-                  );
-                })
-              :
-              <>
-              <ContentLoader/>
-              <ContentLoader/>
-              <ContentLoader/>
-              </>}
-              {/* <Accordion styled fluid defaultActiveIndex={0} panels={qaArr1} />
-                            <hr/>
-                            <Accordion styled fluid defaultActiveIndex={0} panels={qaArr2} /> */}
-            </ContentCard>
-          </Section>
-        </Layout>
-      );
-    }
+export default class extends React.Component {
+  state = {
+    items: null
+  };
+  async GetFaQ() {
+    let res = await REQUEST_getFAQ();
+    this.setState({
+      items: res.items
+    });
   }
-);
+
+  componentDidMount = () => {
+    this.GetFaQ();
+  };
+
+  render() {
+    const { items } = this.state;
+    return (
+      <Layout haveSubHeader={true} pageTitle={"list Your Car"}>
+        <NextSeo
+          config={{
+            title: `سوال‌های پرتکرار | اتولی`,
+            description:
+              " پاسخگوی تمام سوالات شما در بخش پرسش و پاسخ اتولی هستیم ",
+            openGraph: {
+              title: `سوال‌های پرتکرار | اتولی`,
+              description:
+                " پاسخگوی تمام سوالات شما در بخش پرسش و پاسخ اتولی هستیم "
+            },
+            twitter: {
+              handle: "@otoli_net",
+              site: "@otoli_net",
+              cardType: "summary_large_image"
+            }
+          }}
+        />
+        <Section justifyCenter={true} style={{ marginTop: "24px" }}>
+          <ContentCard style={{ zIndex: 1 }}>
+            ‍
+            <ContentCardTitle>
+              <h1 style={{ fontSize: "22px" }}>سوالات پرتکرار</h1>
+            </ContentCardTitle>
+            {items ? (
+              items.map((item, i) => {
+                return (
+                  <div className="FQ_WRAPPER" key={item.id}>
+                    {i === 0 ? null : (
+                      <h2 style={{ fontSize: "22px" }}>{item.name.fa}</h2>
+                    )}
+                    <Accordion question_set={item.question_set} />
+                  </div>
+                );
+              })
+            ) : (
+              <>
+                <ContentLoader />
+                <ContentLoader />
+                <ContentLoader />
+              </>
+            )}
+          </ContentCard>
+        </Section>
+      </Layout>
+    );
+  }
+}
+
+// start => 155
+// end => 94

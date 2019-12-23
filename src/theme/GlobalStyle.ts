@@ -86,21 +86,19 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
   body {
-    background: ${({ theme }: { theme: ITheme }) =>
-      theme.color.lightBackground};
+    background: #FAFAFA;
     font-size: 1rem;
-    line-height: ${({ theme }: { theme: ITheme }) => theme.spacing.lineHeight};
-    font-family: ${({ theme }: { theme: ITheme }) => theme.direction.font};
-    color: ${({ theme }: { theme: ITheme }) => theme.color.textMain};
-    font-weight: ${({ theme }: { theme: ITheme }) =>
-      theme.spacing.fontWeightNormal};
+    line-height: 1.6;
+    font-family: Vazir,sans-serif;
+    color: #2A2A2A;
+    font-weight: 400;
     text-align: left;
     display: block;
     padding: 0;
     margin: 0;
   }
   a {
-    color: ${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
+    color: #4BA3CE;
     text-decoration: none;
     outline: none;
   }
@@ -116,7 +114,7 @@ const GlobalStyle = createGlobalStyle`
 
   .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
-    color: ${(props: { theme: ITheme }) => props.theme.color.textMain};
+    color: #2A2A2A;
     margin-bottom: .5rem;
     font-family: inherit;
     font-weight: 500;
@@ -582,28 +580,23 @@ const GlobalStyle = createGlobalStyle`
   }
     /*============================== btn Styles ==============================*/
   .ui.button:not(.circular) {
-    font-family: ${(props: { theme: ITheme }) => props.theme.direction.font};
+    font-family: Vazir,sans-serif;
     border: none;
-    background:${(props: { theme: ITheme }) =>
-      props.theme.color.mainForeground};
+    background:#4BA3CE;
     outline: none;
     cursor: pointer;
-    color: ${(props: { theme: ITheme }) => props.theme.color.whiteBackground};
-    font-weight: ${(props: { theme: ITheme }) =>
-      props.theme.spacing.fontWeightBold};
+    color: #ffffff;
+    font-weight:600;
     transition: all 0.3s ease-in-out;
-    border-radius: ${(props: { theme: ITheme }) =>
-      props.theme.spacing.smallBorderRadus};
+    border-radius:4px;
     :hover {
-      background-color: ${(props: { theme: ITheme }) =>
-        props.theme.color.secondForeground};
+      background-color: #4BA3CE;
     }
     &.full-width {
       display: block;
       width: 100%;
       text-align: center;
-      height: ${(props: { theme: ITheme }) =>
-        props.theme.spacing.massivePadding};
+      height: 48;
     }
   }
 
@@ -943,8 +936,7 @@ const GlobalStyle = createGlobalStyle`
       cursor: pointer;
     }
     input:checked ~ .checkmark {
-      background-color: ${({ theme }: { theme: ITheme }) =>
-        theme.color.mainForeground};
+      background-color: #4BA3CE;
       border: 1px solid transparent;
     }
     .checkmark {
@@ -1013,8 +1005,7 @@ const GlobalStyle = createGlobalStyle`
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: ${({ theme }: { theme: ITheme }) =>
-          theme.color.mainForeground};
+        background: #4BA3CE;
         transition: all 0.3s ease-in-out;
       }
     }
@@ -1188,23 +1179,18 @@ textarea {
   /** end of focus colors **/
   .ui{
     .basic.button, .basic.buttons .button {
-      box-shadow: 0 0 0 1px ${({ theme }: { theme: ITheme }) =>
-        theme.color.mainForeground} inset;
-      color: ${({ theme }: { theme: ITheme }) =>
-        theme.color.mainForeground} !important;
+      box-shadow: 0 0 0 1px #4BA3CE inset;
+      color: #4BA3CE !important;
     }
     .primary{
       &.button{
-        background-color: ${({ theme }: { theme: ITheme }) =>
-          theme.color.mainForeground};
+        background-color: #4BA3CE;
         :hover{
-          background-color: ${({ theme }: { theme: ITheme }) =>
-            theme.color.secondForeground};
+          background-color: #4BA3CE;
           color: #fff !important;
         }
         :focus{
-          background-color: ${({ theme }: { theme: ITheme }) =>
-            theme.color.secondForeground};
+          background-color: #4BA3CE;
         }
       }
     }
@@ -1461,8 +1447,7 @@ textarea {
     padding: 10px 24px;
     margin: 0;
     cursor: pointer;
-    background-color: ${({ theme }: { theme: ITheme }) =>
-      theme.color.mainForeground};
+    background-color: #4BA3CE;
     display: block;
     width: 100%;
     text-align: center;
@@ -1598,7 +1583,7 @@ textarea {
   font-weight: 500;
 }
 .hero_in a.btn_photos:hover {
-  color: ${({ theme }: { theme: ITheme }) => theme.color.mainForeground};
+  color: #4BA3CE;
 }
 
 /* Animations */
@@ -1635,8 +1620,7 @@ textarea {
   margin: 0;
 }
 .carousel_detail .owl-nav [class*='owl-']:hover {
-  background: ${({ theme }: { theme: ITheme }) =>
-    theme.color.mainForeground} !important;
+  background: #4BA3CE !important;
 }
 
 ul.bullets {
@@ -1718,8 +1702,7 @@ ul.bullets li {
     -webkit-transform-style: preserve-3d;
     transform-origin: 0 0;
     transform-style: flat;
-    background: ${({ theme }: { theme: ITheme }) =>
-      theme.color.mainForeground} !important;
+    background: #4BA3CE !important;
   }
   /* Offset direction
   */

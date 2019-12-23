@@ -6,7 +6,7 @@ import { ModalCore } from './ModalCore';
 export class ModalWrapper extends React.Component<{
   onRef: any;
   title?: string;
-  direction: string;
+  direction?: string;
   height: number;
   width?:string;
 maxWidth?:string;

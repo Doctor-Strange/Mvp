@@ -5,8 +5,7 @@ import Link from "next/link";
 
 const Rent = props => {
   return (
-    <Layout haveSubHeader={true} pageTitle={"Site map"}>
-      {/* {console.log(`https://otoli.net/${seoImage}`)} */}
+    <Layout>
       <NextSeo
         config={{
           title: `Otoli | site map`,

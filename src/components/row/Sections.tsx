@@ -8,7 +8,7 @@ export const Section: React.FunctionComponent<{
   margin?: Margin;
   className?: any;
   rowClassName?: string;
-  IHeight: string;
+  IHeight?: string;
   style?: any;
   id?: any;
 }> = ({ children, justifyCenter, justifyContent, bgColor, margin, className, style, id, rowClassName ,Bimage,IHeight}) => (

@@ -1,6 +1,5 @@
 import * as React from "react";
-import {useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from "react";
 import { Section } from "../src/components/row/Sections";
 import IndexForm from "../src/components/Forms/IndexForm";
 import Layout from "../src/components/Layout";
@@ -8,24 +7,18 @@ import { Box, Flex } from "@rebass/grid";
 import * as backgroundImage from "../static/back.jpg";
 import * as seoImage from "../static/index-landing.jpg";
 import NextSeo from "next-seo";
-import { i18n, Link, withTranslation } from "../src/i18n";
 import insurance from "../static/SamanInsurance.png";
-import Router from 'next/router';
-import { GlobalStyle } from "../src/theme";
+import Link from "next/link";
 
 const Page = props => {
-  const [heightSetter, SetHeight] = useState(false)
-  // <Layout haveSubHeader={true} pageTitle={'Hello World'} bgImage={backgroundImage}>
-  useEffect(()=>{
-    console.log(`https://otoli.net${seoImage}`);
-    
-      if(window.innerHeight <= 666){
-        SetHeight(true)
-      }
-  },[])
+  const [heightSetter, SetHeight] = useState(false);
+  useEffect(() => {
+    if (window.innerHeight <= 666) {
+      SetHeight(true);
+    }
+  }, []);
   return (
-    <Layout haveSubHeader={true} pageTitle={"Hello World"}>
-      {/* {console.log(`https://otoli.net/${seoImage}`)} */}
+    <Layout>
       <NextSeo
         config={{
           title: `اتولی | اجاره آسان خودرو`,
@@ -46,7 +39,10 @@ const Page = props => {
       <Section
         justifyCenter={true}
         Bimage={backgroundImage}
-        className={["heightControl" ,heightSetter && "SmallHeightControllerinHomepage"].join(" ")}
+        className={[
+          "heightControl",
+          heightSetter && "SmallHeightControllerinHomepage"
+        ].join(" ")}
       >
         <div className="hero_single version_4">
           <Flex justifyContent="space-around" className="wrapper">
@@ -60,7 +56,6 @@ const Page = props => {
           </Flex>
         </div>
       </Section>
-
       <div style={{ background: "#fafafa" }}>
         <section className="insurance responsive">
           <div>
@@ -115,7 +110,6 @@ const Page = props => {
             <section className="WhyOtolibox">
               <h3>کسب درآمد</h3>
               <p>
-                {" "}
                 اطلاعات ماشین‌تان را در اتولی ثبت کنید و منتظر بمانید! با اتولی
                 می‌توانید از اجاره ماشین‌تان درآمد روزانه داشته باشید. فقط
                 کافی‌ست اطلاعات خودرو را درست و دقیق وارد کنید و تصاویر خوب و
@@ -150,10 +144,7 @@ const Page = props => {
   );
 };
 
-Page.getInitialProps = async props => {
-  return {
-    namespacesRequired: ["common"]
-  };
-};
+export default Page;
 
-export default withTranslation("common")(Page);
+// start => 159
+// end => 147

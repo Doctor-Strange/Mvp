@@ -1,12 +1,11 @@
 import * as React from "react";
 import Layout from "../src/components/Layout";
 import NextSeo from "next-seo";
-
 import { Section } from "../src/components/row/Sections";
 
 const AboutUs = () => {
   return (
-    <Layout haveSubHeader={true} pageTitle={"Hello World"}>
+    <Layout>
       <NextSeo
         config={{
           title: `درباره اتولی`,

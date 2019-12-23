@@ -5,8 +5,8 @@ import NextSeo from "next-seo";
 
 const guidePicture = () => {
   return (
-    <Layout haveSubHeader={true} pageTitle={"Hello World"}>
-        <NextSeo
+    <Layout>
+      <NextSeo
         config={{
           title: `راهنمای عکس گرفتن | اتولی`,
           description: `راهنمای عکاسی برای ثبت خودرو در اتولی`,

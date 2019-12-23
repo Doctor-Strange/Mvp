@@ -6,7 +6,7 @@ import { Section } from "../src/components/row/Sections";
 
 const guideForRent = () => {
   return (
-    <Layout haveSubHeader={true} pageTitle={"Hello World"}>
+    <Layout>
       <NextSeo
         config={{
           title: `راهنمای اجاره گیرنده | اتولی`,

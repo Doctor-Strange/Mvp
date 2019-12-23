@@ -3,10 +3,9 @@ import Layout from "../src/components/Layout";
 import { Section } from "../src/components/row/Sections";
 import NextSeo from "next-seo";
 
-
 const guideRenter = () => {
   return (
-    <Layout haveSubHeader={true} pageTitle={"Hello World"}>
+    <Layout>
       <NextSeo
         config={{
           title: `راهنمای اجاره دهنده | اتولی`,

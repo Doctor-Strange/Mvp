@@ -6,7 +6,7 @@ import { Section } from "../src/components/row/Sections";
 
 const OtoliPolicies = () => {
   return (
-    <Layout haveSubHeader={true} pageTitle={"Hello World"}>
+    <Layout>
       <NextSeo
         config={{
           title: `قوانین و مقررات اتولی | اتولی`,

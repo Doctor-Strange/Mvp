@@ -1,6 +1,5 @@
 import * as React from "react";
-import {useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from "react";
 import { Section } from "../src/components/row/Sections";
 import IndexForm from "../src/components/Forms/IndexForm";
 import Layout from "../src/components/Layout";
@@ -8,22 +7,18 @@ import { Box, Flex } from "@rebass/grid";
 import * as backgroundImage from "../static/back.jpg";
 import * as seoImage from "../static/index-landing.jpg";
 import NextSeo from "next-seo";
-import { i18n, Link, withTranslation } from "../src/i18n";
 import insurance from "../static/SamanInsurance.png";
-import Router from 'next/router';
-import { GlobalStyle } from "../src/theme";
+import Link from "next/link";
 
 const Rent = props => {
-  const [heightSetter, SetHeight] = useState(false)
-  // <Layout haveSubHeader={true} pageTitle={'Hello World'} bgImage={backgroundImage}>
-  useEffect(()=>{
-      if(window.innerHeight <= 666){
-        SetHeight(true)
-      }
-  },[])
+  const [heightSetter, SetHeight] = useState(false);
+  useEffect(() => {
+    if (window.innerHeight <= 666) {
+      SetHeight(true);
+    }
+  }, []);
   return (
-    <Layout haveSubHeader={true} pageTitle={"Hello World"}>
-      {/* {console.log(`https://otoli.net/${seoImage}`)} */}
+    <Layout>
       <NextSeo
         config={{
           title: `اتولی | اجاره آسان خودرو`,
@@ -44,19 +39,15 @@ const Rent = props => {
       <Section
         justifyCenter={true}
         Bimage={backgroundImage}
-        className={["heightControl" ,heightSetter && "SmallHeightControllerinHomepage"].join(" ")}
+        className={[
+          "heightControl",
+          heightSetter && "SmallHeightControllerinHomepage"
+        ].join(" ")}
       >
         <div className="hero_single version_4">
           <Flex justifyContent="space-around" className="wrapper">
             <Box width={2 / 2} px={2}>
-              <h1
-              onClick={()=>{
-                // console.log(`/rent/'اجاره-اتومبیل'`);
-                // return
-                Router.push({
-                  pathname:   `/rent/${decodeURIComponent('اجاره-اتومبیل-در-تهران')}`,
-                });
-              }}>اتولی، اجاره آسان خودرو</h1>
+              <h1>اتولی، اجاره آسان خودرو</h1>
               <h2>
                 ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید.
               </h2>
@@ -65,7 +56,6 @@ const Rent = props => {
           </Flex>
         </div>
       </Section>
-
       <div style={{ background: "#fafafa" }}>
         <section className="insurance responsive">
           <div>
@@ -85,8 +75,8 @@ const Rent = props => {
             </div>
           </div>
         </section>
-       <section className="responsive WHITE whyOtoli">
-           <h2>چرا از اتولی ماشین اجاره کنیم؟</h2>
+        <section className="responsive WHITE whyOtoli">
+          <h2>چرا از اتولی ماشین اجاره کنیم؟</h2>
           <div className="WhyOtolicontainer">
             <section className="WhyOtolibox">
               <h3>تضمین بیمه</h3>
@@ -120,7 +110,6 @@ const Rent = props => {
             <section className="WhyOtolibox">
               <h3>کسب درآمد</h3>
               <p>
-                {" "}
                 اطلاعات ماشین‌تان را در اتولی ثبت کنید و منتظر بمانید! با اتولی
                 می‌توانید از اجاره ماشین‌تان درآمد روزانه داشته باشید. فقط
                 کافی‌ست اطلاعات خودرو را درست و دقیق وارد کنید و تصاویر خوب و
@@ -143,7 +132,7 @@ const Rent = props => {
                 احتمالی به شما اطمینان خاطر خواهد داد.
               </p>
             </section>
-          </div> 
+          </div>
           <div className="addCarnow">
             <Link href="/add-car">
               <a>ماشین‌تان را اضافه کنید</a>
@@ -156,3 +145,6 @@ const Rent = props => {
 };
 
 export default Rent;
+
+// start => 159
+// end => 147

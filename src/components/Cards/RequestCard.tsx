@@ -1,25 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import styled from 'styled-components';
-import { Box, Flex } from '@rebass/grid';
 import Router from 'next/router';
 import {Link} from '../../../routes'
 import { Button, Icon, Form, Label, Grid, Segment, Rating, TextArea } from 'semantic-ui-react'
 import 'react-toastify/dist/ReactToastify.css';
 import swal from '@sweetalert/with-react'
 import { Pelak, DateGrid } from './index';
-import { numberWithCommas, convertNumbers2Persian, convertNumbers2English, getShortVersion } from '../../utils/numbers';
+import { numberWithCommas, convertNumbers2Persian} from '../../utils/numbers';
 import jsCookie from 'js-cookie';
 import { REQUEST_setOrderStatus } from '../../API';
 import {
-    BrowserView,
-    MobileView,
     isBrowser,
     isMobile
 } from "react-device-detect";
 import moment from 'moment-jalaali';
 moment.loadPersian({ dialect: 'persian-modern' });
-import { ITheme } from "../../theme/Interfaces";
-import { ToastContainer, toast } from "react-toastify";
 
 
 
@@ -28,10 +23,10 @@ const Card = styled.div`
     margin-top: 16px;
     margin-bottom: 16px;
     .label{
-        background: ${({theme}:{theme:ITheme}) => theme.color.cardLabels};
+        background: #f7f7f7ee;
     }
     .maincolor { 
-        color: ${({theme}:{theme:ITheme}) => theme.color.mainForeground};
+        color:#4BA3CE;
     }
     .ui.padded.segment {
         padding: 8px 8px 16px 8px;
@@ -170,8 +165,6 @@ interface IRequestCard {
     reviewStatus?: any;
     no_of_days?:Number;
     company_name?:string
-//     coupon?:number,
-// insurance_total_price?:number
 }
 
 interface IdoAction {
@@ -214,14 +207,13 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     no_of_days,
     renterInfo,
     company_name,
-//     coupon,
-// insurance_total_price
 }) => {
     const [star1, setStar1] = useState();
     const [star2, setStar2] = useState();
     const [text, setText] = useState();
     const [loader , setLoader] = useState(false)
     const [canRate, setCanRate] = useState(false);
+
     const doAction = async (data: IdoAction) => {
         const res = await REQUEST_setOrderStatus({ ...data, token: jsCookie.get('token') });
         setLoader(false)
@@ -232,24 +224,6 @@ export const RequestCard: React.SFC<IRequestCard> = ({
             refresh();
         }
     }
-
-    // useEffect(() =>{
-    //         console.log("===>",insurance_total_price, price , coupon);
-            
-    //         ()=>{
-    //             if(insurance_total_price){
-    //             if(coupon){
-    //                 price = coupon + insurance_total_price
-    //             }else{
-    //                 price = price + insurance_total_price
-    //             }
-    //         }else if(coupon){
-    //             price = coupon
-    //         } 
-    //         console.log(price)
-    //     } 
-    // },[])
-
 
     const openPhoneModal = (id) => {
         swal(
@@ -267,35 +241,6 @@ export const RequestCard: React.SFC<IRequestCard> = ({
     }
 
     const openRatingModal = (id) => {
-        // toast.success(
-        //     statusOwner === 'renter'
-        //     ?"امیدواریم سفر خوبی را تجربه کرده باشید. لطفا نظرتان در مورد ماشین و اجاره دهنده را با سایر کاربران در میان بگذارید."
-        //     : "لطفا نظرتان را در مورد اجاره گیرنده با ما به اشتراک بگذارید"
-        //     , {
-        //     position: "bottom-center",
-        //     autoClose: false,
-        //     hideProgressBar: true,
-        //     closeOnClick: false,
-        //     pauseOnHover: true,
-        //     draggable: true
-        //   });
-        // console.log(id,
-        //     status,
-        //     statusOwner,
-        //     carName,
-        //     start,
-        //     end,
-        //     price = 10,
-        //     ownerName,
-        //     ownerInfo,
-        //     ownerPhone,
-        //     userID,
-        //     pelak = { first: "", second: "", third: "", forth: "" },
-        //     picture,
-        //     style = {},
-        //     refresh,
-        //     reviewStatus,
-        //     no_of_days)
         let localStar1 = 0;
         let localStar2 = 0;
         let localText = null;
@@ -312,7 +257,6 @@ export const RequestCard: React.SFC<IRequestCard> = ({
         }
         swal(
             <div>
-                {/* <h3>اامتیاز دهید</h3> */}
                 <Form>
                     <Form.Field>
                     {statusOwner === 'renter' &&
@@ -347,7 +291,6 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                     </Form.Field>
                     <Form.Field>
                         <label style={{fontWeight: '100', textAlign: 'right'}}>:توضیح
-                        {/* {statusOwner === 'renter' ? ' خودرو '  : ' اجاره‌گیرنده '} */}
                         </label>
                         <TextArea
                             placeholder='(با به اشتراک‌گذاری تجربه‌تان، به کاربران دیگر در انتخاب کمک می‌کنید.)'
@@ -373,15 +316,10 @@ export const RequestCard: React.SFC<IRequestCard> = ({
 
     const trigerDoAction = async (value,id,localData) => {
         setLoader(true)
-
-        // console.log("value,id,localData",value,id,localData)
         const {localStar1,localStar2,localText} = localData;
         setStar1(localStar1);
         setStar2(localStar2);
         setText(localText);
-        // switch (value) {
-        //     case "done":
-                // try {
                     if(value !== "owner" )doAction({
                         id,
                         action: 'rate',
@@ -403,33 +341,9 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             rate: localStar1,
                         }
                     }).then(()=>{})
-
-                    // toast.success('نظر شما با موفقیت ثبت شد', {
-                    //     position: "bottom-center",
-                    //     autoClose: 5000,
-                    //     hideProgressBar: false,
-                    //     closeOnClick: true,
-                    //     pauseOnHover: true,
-                    //     draggable: true
-                    // });
-                // }
-                // catch(error) {
-                //     toast.error("خطایی رخ داده است", {
-                //         position: "bottom-center",
-                //         autoClose: 5000,
-                //         hideProgressBar: false,
-                //         closeOnClick: true,
-                //         pauseOnHover: true,
-                //         draggable: true
-                //     });
-                // }
                 setStar1(null);
                 setStar2(null);
                 setText(null);
-        //         break;
-        //     default:
-        //         //console.log('canceled');
-        // }
     }
 
     if(!canRate){
@@ -461,11 +375,6 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             <div style={{ marginLeft: '8px' }}>
                                 <Button
                                     onClick={() => doAction({ id, action: 'approve' })}
-                                    // onClick= {()=>{
-                                    //     setTimeout(() => {
-                                            
-                                    //     }, 10000);
-                                    // }}
                                     primary
                                     fluid
                                     className="left ACCEPTED_INCOMMING_REQUEST">
@@ -568,8 +477,6 @@ export const RequestCard: React.SFC<IRequestCard> = ({
         case 'returned':
             title = <span><Icon name="flag checkered" /> پایان اجاره</span>;
             actions = <>
-            {/* commented by sajad ====> */}
-                {/* {canRate && */}
                     <Grid.Row className="buttons">
                         <Grid.Column width={16}>
                             <div style={{ marginLeft: '8px' }}>
@@ -585,8 +492,6 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                             </div>
                         </Grid.Column>
                     </Grid.Row>
-            {/* commented by sajad ====> */}
-                {/* } */}
             </>;
             break;
         default:
@@ -693,3 +598,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
         </Card>
     )
 };
+
+
+// start 695
+// end 600

@@ -1,17 +1,17 @@
-require('dotenv').config();
-const path = require('path');
-const Dotenv = require('dotenv-webpack');
-const withPlugins = require('next-compose-plugins');
-const images = require('next-images');
-const typescript = require('@zeit/next-typescript');
-const CSS = require('@zeit/next-css');
-const fonts = require('next-fonts');
-const sourceMaps = require('@zeit/next-source-maps');
-const withOffline = require('next-offline');
+require("dotenv").config();
+const path = require("path");
+const Dotenv = require("dotenv-webpack");
+const withPlugins = require("next-compose-plugins");
+const images = require("next-images");
+const typescript = require("@zeit/next-typescript");
+const CSS = require("@zeit/next-css");
+const fonts = require("next-fonts");
+const sourceMaps = require("@zeit/next-source-maps");
+const withOffline = require("next-offline");
 
-if (typeof require !== 'undefined') {
-  require.extensions['.less'] = () => {};
-  require.extensions['.css'] = file => {};
+if (typeof require !== "undefined") {
+  require.extensions[".less"] = () => {};
+  require.extensions[".css"] = file => {};
 }
 
 // next.js configuration
@@ -26,7 +26,7 @@ const nextConfig = {
 
       // Read the .env file
       new Dotenv({
-        path: path.join(__dirname, '.env'),
+        path: path.join(__dirname, ".env"),
         systemvars: true
       })
     ];
@@ -37,5 +37,6 @@ const nextConfig = {
 
 module.exports = withPlugins(
   [withOffline, sourceMaps, images, typescript, CSS, fonts],
+  { compress: false },
   nextConfig
 );

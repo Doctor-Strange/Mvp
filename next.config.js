@@ -35,8 +35,11 @@ const nextConfig = {
   }
 };
 
+module.exports = {
+  compress: false
+};
+
 module.exports = withPlugins(
   [withOffline, sourceMaps, images, typescript, CSS, fonts],
-  { compress: false },
   nextConfig
 );

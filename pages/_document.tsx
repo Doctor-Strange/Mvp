@@ -12,13 +12,13 @@ process.on("uncaughtException", err => {
 });
 
 export default class extends Document<{ props: any }> {
-  static async getInitialProps(...args) {
-    const { req, renderPage } = args[0];
+  static async getInitialProps(args) {
+    const initialProps = await Document.getInitialProps(args);
+    // const { req, renderPage } = args[0];
     // Create an instance of ServerStyleSheet
     const sheet = new ServerStyleSheet();
     const styleTags = sheet.getStyleElement();
-
-    return { styleTags };
+    return { ...initialProps, styleTags };
   }
 
   render() {
@@ -80,7 +80,10 @@ export default class extends Document<{ props: any }> {
             name="format-detection"
             content="telephone=no, address=no, email=no"
           />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+          />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="mask-icon"

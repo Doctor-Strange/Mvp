@@ -65,13 +65,15 @@ class OtoliApp extends App {
     const { props } = this as any;
     const { Component, pageProps } = props;
     return (
-      <Container>
+      // <Container>
+      <>
         <GlobalStyle />
         <Provider>
           <Component {...pageProps} />
           <ToastContainer />
         </Provider>
-      </Container>
+      </>
+      // </Container>
     );
   }
 }

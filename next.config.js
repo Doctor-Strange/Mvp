@@ -3,7 +3,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const withPlugins = require('next-compose-plugins');
 const images = require('next-images');
-const typescript = require('@zeit/next-typescript');
+// const typescript = require('@zeit/next-typescript');
 const CSS = require('@zeit/next-css');
 const fonts = require('next-fonts');
 const sourceMaps = require('@zeit/next-source-maps');
@@ -36,6 +36,6 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-  [withOffline, sourceMaps, images, typescript, CSS, fonts],
+  [withOffline, sourceMaps, images, CSS, fonts],
   nextConfig
 );

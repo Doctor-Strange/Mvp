@@ -1,10 +1,10 @@
 /* tslint:disable */
-import * as React from 'react';
-import { useCallback, useState, useEffect } from 'react';
-import Router from 'next/router';
-import styled from 'styled-components';
-import moment from 'moment-jalaali';
-moment.loadPersian({ dialect: 'persian-modern' });
+import * as React from "react";
+import { useState, useEffect } from "react";
+import Router from "next/router";
+import styled from "styled-components";
+import moment from "moment-jalaali";
+moment.loadPersian({ dialect: "persian-modern" });
 import {
   Form,
   Divider,
@@ -21,55 +21,36 @@ import {
   Image,
   Input,
   Item
-} from 'semantic-ui-react';
-import Error404 from '../404';
-import { 
+} from "semantic-ui-react";
+import {
   REQUEST_getCarIsMine,
   REQUEST_getCarAvailabilities,
   REQUEST_setCarAvailability,
   REQUEST_getCarDiscounts,
   REQUEST_editCarPartial,
   REQUEST_setCarDiscounts
-} from '../../API';
-import { i18n, withTranslation } from '../../i18n';
-import { connect } from '../../store';
-import { Formik, FormikActions, withFormik } from 'formik';
-import * as Yup from 'yup';
-import jsCookie from 'js-cookie';
-// import { setLocale } from 'yup';
-// setLocale({
-//   number: {
-//     min: 'مقدار وارد شده از ${min} کمتر است',
-//     max: 'مقدار وارد شده از ${max} بیشتر است'
-//   }
-// });
-import axios from 'axios';
-import * as NewUser from '../../../static/new_user.svg';
-import { Pelak } from '../Cards';
-import { Box, Flex } from '@rebass/grid';
-import { kmDrivenEnglish, kmDrivenFarsi } from '../../constants/options';
+} from "../../API";
+import { connect } from "../../store";
+import { Formik, FormikActions } from "formik";
+import * as Yup from "yup";
+import jsCookie from "js-cookie";
+import * as NewUser from "../../../static/new_user.svg";
 import {
   numberWithCommas,
   convertNumbers2Persian,
   convertNumbers2English
-} from '../../utils/numbers';
-import {
-  convertDateToMoment,
-  convertRangeDateToMoment,
-  convertMomentsToDateRange,
-  getBetweenRange
-} from '../../utils/date';
-import TimeRangesSelector from './TimeRangesSelector';
-import DiscountsSelector from './DiscountsSelector';
-import { toast } from 'react-toastify';
-import * as PelakTemplate from '../../../static/pelak2.png';
-
+} from "../../utils/numbers";
+import { convertDateToMoment, getBetweenRange } from "../../utils/date";
+import TimeRangesSelector from "./TimeRangesSelector";
+import DiscountsSelector from "./DiscountsSelector";
+import { toast } from "react-toastify";
+import * as PelakTemplate from "../../../static/pelak2.png";
 
 function clearNumber(x) {
   return convertNumbers2English(x.toString())
-    .replace(/,/g, '')
-    .replace(/\./g, '')
-    .replace(/\D/g, '');
+    .replace(/,/g, "")
+    .replace(/\./g, "")
+    .replace(/\D/g, "");
 }
 
 const BoxAccount = styled.div`
@@ -156,14 +137,14 @@ const BoxAccount = styled.div`
       }
     }
   }
-  .extraKm,.distanceLimit {
-    
+  .extraKm,
+  .distanceLimit {
     display: inline-block;
     vertical-align: middle;
-    float: none,
+    float: none;
   }
-  .extraKm{
-    margin:0
+  .extraKm {
+    margin: 0;
   }
   .extraKm,
   .distanceLimit {
@@ -176,7 +157,7 @@ const BoxAccount = styled.div`
       }
     }
   }
-  #Step2Item{
+  #Step2Item {
     // position:relative;
     margin: 0;
   }
@@ -189,33 +170,35 @@ const BoxAccount = styled.div`
     position: relative;
     margin-top: 8px;
     text-align: right;
-    @media (max-width:768px){
+    @media (max-width: 768px) {
       margin: 0;
     }
-  .first{
-    position: absolute;
-    right: 11px;
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(72,72,72,0.87);
-    top: 12px;
+    .first {
+      position: absolute;
+      right: 11px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(72, 72, 72, 0.87);
+      top: 12px;
+    }
+    .third,
+    .second,
+    .forth {
+      position: absolute;
+      right: 40px;
+      font-size: 16px;
+      color: rgba(72, 72, 72, 0.87);
+      top: 4px;
+      font-weight: 500;
+    }
+    .second {
+      right: 76px;
+      top: 1px;
+    }
+    .forth {
+      right: 100px;
+    }
   }
-.third, .second , .forth{
-  position: absolute;
-    right: 40px;
-    font-size: 16px;
-    color: rgba(72,72,72,0.87);
-    top: 4px;
-    font-weight: 500;
-}
-.second{
-  right: 76px;
-  top: 1px;
-}
-.forth{
-  right: 100px;
-}
-}
 
   i.close,
   i.edit.outline {
@@ -225,7 +208,7 @@ const BoxAccount = styled.div`
     font-size: 24px;
     cursor: pointer;
   }
-  .ui.form input[type='text'] {
+  .ui.form input[type="text"] {
     direction: ltr;
   }
   button#pos_bott,
@@ -274,7 +257,6 @@ interface IRange {
 
 interface ISetCarTimingForm {
   user: any;
-  t: any;
   success: boolean;
   name: string;
   rentalCarID: string;
@@ -298,75 +280,70 @@ interface ICar {
   plate4: any;
 }
 
-const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
+const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ id }) => {
   const carSample = {
-    registration_plate_first_part: '',
+    registration_plate_first_part: "",
     max_km_per_day: 0,
     extra_km_price: 0,
-    cancellation_policy: '',
+    cancellation_policy: "",
     color: {
       priority: 1,
-      name: { fa: '', en: 'Black' },
+      name: { fa: "", en: "Black" },
       id: 5,
-      slug: { fa: '', en: 'black' },
-      code: '#000000'
+      slug: { fa: "", en: "black" },
+      code: "#000000"
     },
     body_style: {
       id: 0
     },
-    registration_plate_forth_part: '',
+    registration_plate_forth_part: "",
     media_set: [
       {
         id: 0,
         thumbnail_url: null,
-        url: ''
+        url: ""
       }
     ],
     deliver_at_renters_place: true,
     car: {
       brand: {
-        name: { fa: '', en: '' },
+        name: { fa: "", en: "" },
         id: 0,
         description: { fa: null, en: null }
       },
       media_set: [],
       id: 0,
       differential: null,
-      slug: { fa: '', en: '' },
-      description: { fa: '', en: '' },
+      slug: { fa: "", en: "" },
+      description: { fa: "", en: "" },
       transmission_type: null,
       facility_set: [],
       capacity: 0,
       body_style: null,
-      name: { fa: '', en: '' }
+      name: { fa: "", en: "" }
     },
     capacity: 0,
-    vin: '',
+    vin: "",
     owner: {},
     location: {
       id: 0,
       name: {
-        breadcrumb_en: '',
-        fa: '',
-        en: '',
-        breadcrumb_fa: ''
+        breadcrumb_en: "",
+        fa: "",
+        en: "",
+        breadcrumb_fa: ""
       }
     },
-    description: '',
-    registration_plate_third_part: '',
+    description: "",
+    registration_plate_third_part: "",
     days_to_get_reminded: 0,
-    min_days_to_rent: '',
+    min_days_to_rent: "",
     id: 0,
-    registration_plate_second_part: '',
+    registration_plate_second_part: "",
     mileage_range: {},
     transmission_type: {},
     facility_set: [],
     year: {}
-  };
-
-  const empetyDate = {
-    from: null,
-    to: null
   };
 
   const [error, setError] = useState(false);
@@ -377,11 +354,10 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
   const [carDiscounts, setCarDiscounts] = useState([]);
   const [isIsAllTime, setIsIsAllTime] = useState(true);
   const [isAllTimePrice, setIsAllTimePrice] = useState("");
-  const [success, setSuccess] = useState('');
+  const [success, setSuccess] = useState("");
   const [disabledDays, setDisabledDays] = useState([]);
 
   const modifyCarTimings = async (array, curentRange = [] /* fixme */) => {
-    // console.log("array is ", array);
     setCarTimings(array);
     let out = [];
     var disabledDaysFiltered = array
@@ -392,39 +368,30 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
         return true;
       })
       .map((value, index) => {
-        if(value){
-          // console.log('index:', value);
+        if (value) {
           var days = getBetweenRange(value.date);
           out.push(...days);
         }
       });
     await setDisabledDays(out);
-    // console.log('disabledDays is: ', disabledDays);
   };
 
-  const modifyCarDiscounts = async (array) => {
-    // console.log("array is ", array);
+  const modifyCarDiscounts = async array => {
     setCarDiscounts(array);
   };
 
-    // Let make calls
+  // Let make calls
   const fetchAPI = async () => {
-    // 1. fetch car data itself 
     const carRes = await REQUEST_getCarIsMine({
       id,
-      token: jsCookie.get('token')
+      token: jsCookie.get("token")
     });
     setCar(carRes);
-    // console.log("carRes",carRes)
-
-    // 2. fetch car availablity data and parse it and set it to state
     const timeRes = await REQUEST_getCarAvailabilities({
       id,
-      token: jsCookie.get('token')
+      token: jsCookie.get("token")
     });
     const parsedTimes = timeRes.map((value, index) => {
-      // console.log("value",value);
-      
       if (value.is_all_time) {
         setIsIsAllTime(true);
         setIsAllTimePrice(value.price_per_day);
@@ -455,13 +422,13 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
     // 3. fetch car discounts data and parse it and set it to state
     const discountRes = await REQUEST_getCarDiscounts({
       id,
-      token: jsCookie.get('token')
+      token: jsCookie.get("token")
     });
     const parsedDiscounts = discountRes.map((value, index) => {
       return {
         id: value.id,
         duration: value.days_limit,
-        percent: value.discount_percent,
+        percent: value.discount_percent
       };
     });
     modifyCarDiscounts(parsedDiscounts);
@@ -474,25 +441,17 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
   }, []);
 
   const fieldErrorGenrator = fieldName => {
-    return (
-      t('forms.error_filed_required1') +
-      fieldName +
-      t('forms.error_filed_required2')
-    );
+    return " لطفاً فیلد " + fieldName + " را پر کنید. ";
   };
   const MaxErrorGenrator = (fieldName, val) => {
-    return `${t('forms.error_filed_maxmin_required1')} ${fieldName} ${t(
-      'forms.error_filed_max_required2'
-    )} (${convertNumbers2Persian(val)}) ${t(
-      'forms.error_filed_max_required3'
-    )}`;
+    return `مقدار فیلد ${fieldName} از مقدار حداکثر (${convertNumbers2Persian(
+      val
+    )}) "بیشتر است."`;
   };
   const MinErrorGenrator = (fieldName, val) => {
-    return `${t('forms.error_filed_maxmin_required1')} ${fieldName} ${t(
-      'forms.error_filed_min_required2'
-    )} (${convertNumbers2Persian(val)}) ${t(
-      'forms.error_filed_min_required3'
-    )}`;
+    return `مقدار فیلد ${fieldName} از مقدار حداقل (${convertNumbers2Persian(
+      val
+    )}) کمتر است.`;
   };
 
   return (
@@ -505,26 +464,18 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
         distanceLimit: null,
         extraKm: null,
         radioGroup: false,
-        cancellationPolicy: ''
+        cancellationPolicy: ""
       }}
       onSubmit={async (
         values: ISetCarTimingFormValues,
         actions: FormikActions<ISetCarTimingFormValues>
       ) => {
-        // console.log("availableInAllPrice",values.availableInAllPrice,"values.availableInAllPrice",
-        // values.availableInAllPrice ,"carTimings.length", carTimings.length);
-        // if(!values.availableInAllPrice && carTimings.length === 0){
-        //   setError(true);
-        //   SEtCtomeError("بازه قیمت خودرو را به درستی وارد نکرده اید")
-        //   return
-        // }
-        // return 
         actions.setSubmitting(true);
         setError(false);
-        if(!values.availableInAllPrice && carTimings.length === 0){
+        if (!values.availableInAllPrice && carTimings.length === 0) {
           setError(true);
-          SEtCtomeError("بازه قیمت خودرو را به درستی وارد نکرده اید")
-          return
+          SEtCtomeError("بازه قیمت خودرو را به درستی وارد نکرده اید");
+          return;
         }
         let {
           availableInAllPrice,
@@ -537,10 +488,9 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           radioGroup
         } = values;
         if (!deliverAtRentersPlace) deliverAtRentersPlace = false;
-        // car discounts
         let discounts = [];
         carDiscounts.map((val, index) => {
-          if(val){
+          if (val) {
             discounts.push({
               days_limit: clearNumber(val.duration),
               discount_percent: clearNumber(val.percent)
@@ -548,12 +498,12 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           }
         });
         await REQUEST_setCarDiscounts({
-          token: jsCookie.get('token'),
+          token: jsCookie.get("token"),
           rental_car_id: id,
           data: JSON.stringify(discounts)
         });
         await REQUEST_editCarPartial({
-          token: jsCookie.get('token'),
+          token: jsCookie.get("token"),
           id,
           deliver_at_renters_place: deliverAtRentersPlace,
           max_km_per_day: Number(distanceLimit), // fixme
@@ -561,108 +511,107 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           cancellation_policy: cancellationPolicy,
           days_to_get_reminded: daysToGetReminded,
           min_days_to_rent: minDaysToRent
-        })
-        .catch(error => {
+        }).catch(error => {
           console.error(error);
           setError(true);
           setSuccess(false);
         });
-        if(radioGroup == false) {
+        if (radioGroup == false) {
           REQUEST_setCarAvailability({
-            token: jsCookie.get('token'),
+            token: jsCookie.get("token"),
             rental_car_id: id,
-            data: JSON.stringify([{
-              rental_car_id: id,
-              is_all_time: 1,
-              price_per_day: clearNumber(availableInAllPrice),
-              status_id: 'available'
-            }])
-          })
-          .then(response => {
-            toast.success(`خودرو ${car.car.name.fa} با موفقیت ثبت شد`,{
+            data: JSON.stringify([
+              {
+                rental_car_id: id,
+                is_all_time: 1,
+                price_per_day: clearNumber(availableInAllPrice),
+                status_id: "available"
+              }
+            ])
+          }).then(response => {
+            toast.success(`خودرو ${car.car.name.fa} با موفقیت ثبت شد`, {
               position: "bottom-center",
               autoClose: 7000,
               hideProgressBar: true,
               closeOnClick: true,
               pauseOnHover: false,
               draggable: true
-            })
-            localStorage.removeItem("CarEditId")
+            });
+            localStorage.removeItem("CarEditId");
 
-              setTimeout(() => {
-                actions.setSubmitting(false);
-                Router.push(`/car/${id}/${car.car.brand.name.fa.replace(/ /ig,"-")}-${car.car.name.fa.replace(/ /ig,"-")}`);
-              }, 1000);
-          })
-        }
-        else {
+            setTimeout(() => {
+              actions.setSubmitting(false);
+              Router.push(
+                `/car/${id}/${car.car.brand.name.fa.replace(
+                  / /gi,
+                  "-"
+                )}-${car.car.name.fa.replace(/ /gi, "-")}`
+              );
+            }, 1000);
+          });
+        } else {
           let timings = [];
           carTimings.map((val, index) => {
-            if(val){
+            if (val) {
               timings.push({
                 start_date: convertDateToMoment(val.date.from).format(
-                  'jYYYY/jMM/jDD'
+                  "jYYYY/jMM/jDD"
                 ),
                 end_date: convertDateToMoment(val.date.to).format(
-                  'jYYYY/jMM/jDD'
+                  "jYYYY/jMM/jDD"
                 ),
                 price_per_day: clearNumber(val.price),
-                status_id: 'available'
+                status_id: "available"
               });
             }
           });
           REQUEST_setCarAvailability({
-            token: jsCookie.get('token'),
+            token: jsCookie.get("token"),
             rental_car_id: id,
             data: JSON.stringify(timings)
-          })
-          .then(response => {
-              setTimeout(() => {
-                actions.setSubmitting(false);
-                Router.push(`/car/${id}/${car.car.brand.name.fa}-${car.car.name.fa}`);
-              }, 1000);
-          })
+          }).then(response => {
+            setTimeout(() => {
+              actions.setSubmitting(false);
+              Router.push(
+                `/car/${id}/${car.car.brand.name.fa}-${car.car.name.fa}`
+              );
+            }, 1000);
+          });
         }
-        
-       
       }}
       validationSchema={Yup.object().shape({
         daysToGetReminded: Yup.number()
-          .required(fieldErrorGenrator(t('carTiming.daysToGetReminded')))
-          .typeError(fieldErrorGenrator(t('carTiming.daysToGetReminded')))
-          .min(1, MinErrorGenrator(t('carTiming.daysToGetReminded'), 1))
-          .max(31, MaxErrorGenrator(t('carTiming.daysToGetReminded'), 31)),
+          .required(fieldErrorGenrator("زمان اطلاع از اجاره"))
+          .typeError(fieldErrorGenrator("زمان اطلاع از اجاره"))
+          .min(1, MinErrorGenrator("زمان اطلاع از اجاره", 1))
+          .max(31, MaxErrorGenrator("زمان اطلاع از اجاره", 31)),
         minDaysToRent: Yup.number()
-          .required(fieldErrorGenrator(t('carTiming.minDaysToRent')))
-          .typeError(fieldErrorGenrator(t('carTiming.minDaysToRent')))
-          .min(1, MinErrorGenrator(t('carTiming.minDaysToRent'), 1))
-          .max(31, MaxErrorGenrator(t('carTiming.minDaysToRent'), 31)),
+          .required(fieldErrorGenrator("حداقل مدت اجاره"))
+          .typeError(fieldErrorGenrator("حداقل مدت اجاره"))
+          .min(1, MinErrorGenrator("حداقل مدت اجاره", 1))
+          .max(31, MaxErrorGenrator("حداقل مدت اجاره", 31)),
         distanceLimit: Yup.number()
-          .required(fieldErrorGenrator(t('carTiming.distanceLimit')))
-          .typeError(fieldErrorGenrator(t('carTiming.distanceLimit')))
-          .min(50, MinErrorGenrator(t('carTiming.distanceLimit'), 50)),
+          .required(fieldErrorGenrator("محدودیت مسافت"))
+          .typeError(fieldErrorGenrator("محدودیت مسافت"))
+          .min(50, MinErrorGenrator("محدودیت مسافت", 50)),
         extraKm: Yup.number()
-          .required(fieldErrorGenrator(t('carTiming.extraKmCost')))
-          .typeError(fieldErrorGenrator(t('carTiming.extraKmCost')))
-          .max(
-            10000000,
-            MaxErrorGenrator(t('carTiming.extraKmCost'), 10000000)
-          ),
+          .required(fieldErrorGenrator("هزینه هر کیلومتر اضافه"))
+          .typeError(fieldErrorGenrator("هزینه هر کیلومتر اضافه"))
+          .max(10000000, MaxErrorGenrator("هزینه هر کیلومتر اضافه", 10000000)),
         cancellationPolicy: Yup.string()
-          .required(fieldErrorGenrator(t('carTiming.cancellationPolicy')))
-          .typeError(fieldErrorGenrator(t('carTiming.cancellationPolicy'))),
+          .required(fieldErrorGenrator("هزینه هر کیلومتر اضافه"))
+          .typeError(fieldErrorGenrator("هزینه هر کیلومتر اضافه")),
         availableInAllPrice: Yup.mixed()
-          .when('radioGroup', {
+          .when("radioGroup", {
             is: false, // alternatively: (val) => val == true
             then: Yup.number()
-              .required(fieldErrorGenrator(t('carTiming.price')))
-              .typeError(fieldErrorGenrator(t('carTiming.price'))),
+              .required(fieldErrorGenrator("قیمت"))
+              .typeError(fieldErrorGenrator("قیمت")),
             otherwise: Yup.number()
           })
-          .when('$other', (other, schema) =>{                      
-            other === 4 ? schema.max(6) : schema
-          }
-          )
+          .when("$other", (other, schema) => {
+            other === 4 ? schema.max(6) : schema;
+          })
       })}
     >
       {({
@@ -679,93 +628,62 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
       }) => {
         let radioPad;
         if (values.radioGroup == false) {
-          radioPad = '0px';
+          radioPad = "0px";
         } else {
-          radioPad = '0px';
+          radioPad = "0px";
         }
         if (mapApiToFormik) {
-          // console.log("mapApiToFormik",isAllTimePrice);
-          
           setMapApiToFormik(false);
-          setFieldValue('distanceLimit', car.max_km_per_day);
-          setFieldValue('extraKm', car.extra_km_price);
-          setFieldValue('cancellationPolicy', car.cancellation_policy);
-          setFieldValue('deliverAtRentersPlace', car.deliver_at_renters_place);
-          setFieldValue('daysToGetReminded', car.days_to_get_reminded);
-          setFieldValue('minDaysToRent', car.min_days_to_rent);
-          // console.log('isAllTimePrice: ', isAllTimePrice);
+          setFieldValue("distanceLimit", car.max_km_per_day);
+          setFieldValue("extraKm", car.extra_km_price);
+          setFieldValue("cancellationPolicy", car.cancellation_policy);
+          setFieldValue("deliverAtRentersPlace", car.deliver_at_renters_place);
+          setFieldValue("daysToGetReminded", car.days_to_get_reminded);
+          setFieldValue("minDaysToRent", car.min_days_to_rent);
           if (isIsAllTime) {
-          
-            // console.log('setting is all time price', isAllTimePrice);
-            setFieldValue('availableInAllPrice', isAllTimePrice);
+            setFieldValue("availableInAllPrice", isAllTimePrice);
           } else {
-            // console.log('setFieldValue', values.radioGroup);
-            setFieldValue('radioGroup', true);
-            // console.log('setFieldValue', values.radioGroup);
+            setFieldValue("radioGroup", true);
           }
         }
         return (
           <BoxAccount className="box_account" id="Step2InAddCar">
             <Form onSubmit={handleSubmit}>
               <h3 className="new_client">تعیین شرایط اجاره</h3>
-              {/* <small className="float-right pt-2">* {$required_fields}</small> */}
               <Segment>
                 <Item.Group>
                   <Item id="Step2Item">
-                    <Item.Image src={(car.media_set[0] || { url: '' }).url}  />
-                    <Item.Content id ="partOneInStepTwoOfAddCar">
+                    <Item.Image src={(car.media_set[0] || { url: "" }).url} />
+                    <Item.Content id="partOneInStepTwoOfAddCar">
                       <Item.Header as="a">
                         {`${car.car.brand.name.fa} - ${car.car.name.fa}`}
                       </Item.Header>
-                      {/* <Item.Meta>{carDescription}</Item.Meta> */}
                       <div className="pelakTemp" style={{}}>
                         <div className="first">
-                        {convertNumbers2Persian(
+                          {convertNumbers2Persian(
                             car.registration_plate_first_part
                           )}
                         </div>
                         <div className="second">
-                            <span>{car.registration_plate_second_part}</span>
+                          <span>{car.registration_plate_second_part}</span>
                         </div>
                         <div className="third">
-                        {convertNumbers2Persian(
+                          {convertNumbers2Persian(
                             car.registration_plate_third_part
                           )}
                         </div>
                         <div className="forth">
-                        {convertNumbers2Persian(
+                          {convertNumbers2Persian(
                             car.registration_plate_forth_part
                           )}
                         </div>
                       </div>
-                      <Item.Description>
-                        {/* <Pelak
-                          first={convertNumbers2Persian(
-                            car.registration_plate_first_part
-                          )}
-                          second={car.registration_plate_second_part}
-                          third={convertNumbers2Persian(
-                            car.registration_plate_third_part
-                          )}
-                          forth={convertNumbers2Persian(
-                            car.registration_plate_forth_part
-                          )}
-                          type={1}
-                          size={'small'}
-                          style={{ maxWidth: '150px' }}
-                        /> */}
-                      </Item.Description>
-                      {/* <Item.Extra>{carLocation}</Item.Extra> */}
                     </Item.Content>
                   </Item>
-                  {/* carPelak, carColor, carYear, carMin_days_to_rent,
-                        carDeliver_at_renters_place, , ,
-                          */}
                 </Item.Group>
                 {/* ===================================================================== */}
-                </Segment>
-                <Segment>
-
+              </Segment>
+              <Segment>
                 <Divider horizontal id="DividerInStep2">
                   <Header as="h4">
                     {/* <Icon name="edit" /> */}
@@ -776,9 +694,8 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 <Form.Field style={{ margin: 0 }}>
                   <label id="Step2Lable">زمان اطلاع از اجاره</label>
                   <Input
-                  
                     name="daysToGetReminded"
-                    style={{direction:'ltr', display: 'contents'}}
+                    style={{ direction: "ltr", display: "contents" }}
                     className="numstep daysToGetReminded"
                     error={Boolean(
                       errors.daysToGetReminded && touched.daysToGetReminded
@@ -796,7 +713,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                       onClick={(e, data) => {
                         if (values.daysToGetReminded < 31) {
                           let val = Number(values.daysToGetReminded);
-                          setFieldValue('daysToGetReminded', ++val);
+                          setFieldValue("daysToGetReminded", ++val);
                         }
                       }}
                     >
@@ -808,7 +725,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                       onClick={(e, data) => {
                         if (values.daysToGetReminded > 1) {
                           let val = Number(values.daysToGetReminded);
-                          setFieldValue('daysToGetReminded', --val);
+                          setFieldValue("daysToGetReminded", --val);
                         }
                       }}
                     >
@@ -822,7 +739,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   <label id="Step2Lable">حداقل مدت اجاره</label>
                   <Input
                     name="minDaysToRent"
-                    style={{direction:'ltr', display: 'contents'}}
+                    style={{ direction: "ltr", display: "contents" }}
                     className="numstep minDaysToRent"
                     inputMode="numeric"
                     error={Boolean(
@@ -841,7 +758,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                       onClick={(e, data) => {
                         if (clearNumber(values.minDaysToRent) < 31) {
                           let val = Number(clearNumber(values.minDaysToRent));
-                          setFieldValue('minDaysToRent', clearNumber(++val));
+                          setFieldValue("minDaysToRent", clearNumber(++val));
                         }
                       }}
                     >
@@ -853,7 +770,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                       onClick={(e, data) => {
                         if (clearNumber(values.minDaysToRent) > 1) {
                           let val = Number(clearNumber(values.minDaysToRent));
-                          setFieldValue('minDaysToRent', clearNumber(--val));
+                          setFieldValue("minDaysToRent", clearNumber(--val));
                         }
                       }}
                     >
@@ -867,8 +784,6 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   <label id="Step2Lable">محدودیت مسافت</label>
 
                   <Form.Input
-                    // icon="search"
-                    // iconPosition="left"
                     name="distanceLimit"
                     className="distanceLimit"
                     error={Boolean(
@@ -883,20 +798,18 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                     value={
                       values.distanceLimit
                         ? convertNumbers2Persian(
-                          numberWithCommas(values.distanceLimit)
-                        )
+                            numberWithCommas(values.distanceLimit)
+                          )
                         : values.distanceLimit
                     }
                   >
-                    <input data-hj-whitelist inputMode="numeric"  
-                  
-                    />
+                    <input data-hj-whitelist inputMode="numeric" />
                   </Form.Input>
                   <span
                     style={{
-                      float: 'none',
-                      lineHeight: '48px',
-                      marginRight: '8px'
+                      float: "none",
+                      lineHeight: "48px",
+                      marginRight: "8px"
                     }}
                   >
                     کیلومتر در روز
@@ -905,39 +818,34 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 {/* ===================================================================== */}
                 <Form.Field style={{ margin: 0 }} id="exceptioninstep2">
                   <label id="Step2Lable">هزینه هر کیلومتر اضافه</label>
-<div className="extraKm" id="DudeComeOn">
-                  <Form.Input
-                  
-                    // icon="search"
-                    // iconPosition="left"
-                    name="extraKm"
-                    
-                    className="extraKm"
-                    inputMode="numeric"
-                    //   type="number"
-                    error={Boolean(errors.extraKm && touched.extraKm)}
-                    onChange={(e, data) => {
-                      if (data && data.name) {
-                        setFieldValue(data.name, clearNumber(data.value));
-                        setFieldTouched(data.name);
+                  <div className="extraKm" id="DudeComeOn">
+                    <Form.Input
+                      name="extraKm"
+                      className="extraKm"
+                      inputMode="numeric"
+                      error={Boolean(errors.extraKm && touched.extraKm)}
+                      onChange={(e, data) => {
+                        if (data && data.name) {
+                          setFieldValue(data.name, clearNumber(data.value));
+                          setFieldTouched(data.name);
+                        }
+                      }}
+                      value={
+                        values.extraKm
+                          ? convertNumbers2Persian(
+                              numberWithCommas(values.extraKm)
+                            )
+                          : values.extraKm
                       }
-                    }}
-                    value={
-                      values.extraKm
-                        ? convertNumbers2Persian(
-                          numberWithCommas(values.extraKm)
-                        )
-                        : values.extraKm
-                    }
-                  >
-                    <input data-hj-whitelist inputMode="numeric" />
-                  </Form.Input>
+                    >
+                      <input data-hj-whitelist inputMode="numeric" />
+                    </Form.Input>
                   </div>
                   <span
                     style={{
-                      float: 'none',
-                      lineHeight: '48px',
-                      marginRight: '8px'
+                      float: "none",
+                      lineHeight: "48px",
+                      marginRight: "8px"
                     }}
                   >
                     تومان
@@ -956,9 +864,8 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Form.Field>
                 {/* ===================================================================== */}
                 {/* ===================================================================== */}
-                </Segment>
-                <Segment>
-
+              </Segment>
+              <Segment>
                 <Divider horizontal id="DividerInStep2">
                   <Header as="h4">
                     {/* <Icon name="calendar alternate outline" /> */}
@@ -968,7 +875,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 {/* ===================================================================== */}
                 <Form.Field className="marg8">
                   <Radio
-                  select
+                    select
                     label="موجود در تمام تاریخ‌ها با قیمت یکسان"
                     name="radioGroup"
                     value={false}
@@ -987,17 +894,12 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Form.Field>
                 {values.radioGroup == false && (
                   <div>
-                    {/* <Form.Field style={{ margin: 0 }}>
-                      <label>{t('carTiming.extraKmCost')}</label>
-                    </Form.Field> */}
                     <Input
-                      // icon="search"
-                      // iconPosition="left"
                       name="availableInAllPrice"
                       className="extraKm"
                       error={Boolean(
                         errors.availableInAllPrice &&
-                        touched.availableInAllPrice
+                          touched.availableInAllPrice
                       )}
                       onChange={(e, data) => {
                         if (data && data.name) {
@@ -1008,8 +910,8 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                       value={
                         values.availableInAllPrice
                           ? convertNumbers2Persian(
-                            numberWithCommas(values.availableInAllPrice)
-                          )
+                              numberWithCommas(values.availableInAllPrice)
+                            )
                           : values.availableInAllPrice
                       }
                     >
@@ -1017,9 +919,9 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                     </Input>
                     <span
                       style={{
-                        float: 'right',
-                        lineHeight: '48px',
-                        marginRight: '8px'
+                        float: "right",
+                        lineHeight: "48px",
+                        marginRight: "8px"
                       }}
                     >
                       تومان در روز
@@ -1047,30 +949,26 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                 </Form.Field>
                 {values.radioGroup == true && (
                   <>
-                  {/* {console.log("car timings before ",carTimings)} */}
-                  <TimeRangesSelector
-                  error = {error}
-                    carTimings={carTimings}
-                    disabledDays={disabledDays}
-                    modifyCarTimings={modifyCarTimings}
-                  />
+                    <TimeRangesSelector
+                      error={error}
+                      carTimings={carTimings}
+                      disabledDays={disabledDays}
+                      modifyCarTimings={modifyCarTimings}
+                    />
                   </>
                 )}
-                 {/* ===================================================================== */}
-                 </Segment>
-                <Segment>
-                 <Divider horizontal id="DividerInStep2">
-                  <Header as="h4">
-                    {/* <Icon name="calendar alternate outline" /> */}
-                    تخفیف‌‌ها
-                  </Header>
+                {/* ===================================================================== */}
+              </Segment>
+              <Segment>
+                <Divider horizontal id="DividerInStep2">
+                  <Header as="h4">تخفیف‌‌ها</Header>
                 </Divider>
                 {/* ===================================================================== */}
                 <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید.</p>
                 <DiscountsSelector
-                    carDiscounts={carDiscounts}
-                    modifyCarDiscounts={modifyCarDiscounts}
-                  />
+                  carDiscounts={carDiscounts}
+                  modifyCarDiscounts={modifyCarDiscounts}
+                />
                 {/* ===================================================================== */}
                 <Form.Group>
                   <Form.Field
@@ -1094,7 +992,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   />
                 </Form.Group>
                 {/* ===================================================================== */}
-                <Form.Field style={{ textAlign: 'center', fontSize: '0.8em' }}>
+                <Form.Field style={{ textAlign: "center", fontSize: "0.8em" }}>
                   <Button
                     loading={isSubmitting && !error}
                     primary
@@ -1103,18 +1001,12 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                   >
                     تایید
                   </Button>
-                  {/* {isSubmitting && (
-                      <Progress
-                        value={this.state.submittingSteps}
-                        total="7"
-                        indicating={isSubmitting}
-                        success={this.state.submittingSteps == 7}
-                      />
-                    )} */}
                 </Form.Field>
                 {error && (
                   <Label attached="bottom" color="red">
-                {CustomeError ? "لطفا نرخ اجاره را وارد کنید." :t('forms.error')}
+                    {CustomeError
+                      ? "لطفا نرخ اجاره را وارد کنید."
+                      : "خطایی غیرمنتظره رخ داد!"}
                   </Label>
                 )}
                 {Object.keys(errors).length >= 1 && submitCount >= 1 && (
@@ -1131,6 +1023,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
   );
 };
 
-export default withTranslation('common')(
-  connect(state => state)(SetCarTimingForm)
-);
+export default connect(state => state)(SetCarTimingForm);
+
+// start 1136
+// start 1026

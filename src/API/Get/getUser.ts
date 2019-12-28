@@ -4,6 +4,12 @@ const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_USER = "/core/user/info";
 
 export const REQUEST_getUser = (data: IgetUser) => {
+  console.log(
+    DOMAIN +
+      GET_USER +
+      (data.id ? "?id=" + data.id : "?username=" + data.username)
+  );
+  
   return new Promise((resolve, reject) => {
     axios
       .post(
@@ -12,6 +18,7 @@ export const REQUEST_getUser = (data: IgetUser) => {
           (data.id ? "?id=" + data.id : "?username=" + data.username)
       )
       .then(response => {
+        console.log(response)
         if (response.data.success) {
           resolve(response.data.data);
         } else {
@@ -19,7 +26,7 @@ export const REQUEST_getUser = (data: IgetUser) => {
         }
       })
       .catch(err => {
-        console.warn("profile request filed: ", err.message);
+        reject(err);
       });
   });
 };

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ITheme } from "../../theme/Interfaces";
 
 const Card = styled.aside`
     background-color: #fff;

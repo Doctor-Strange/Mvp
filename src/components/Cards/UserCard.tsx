@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { Box, Flex } from "@rebass/grid";
 
-import {Link} from '../../../routes'
+import { Link } from "../../../routes";
 import jsCookie from "js-cookie";
-import { Icon, Input, Button, Grid} from "semantic-ui-react";
-import { ToastContainer, toast } from "react-toastify";
+import { Icon, Input, Button, Grid } from "semantic-ui-react";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   REQUEST_setUserImage,
@@ -13,16 +12,9 @@ import {
   REQUEST_setUsername,
   REQUEST_setCompanyName
 } from "../../API";
-import {
-  numberWithCommas,
-  convertNumbers2Persian,
-  convertNumbers2English
-} from "../../utils/numbers";
-import { Formik, FormikActions, withFormik } from "formik";
+import { Formik } from "formik";
 import { ITheme } from "../../theme/Interfaces";
-import Router from 'next/router';
-
-
+import Router from "next/router";
 
 const Card = styled.figure`
 padding: 0;
@@ -127,7 +119,7 @@ padding-top: 16px;
     font-size: 16px;
   }
   .name {
-    color: ${({theme}:{theme:ITheme}) => theme.color.textMain};
+    color: ${({ theme }: { theme: ITheme }) => theme.color.textMain};
   }
   .editform {
     width: 100%;
@@ -185,7 +177,6 @@ padding-top: 16px;
 `;
 
 export const UserCard: React.FunctionComponent<{
-  t: any;
   id: any;
   firstname: string;
   lastname: string;
@@ -195,9 +186,8 @@ export const UserCard: React.FunctionComponent<{
   own?: boolean;
   onUpdate?: any;
   showexit?: boolean;
-  company_name?:string;
+  company_name?: string;
 }> = ({
-  t,
   firstname,
   lastname,
   username,
@@ -210,335 +200,323 @@ export const UserCard: React.FunctionComponent<{
   showexit
 }) => {
   let link;
-  own ? 
-    link = null 
-  : 
-    link = (username ? `/@${username}` : `/user/${id}`);
+  own ? (link = null) : (link = username ? `/@${username}` : `/user/${id}`);
   const [editMode, setEditMode] = useState(false);
   const [makeUsername, setMakeUsername] = useState(false);
   const [showcompName, setcompanyname] = useState(false);
   const [img, setImg] = useState("");
   const [isSubmitting, setisSubmitting] = useState(false);
-  const inputFile = useRef(null) 
-  const Cookieuser = jsCookie.get("first_name")
-  const Cookielast = jsCookie.get("last_name")
-  useEffect(()=>{
-    if(company_name){
-      setcompanyname(true)
+  const inputFile = useRef(null);
+  const Cookieuser = jsCookie.get("first_name");
+  const Cookielast = jsCookie.get("last_name");
+
+  useEffect(() => {
+    if (company_name) {
+      setcompanyname(true);
     }
-  },[])
+  }, []);
+
   return (
     <Link route={link}>
-    <a>
-    <Card className="usercard" >
-      {!editMode ? (
-        <>
-          <div className="media-body hostDetailCard box" 
-          style={{textAlign: !own  ? "center" :'right', marginBottom: !own ?"10px": 0}}
-          >
+      <a>
+        <Card className="usercard">
+          {!editMode ? (
+            <>
+              <div
+                className="media-body hostDetailCard box"
+                style={{
+                  textAlign: !own ? "center" : "right",
+                  marginBottom: !own ? "10px" : 0
+                }}
+              >
                 <span className="name">
-
-                  {company_name ? company_name :firstname ? firstname :Cookieuser } {company_name ? null:lastname ? lastname : Cookielast }
+                  {company_name
+                    ? company_name
+                    : firstname
+                    ? firstname
+                    : Cookieuser}{" "}
+                  {company_name ? null : lastname ? lastname : Cookielast}
                 </span>
                 {own && (
-                <span 
-                className="EDIT_PROFILE"
-                onClick={() => {
-                  setEditMode(true);
-                  setImg(image)
-                }}
-                style={{
-                  display: 'block',
-                  fontSize: '14px',
-                cursor: 'pointer'
-                  
-                }}>ویرایش مشخصات کاربری</span>
-          )}
-              {/* <div>5,150 trips<span className="hostDetailCard-dotSeparator"></span>
-                  <span>Joined May 2016</span>
-                </div> */}
-              {/* <div className="hostDetailCard-responseTime">{responceTime}</div> */}
-          </div>
-          <div
-          //  className="boxi" style={{width: !own ? "100%" :"30%",textAlign: !own  ? "center" :'left'}}
-           >
-              <img src={image} className="img-fluid" alt={company_name ? company_name :firstname ? `${firstname} ${lastname}` :`${Cookieuser} ${Cookielast}`}/>
-          </div>
-          <div className="G">
-          {own && (
-          <Link href="/add-car">
-          <a className="B ADD_CAR_FROM_PROFILE">
-            افزودن خودرو 
-            <span className="C">+ </span>
-          </a>
-        </Link>
-          )}
-          {own && (
-           <Icon
-              name="sign out"
-              size='large'
-              style={{
-                // position: 'absolute',
-                // right: 32,
-                // top: 16,
-                width: 'auto',
-                cursor: 'pointer'
+                  <span
+                    className="EDIT_PROFILE"
+                    onClick={() => {
+                      setEditMode(true);
+                      setImg(image);
+                    }}
+                    style={{
+                      display: "block",
+                      fontSize: "14px",
+                      cursor: "pointer"
+                    }}
+                  >
+                    ویرایش مشخصات کاربری
+                  </span>
+                )}
+              </div>
+              <div>
+                <img
+                  src={image}
+                  className="img-fluid"
+                  alt={
+                    company_name
+                      ? company_name
+                      : firstname
+                      ? `${firstname} ${lastname}`
+                      : `${Cookieuser} ${Cookielast}`
+                  }
+                />
+              </div>
+              <div className="G">
+                {own && (
+                  <Link href="/add-car">
+                    <a className="B ADD_CAR_FROM_PROFILE">
+                      افزودن خودرو
+                      <span className="C">+ </span>
+                    </a>
+                  </Link>
+                )}
+                {own && (
+                  <Icon
+                    name="sign out"
+                    size="large"
+                    style={{
+                      width: "auto",
+                      cursor: "pointer"
+                    }}
+                    onClick={() => {
+                      jsCookie.remove("user_id");
+                      jsCookie.remove("token");
+                      jsCookie.remove("phone");
+                      jsCookie.remove("last_name");
+                      jsCookie.remove("first_name");
+                      jsCookie.remove("company_name");
+                      localStorage.removeItem("ImageUrl");
+                      localStorage.removeItem("complete_register");
+                      if (localStorage["CarEditId"]) {
+                        localStorage.removeItem("CarEditId");
+                      }
+                      window.location.href = process.env.SITE_URL;
+                    }}
+                  >
+                    <span
+                      className="LOG_OUT"
+                      style={{
+                        fontSize: "14px",
+                        verticalAlign: "middle",
+                        display: "inline",
+                        fontWeight: "100",
+                        float: "left",
+                        paddingRight: "8px",
+                        paddingTop: "5px",
+                        fontFamily: "Vazir,sans-serif"
+                      }}
+                    >
+                      خروج از حساب
+                    </span>
+                  </Icon>
+                )}
+              </div>
+            </>
+          ) : (
+            <Formik
+              initialValues={{
+                firstname: firstname,
+                lastname: lastname,
+                id: id,
+                image: null,
+                shownImage: image,
+                username: username,
+                company_name: company_name
               }}
-              onClick={() => {
-                jsCookie.remove("user_id")
-                jsCookie.remove("token")
-                jsCookie.remove("phone")
-                jsCookie.remove("last_name")
-                jsCookie.remove("first_name")
-                jsCookie.remove("company_name")
-                localStorage.removeItem("ImageUrl")
-                localStorage.removeItem("complete_register")
-                if(localStorage["CarEditId"]){
-                  localStorage.removeItem("CarEditId")
+              onSubmit={async (values, actions) => {
+                setisSubmitting(true);
+                if (values.username) {
+                  let userNameString = values.username.replace(/\s/g, "");
+                  if (!/[A-Za-z0-9]+/g.test(userNameString)) {
+                    toast.error("نام کاربری باید انگلیسی باشد.", {
+                      position: "bottom-center",
+                      autoClose: 4000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true
+                    });
+                    setisSubmitting(false);
+                    return;
+                  }
                 }
-                window.location.href = process.env.SITE_URL;
-                // window.location.href = "http://localhost:8080/";
+                if (values.firstname && values.lastname)
+                  await REQUEST_setUsetNameLastName({
+                    token: jsCookie.get("token"),
+                    first_name: values.firstname,
+                    last_name: values.lastname
+                  });
+                if (values.company_name || !values.company_name) {
+                  await REQUEST_setCompanyName({
+                    token: jsCookie.get("token"),
+                    company_name: values.company_name
+                  });
                 }
-              }
-                >
-                <span
-                className="LOG_OUT"
-                style={{
-                  fontSize: '14px',
-                  verticalAlign: 'middle',
-                  display: 'inline',
-                  fontWeight: '100',
-                  float: "left",
-                  paddingRight:"8px",
-                  paddingTop:"5px",
-                  fontFamily: 'Vazir,sans-serif'
-                }}>خروج از حساب</span>
-                </Icon>
-              )}
-           
-          </div>
-        </>
-      ) : (
-        <Formik
-          initialValues={{
-            firstname: firstname,
-            lastname: lastname,
-            id: id,
-            image: null,
-            shownImage: image,
-            username: username,
-            company_name:company_name
-          }}
-          onSubmit={async (values, actions) => {
-            setisSubmitting(true)
-            if(values.username){
-              let userNameString = values.username.replace(/\s/g,"")
-              if(!/[A-Za-z0-9]+/g.test(userNameString)){
-                toast.error("نام کاربری باید انگلیسی باشد.", {
+                if (values.username) {
+                  try {
+                    await REQUEST_setUsername({
+                      token: jsCookie.get("token"),
+                      username: values.username.replace(/\s/g, "")
+                    });
+                  } catch {
+                    setisSubmitting(false);
+                    return;
+                  }
+                }
+                if (values.image)
+                  await REQUEST_setUserImage({
+                    token: jsCookie.get("token"),
+                    file: values.image
+                  });
+
+                actions.setSubmitting(false);
+                toast.success("تغیرات با موفقیت اعمال شد", {
                   position: "bottom-center",
-                  autoClose: 4000,
+                  autoClose: 3000,
                   hideProgressBar: false,
                   closeOnClick: true,
                   pauseOnHover: true,
                   draggable: true
                 });
-                setisSubmitting(false)
-                return
-              }
-            }
-            if (values.firstname && values.lastname)
-              await REQUEST_setUsetNameLastName({
-                token: jsCookie.get("token"),
-                first_name: values.firstname,
-                last_name: values.lastname
-              });
-              if(values.company_name || !values.company_name){
-                await REQUEST_setCompanyName({
-                  token: jsCookie.get("token"),
-                  company_name: values.company_name
-                })
-              }
-            if (values.username){
-              try{await REQUEST_setUsername({
-                token: jsCookie.get("token"),
-                username: values.username.replace(/\s/g,"")
-              })
-            }
-            catch{
-              setisSubmitting(false)
-              return
-            }
-            }
-            if(values.image)
-              await REQUEST_setUserImage({
-                token: jsCookie.get('token'),
-                file: values.image,
-              });
-            
-            actions.setSubmitting(false);
-            toast.success("تغیرات با موفقیت اعمال شد", {
-              position: "bottom-center",
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true
-            });
-            setisSubmitting(false)
-            setEditMode(false);
-            Router.push('/')
-            // onUpdate({ id: id, username: values.username }); // call parent passed function so it will reload the page
-          }}
-          render={({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            touched,
-            values,
-            errors,
-            // isSubmitting,
-            setFieldValue
-          }) => (
-            <form onSubmit={handleSubmit} className="editform">
-              {errors.firstname && touched.firstname && (
-                <div id="feedback">{errors.firstname}</div>
-              )}
-              <div className="box boxbox" style={{position:'relative'}}>
-                {/* <Icon
-                className="icon"
-              name="edit"
-              size='large'
-              
-            /> */}
-                <img
-                  // src={values.shownImage}
-                  src={img}
-                  className="img-fluid edit"
-                  alt="ویرایش نمایه"
-                  // onClick={() => inputFile.current.click()}
-                />
-            <p style={{marginTop:"10px"}}>تغییر تصویر کاربری</p>
+                setisSubmitting(false);
+                setEditMode(false);
+                Router.push("/");
+              }}
+              render={({
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                touched,
+                values,
+                errors,
+                setFieldValue
+              }) => (
+                <form onSubmit={handleSubmit} className="editform">
+                  {errors.firstname && touched.firstname && (
+                    <div id="feedback">{errors.firstname}</div>
+                  )}
+                  <div className="box boxbox" style={{ position: "relative" }}>
+                    <img
+                      src={img}
+                      className="img-fluid edit"
+                      alt="ویرایش نمایه"
+                    />
+                    <p style={{ marginTop: "10px" }}>تغییر تصویر کاربری</p>
+                    <input
+                      className="inputFile"
+                      style={{
+                        position: "absolute",
+                        display: "block",
+                        right: "0",
+                        bottom: "0px",
+                        height: "90px",
+                        opacity: "0",
+                        margin: 0
+                      }}
+                      type="file"
+                      id="file"
+                      ref={inputFile}
+                      accept=".jpg,.jpeg,.png"
+                      onChange={e => {
+                        let file = e.target.files[0];
+                        const types = ["image/png", "image/jpeg", "image/png"];
+                        if (types.every(type => file.type !== type)) {
+                          alert("لطفاً تصویر را با فرمت jpeg بارگذاری کنید.");
+                          return false;
+                        }
+                        setFieldValue("image", file);
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        setImg(URL.createObjectURL(file));
+                        reader.onload = e => {};
+                        return;
+                      }}
+                    />
+                  </div>
+                  <div className="media-body hostDetailCard box editBox">
+                    <label style={{ color: "#202020" }}>{"نام"}</label>
+                    <Input
+                      type="text"
+                      className="firstname"
+                      placeholder={firstname}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.firstname}
+                      name="firstname"
+                    />
+                    <label style={{ color: "#202020" }}>{"نام خانوادگی"}</label>
+                    <Input
+                      type="text"
+                      className="lastname"
+                      placeholder={lastname}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.lastname}
+                      name="lastname"
+                    />
 
-                <input
-                className ="inputFile"
-                  style={{
-                    position:'absolute',
-    display:'block',
-    right:'0',
-    bottom:'0px',
-    height:'90px',
-    opacity:'0',
-    margin:0
-                  }}
-                  type='file'
-                  id='file'
-                  ref={inputFile}
-                  // style={{display: 'none'}}
-                  accept=".jpg,.jpeg,.png"
-                  onChange={(e) => {
-                    let file = e.target.files[0];
-                    // console.log(e.target.files[0])
-                    const types = ['image/png', 'image/jpeg', 'image/png'];
-                    if (types.every(type => file.type !== type)) {
-                      alert('لطفاً تصویر را با فرمت jpeg بارگذاری کنید.')
-                      return false;
-                    }
-                    setFieldValue('image', file);
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    setImg(URL.createObjectURL(file))
-                    // console.log(reader.result)
-                    // setFieldValue('shownImage', reader.result);
-                    reader.onload = (e) => {
-                      // console.log('file reading was susceed', e);
-                    };
-                    return 
-                      // #2 Catching wrong file types on the client
-                    reader.onabort = () =>{}
-                      //console.log('file reading was aborted');
-                    reader.onerror = () =>{}
-                      //console.log('file reading has failed');
-                    // reader.readAsDataURL(event.target.files[0]);
-                  }}
-                />
-              </div>
-              <div
-                className="media-body hostDetailCard box editBox"
-              >
-                 <label style={{color:"#202020"}}>{'نام'}</label>
-                <Input
-                  type="text"
-                  className="firstname"
-                  placeholder={firstname}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.firstname}
-                  name="firstname"
-                />
-                 <label  style={{color:"#202020"}}>{'نام خانوادگی'}</label>
-                <Input
-                  type="text"
-                  className="lastname"
-                  placeholder={lastname}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.lastname}
-                  name="lastname"
-                />
-                {/* <div>5,150 trips<span className="hostDetailCard-dotSeparator"></span>
-                      <span>Joined May 2016</span>
-                    </div> */}
-                <div className="hostDetailCard-responseTime">
-                  {values.responceTime}
-                </div>
-                {!showcompName ? <p
-                className="addCompanyName"
-                    onClick={() => setcompanyname(true)}
+                    <div className="hostDetailCard-responseTime">
+                      {values.responceTime}
+                    </div>
+                    {!showcompName ? (
+                      <p
+                        className="addCompanyName"
+                        onClick={() => setcompanyname(true)}
+                      >
+                        افزودن نام شرکت
+                      </p>
+                    ) : (
+                      <>
+                        <label style={{ color: "#202020" }}>نام شرکت</label>
+                        <Input
+                          placeholder="نام شرکت"
+                          name="company_name"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.company_name}
+                        >
+                          <input id="SETINPUT" />
+                        </Input>
+                      </>
+                    )}
+                    {username || makeUsername ? (
+                      <>
+                        <label style={{ color: "#202020" }}>آدرس اختصاصی</label>
+                        <Input
+                          id="userNameWraper"
+                          iconPosition="left"
+                          placeholder="آدرس اختصاصی"
+                          name="username"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.username}
+                        >
+                          <span id="PrefixUsername">otoli.net/@</span>
+                          <input id="USERNAMEProfile_Input" />
+                        </Input>
+                      </>
+                    ) : (
+                      <span onClick={() => setMakeUsername(true)}>
+                        ایجاد لینک اختصاصی
+                      </span>
+                    )}
+                  </div>
+                  <Grid.Row
+                    className="buttons"
+                    style={{ width: `100%`, margin: "0 auto" }}
                   >
-                    افزودن نام شرکت
-                  </p>
-                :<><label style={{color:"#202020"}}>نام شرکت</label>
-                    <Input
-                      placeholder="نام شرکت"
-                      name="company_name"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.company_name}
+                    <Grid.Column
+                      width={8}
+                      style={{ width: `48%`, marginLeft: `2%` }}
                     >
-                      <input id="SETINPUT"/>
-                    </Input>
-                    </>
-                    }
-                {username || makeUsername ?
-                  <>
-                    <label style={{color:"#202020"}}>آدرس اختصاصی</label>
-                    <Input
-                    id="userNameWraper"
-                      iconPosition="left"
-                      placeholder="آدرس اختصاصی"
-                      name="username"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.username}
-                    >
-                      {/* <Icon name="at" /> */}
-                      <span id="PrefixUsername">otoli.net/@</span>
-                      <input  id="USERNAMEProfile_Input"/>
-                    </Input>
-                  </>
-                  : 
-                  <span
-                    onClick={() => setMakeUsername(true)}
-                  >
-                    ایجاد لینک اختصاصی
-                  </span>
-                }
-                
-              </div>
-              <Grid.Row className="buttons" style={{width: `100%`,margin: '0 auto'}}>
-                  <Grid.Column width={8} style={{width:`48%`,marginLeft:`2%`}}>
                       <Button
-                      className="SAVE_EDIT_ACCOUNT"
+                        className="SAVE_EDIT_ACCOUNT"
                         style={{ height: "48px", marginTop: "16px" }}
                         size="small"
                         fluid
@@ -547,11 +525,14 @@ export const UserCard: React.FunctionComponent<{
                       >
                         {"ذخیره تغیرات"}
                       </Button>
-                  </Grid.Column>
-                  <Grid.Column width={8} style={{width:`48%`,marginRight:`2%`}}>
+                    </Grid.Column>
+                    <Grid.Column
+                      width={8}
+                      style={{ width: `48%`, marginRight: `2%` }}
+                    >
                       <Button
-                      className="CANCEL_EDIT_PROFILE"
-                      id="cancelBTN"
+                        className="CANCEL_EDIT_PROFILE"
+                        id="cancelBTN"
                         style={{ height: "48px", marginTop: "16px" }}
                         size="small"
                         basic
@@ -561,15 +542,18 @@ export const UserCard: React.FunctionComponent<{
                         }}
                       >
                         {"لغو"}
-                    </Button>
-                  </Grid.Column>
-              </Grid.Row>
-            </form>
+                      </Button>
+                    </Grid.Column>
+                  </Grid.Row>
+                </form>
+              )}
+            />
           )}
-        />
-      )}
-    </Card>
-    </a>
+        </Card>
+      </a>
     </Link>
   );
 };
+
+// start 590
+// end 556

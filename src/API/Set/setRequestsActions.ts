@@ -85,6 +85,8 @@ export const REQUEST_setOrderStatus = (data: InewRentRequest) => {
         }
         break;
     }
+    console.log(DOMAIN + ACTION_URL, data.id, more);
+
     axios
       .post(
         DOMAIN + ACTION_URL,

@@ -4,6 +4,8 @@ const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_USER_CARS = '/core/rental-car/list';
 
 export const REQUEST_getUserCars = (data: IgetUserCars) => {
+  console.log(data);
+  
   return new Promise((resolve, reject) => {
     axios
       .post(

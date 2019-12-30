@@ -643,22 +643,22 @@ export default withRouter(
           // console.log(cityName);
           return (
             <Layout haveSubHeader={true} pageTitle={"Hello World"}>
-              <NextSeo
-                config={{
-                  title: `جستجو برای تهران، از ${this.state.startDate} تا ${this.state.endDate} | اتولی`,
-                  description: `اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.    `,
-                  openGraph: {
-                    title: `درباره اتولی`,
-                    description: `درباره اتولی`,
-                    site_name: "اتولی"
-                  },
-                  twitter: {
-                    handle: "@otoli_net",
-                    site: "@otoli_net",
-                    cardType: "summary_large_image"
-                  }
-                }}
-              />
+             <NextSeo
+              config={{
+                title: `${this.state.DynamicRes.title} در اتولی`,
+                description: this.state.DynamicRes.meta_description,
+                openGraph: {
+                  title: `${this.state.DynamicRes.title} در اتولی`,
+                  description: this.state.DynamicRes.meta_description,
+                  site_name: "اتولی"
+                },
+                twitter: {
+                  handle: "@otoli_net",
+                  site: "@otoli_net",
+                  cardType: "summary_large_image"
+                }
+              }}
+            />
               <SearchBar
                 DynamicSearch = {true}
                 count={total_count}
@@ -722,6 +722,17 @@ export default withRouter(
                 this.state.DynamicRes.content
               }`}}>
               </article>
+              {this.state.DynamicRes.link_set.length > 0 && (
+                <div className="D_Content">
+                  <ul>
+                    <li>
+                      {this.state.DynamicRes.link_set.map(item => {
+                        return item;
+                      })}
+                    </li>
+                  </ul>
+                </div>
+              )}
               </div>
             </Layout>
           );

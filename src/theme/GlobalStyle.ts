@@ -3598,6 +3598,18 @@ input::placeholder{
   padding: 24px;
   margin-bottom:16px;
   box-shadow: 0px 1px 5px 1px #0000000f;
+  img{
+    width:100% !important;
+    display:block;
+    margin:auto
+    height:auto !important;
+    @media (max-width:996px){
+      width:100% !important;
+      display:block;
+      height:auto !important;
+      margin:auto
+    }
+  }
 }
 `;
 

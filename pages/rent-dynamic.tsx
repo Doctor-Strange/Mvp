@@ -645,10 +645,10 @@ export default withRouter(
             <Layout haveSubHeader={true} pageTitle={"Hello World"}>
              <NextSeo
               config={{
-                title: `${this.state.DynamicRes.title} در اتولی`,
+                title: `${this.state.DynamicRes.meta_title} در اتولی`,
                 description: this.state.DynamicRes.meta_description,
                 openGraph: {
-                  title: `${this.state.DynamicRes.title} در اتولی`,
+                  title: `${this.state.DynamicRes.meta_title} در اتولی`,
                   description: this.state.DynamicRes.meta_description,
                   site_name: "اتولی"
                 },

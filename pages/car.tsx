@@ -278,14 +278,14 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                 alt: 'Og Image Alt',
             })
         ) : null
-        // console.log(this.props)
+        console.log(this.props)
         return (
             <Layout haveSubHeader={true} pageTitle={'list Your Car'}>
                 <LoginModal onRef={this.doRef} updateInfo={this.updateInfo} />
 
                 <NextSeo
                     config={{
-                        title: `اجاره ${car.brand.name.fa} ${car.name.fa} در اتولی`,
+                        title: `${owner.company_name ?`${owner.company_name} -` :  `${owner.first_name} ${owner.last_name} -` } ${car.brand.name.fa} ${car.name.fa} | اتولی`,
                         description: description ? description : "همین حالا اجاره کنید",
                         openGraph: {
                             title: `اجاره ${car.brand.name.fa} ${car.name.fa} در اتولی`,

@@ -278,7 +278,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                 alt: 'Og Image Alt',
             })
         ) : null
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <Layout haveSubHeader={true} pageTitle={'list Your Car'}>
                 <LoginModal onRef={this.doRef} updateInfo={this.updateInfo} />

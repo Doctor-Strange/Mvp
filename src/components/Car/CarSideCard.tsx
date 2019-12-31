@@ -158,7 +158,8 @@ end?:string;
                       colorPrimary={'#00ACC1'}
                       colorPrimaryLight={'#00acc147'}
                     />
-                    <Button
+                   <div>
+                        <Button
                     basic
             onClick={()=>{
                 SetresTrue(false)
@@ -179,7 +180,7 @@ end?:string;
                 >
 اعمال
                 </Button>
-                
+                </div>
             </p>
             }
             {/* <CarDateRange from={convertMomentToDate(date.start)} to={convertMomentToDate(date.end)} /> */}

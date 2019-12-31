@@ -2057,7 +2057,7 @@ id="JustPersian"
                       fontSize: '12px', fontWeight: 400, marginBottom: '20px',
                       marginTop: "-25px", display: 'block'
                     }}>
-                      پلاک خودرو فقط جهت تنظیم قرارداد اجاره به کار می‌رود و در سایت نمایش داده نمی‌شود.
+                      پلاک خودرو جهت جلوگیری از ثبت خودروی تکراری استفاده می‌شود و در نتایج جستجو نمایش داده نمی‌شود.
                         </span>
                     <Form.Field style={{ margin: 0 }}>
                       <label>{"امکانات خودرو"}</label>

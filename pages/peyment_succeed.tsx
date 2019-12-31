@@ -132,7 +132,7 @@ const Page = ({id}) => {
         REQUEST_getOrderRequest({ token: jsCookie.get('token'), id  })
         .then(res=>{
           setRequest(res);
-          // console.log(res)
+          console.log(res)
         })
         .catch(e=>{
           // console.log(e)

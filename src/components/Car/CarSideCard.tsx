@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from "react";
 import styled from 'styled-components';
 import { Box, Flex } from '@rebass/grid';
 import StarRatingComponent from 'react-star-rating-component';
@@ -15,15 +16,21 @@ import { numberWithCommas, convertNumbers2Persian, convertNumbers2English, getSh
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { CarDateRange } from './index';
 import jsCookie from 'js-cookie';
+import axios from 'axios';
+
+
+import 'otoli-react-persian-calendar-date-picker/lib/DatePicker.css';
+import DatePicker from 'otoli-react-persian-calendar-date-picker';
 
 const Card = styled.nav`
-    .DatePicker__calendarContainer {
-        display: none;
-    }
+    // .DatePicker__calendarContainer {
+    //     display: none;
+    // }
     .DatePicker__input {
         font-size: 15px;
         font-family: Vazir;
         border: none;
+        cursor:pointer
     }
     .price {
         top: -20px;
@@ -59,10 +66,19 @@ const CarideCard: React.FunctionComponent<{
     start?:string;
     loading?: boolean;
     allow?:any;
+    rentalCarID?:any;
 end?:string;
     user: any;
     reserveFunction: any;
-}> = ({ date, price, user, reserveFunction,start,end,loading,allow }) => {
+}> = ({ date, price, user, reserveFunction,start,end,loading,allow,rentalCarID }) => {
+    const [newSI,SetNewSI] = useState(null);
+    const [resTrue,SetresTrue] = useState(false);
+    const [loader,setLoader] = useState(false)
+    const [NewDate, setNewDate] = useState({
+        from: null,
+        to: null
+      });
+
     console.log("user",price)
     let Randprice= "خطا"
     if(price){
@@ -77,6 +93,38 @@ end?:string;
                 Randprice = convertNumbers2Persian(getShortVersion(price).number).slice(0, pos)
             }
         }
+    }
+
+    const fetchData = async () =>{
+        setLoader(true)
+        let token = jsCookie.get("token")
+        const DOMAIN = process.env.PRODUCTION_ENDPOINT;
+        const GET_SEARCH_FOR_RENT = '/core/rental-car/search-for-rent/list';
+        axios
+      .post(
+        DOMAIN +
+          GET_SEARCH_FOR_RENT ,
+          {
+            rental_car_id:rentalCarID,
+            start_date:`${NewDate.from.year}/${NewDate.from.month}/${NewDate.from.day}`,
+            end_date:`${NewDate.to.year}/${NewDate.to.month}/${NewDate.to.day}`
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + token
+            }
+          }
+      )
+      .then(response => {
+        setLoader(false)
+        SetresTrue(true)
+        SetNewSI(response.data.items[0].search_id);
+      })
+      .catch(e=>{
+        setLoader(false)
+
+          console.log(e);
+      })
     }
     return (
         <Card>
@@ -95,10 +143,43 @@ end?:string;
                 </div>
             }
             {start && end &&<p style={{textAlign:"center", marginBottom:'0px'}}>
+                {resTrue ? "" :<>
                  از{" "} 
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(start).slice(0, start.length-2)}</span>
                 {" "} تا {" "}
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(end).slice(0, end.length-2)}</span>
+                </>}
+                <DatePicker
+                      selectedDayRange={NewDate}
+                      onChange={setNewDate}
+                      inputPlaceholder="تغییر تاریخ"
+                      isDayRange
+                      disableBackward
+                      colorPrimary={'#00ACC1'}
+                      colorPrimaryLight={'#00acc147'}
+                    />
+                    <Button
+                    basic
+            onClick={()=>{
+                SetresTrue(false)
+                SetNewSI(null)
+                setNewDate({
+                    from: null,
+                    to: null
+                  });
+            }}
+                >
+                    انصراف 
+                </Button>
+            <Button
+            loading ={loader}
+            onClick={()=>{
+                fetchData()
+            }}
+                >
+اعمال
+                </Button>
+                
             </p>
             }
             {/* <CarDateRange from={convertMomentToDate(date.start)} to={convertMomentToDate(date.end)} /> */}
@@ -119,7 +200,7 @@ end?:string;
                 style={{ height: '48px' }}
                 size='large'
                 fluid
-                onClick={reserveFunction}
+                onClick={() => reserveFunction(newSI)}
                 >ادامه</Button>
                 
             <div

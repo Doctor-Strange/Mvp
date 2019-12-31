@@ -254,7 +254,7 @@ export default withTranslation("common")(
     }
 
     render() {
-      console.log("token",jsCookie.get("token"));
+      console.log(start_date, end_date);
       const { t, start_date, end_date, search_id } = this.props;
       let start,
         end = null;

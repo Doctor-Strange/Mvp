@@ -207,7 +207,7 @@ export class FilterAndSortBar extends React.Component<{
     // console.log("run")
     this.props.setPrice(value);
   };
-
+   
   render() {
     const { t, showFilters, brands, brand, models, model, deliverAtRentersPlace, price, priceSort,
       brandLoading, modelLoading } = this.props;
@@ -690,7 +690,7 @@ export class FilterAndSortBar extends React.Component<{
                           setModel("", "");
                         }}
                         placeholder="مدل"
-                        disabled={modelLoading && !(brand == null || brand == "")}
+                        disabled={this.props.brand === null || this.props.brand == ""}
                         ></DropDownWithSearch>
                         </div>
                   {/* <Form.Dropdown

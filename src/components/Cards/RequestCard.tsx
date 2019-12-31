@@ -448,7 +448,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
 
     let title;
     let actions;
-    
+ 
     switch (status) {
         case 'new':
             statusOwner === "owner"
@@ -636,6 +636,10 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                         </Grid.Column>
                         <Grid.Column width={5} className="img_wrapper" id="img_wrapper">
                             <img src={picture} alt={carName} />
+                            {status === "paid" 
+|| status ==="not_delivered"
+|| status ==="delivered"
+|| status ==="returned" &&
                             <Pelak
                                 first={pelak.first}
                                 second={pelak.second}
@@ -644,7 +648,7 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                                 type={1}
                                 size={"small"}
                                 style={{}}
-                            />
+                            />}
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row style={{ margin: '0 auto' }}>

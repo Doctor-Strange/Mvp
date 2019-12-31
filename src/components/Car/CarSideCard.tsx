@@ -143,13 +143,13 @@ end?:string;
                 </div>
             }
             {start && end &&<p style={{textAlign:"center", marginBottom:'0px'}}>
-                {resTrue ? "" :<>
+                {/* {resTrue ? "" :<> */}
                  از{" "} 
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(start).slice(0, start.length-2)}</span>
                 {" "} تا {" "}
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(end).slice(0, end.length-2)}</span>
-                </>}
-                <DatePicker
+                {/* </>} */}
+                {/* <DatePicker
                       selectedDayRange={NewDate}
                       onChange={setNewDate}
                       inputPlaceholder="تغییر تاریخ"
@@ -180,7 +180,7 @@ end?:string;
                 >
 اعمال
                 </Button>
-                </div>
+                </div> */}
             </p>
             }
             {/* <CarDateRange from={convertMomentToDate(date.start)} to={convertMomentToDate(date.end)} /> */}

@@ -429,8 +429,9 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                                     last_name: owner.last_name,
                                     company_name: owner.company_name
                                 }}
-                                reserveFunction={(newSI) => { this.reserve(
-                                    newSI?newSI : search_id) }}
+                                reserveFunction={() => { this.reserve(search_id) }}
+                                // reserveFunction={(newSI) => { this.reserve(
+                                //     newSI?newSI : search_id) }}
                             />
                         </ContentSideCard>
                     }

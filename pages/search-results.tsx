@@ -19,7 +19,10 @@ import {
 } from '../src/components/Search';
 import Router, { withRouter } from 'next/router';
 import moment from 'moment-jalaali';
+import IndexFormOnSearchResult from '../src/components/Forms/IndexFormOnSearchResult';
 moment.loadPersian({ dialect: 'persian-modern' });
+
+import SearchInSearch from "../src/context/context";
 
 export default withRouter(
     withTranslation('common')(
@@ -367,7 +370,14 @@ export default withRouter(
                 //   debounce(this.renderResults(page), 500)
                 // };
 
-                async renderResults(page = 1) {
+                // incomingDate = (data,startD , endD)=>{
+                //     console.log("data",data);
+
+                //     this.renderResults(1,data,startD , endD)
+                // }
+
+                // async renderResults(page = 1 , date = false,startD , endD) {
+                async renderResults(page = 1 ) {
                     // send search resluts request
                     if (page === 1) {
                         let queryString = '';
@@ -460,6 +470,7 @@ export default withRouter(
                             results: stateTemp.concat(resultsTemp)
                         });
                     }
+                
                 }
 
                 render() {
@@ -519,6 +530,11 @@ export default withRouter(
           }
         }}
       />
+      {/* <SearchInSearch.Provider value = {{
+          searchParam :this.incomingDate 
+      }}>
+      <IndexFormOnSearchResult />
+      </SearchInSearch.Provider> */}
                             <SearchBar
                                 count={total_count}
                                 t={t}

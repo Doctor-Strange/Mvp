@@ -105,7 +105,12 @@ import {
   SearchBar
 } from "../src/components/Search";
 import Router, { withRouter } from "next/router";
+
+import IndexFormOnSearchResult from '../src/components/Forms/IndexFormOnSearchResult';
+import SearchInSearch from "../src/context/context";
+
 import moment from "moment-jalaali";
+
 moment.loadPersian({ dialect: "persian-modern" });
 
 export default withRouter(
@@ -435,8 +440,15 @@ export default withRouter(
         // renderResultsDebounced(page = 0) {
         //   debounce(this.renderResults(page), 500)
         // };
+        incomingDate = (data,startD , endD)=>{
+          console.log("data",data);
 
-        async renderResults(page = 1) {
+          this.renderResults(1,data,startD , endD)
+      }
+
+      async renderResults(page = 1 , date = false,startD , endD) {
+        if(!date){
+
           // send search resluts request
           const today = new Date().getDay();
           let startDate = null;
@@ -604,6 +616,22 @@ export default withRouter(
               results: stateTemp.concat(resultsTemp)
             });
           }
+        }else{    
+            this.setState({   loadingResults: true })            
+            const res = await REQUEST_getSearchForRent({
+                page,
+                limit: 14,
+                queryString : date+"&min_price=0&max_price=100000000&body_style_id=&o=-price&",
+                o:'-price'
+            });
+            this.setState({
+                startDate:startD ,
+                endDate:endD,
+                ...res,
+                page: 1,
+                loadingResults: false
+            });
+        }
         }
 
         render() {
@@ -659,7 +687,12 @@ export default withRouter(
                 }
               }}
             />
-              <SearchBar
+            <SearchInSearch.Provider value = {{
+          searchParam :this.incomingDate 
+      }}>
+      <IndexFormOnSearchResult />
+      </SearchInSearch.Provider>
+              {/* <SearchBar
                 DynamicSearch = {true}
                 count={total_count}
                 t={t}
@@ -672,7 +705,7 @@ export default withRouter(
                 cities={{ citiesFarsi, citiesEnglish }}
                 city={city}
                 cityName={cityName}
-              />
+              /> */}
               <div
                 className="row container_on_desktop"
                 style={{ margin: "auto auto", flexDirection: "row-reverse" }}
@@ -681,9 +714,9 @@ export default withRouter(
                 {this.state.DynamicRes.title &&<h1 dir="rtl" className ="D_h1">
                     {this.state.DynamicRes.title}
                   </h1>}
-                  {this.state.DynamicRes.short_description &&<h4 dir="rtl" className ="D_h4">
+                  {/* {this.state.DynamicRes.short_description &&<h4 dir="rtl" className ="D_h4">
                     {this.state.DynamicRes.short_description}
-                  </h4>}
+                  </h4>} */}
                 </article>
                 <FilterAndSortBar
                   toggleToCarBodyType={this.toggleToCarBodyType}

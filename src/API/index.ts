@@ -1,3 +1,4 @@
+import { REQUEST_GET_YEAR } from './Get/getYear';
 // Cars
 import { REQUEST_getCar } from './Get/getCar';
 import { REQUEST_editCarPartial } from "./Set/editCarPartial";
@@ -82,5 +83,6 @@ export {
   REQUEST_set_out_of_service,
   REQUEST_setCompanyName,
   REQUEST_setCarCoupan,
-  REQUEST_getLanding
+  REQUEST_getLanding,
+  REQUEST_GET_YEAR
 };

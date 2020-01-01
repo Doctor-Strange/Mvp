@@ -20,4 +20,5 @@ module.exports = routes()
   .add("otoli")
   .add("rent-dynamic", "/rent/:name")
   .add("rent", "/rent")
-  .add("site-map", "/site-map");
+  .add("site-map", "/site-map")
+  .add("join-us", "/join-us");

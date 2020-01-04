@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DropDownWithSearch from "../../components/DropDownWithSearch/DropDownWithSearch";
 
-import {  convertNumbers2English,DnumberWithCommas } from '../../utils/numbers';
+import { convertNumbers2English, DnumberWithCommas } from "../../utils/numbers";
 
 import {
   REQUEST_getFactoryBrands,
@@ -14,7 +14,16 @@ class Calculator extends Component {
     brandsFarsi: [],
     modelsFarsi: [],
     yearsFarsi: [],
-    carValue: 0
+    carValue: 0,
+    brandValue: "",
+    modelValue: "",
+    yearValue: "",
+    daily: 0,
+    weekly: 0,
+    monthly: 0,
+    dayUnit: "هزار تومان",
+    weekUnit: "هزار تومان",
+    monthUnit: "هزار تومان"
   };
   componentDidMount = () => {
     this.fetchData();
@@ -58,19 +67,83 @@ class Calculator extends Component {
     // });
   };
 
-  calculator = () =>{
-      console.log(this.state.carValue.replace(/,/g,""));
-        let conToNum  = Number(this.state.carValue.replace(/,/g,""))
-      console.log(conToNum*0.0024)
-  }
+  clearField = name => {
+    if (name === "brandValue") {
+      this.setState({
+        brandValue: "",
+        modelsFarsi: [],
+        modelValue: ""
+      });
+    } else
+      this.setState({
+        [name]: ""
+      });
+  };
+
+  calculator = () => {
+    let daily = 0;
+    let dayUnit = "هزار تومان";
+    let weekly = 0;
+    let weekUnit = "هزار تومان";
+    let monthly = 0;
+    let monthUnit = "هزار تومان";
+    if (this.state.carValue < 10000000) return;
+    console.log(this.state.carValue.replace(/,/g, ""));
+    let conToNum = Number(this.state.carValue.replace(/,/g, ""));
+    let eachDaily = conToNum * 0.0022;
+    let Round = Math.ceil(eachDaily / 10) * 10;
+    let eachWeek = Round * 7;
+    let eachMonth = Round * 30;
+    if (Round > 1000000) {
+      dayUnit = "میلیون";
+    }
+    if (eachWeek > 1000000) {
+      weekUnit = "میلیون";
+    }
+    if (eachMonth > 1000000) {
+      monthUnit = "میلیون";
+    }
+
+    if (Round > 1000) {
+      daily = Number(String(Round).slice(0, -3));
+    } else if (Round > 1000000) {
+      daily = Number(String(Round).slice(0, -6));
+    }
+
+    if (eachWeek > 1000) {
+      weekly = Number(String(eachWeek).slice(0, -3));
+    } else if (eachWeek > 1000000) {
+      weekly = Number(String(eachWeek).slice(0, -6));
+    }
+
+    if (eachMonth > 100000000) {
+      console.log("eachMonth ===> ", eachMonth);
+      monthly = Number(String(eachMonth).slice(0, -3));
+    } else if (eachMonth > 10000000) {
+      console.log("eachMonth ===> ", eachMonth);
+      monthly = Number(String(eachMonth).slice(0, -3));
+    } else if (eachMonth > 1000000) {
+      console.log("eachMonth ===> ", eachMonth);
+      monthly = Number(String(eachMonth).slice(0, -3));
+    }
+
+    this.setState({
+      daily,
+      weekly,
+      monthly,
+      dayUnit,
+      weekUnit,
+      monthUnit
+    });
+  };
 
   render() {
     return (
-      <div>
-        <h2>چقدر می‌توانید کسب درآمد کنید؟</h2>
-        <p>مشخصات ماشین‌تان را وارد کنید:</p>
-        <form>
-          <div className=" field">
+      <>
+        <div className="CalculatorBox" id="CalculatorBox">
+          <h2>چقدر می‌توانید از ماشینتان کسب درآمد کنید؟</h2>
+          <p className="title">مشخصات ماشین‌تان را وارد کنید:</p>
+          <form>
             <DropDownWithSearch
               loading={true}
               top="46"
@@ -81,13 +154,11 @@ class Calculator extends Component {
               }
               IconTop="20"
               clearField={() => {
-                setBrandAndGetModels("", "");
+                this.clearField("brandValue");
               }}
               placeholder="برند"
               // disabled={brand == null || brand == ""}
-            ></DropDownWithSearch>
-          </div>
-          <div className=" field">
+            />
             <DropDownWithSearch
               loading={true}
               top="46"
@@ -98,65 +169,270 @@ class Calculator extends Component {
                 // values.carDistrict = e.value
               }}
               clearField={() => {
-                setModel("", "");
+                clearField("modelValue");
               }}
               placeholder="مدل"
-              //   disabled={modelLoading && !(brand == null || brand == "")}
-            ></DropDownWithSearch>
-            <div className="field">
-              <DropDownWithSearch
-                // defaultVal={values.carYear}
-                disabled={false}
-                data={this.state.yearsFarsi}
-                // error={Boolean(errors.carYear && touched.carYear)}
-                IconTop="42"
-                // clearField={() => {
-                //   values.carYear = "";
-                // }}
-                InputDisable={true}
-                Select={e => {}}
-                placeholder="سال"
-              ></DropDownWithSearch>
-
-              <div className="field">
-                <label>ارزش خودرو</label>
-                <input
-                  data-hj-whitelist
-                  type="text"
-                  maxLength="14"
-                  minLength="7"
-                  onChange={e => {
-                    e.persist();
-                    this.setState({
-                      carValue: e.target.value
-                    });
-                  }}
-                  value={DnumberWithCommas(
-                    convertNumbers2English(`${this.state.carValue}`)
-                  )}
-                />
-                <span
-                  style={{
-                    position: "absolute",
-                    left: "10px",
-                    top: "42px"
-                  }}
-                >
-                  تومان
-                </span>
-              </div>
-              <span onClick={()=>{
-                  this.calculator()
+              disabled={this.state.brandValue !== ""}
+            />
+            <DropDownWithSearch
+              // defaultVal={values.carYear}
+              disabled={false}
+              data={this.state.yearsFarsi}
+              // error={Boolean(errors.carYear && touched.carYear)}
+              IconTop="42"
+              clearField={() => {
+                this.clearField("yearValue");
               }}
-              style={{
-                  background:'red'
-              }}>
-                  محاسبه درآمد
+              InputDisable={true}
+              Select={e => {}}
+              placeholder="سال"
+            />
+            <div className="searchBoxContainer">
+              <input
+                placeholder="ارزش خودرو"
+                data-hj-whitelist
+                type="text"
+                maxLength="14"
+                minLength="7"
+                onChange={e => {
+                  e.persist();
+                  this.setState({
+                    carValue: e.target.value
+                  });
+                }}
+                value={DnumberWithCommas(
+                  convertNumbers2English(`${this.state.carValue}`)
+                )}
+              />
+              <span className="TomanText">تومان</span>
+            </div>
+            <div className="searchBoxContainer CalculatorBTN">
+              <span
+                style={{
+                  display: "block"
+                }}
+                onClick={() => {
+                  this.calculator();
+                }}
+              >
+                محاسبه درآمد
               </span>
             </div>
+          </form>
+        </div>
+        <div className="CalculatorResult" id="CalculatorResult">
+          <div className="eachSvgBox">
+            <h3 className="CalcH3">
+              {this.state.weekly
+                ? DnumberWithCommas(
+                    convertNumbers2English(`${this.state.weekly}`)
+                  )
+                : 0}
+              <p>{this.state.weekUnit}</p>
+            </h3>
+            <div className="SvgDisc">
+              <svg viewBox="0 0 600 600">
+                <g transform="translate(300, 300)">
+                  <g className="arcs">
+                    <defs>
+                      <linearGradient
+                        id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
+                        x1="0"
+                        x2="100%"
+                      >
+                        <stop
+                          className="gaugeGradient-start"
+                          offset="0%"
+                          stop-color="rgb(75,163,206)"
+                          stop-opacity="1"
+                        ></stop>
+                        <stop
+                          className="gaugeGradient-end"
+                          offset="100%"
+                          stop-color="#a3678b"
+                          stop-opacity="1"
+                        ></stop>
+                      </linearGradient>
+                    </defs>
+                    <defs>
+                      <linearGradient
+                        id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
+                        x1="0"
+                        x2="100%"
+                      >
+                        <stop
+                          className="gaugeGradient-start"
+                          offset="0%"
+                          stop-color="rgb(75,163,206)"
+                          stop-opacity="1"
+                        ></stop>
+                        <stop
+                          className="gaugeGradient-end"
+                          offset="100%"
+                          stop-color="#a3678b"
+                          stop-opacity="1"
+                        ></stop>
+                      </linearGradient>
+                    </defs>
+                    <path
+                      className="gauge-backgroundArc"
+                      d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                      style={{ fill: "rgb(230, 230, 230)" }}
+                    ></path>
+                    <path
+                      className="gauge-arc"
+                      fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
+                      d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                    ></path>
+                    <path className="gauge-target"></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <p className="UnderText">درآمد هفتگی</p>
           </div>
-        </form>
-      </div>
+          <div className="eachSvgBox">
+            <h3 className="CalcH3">
+              {this.state.monthly
+                ? DnumberWithCommas(
+                    convertNumbers2English(`${this.state.monthly}`)
+                  )
+                : 0}
+              <p>{this.state.monthUnit}</p>
+            </h3>
+            <div className="SvgDisc">
+              <svg viewBox="0 0 600 600">
+                <g transform="translate(300, 300)">
+                  <g className="arcs">
+                    <defs>
+                      <linearGradient
+                        id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
+                        x1="0"
+                        x2="100%"
+                      >
+                        <stop
+                          className="gaugeGradient-start"
+                          offset="0%"
+                          stop-color="rgb(75,163,206)"
+                          stop-opacity="1"
+                        ></stop>
+                        <stop
+                          className="gaugeGradient-end"
+                          offset="100%"
+                          stop-color="#a3678b"
+                          stop-opacity="1"
+                        ></stop>
+                      </linearGradient>
+                    </defs>
+                    <defs>
+                      <linearGradient
+                        id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
+                        x1="0"
+                        x2="100%"
+                      >
+                        <stop
+                          className="gaugeGradient-start"
+                          offset="0%"
+                          stop-color="rgb(75,163,206)"
+                          stop-opacity="1"
+                        ></stop>
+                        <stop
+                          className="gaugeGradient-end"
+                          offset="100%"
+                          stop-color="#a3678b"
+                          stop-opacity="1"
+                        ></stop>
+                      </linearGradient>
+                    </defs>
+                    <path
+                      className="gauge-backgroundArc"
+                      d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                      style={{ fill: "rgb(230, 230, 230)" }}
+                    ></path>
+                    <path
+                      className="gauge-arc"
+                      fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
+                      d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                    ></path>
+                    <path className="gauge-target"></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <p className="UnderText">درآمد ماهانه</p>
+          </div>
+          <div className="eachSvgBox">
+            <h3 className="CalcH3">
+              {this.state.daily > 0
+                ? DnumberWithCommas(
+                    convertNumbers2English(`${this.state.daily}`)
+                  )
+                : 0}
+              <p>{this.state.dayUnit}</p>
+            </h3>
+            <div className="SvgDisc">
+              <svg viewBox="0 0 600 600">
+                <g transform="translate(300, 300)">
+                  <g className="arcs">
+                    <defs>
+                      <linearGradient
+                        id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
+                        x1="0"
+                        x2="100%"
+                      >
+                        <stop
+                          className="gaugeGradient-start"
+                          offset="0%"
+                          stop-color="rgb(75,163,206)"
+                          stop-opacity="1"
+                        ></stop>
+                        <stop
+                          className="gaugeGradient-end"
+                          offset="100%"
+                          stop-color="#a3678b"
+                          stop-opacity="1"
+                        ></stop>
+                      </linearGradient>
+                    </defs>
+                    <defs>
+                      <linearGradient
+                        id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
+                        x1="0"
+                        x2="100%"
+                      >
+                        <stop
+                          className="gaugeGradient-start"
+                          offset="0%"
+                          stop-color="rgb(75,163,206)"
+                          stop-opacity="1"
+                        ></stop>
+                        <stop
+                          className="gaugeGradient-end"
+                          offset="100%"
+                          stop-color="#a3678b"
+                          stop-opacity="1"
+                        ></stop>
+                      </linearGradient>
+                    </defs>
+                    <path
+                      className="gauge-backgroundArc"
+                      d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                      style={{ fill: "rgb(230, 230, 230)" }}
+                    ></path>
+                    <path
+                      className="gauge-arc"
+                      fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
+                      d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                    ></path>
+                    <path className="gauge-target"></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <p className="UnderText">درآمد روزانه</p>
+          </div>
+        </div>
+      </>
     );
   }
 }

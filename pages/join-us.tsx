@@ -47,10 +47,10 @@ const Page = props => {
       <Section
         justifyCenter={true}
         Bimage={backgroundImage}
-        className={["heightControl" ,heightSetter && "SmallHeightControllerinHomepage"].join(" ")}
+        className={["heightControlInLanding" ,heightSetter && "SmallHeightControllerinHomepageLanding"].join(" ")}
       >
         <div className="hero_single version_4">
-          <Flex justifyContent="space-around" className="wrapper">
+          <Flex justifyContent="space-around" className = "landingWrapper">
             <Box width={2 / 2} px={2}>
               <h1>اتولی، برای اوقات فراغت ماشین شما</h1>
               <h2>
@@ -79,35 +79,6 @@ const Page = props => {
                 می‌دهد که از اجاره‌دادن ماشین خود کسب درآمد کنید.
               </p>
             </div>
-          </div>
-        </section>
-        <section className="responsive WHITE whyOtoli">
-          <h2>چرا از اتولی ماشین اجاره کنیم؟</h2>
-          <div className="WhyOtolicontainer">
-            <section className="WhyOtolibox">
-              <h3>تضمین بیمه</h3>
-              <p>
-                با بیمه اجاره خودرو با خیال راحت رانندگی کنید. با اینکه مراقبت
-                از خودروی اجاره‌ای اولین وظیفه شماست، اما در صورت خرابی، تصادف و
-                مشکلات اینچنینی بیمه جبران خسارت خواهد کرد.
-              </p>
-            </section>
-            <section className="WhyOtolibox">
-              <h3>تنوع در انتخاب</h3>
-              <p>
-                شما فقط تاریخ و شهر مورد نظرتان را انتخاب کنید و به لیست مدل‌های
-                متنوع ماشین دست پیدا کنید. انتخاب از بین گزینه‌های مختلف، قیمت،
-                مدل و شرایط متنوعی را هم به‌دنبال خواهد داشت.
-              </p>
-            </section>
-            <section className="WhyOtolibox">
-              <h3>پشتیبانی 24 ساعته</h3>
-              <p>
-                شما فقط تماس بگیرید. در هر ساعتی از شبانه‌روز، اتولی برای حل
-                مشکلات احتمالی آماده پاسخ‌گویی است و در شرایط اضطراری کنار شما
-                خواهد بود
-              </p>
-            </section>
           </div>
         </section>
         <section className="responsive WHITE whyOtoli">

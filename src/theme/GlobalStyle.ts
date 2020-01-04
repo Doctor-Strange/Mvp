@@ -3611,6 +3611,240 @@ input::placeholder{
     }
   }
 }
+
+.CalculatorBox{
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  border-radius: 4px;
+  padding: 32px;
+}
+#CalculatorBox h2{
+  text-align: right;
+  width: 100%;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin: 0 0 10px;
+  padding:0;
+}
+
+#CalculatorBox p.title{
+  width: 100%;
+  color: #2a2a2a;
+  text-align: right;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+#CalculatorBox .resultList p{
+  font-size:12px;
+  font-weight:500;
+  color:#2a2a2a;
+  text-shadow:none;
+  line-height: 1.5;
+}
+
+#CalculatorBox .resultList{
+  top: 45px;
+}
+
+.CalculatorBox .searchBoxContainer{
+  width: 19%;
+  display: inline-block;
+  margin: 0 0% 0 1%;
+  vertical-align: top;
+  @media (max-width:768px){
+    width: 100% !important;
+    display:block !important;
+    margin: 8px 0% 0 0% !important;
+  }
+}
+
+.CalculatorBTN{
+  font-family: Vazir, sans-serif;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    background: rgb(75, 163, 206);
+    outline: none;
+    transition: all 0.3s ease-in-out 0s;
+    border-radius: 4px;
+    padding: 13px 14px;
+}
+
+.CalculatorBox .searchBoxContainer input{
+  font-family: IRANSans;
+    margin: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    tap-highlight-color: rgba(255,255,255,0);
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
+    font-size: 1em;
+    background: #fff;
+    border: 1px solid rgba(34,36,38,.15);
+    color: rgba(0,0,0,.87);
+    border-radius: .28571429rem;
+    -webkit-box-shadow: 0 0 0 0 transparent inset;
+    box-shadow: 0 0 0 0 transparent inset;
+    -webkit-transition: color .1s ease,border-color .1s ease;
+    transition: color .1s ease,border-color .1s ease;
+}
+
+.CalculatorBox .searchBoxContainer .ValueInput{
+  position: relative;
+}
+.CalculatorBox .searchBoxContainer .TomanText{
+  position:absolute;
+  left: 9px;
+  top: 15px;
+}
+
+.CalculatorBox .searchBoxContainer .loader {
+  position: absolute;
+  left: 13px;
+  right: auto;
+  top: 15px;
+}
+
+#CalculatorBox .searchBoxContainer i{
+  top: 19px !important;
+}
+.CalculatorResult{
+  margin-top:20px;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  border-radius: 4px;
+  padding: 7px 32px 17px;
+  
+}
+
+.eachSvgBox{
+  position:relative;
+  width: 27%;
+  display:inline-block;
+  vertical-align:middle;
+  @media (max-width:991px){
+    width: 29% !important;
+  }
+}
+
+.eachSvgBox:nth-of-type(2) {
+  width: 29%;
+  @media (max-width:991px){
+    width: 35% !important;
+  }
+}
+.eachSvgBox:nth-of-type(2) .SvgDisc{
+  width: 250px;
+  @media (max-width:991px){
+    width: 100% !important;
+  }
+}
+
+.SvgDisc{
+  width: 200px;
+  display:block;
+  margin:auto;
+  @media (max-width:991px){
+    width: 100% !important;
+  }
+}
+
+#CalculatorResult .eachSvgBox:nth-of-type(2) .CalcH3{
+  top: 80px;
+  font-size: 52px;
+  font-family: IRANSans;
+  @media (max-width:991px){
+    font-size: 31px;
+  }
+}
+
+#CalculatorResult .CalcH3{
+  top: 64px;
+  position:absolute;
+  left:0;
+  right:0;
+  margin:auto;
+  color:#2a2a2a;
+  text-shadow:none;
+  font-family: IRANSans;
+}
+
+#CalculatorResult .CalcH3 p{
+  color: #2a2a2a;
+    text-shadow: none;
+}
+
+#CalculatorResult .eachSvgBox:nth-of-type(2) .UnderText{
+  font-weight:500;
+  font-size: 19px;
+
+}
+
+#CalculatorResult .UnderText{
+  position: absolute;
+  color: #2a2a2a;
+  text-shadow: none;
+  font-weight: 400;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  bottom: -18px;
+}
+.landingWrapper h1{
+  padding-top: 60px;
+  color: rgb(255, 255, 255);
+    font-size: 3.25rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0px;
+}
+.landingWrapper h2{
+  font-weight: 300;
+    color: rgb(255, 255, 255);
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin: 10px 0px 26px;
+    padding: 0px 20%;
+}
+.landingWrapper{
+  p {
+    color: white;
+    font-weight: 400;
+    margin: 5px 0 20px 0;
+    padding: 0;
+    font-size: 21px;
+    font-size: 1.3125rem;
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+    @media (max-width: 767px) {
+      padding: 0;
+      font-size: 14px;
+      font-size: 14px;
+    }
+    strong {
+      font-weight: 600;
+    } 
+  }
+}
+.heightControlInLanding{
+  height:128vh
+  @media (max-width:768px){
+    height:105vh;
+    background-position: left top !important;
+  }
+  @media (max-width:480px){
+    height:74vh
+  }
+}
+
+.SmallHeightControllerinHomepageLanding{
+  @media (max-width:768px){
+    height: 1000px !important;
+}
+}
 `;
 
 enum Margin {

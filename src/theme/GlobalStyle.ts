@@ -3928,6 +3928,12 @@ input::placeholder{
   font-size: 14px;
   left: 0px;
   bottom: -15px;
+  @media (max-width:575px){
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
 }
 
 `;

@@ -2183,7 +2183,7 @@ id="JustPersian"
                         loading={isSubmitting}
                         primary
                         type="submit"
-                        className="btn_1 full-width"
+                        className="btn_1 full-width ADD_CAR_FIRST_STEP_FORM_1"
                       >
                         {t('ثبت')}
                       </Button>

@@ -1099,7 +1099,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                     loading={isSubmitting && !error}
                     primary
                     type="submit"
-                    className="btn_1 full-width"
+                    className="btn_1 full-width SET_CAR_AND_TIMMING"
                   >
                     تایید
                   </Button>

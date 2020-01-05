@@ -3671,7 +3671,9 @@ input::placeholder{
     outline: none;
     transition: all 0.3s ease-in-out 0s;
     border-radius: 4px;
-    padding: 13px 14px;
+    span{
+      padding: 13px 14px;
+    }
 }
 
 .CalculatorBox .searchBoxContainer input{
@@ -3729,12 +3731,20 @@ input::placeholder{
   @media (max-width:991px){
     width: 29% !important;
   }
+  @media (max-width:575px){
+    width: 170px !important;
+    display: block;
+    margin: auto;
+  }
 }
 
 .eachSvgBox:nth-of-type(2) {
   width: 29%;
   @media (max-width:991px){
     width: 35% !important;
+  }
+  @media (max-width:575px){
+    width: 220px !important;
   }
 }
 .eachSvgBox:nth-of-type(2) .SvgDisc{
@@ -3760,6 +3770,12 @@ input::placeholder{
   @media (max-width:991px){
     font-size: 31px;
   }
+  @media (max-width:768px){
+    top: 55px;
+  }
+  @media (max-width:768px){
+    top: 76px;
+  }
 }
 
 #CalculatorResult .CalcH3{
@@ -3771,6 +3787,12 @@ input::placeholder{
   color:#2a2a2a;
   text-shadow:none;
   font-family: IRANSans;
+  @media (max-width:768px){
+    top: 48px;
+  }
+  @media (max-width:575px){
+      top: 57px;
+  }
 }
 
 #CalculatorResult .CalcH3 p{
@@ -3844,7 +3866,12 @@ input::placeholder{
   @media (max-width:768px){
     height: 1000px !important;
 }
+@media (max-width:575px){
+  height: 1400px !important;
 }
+}
+
+
 `;
 
 enum Margin {

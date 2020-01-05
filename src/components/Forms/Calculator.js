@@ -47,6 +47,9 @@ class Calculator extends Component {
   };
 
   fetchBrandId = async (brand_id = 90) => {
+    this.setState({
+      modelsFarsi: []
+    });
     const res = await REQUEST_getFactoryCars({
       limit: 900,
       brand_id
@@ -160,7 +163,7 @@ class Calculator extends Component {
               // disabled={brand == null || brand == ""}
             />
             <DropDownWithSearch
-              loading={true}
+              // loading={true}
               top="46"
               IconTop="20"
               data={this.state.modelsFarsi}
@@ -169,10 +172,13 @@ class Calculator extends Component {
                 // values.carDistrict = e.value
               }}
               clearField={() => {
-                clearField("modelValue");
+                this.clearField("modelValue");
               }}
               placeholder="مدل"
-              disabled={this.state.brandValue !== ""}
+              // disabled={
+              //   // // this.state.brandValue !== '' ||
+              //   // this.state.brandsFarsi.length !== 0
+              // }
             />
             <DropDownWithSearch
               // defaultVal={values.carYear}

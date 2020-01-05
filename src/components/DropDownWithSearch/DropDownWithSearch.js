@@ -77,7 +77,7 @@ class DropDownWithSearch extends Component {
           onChange={e => {
             this.setState({
               data: this.props.data.filter(i => {
-                console.log(i.text , e.target.value);
+                // console.log(i.text , e.target.value);
                 
                 return i.text.match(e.target.value);
               })

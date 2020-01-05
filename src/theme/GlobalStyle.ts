@@ -238,7 +238,7 @@ const GlobalStyle = createGlobalStyle`
     margin-bottom:20px;
     margin-top: 50px;
   }
-  .addCarnow a {
+  .addCarnow a , .addCarnowInlanding a{
     display: block;
     width:220px;
     margin:auto;
@@ -254,7 +254,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 700;
     line-height: 1em;
   }
-  .addCarnow a:hover{
+  .addCarnow a:hover , , .addCarnowInlanding a:hover{
     background-color: #bf669c;
   }
   @media (max-width:767px){
@@ -3623,7 +3623,7 @@ input::placeholder{
   width: 100%;
   color: #2a2a2a;
   font-weight: 500;
-  margin: 0 0 10px;
+  margin: 0 0 20px;
   padding:0;
 }
 
@@ -3633,6 +3633,7 @@ input::placeholder{
   text-align: right;
   font-weight: 400;
   text-shadow: none;
+  margin-bottom: 8px;
 }
 
 #CalculatorBox .resultList p{
@@ -3852,7 +3853,7 @@ input::placeholder{
   }
 }
 .heightControlInLanding{
-  height:128vh
+  height:115vh
   @media (max-width:768px){
     height:105vh;
     background-position: left top !important;
@@ -3864,13 +3865,63 @@ input::placeholder{
 
 .SmallHeightControllerinHomepageLanding{
   @media (max-width:768px){
-    height: 1000px !important;
+    height: 120vh;
 }
 @media (max-width:575px){
-  height: 1400px !important;
+  height: 1100px !important;
 }
 }
 
+.showCalcBox{
+  opacity:0;
+  // display:none;
+  animation:fadeInAnimation 0.5s linear 0.5s forwards
+}
+
+.showResultbox{
+  opacity:0;
+  animation:fadeInAnimation 0.5s linear 0.25s forwards
+}
+
+@keyframes fadeInAnimation{
+  0{
+    // display:block;
+
+  opacity:0
+}
+100%{
+  opacity:1
+}
+}
+
+.addCarnowInlanding {
+  position:relative;
+  background: #fff;
+  padding-bottom: 0;
+  margin-bottom: 0px;
+  margin-top: 30px;
+}
+
+.addCarnowInlanding a{
+  display: inline-block;
+  margin: 0 3%;
+  width: 185px;
+  box-shadow: 0px 2px 3px #0000003b;
+}
+
+.addCarnowInlanding p.tryAgainCalc{
+  position: absolute;
+  cursor: pointer;
+  display: inline-block;
+  color: #0099ff;
+  text-shadow: none;
+  margin-top: 12px;
+  text-align: left;
+  width: auto;
+  font-size: 14px;
+  left: 0px;
+  bottom: -15px;
+}
 
 `;
 

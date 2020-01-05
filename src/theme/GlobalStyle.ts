@@ -3824,6 +3824,9 @@ input::placeholder{
     text-transform: uppercase;
     font-weight: 700;
     margin: 0px;
+    @media (max-width: 767px){
+      font-size: 1.3125rem !important;
+    }
 }
 .landingWrapper h2{
   font-weight: 300;
@@ -3832,6 +3835,10 @@ input::placeholder{
     line-height: 1.4;
     margin: 10px 0px 26px;
     padding: 0px 20%;
+    @media (max-width: 767px){
+      font-size: 1.125rem !important;
+    padding: 0px !important;
+    }
 }
 .landingWrapper{
   p {

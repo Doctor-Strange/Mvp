@@ -115,6 +115,13 @@ const Page = props => {
             <Link href="/add-car">
               <a>ماشین‌تان را اضافه کنید</a>
             </Link>
+          <Link href="/join-us">
+              <a style={{
+                    background: 'none',
+                    color: '#4ba3ce',
+                    fontWeight: '400',
+              }}>تخمین درآمد ماهیانه</a>
+            </Link>
           </div>
         </section>
       </div>

@@ -148,7 +148,8 @@ class Calculator extends Component {
     return (
       <>
         {this.state.showCalculateBox ? (
-          <div className={["CalculatorBox", this.state.showCalculateBox?"showCalcBox": ""].join(" ")} id="CalculatorBox">
+          // <div className={["CalculatorBox", this.state.showCalculateBox?"showCalcBox": ""].join(" ")} id="CalculatorBox">
+          <div className={"CalculatorBox"} id="CalculatorBox">
             <h2>چقدر می‌توانید از ماشینتان کسب درآمد کنید؟</h2>
             <p className="title">مشخصات ماشین‌تان را وارد کنید:</p>
             <form>
@@ -232,7 +233,8 @@ class Calculator extends Component {
             </form>
           </div>
         ) : (
-          <div className={["CalculatorResult",this.state.showCalculateBox?"" : 'showResultbox'].join(" ")} id="CalculatorResult">
+          // <div className={["CalculatorResult",this.state.showCalculateBox?"" : 'showResultbox'].join(" ")} id="CalculatorResult">
+          <div className="CalculatorResult" id="CalculatorResult">
             <div className="eachSvgBox">
               <h3 className="CalcH3">
                 {this.state.weekly

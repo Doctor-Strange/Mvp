@@ -9,6 +9,7 @@ import {
   REQUEST_getFactoryCars,
   REQUEST_GET_YEAR
 } from "../../API";
+import Axios from "axios";
 
 class Calculator extends Component {
   state = {
@@ -17,7 +18,9 @@ class Calculator extends Component {
     yearsFarsi: [],
     carValue: "",
     brandValue: "",
+    brandValuefarsi: "",
     modelValue: "",
+    modelValuefarsi: "",
     yearValue: "",
     daily: 0,
     weekly: 0,
@@ -29,7 +32,7 @@ class Calculator extends Component {
   };
   componentDidMount = () => {
     console.log("Run");
-    
+
     this.fetchData();
     this.getYear();
   };
@@ -82,6 +85,13 @@ class Calculator extends Component {
       this.setState({
         [name]: ""
       });
+  };
+
+  inputHandller = (name, value) => {
+    this.setState({
+      [name]: value.value,
+      [name + "farsi"]: value.text
+    });
   };
 
   calculator = () => {
@@ -138,13 +148,28 @@ class Calculator extends Component {
       dayUnit,
       weekUnit,
       monthUnit,
-      showCalculateBox:false
+      showCalculateBox: false
     });
+    Axios({
+      method: "post",
+      url: "https://otoli-join-us-landing.firebaseio.com/CalculatorUsersData.json",
+      data: {
+        carValue: this.state.carValue,
+        brandId: this.state.brandValue,
+        brandfarsi: this.state.brandValuefarsi,
+        modelId: this.state.modelValue,
+        modelfarsi: this.state.modelValuefarsi
+      }
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
-    console.log("this.state.brandsFarsi",this.state.brandsFarsi);
-    
+    console.log("this.state.brandsFarsi", this.state.brandsFarsi);
+
     return (
       <>
         {this.state.showCalculateBox ? (
@@ -157,10 +182,10 @@ class Calculator extends Component {
                 loading={true}
                 top="46"
                 data={this.state.brandsFarsi}
-                Select={
-                  e => this.fetchBrandId(e.value)
-                  // values.carDistrict = e.value
-                }
+                Select={e => {
+                  this.fetchBrandId(e.value);
+                  this.inputHandller("brandValue", e);
+                }}
                 IconTop="20"
                 clearField={() => {
                   this.clearField("brandValue");
@@ -174,6 +199,9 @@ class Calculator extends Component {
                 IconTop="20"
                 data={this.state.modelsFarsi}
                 Select={e => {
+                  console.log(e);
+
+                  this.inputHandller("modelValue", e);
                   // setModel(e.value, "");
                   // values.carDistrict = e.value
                 }}
@@ -446,16 +474,22 @@ class Calculator extends Component {
               <p className="UnderText">درآمد روزانه</p>
             </div>
             <div className="addCarnowInlanding">
-            <Link href="/add-car">
-              <a>ماشین‌تان را اضافه کنید</a>
-            </Link>
-            <p className="tryAgainCalc" onClick={()=>{
-              this.fetchData()
-              this.setState({
-                showCalculateBox:true
-              })
-            }}>محاسبه مجدد</p>
-          </div>
+              <Link href="/add-car">
+                <a>ماشین‌تان را اضافه کنید</a>
+              </Link>
+              <p
+                className="tryAgainCalc"
+                onClick={() => {
+                  this.fetchData();
+                  this.setState({
+                    carValue:"",
+                    showCalculateBox: true
+                  });
+                }}
+              >
+                محاسبه مجدد
+              </p>
+            </div>
           </div>
         )}
       </>

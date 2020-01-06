@@ -3860,6 +3860,7 @@ input::placeholder{
   }
 }
 .heightControlInLanding{
+  background-position: 0 -60px !important;
   height:115vh
   @media (max-width:768px){
     height:105vh;

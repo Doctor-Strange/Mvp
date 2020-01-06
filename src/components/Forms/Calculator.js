@@ -151,8 +151,12 @@ class Calculator extends Component {
       showCalculateBox: false
     });
     Axios({
-      method: "post",
-      url: "https://otoli-join-us-landing.firebaseio.com/CalculatorUsersData.json",
+      method: "POST",
+      // url: "join-us-log.herokuapp.com/",
+      url: "https://join-us-log.herokuapp.com/",
+      headers: {
+        "Content-Type": "application/json"
+      },
       data: {
         carValue: this.state.carValue,
         brandId: this.state.brandValue,
@@ -482,7 +486,7 @@ class Calculator extends Component {
                 onClick={() => {
                   this.fetchData();
                   this.setState({
-                    carValue:"",
+                    carValue: "",
                     showCalculateBox: true
                   });
                 }}

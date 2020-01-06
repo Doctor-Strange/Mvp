@@ -186,7 +186,7 @@ class Calculator extends Component {
                 //   // this.state.brandsFarsi.length !== 0
                 // }
               />
-              <DropDownWithSearch
+              {/* <DropDownWithSearch
                 // defaultVal={values.carYear}
                 disabled={false}
                 data={this.state.yearsFarsi}
@@ -198,7 +198,7 @@ class Calculator extends Component {
                 InputDisable={true}
                 Select={e => {}}
                 placeholder="سال"
-              />
+              /> */}
               <div className="searchBoxContainer">
                 <input
                   placeholder="ارزش خودرو"

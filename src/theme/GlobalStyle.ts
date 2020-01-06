@@ -3649,7 +3649,7 @@ input::placeholder{
 }
 
 .CalculatorBox .searchBoxContainer{
-  width: 19%;
+  width: 24%;
   display: inline-block;
   margin: 0 0% 0 1%;
   vertical-align: top;

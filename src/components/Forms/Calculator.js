@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import DropDownWithSearch from "../../components/DropDownWithSearch/DropDownWithSearch";
 import { i18n, Link, withTranslation } from "../../i18n";
 
-import { convertNumbers2English, DnumberWithCommas } from "../../utils/numbers";
+import { convertNumbers2English, numberWithCommas } from "../../utils/numbers";
 
 import {
   REQUEST_getFactoryBrands,
@@ -153,9 +153,11 @@ class Calculator extends Component {
     Axios({
       method: "POST",
       // url: "join-us-log.herokuapp.com/",
-      url: "https://join-us-log.herokuapp.com/",
+      url: "https://api.jsonbin.io/b",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "secret-key":
+          "$2b$10$ur3O4iHtUdXJEA35yEAuQemtmt2P.6Kolf8WhIeYTcYlcYQGg122a"
       },
       data: {
         carValue: this.state.carValue,
@@ -172,7 +174,7 @@ class Calculator extends Component {
   };
 
   render() {
-    console.log("this.state.brandsFarsi", this.state.brandsFarsi);
+    // console.log("this.state.brandsFarsi", this.state.carValue);
 
     return (
       <>
@@ -240,11 +242,14 @@ class Calculator extends Component {
                   minLength="7"
                   onChange={e => {
                     e.persist();
+                    let val = e.target.value.replace(/,/g, "");
+                    // console.log(val);
+
                     this.setState({
-                      carValue: e.target.value
+                      carValue: val
                     });
                   }}
-                  value={DnumberWithCommas(
+                  value={numberWithCommas(
                     convertNumbers2English(`${this.state.carValue}`)
                   )}
                 />
@@ -270,7 +275,7 @@ class Calculator extends Component {
             <div className="eachSvgBox">
               <h3 className="CalcH3">
                 {this.state.weekly
-                  ? DnumberWithCommas(
+                  ? numberWithCommas(
                       convertNumbers2English(`${this.state.weekly}`)
                     )
                   : 0}
@@ -340,7 +345,7 @@ class Calculator extends Component {
             <div className="eachSvgBox">
               <h3 className="CalcH3">
                 {this.state.monthly
-                  ? DnumberWithCommas(
+                  ? numberWithCommas(
                       convertNumbers2English(`${this.state.monthly}`)
                     )
                   : 0}
@@ -410,7 +415,7 @@ class Calculator extends Component {
             <div className="eachSvgBox">
               <h3 className="CalcH3">
                 {this.state.daily > 0
-                  ? DnumberWithCommas(
+                  ? numberWithCommas(
                       convertNumbers2English(`${this.state.daily}`)
                     )
                   : 0}

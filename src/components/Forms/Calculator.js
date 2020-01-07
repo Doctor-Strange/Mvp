@@ -489,6 +489,7 @@ class Calculator extends Component {
               <p
                 className="tryAgainCalc"
                 onClick={() => {
+                  window.scrollTo(0,0);
                   this.fetchData();
                   this.setState({
                     carValue: "",

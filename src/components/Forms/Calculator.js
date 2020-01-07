@@ -242,8 +242,8 @@ class Calculator extends Component {
                   minLength="7"
                   onChange={e => {
                     e.persist();
-                    let val = e.target.value.replace(/,/g, "");
-                    // console.log(val);
+                    let val = convertNumbers2English(e.target.value.replace(/,/g, ""))
+                    console.log(val);
 
                     this.setState({
                       carValue: val

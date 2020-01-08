@@ -51,6 +51,20 @@ export default withRouter(
                         city,
                         order
                     } = props.query;
+                    if(props.query.category_id){
+                        queryString = queryString + `category_id=${props.query.category_id}&`;
+                        queryString = queryString + `location_id=${city}&`;
+                        queryString = queryString + `start_date=${start}&end_date=${end}&`;
+                        if (min_price && max_price) {
+                            let max = max_price;
+                            if (max === 2000000) {
+                                max = 100000000;
+                            }
+                            queryString =
+                                queryString + `min_price=${min_price}&max_price=${max}&`;
+                        }
+                        queryString = queryString + `o=-price&`;
+                    }else{
                     if (start && end) {
                         queryString = queryString + `location_id=${city}&`;
                         queryString = queryString + `start_date=${start}&end_date=${end}&`;
@@ -69,6 +83,8 @@ export default withRouter(
                         }
                         queryString = queryString + `o=${order}&`;
                     }
+                }
+
                     
                     const res = await REQUEST_getSearchForRent({
                         page: 0,

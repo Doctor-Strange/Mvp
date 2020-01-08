@@ -500,9 +500,13 @@ export const CarCard: React.FunctionComponent<{
         </div>
         {!simpleMode && (
           <div className="col-4 leftbox" style={{ cursor: "default" }}>
-            <PriceCard number={discounted_price ? discounted_price : price}>
+            <Link href={link}>
+            <a style={{color:"#2a2a2a"}}>
+              <PriceCard number={discounted_price ? discounted_price : price}>
               در روز
             </PriceCard>
+            </a>
+          </Link>
           </div>
         )}
 
@@ -512,9 +516,12 @@ export const CarCard: React.FunctionComponent<{
         {!simpleMode && (
           <ul style={{ cursor: "default" }}>
             {deliver_at_renters_place ? (
-              <li>
+             <Link href={link}>
+             <a > <li>
                 <span className="delivery">تحویل در محل</span>
               </li>
+              </a>
+              </Link>
             ) : (
               <li></li>
             )}

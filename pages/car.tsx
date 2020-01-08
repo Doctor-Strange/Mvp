@@ -270,7 +270,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
         // this.props)
         const { media_set, year, mileage_range, owner, body_style, color, color_code, cylinder, value,
             deliver_at_renters_place, cancellation_policy, transmission_type, location, facility_set,
-            max_km_per_day, description, capacity, extra_km_price, car, loaded, avg_price_per_day, avg_discounted_price_per_day } = this.props;
+            max_km_per_day, description, capacity, extra_km_price, car, loaded, avg_price_per_day, avg_discounted_price_per_day, data } = this.props;
         let metaImagesArr = [];
         media_set.length >= 1 ? media_set.map((value, index) =>
             metaImagesArr.push({
@@ -435,7 +435,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                             />
                         </ContentSideCard>
                     }
-                    <ContentCard style={{ top: '-30px' }}>
+                    <ContentCard style={{ top: '-30px' , zIndex:"2" }}>
                         ‍<ContentCardTitle>
                             {/* commented by sajad 980609======> */}
                             {isMobile && avg_discounted_price_per_day > 0 && !this.state.hideTheseGuys ?
@@ -529,7 +529,25 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                                 />
                             </div>
                         }
-                    </ContentCard>
+                        {
+                            isAllowed || car.category_set.length === 0 ? null :
+                        <div dir="rtl" className="TagFather">
+                            <p>تگ:</p>
+                            <ul className="CarTags">
+                            {car.category_set.map((i)=>{
+                            return <li style={{cursor:"pointer", color:"#4BA3CE" , display: 'inline-block',margin: '0 3px'}} onClick={()=>{
+                                // console.log(`/search-results?category_id=${i.id}&city=${location.parent_id}&start=${start_date}&end=${end_date}`);
+                                
+                                Router.push(`/search-results?category_id=${i.id}&city=${location.parent_id}&start=${start_date}&end=${end_date}`)
+                            }}>
+                                {/* <Icon name="linkify" size="small"/> */}
+                             {i.name.fa}</li>})
+    }
+                            </ul>
+                        </div>
+                        }
+                   
+                   </ContentCard>
                 </Section>
                 <CommentSection />
                 {isMobile && !this.state.hideTheseGuys && isAllowed !== "true" ?

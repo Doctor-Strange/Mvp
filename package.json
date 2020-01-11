@@ -3,7 +3,7 @@
   "version": "0.0.02",
   "main": "index.js",
   "repository": "https://gitlab.com/otoli/mvp-front",
-  "author": "Mehrad Rousta <mehrad77@gmail.com>",
+  "author": "Otoli",
   "license": "MIT",
   "private": true,
   "scripts": {

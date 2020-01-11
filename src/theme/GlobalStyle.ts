@@ -3741,7 +3741,7 @@ input::placeholder{
   }
 }
 
-.eachSvgBox:nth-of-type(2) {
+.monthlyCalc {
   width: 29%;
   @media (max-width:991px){
     width: 35% !important;
@@ -3750,7 +3750,7 @@ input::placeholder{
     width: 220px !important;
   }
 }
-.eachSvgBox:nth-of-type(2) .SvgDisc{
+.monthlyCalc .SvgDisc{
   width: 250px;
   @media (max-width:991px){
     width: 100% !important;
@@ -3766,7 +3766,7 @@ input::placeholder{
   }
 }
 
-#CalculatorResult .eachSvgBox:nth-of-type(2) .CalcH3{
+#CalculatorResult .monthlyCalc .CalcH3{
   top: 80px;
   font-size: 52px;
   font-family: IRANSans;
@@ -3803,7 +3803,7 @@ input::placeholder{
     text-shadow: none;
 }
 
-#CalculatorResult .eachSvgBox:nth-of-type(2) .UnderText{
+#CalculatorResult .monthlyCalc .UnderText{
   font-weight:500;
   font-size: 19px;
 
@@ -4015,7 +4015,21 @@ div:nth-child(4) {
   }
 }
 }
+.MobileDisplay{
+  display:none !important;
+  @media (max-width:575px){
+    display:block !important;
+  }
+}
 
+.MobileHide{
+  @media (max-width:575px){
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    z-index: -100;
+  }
+}
 `;
 
 enum Margin {

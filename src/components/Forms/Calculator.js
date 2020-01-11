@@ -4,7 +4,7 @@ import { i18n, Link, withTranslation } from "../../i18n";
 
 import { convertNumbers2English, numberWithCommas } from "../../utils/numbers";
 
-import {Spinner} from '../spinner/spinner'
+import { Spinner } from "../spinner/spinner";
 
 import {
   REQUEST_getFactoryBrands,
@@ -31,7 +31,7 @@ class Calculator extends Component {
     weekUnit: "هزار تومان",
     monthUnit: "هزار تومان",
     showCalculateBox: true,
-    spinner:false
+    spinner: false
   };
   componentDidMount = () => {
     console.log("Run");
@@ -99,8 +99,8 @@ class Calculator extends Component {
 
   calculator = () => {
     this.setState({
-      spinner : true
-    })
+      spinner: true
+    });
     let daily = 0;
     let dayUnit = "هزار تومان";
     let weekly = 0;
@@ -147,7 +147,6 @@ class Calculator extends Component {
       monthly = Number(String(eachMonth).slice(0, -3));
     }
 
-
     Axios({
       method: "POST",
       // url: "join-us-log.herokuapp.com/",
@@ -175,10 +174,9 @@ class Calculator extends Component {
             dayUnit,
             weekUnit,
             monthUnit,
-            spinner:false,
+            spinner: false,
             showCalculateBox: false
           });
-          
         }, 500);
       })
       .catch(err => console.log(err));
@@ -253,7 +251,9 @@ class Calculator extends Component {
                   minLength="7"
                   onChange={e => {
                     e.persist();
-                    let val = convertNumbers2English(e.target.value.replace(/,/g, ""))
+                    let val = convertNumbers2English(
+                      e.target.value.replace(/,/g, "")
+                    );
                     console.log(val);
 
                     this.setState({
@@ -267,234 +267,452 @@ class Calculator extends Component {
                 <span className="TomanText">تومان</span>
               </div>
               <div className="searchBoxContainer CalculatorBTN">
-                {this.state.spinner?
-                <Spinner></Spinner>
-                :<span
-                  style={{
-                    display: "block"
-                  }}
-                  onClick={() => {
-                    this.calculator();
-                  }}
-                >
-                  تخمین درآمد
-                </span>}
+                {this.state.spinner ? (
+                  <Spinner></Spinner>
+                ) : (
+                  <span
+                    style={{
+                      display: "block"
+                    }}
+                    onClick={() => {
+                      this.calculator();
+                    }}
+                  >
+                    تخمین درآمد
+                  </span>
+                )}
               </div>
             </form>
           </div>
         ) : (
           // <div className={["CalculatorResult",this.state.showCalculateBox?"" : 'showResultbox'].join(" ")} id="CalculatorResult">
           <div className="CalculatorResult" id="CalculatorResult">
-            <div className="eachSvgBox">
-              <h3 className="CalcH3">
-                {this.state.weekly
-                  ? numberWithCommas(
-                      convertNumbers2English(`${this.state.weekly}`)
-                    )
-                  : 0}
-                <p>{this.state.weekUnit}</p>
-              </h3>
-              <div className="SvgDisc">
-                <svg viewBox="0 0 600 600">
-                  <g transform="translate(300, 300)">
-                    <g className="arcs">
-                      <defs>
-                        <linearGradient
-                          id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
-                          x1="0"
-                          x2="100%"
-                        >
-                          <stop
-                            className="gaugeGradient-start"
-                            offset="0%"
-                            stop-color="rgb(75,163,206)"
-                            stop-opacity="1"
-                          ></stop>
-                          <stop
-                            className="gaugeGradient-end"
-                            offset="100%"
-                            stop-color="#a3678b"
-                            stop-opacity="1"
-                          ></stop>
-                        </linearGradient>
-                      </defs>
-                      <defs>
-                        <linearGradient
-                          id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
-                          x1="0"
-                          x2="100%"
-                        >
-                          <stop
-                            className="gaugeGradient-start"
-                            offset="0%"
-                            stop-color="rgb(75,163,206)"
-                            stop-opacity="1"
-                          ></stop>
-                          <stop
-                            className="gaugeGradient-end"
-                            offset="100%"
-                            stop-color="#a3678b"
-                            stop-opacity="1"
-                          ></stop>
-                        </linearGradient>
-                      </defs>
-                      <path
-                        className="gauge-backgroundArc"
-                        d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
-                        style={{ fill: "rgb(230, 230, 230)" }}
-                      ></path>
-                      <path
-                        className="gauge-arc"
-                        fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
-                        d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
-                      ></path>
-                      <path className="gauge-target"></path>
+            <div className="MobileHide">
+              <div className="eachSvgBox">
+                <h3 className="CalcH3">
+                  {this.state.weekly
+                    ? numberWithCommas(
+                        convertNumbers2English(`${this.state.weekly}`)
+                      )
+                    : 0}
+                  <p>{this.state.weekUnit}</p>
+                </h3>
+                <div className="SvgDisc">
+                  <svg viewBox="0 0 600 600">
+                    <g transform="translate(300, 300)">
+                      <g className="arcs">
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <path
+                          className="gauge-backgroundArc"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                          style={{ fill: "rgb(230, 230, 230)" }}
+                        ></path>
+                        <path
+                          className="gauge-arc"
+                          fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                        ></path>
+                        <path className="gauge-target"></path>
+                      </g>
                     </g>
-                  </g>
-                </svg>
+                  </svg>
+                </div>
+                <p className="UnderText">درآمد هفتگی</p>
               </div>
-              <p className="UnderText">درآمد هفتگی</p>
-            </div>
-            <div className="eachSvgBox">
-              <h3 className="CalcH3">
-                {this.state.monthly
-                  ? numberWithCommas(
-                      convertNumbers2English(`${this.state.monthly}`)
-                    )
-                  : 0}
-                <p>{this.state.monthUnit}</p>
-              </h3>
-              <div className="SvgDisc">
-                <svg viewBox="0 0 600 600">
-                  <g transform="translate(300, 300)">
-                    <g className="arcs">
-                      <defs>
-                        <linearGradient
-                          id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
-                          x1="0"
-                          x2="100%"
-                        >
-                          <stop
-                            className="gaugeGradient-start"
-                            offset="0%"
-                            stop-color="rgb(75,163,206)"
-                            stop-opacity="1"
-                          ></stop>
-                          <stop
-                            className="gaugeGradient-end"
-                            offset="100%"
-                            stop-color="#a3678b"
-                            stop-opacity="1"
-                          ></stop>
-                        </linearGradient>
-                      </defs>
-                      <defs>
-                        <linearGradient
-                          id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
-                          x1="0"
-                          x2="100%"
-                        >
-                          <stop
-                            className="gaugeGradient-start"
-                            offset="0%"
-                            stop-color="rgb(75,163,206)"
-                            stop-opacity="1"
-                          ></stop>
-                          <stop
-                            className="gaugeGradient-end"
-                            offset="100%"
-                            stop-color="#a3678b"
-                            stop-opacity="1"
-                          ></stop>
-                        </linearGradient>
-                      </defs>
-                      <path
-                        className="gauge-backgroundArc"
-                        d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
-                        style={{ fill: "rgb(230, 230, 230)" }}
-                      ></path>
-                      <path
-                        className="gauge-arc"
-                        fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
-                        d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
-                      ></path>
-                      <path className="gauge-target"></path>
+              <div className="eachSvgBox">
+                <h3 className="CalcH3">
+                  {this.state.monthly
+                    ? numberWithCommas(
+                        convertNumbers2English(`${this.state.monthly}`)
+                      )
+                    : 0}
+                  <p>{this.state.monthUnit}</p>
+                </h3>
+                <div className="SvgDisc">
+                  <svg viewBox="0 0 600 600">
+                    <g transform="translate(300, 300)">
+                      <g className="arcs">
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <path
+                          className="gauge-backgroundArc"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                          style={{ fill: "rgb(230, 230, 230)" }}
+                        ></path>
+                        <path
+                          className="gauge-arc"
+                          fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                        ></path>
+                        <path className="gauge-target"></path>
+                      </g>
                     </g>
-                  </g>
-                </svg>
+                  </svg>
+                </div>
+                <p className="UnderText">درآمد ماهانه</p>
               </div>
-              <p className="UnderText">درآمد ماهانه</p>
-            </div>
-            <div className="eachSvgBox">
-              <h3 className="CalcH3">
-                {this.state.daily > 0
-                  ? numberWithCommas(
-                      convertNumbers2English(`${this.state.daily}`)
-                    )
-                  : 0}
-                <p>{this.state.dayUnit}</p>
-              </h3>
-              <div className="SvgDisc">
-                <svg viewBox="0 0 600 600">
-                  <g transform="translate(300, 300)">
-                    <g className="arcs">
-                      <defs>
-                        <linearGradient
-                          id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
-                          x1="0"
-                          x2="100%"
-                        >
-                          <stop
-                            className="gaugeGradient-start"
-                            offset="0%"
-                            stop-color="rgb(75,163,206)"
-                            stop-opacity="1"
-                          ></stop>
-                          <stop
-                            className="gaugeGradient-end"
-                            offset="100%"
-                            stop-color="#a3678b"
-                            stop-opacity="1"
-                          ></stop>
-                        </linearGradient>
-                      </defs>
-                      <defs>
-                        <linearGradient
-                          id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
-                          x1="0"
-                          x2="100%"
-                        >
-                          <stop
-                            className="gaugeGradient-start"
-                            offset="0%"
-                            stop-color="rgb(75,163,206)"
-                            stop-opacity="1"
-                          ></stop>
-                          <stop
-                            className="gaugeGradient-end"
-                            offset="100%"
-                            stop-color="#a3678b"
-                            stop-opacity="1"
-                          ></stop>
-                        </linearGradient>
-                      </defs>
-                      <path
-                        className="gauge-backgroundArc"
-                        d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
-                        style={{ fill: "rgb(230, 230, 230)" }}
-                      ></path>
-                      <path
-                        className="gauge-arc"
-                        fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
-                        d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
-                      ></path>
-                      <path className="gauge-target"></path>
+              <div className="eachSvgBox">
+                <h3 className="CalcH3">
+                  {this.state.daily > 0
+                    ? numberWithCommas(
+                        convertNumbers2English(`${this.state.daily}`)
+                      )
+                    : 0}
+                  <p>{this.state.dayUnit}</p>
+                </h3>
+                <div className="SvgDisc">
+                  <svg viewBox="0 0 600 600">
+                    <g transform="translate(300, 300)">
+                      <g className="arcs">
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <path
+                          className="gauge-backgroundArc"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                          style={{ fill: "rgb(230, 230, 230)" }}
+                        ></path>
+                        <path
+                          className="gauge-arc"
+                          fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                        ></path>
+                        <path className="gauge-target"></path>
+                      </g>
                     </g>
-                  </g>
-                </svg>
+                  </svg>
+                </div>
+                <p className="UnderText">درآمد روزانه</p>
               </div>
-              <p className="UnderText">درآمد روزانه</p>
             </div>
+            <div className="MobileDisplay">
+              <div className="eachSvgBox">
+                <h3 className="CalcH3">
+                  {this.state.daily > 0
+                    ? numberWithCommas(
+                        convertNumbers2English(`${this.state.daily}`)
+                      )
+                    : 0}
+                  <p>{this.state.dayUnit}</p>
+                </h3>
+                <div className="SvgDisc">
+                  <svg viewBox="0 0 600 600">
+                    <g transform="translate(300, 300)">
+                      <g className="arcs">
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <path
+                          className="gauge-backgroundArc"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                          style={{ fill: "rgb(230, 230, 230)" }}
+                        ></path>
+                        <path
+                          className="gauge-arc"
+                          fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                        ></path>
+                        <path className="gauge-target"></path>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <p className="UnderText">درآمد روزانه</p>
+              </div>
+
+              <div className="eachSvgBox">
+                <h3 className="CalcH3">
+                  {this.state.monthly
+                    ? numberWithCommas(
+                        convertNumbers2English(`${this.state.monthly}`)
+                      )
+                    : 0}
+                  <p>{this.state.monthUnit}</p>
+                </h3>
+                <div className="SvgDisc">
+                  <svg viewBox="0 0 600 600">
+                    <g transform="translate(300, 300)">
+                      <g className="arcs">
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <path
+                          className="gauge-backgroundArc"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                          style={{ fill: "rgb(230, 230, 230)" }}
+                        ></path>
+                        <path
+                          className="gauge-arc"
+                          fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                        ></path>
+                        <path className="gauge-target"></path>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <p className="UnderText">درآمد ماهانه</p>
+              </div>
+              <div className="eachSvgBox">
+                <h3 className="CalcH3">
+                  {this.state.weekly
+                    ? numberWithCommas(
+                        convertNumbers2English(`${this.state.weekly}`)
+                      )
+                    : 0}
+                  <p>{this.state.weekUnit}</p>
+                </h3>
+                <div className="SvgDisc">
+                  <svg viewBox="0 0 600 600">
+                    <g transform="translate(300, 300)">
+                      <g className="arcs">
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-gradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <defs>
+                          <linearGradient
+                            id="12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient"
+                            x1="0"
+                            x2="100%"
+                          >
+                            <stop
+                              className="gaugeGradient-start"
+                              offset="0%"
+                              stop-color="rgb(75,163,206)"
+                              stop-opacity="1"
+                            ></stop>
+                            <stop
+                              className="gaugeGradient-end"
+                              offset="100%"
+                              stop-color="#a3678b"
+                              stop-opacity="1"
+                            ></stop>
+                          </linearGradient>
+                        </defs>
+                        <path
+                          className="gauge-backgroundArc"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                          style={{ fill: "rgb(230, 230, 230)" }}
+                        ></path>
+                        <path
+                          className="gauge-arc"
+                          fill="url(#12036cef-b819-43c7-9e09-ddec8b2b9f1d-meetsExpectationsGradient)"
+                          d="M-96.8340087248707,207.6612018511683A20,20,0,0,1,-124.95670050609097,216.53134414821122A250,250,0,1,1,124.95670050609105,216.5313441482112A20,20,0,0,1,96.83400872487076,207.66120185116827L96.83400872487077,207.66120185116827A20,20,0,0,1,104.96362842511648,181.8863290844974A210,210,0,1,0,-104.96362842511637,181.88632908449745A20,20,0,0,1,-96.8340087248707,207.6612018511683Z"
+                        ></path>
+                        <path className="gauge-target"></path>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <p className="UnderText">درآمد هفتگی</p>
+              </div>
+            </div>
+
             <div className="addCarnowInlanding">
               <Link href="/add-car">
                 <a>ماشین‌تان را اضافه کنید</a>
@@ -502,11 +720,11 @@ class Calculator extends Component {
               <p
                 className="tryAgainCalc"
                 onClick={() => {
-                  window.scrollTo(0,0);
+                  window.scrollTo(0, 0);
                   this.fetchData();
                   this.setState({
                     carValue: "",
-                    spinner:false,
+                    spinner: false,
                     showCalculateBox: true
                   });
                 }}

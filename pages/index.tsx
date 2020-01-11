@@ -81,35 +81,6 @@ const Page = props => {
           </div>
         </section>
         <section className="responsive WHITE whyOtoli">
-          <h2>چرا از اتولی ماشین اجاره کنیم؟</h2>
-          <div className="WhyOtolicontainer">
-            <section className="WhyOtolibox">
-              <h3>تضمین بیمه</h3>
-              <p>
-                با بیمه اجاره خودرو با خیال راحت رانندگی کنید. با اینکه مراقبت
-                از خودروی اجاره‌ای اولین وظیفه شماست، اما در صورت خرابی، تصادف و
-                مشکلات اینچنینی بیمه جبران خسارت خواهد کرد.
-              </p>
-            </section>
-            <section className="WhyOtolibox">
-              <h3>تنوع در انتخاب</h3>
-              <p>
-                شما فقط تاریخ و شهر مورد نظرتان را انتخاب کنید و به لیست مدل‌های
-                متنوع ماشین دست پیدا کنید. انتخاب از بین گزینه‌های مختلف، قیمت،
-                مدل و شرایط متنوعی را هم به‌دنبال خواهد داشت.
-              </p>
-            </section>
-            <section className="WhyOtolibox">
-              <h3>پشتیبانی 24 ساعته</h3>
-              <p>
-                شما فقط تماس بگیرید. در هر ساعتی از شبانه‌روز، اتولی برای حل
-                مشکلات احتمالی آماده پاسخ‌گویی است و در شرایط اضطراری کنار شما
-                خواهد بود
-              </p>
-            </section>
-          </div>
-        </section>
-        <section className="responsive WHITE whyOtoli">
           <h2>چرا در اتولی ماشین اجاره دهیم؟</h2>
           <div className="WhyOtolicontainer">
             <section className="WhyOtolibox">
@@ -152,6 +123,41 @@ const Page = props => {
             </Link>
           </div>
         </section>
+        <section className="responsive WHITE whyOtoli" 
+        style={{
+          marginBottom:"20px",
+          paddingBottom:"50px"
+
+        }}>
+          <h2>چرا از اتولی ماشین اجاره کنیم؟</h2>
+          <div className="WhyOtolicontainer">
+            <section className="WhyOtolibox">
+              <h3>تضمین بیمه</h3>
+              <p>
+                با بیمه اجاره خودرو با خیال راحت رانندگی کنید. با اینکه مراقبت
+                از خودروی اجاره‌ای اولین وظیفه شماست، اما در صورت خرابی، تصادف و
+                مشکلات اینچنینی بیمه جبران خسارت خواهد کرد.
+              </p>
+            </section>
+            <section className="WhyOtolibox">
+              <h3>تنوع در انتخاب</h3>
+              <p>
+                شما فقط تاریخ و شهر مورد نظرتان را انتخاب کنید و به لیست مدل‌های
+                متنوع ماشین دست پیدا کنید. انتخاب از بین گزینه‌های مختلف، قیمت،
+                مدل و شرایط متنوعی را هم به‌دنبال خواهد داشت.
+              </p>
+            </section>
+            <section className="WhyOtolibox">
+              <h3>پشتیبانی 24 ساعته</h3>
+              <p>
+                شما فقط تماس بگیرید. در هر ساعتی از شبانه‌روز، اتولی برای حل
+                مشکلات احتمالی آماده پاسخ‌گویی است و در شرایط اضطراری کنار شما
+                خواهد بود
+              </p>
+            </section>
+          </div>
+        </section>
+       
       </div>
     </Layout>
   );

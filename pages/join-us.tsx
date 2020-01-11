@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Section } from "../src/components/row/Sections";
 import IndexForm from "../src/components/Forms/IndexForm";
@@ -10,20 +10,20 @@ import * as seoImage from "../static/index-landing.jpg";
 import NextSeo from "next-seo";
 import { i18n, Link, withTranslation } from "../src/i18n";
 import insurance from "../static/SamanInsurance.png";
-import Router from 'next/router';
+import Router from "next/router";
 import { GlobalStyle } from "../src/theme";
 import Calculator from "../src/components/Forms/Calculator";
 
 const Page = props => {
-  const [heightSetter, SetHeight] = useState(false)
+  const [heightSetter, SetHeight] = useState(false);
   // <Layout haveSubHeader={true} pageTitle={'Hello World'} bgImage={backgroundImage}>
-  useEffect(()=>{
+  useEffect(() => {
     // console.log(`https://otoli.net${seoImage}`);
-    
-      if(window.innerHeight <= 666){
-        SetHeight(true)
-      }
-  },[])
+
+    if (window.innerHeight <= 666) {
+      SetHeight(true);
+    }
+  }, []);
   return (
     <Layout haveSubHeader={true} pageTitle={"Hello World"}>
       {/* {console.log(`https://otoli.net/${seoImage}`)} */}
@@ -47,16 +47,19 @@ const Page = props => {
       <Section
         justifyCenter={true}
         Bimage={backgroundImage}
-        className={["heightControlInLanding" ,heightSetter && "SmallHeightControllerinHomepageLanding"].join(" ")}
+        className={[
+          "heightControlInLanding",
+          heightSetter && "SmallHeightControllerinHomepageLanding"
+        ].join(" ")}
       >
         <div className="hero_single version_4">
-          <Flex justifyContent="space-around" className = "landingWrapper">
+          <Flex justifyContent="space-around" className="landingWrapper">
             <Box width={2 / 2} px={2}>
               <h1>اتولی، برای اوقات فراغت ماشین شما</h1>
               <h2>
-               به راحتی خودروتان را در اتولی اجاره بدهید و درآمد کسب کنید
+                به راحتی خودروتان را در اتولی اجاره بدهید و درآمد کسب کنید
               </h2>
-              <Calculator/>
+              <Calculator />
             </Box>
           </Flex>
         </div>
@@ -115,6 +118,10 @@ const Page = props => {
             <Link href="/add-car">
               <a>ماشین‌تان را اضافه کنید</a>
             </Link>
+            <p style={{ textAlign: "center", marginTop: "16px", direction: "rtl" }}>
+              سوالی دارید؟ با ما تماس بگیرید:‌
+              <a className="TellPhone" href="tel:02188567759">۰۲۱۸۸۵۶۷۷۵۹</a>
+            </p>
           </div>
         </section>
       </div>

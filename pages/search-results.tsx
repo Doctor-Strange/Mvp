@@ -94,7 +94,8 @@ export default withRouter(
                     // console.log("result page props =>> ",res)
                     return {
                         namespacesRequired: ['common'],
-                        results: res
+                        results: res,
+
                     };
                 }
 
@@ -396,8 +397,21 @@ export default withRouter(
                 async renderResults(page = 1 ) {
                     // send search resluts request
                     if (page === 1) {
+                        
                         let queryString = '';
                         let shownURL = '';
+                        if(this.props.router.query.category_id){
+                            queryString = queryString + `category_id=${this.props.router.query.category_id}&`;
+                            queryString = queryString + `location_id=${this.state.city}&`;
+                            queryString = queryString + `start_date=${moment(this.state.startDate).format(
+                                'jYYYY/jMM/jDD'
+                            )}&end_date=${moment(this.state.endDate).format(
+                                'jYYYY/jMM/jDD'
+                            )}&`;
+                            queryString = queryString + `o=-price&`;
+                        }else{
+
+                        
                         if (this.state.city) {
                             queryString = queryString + `location_id=${this.state.city}&`;
                             shownURL = shownURL + `city=${this.state.city}&`;
@@ -452,7 +466,7 @@ export default withRouter(
                             queryString = queryString + `o=${this.state.priceSort}&`;
                             shownURL = shownURL + `order=${this.state.priceSort}&`;
                         }
-
+                    }
                         const res = await REQUEST_getSearchForRent({
                             page,
                             limit: 14,

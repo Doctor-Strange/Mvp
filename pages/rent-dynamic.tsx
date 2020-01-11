@@ -105,6 +105,7 @@ import {
   SearchBar
 } from "../src/components/Search";
 import Router, { withRouter } from "next/router";
+import Link from "next/link";
 
 import IndexFormOnSearchResult from '../src/components/Forms/IndexFormOnSearchResult';
 import SearchInSearch from "../src/context/context";
@@ -134,7 +135,7 @@ export default withRouter(
           let DynamicRes = await REQUEST_getLanding({
             name: props.query.name
           });
-          // console.log("result page props =>> ",res)
+          console.log("result page props =>> ",DynamicRes)
           return {
             namespacesRequired: ["common"],
             DynamicRes,
@@ -441,7 +442,7 @@ export default withRouter(
         //   debounce(this.renderResults(page), 500)
         // };
         incomingDate = (data,startD , endD)=>{
-          console.log("data",data);
+          // console.log("data",data);
 
           this.renderResults(1,data,startD , endD)
       }
@@ -757,12 +758,16 @@ export default withRouter(
               </article>
               {this.state.DynamicRes.link_set.length > 0 && (
                 <div className="D_Content">
-                  <ul>
-                    <li>
-                      {this.state.DynamicRes.link_set.map(item => {
-                        return item;
-                      })}
+                  <ul className ="Dynamic_links_Landing">
+                    {this.state.DynamicRes.link_set.map(item => {
+                    return<li>
+                      <Link href={`${item.url}`} prefetch={false}>
+                      <a style={{fontWeight: "500"}}>
+                         {item.name}
+                         </a>
+                      </Link>
                     </li>
+                      })}
                   </ul>
                 </div>
               )}

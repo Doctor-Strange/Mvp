@@ -588,10 +588,11 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
               draggable: true
             })
             localStorage.removeItem("CarEditId")
-
+            let userId  = jsCookie.get("user_id")
               setTimeout(() => {
                 actions.setSubmitting(false);
-                Router.push(`/car/${id}/${car.car.brand.name.fa.replace(/ /ig,"-")}-${car.car.name.fa.replace(/ /ig,"-")}`);
+                // Router.push(`/car/${id}/${car.car.brand.name.fa.replace(/ /ig,"-")}-${car.car.name.fa.replace(/ /ig,"-")}`);
+                Router.push(`/profile?id=${userId}`);
               }, 1000);
           })
         }

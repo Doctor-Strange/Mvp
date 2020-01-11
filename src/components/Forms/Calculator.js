@@ -4,6 +4,8 @@ import { i18n, Link, withTranslation } from "../../i18n";
 
 import { convertNumbers2English, numberWithCommas } from "../../utils/numbers";
 
+import {Spinner} from '../spinner/spinner'
+
 import {
   REQUEST_getFactoryBrands,
   REQUEST_getFactoryCars,
@@ -28,7 +30,8 @@ class Calculator extends Component {
     dayUnit: "هزار تومان",
     weekUnit: "هزار تومان",
     monthUnit: "هزار تومان",
-    showCalculateBox: true
+    showCalculateBox: true,
+    spinner:false
   };
   componentDidMount = () => {
     console.log("Run");
@@ -95,6 +98,9 @@ class Calculator extends Component {
   };
 
   calculator = () => {
+    this.setState({
+      spinner : true
+    })
     let daily = 0;
     let dayUnit = "هزار تومان";
     let weekly = 0;
@@ -141,15 +147,7 @@ class Calculator extends Component {
       monthly = Number(String(eachMonth).slice(0, -3));
     }
 
-    this.setState({
-      daily,
-      weekly,
-      monthly,
-      dayUnit,
-      weekUnit,
-      monthUnit,
-      showCalculateBox: false
-    });
+
     Axios({
       method: "POST",
       // url: "join-us-log.herokuapp.com/",
@@ -169,6 +167,19 @@ class Calculator extends Component {
     })
       .then(res => {
         console.log(res);
+        setTimeout(() => {
+          this.setState({
+            daily,
+            weekly,
+            monthly,
+            dayUnit,
+            weekUnit,
+            monthUnit,
+            spinner:false,
+            showCalculateBox: false
+          });
+          
+        }, 500);
       })
       .catch(err => console.log(err));
   };
@@ -256,7 +267,9 @@ class Calculator extends Component {
                 <span className="TomanText">تومان</span>
               </div>
               <div className="searchBoxContainer CalculatorBTN">
-                <span
+                {this.state.spinner?
+                <Spinner></Spinner>
+                :<span
                   style={{
                     display: "block"
                   }}
@@ -264,8 +277,8 @@ class Calculator extends Component {
                     this.calculator();
                   }}
                 >
-                  محاسبه درآمد
-                </span>
+                  تخمین درآمد
+                </span>}
               </div>
             </form>
           </div>
@@ -493,6 +506,7 @@ class Calculator extends Component {
                   this.fetchData();
                   this.setState({
                     carValue: "",
+                    spinner:false,
                     showCalculateBox: true
                   });
                 }}

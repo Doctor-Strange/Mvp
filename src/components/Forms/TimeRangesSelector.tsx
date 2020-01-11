@@ -290,7 +290,8 @@ const TimeRangesSelector: React.FC<{
                 flexDirection: 'row-reverse',
                 position: 'relative',
                 bottom: '-20px',
-                left: '-75px'
+                left: '-75px',
+                marginTop: "12px"
               }}
             >
               <Button

@@ -190,7 +190,7 @@ const GlobalStyle = createGlobalStyle`
     background:#fff;
     position:relative;
     padding-top: 6em;
-    padding-bottom:50px;
+    padding-bottom:0px;
 
   }
   .insurance h2{
@@ -234,8 +234,8 @@ const GlobalStyle = createGlobalStyle`
   }
   .addCarnow{
     background:#fff;
-    padding-bottom:50px;
-    margin-bottom:20px;
+    // padding-bottom:50px;
+    // margin-bottom:20px;
     margin-top: 50px;
   }
   .addCarnow a , .addCarnowInlanding a{
@@ -3583,6 +3583,7 @@ input::placeholder{
   }
 }
 .D_h1{
+  padding:0px 15px !important;
   font-size:22px !important;
   color:#2a2a2a !important;
   margin:20px 0 12px !important;
@@ -3593,6 +3594,7 @@ input::placeholder{
   font-weight:400
 }
 .D_Content{
+  width:100%;
   direction: rtl;
   background:#fff;
   padding: 24px;
@@ -3873,7 +3875,8 @@ input::placeholder{
 
 .SmallHeightControllerinHomepageLanding{
   @media (max-width:768px){
-    height: 120vh;
+    height: 1100px;
+    background-position: center !important;
 }
 @media (max-width:575px){
   height: 1100px !important;
@@ -3935,6 +3938,82 @@ input::placeholder{
     width: 100% !important;
     text-align: center !important;
   }
+}
+
+
+.Dynamic_links_Landing{
+  column-count: 3;
+  li{
+  }
+  margin: 8px 0;
+  @media (max-width:768px){
+    column-count: 1;
+    }
+}
+
+.TellPhone{
+  background: none !important;
+    color: #4BA3CE !important;
+    display: inline-block !important;
+    width: auto !important;
+}
+
+.CalcSpinner{
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 14px;
+  color: #fff;
+  margin: 13px 0px;
+div {
+  position: absolute;
+  top: 7px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
 }
 
 `;

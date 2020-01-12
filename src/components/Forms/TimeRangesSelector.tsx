@@ -120,7 +120,7 @@ const TimeRangesSelector: React.FC<{
                       : price
                   }
                 >
-                  <input inputMode="numeric" />
+                  <input data-hj-whitelist inputMode="numeric" />
                   <span
                     style={{
                       float: 'right',
@@ -271,7 +271,7 @@ const TimeRangesSelector: React.FC<{
                   : price
               }
             >
-              <input inputMode="numeric" />
+              <input data-hj-whitelist inputMode="numeric" />
               <span
                 style={{
                   float: 'right',

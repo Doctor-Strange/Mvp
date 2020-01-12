@@ -393,6 +393,7 @@ SeterrDateTo(false)
                           <label>از تاریخ</label>
                         </Form.Field>
                         <input
+                        data-hj-whitelist
                           readOnly
                           ref={ref}
                           onBlur={()=>{setactiveField1(false)}}
@@ -417,6 +418,7 @@ SeterrDateTo(false)
                         </Form.Field>
                         <input
                           readOnly
+                          data-hj-whitelist
                           ref={ref}
                           onBlur={()=>{setactiveField2(true) }}
                           // onFocus={() => {

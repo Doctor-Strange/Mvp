@@ -468,6 +468,7 @@ export const UserCard: React.FunctionComponent<{
                  <label style={{color:"#202020"}}>{'نام'}</label>
                 <Input
                   type="text"
+                  data-hj-whitelist
                   className="firstname"
                   placeholder={firstname}
                   onChange={handleChange}
@@ -478,6 +479,7 @@ export const UserCard: React.FunctionComponent<{
                  <label  style={{color:"#202020"}}>{'نام خانوادگی'}</label>
                 <Input
                   type="text"
+                  data-hj-whitelist
                   className="lastname"
                   placeholder={lastname}
                   onChange={handleChange}
@@ -501,6 +503,7 @@ export const UserCard: React.FunctionComponent<{
                     <Input
                       placeholder="نام شرکت"
                       name="company_name"
+                      data-hj-whitelist
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.company_name}
@@ -515,6 +518,7 @@ export const UserCard: React.FunctionComponent<{
                     <Input
                     id="userNameWraper"
                       iconPosition="left"
+                      data-hj-whitelist
                       placeholder="آدرس اختصاصی"
                       name="username"
                       onChange={handleChange}

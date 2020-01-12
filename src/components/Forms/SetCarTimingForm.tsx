@@ -1092,6 +1092,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                     }}
                     onBlur={handleBlur}
                     value={values.cancellationPolicy}
+                    data-hj-whitelist
                   />
                 </Form.Group>
                 {/* ===================================================================== */}

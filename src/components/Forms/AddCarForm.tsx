@@ -1552,6 +1552,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                           height: "50px",
                           marginTop: "4px"
                         }}
+                        data-hj-whitelist
                         value={values.carBodyStyle}
                         className={Boolean(errors.carBodyStyle && touched.carBodyStyle) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
                         disabled={this.state.yearsFarsi[0].value == null}
@@ -1568,6 +1569,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
 
                       <label>تعداد سیلندر</label>
                       <select
+                      data-hj-whitelist
                         name="cylinder_id"
                         className={Boolean(errors.cylinder_id && touched.cylinder_id) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
                         value={values.cylinder_id}
@@ -1647,6 +1649,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                       <label>ظرفیت خودرو</label>
                       <select
                         name="carCapacity"
+                        data-hj-whitelist
                         className={Boolean(errors.carCapacity && touched.carCapacity) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
                         value={values.carCapacity}
                         onChange={(e) => {
@@ -1742,7 +1745,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                           marginTop: "4px"
                         }}
                         className={Boolean(errors.carKmDriven && touched.carKmDriven) ? "ui search selection dropdown error" : "ui search selection dropdown noterror"}
-                        
+                        data-hj-whitelist
                         disabled={this.state.yearsFarsi[0].value == null}
                         // onBlur={(e)=> {;;}} 
                         value = { values.carKmDriven}
@@ -2145,6 +2148,7 @@ id="JustPersian"
                     <Form.Group>
                       <Form.Field
                         control={TextArea}
+                        data-hj-whitelist
                         label={"توضیحات"}
                         id="carDescription"
                         name="carDescription"

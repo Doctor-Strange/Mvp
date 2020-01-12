@@ -98,7 +98,7 @@ const DiscountsSelector: React.FC<{
                   }
                 >
                   <Icon name='percent' />
-                  <input inputMode="numeric" />
+                  <input inputMode="numeric" data-hj-whitelist/>
                   <span
                     style={{
                       float: 'right',
@@ -233,7 +233,7 @@ const DiscountsSelector: React.FC<{
               }
             >
               <Icon name='percent' />
-              <input inputMode="numeric" />
+              <input inputMode="numeric"  data-hj-whitelist/>
             </Form.Input>
             <Button.Group
               size="tiny"

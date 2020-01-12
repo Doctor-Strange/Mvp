@@ -69,7 +69,7 @@ const BoxAccount = styled.div`
     background-color: #FFFFFF;
     border-radius: 4px;
     box-shadow: 0 2 0 5px #000000;
-    padding: 8px 0;
+    padding: 16px 0;
     width: 100%;
     @media (min-width: 320px) {
         width: 100% !important;
@@ -127,14 +127,14 @@ const BoxAccount = styled.div`
     position:relative;
   }
   .JustForTehran{
-    text-align: center;
+    text-align: right;
     position: absolute;
-    margin: 0 !important;
+    margin: auto !important;
     right: 0;
-    left:0;
-    width:100%;
-    bottom: 7px;
-    color: #2A2A2A !important;
+    left: 0;
+    width: 642px;
+    bottom: 1px;
+    color: #424242  !important;
     z-index: 2;
     text-shadow: none !important;
     font-size: 12px !important;

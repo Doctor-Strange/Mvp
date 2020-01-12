@@ -636,10 +636,20 @@ export const RequestCard: React.SFC<IRequestCard> = ({
                         </Grid.Column>
                         <Grid.Column width={5} className="img_wrapper" id="img_wrapper">
                             <img src={picture} alt={carName} />
-                            {status === "paid" 
+                            {statusOwner === "owner" ? 
+                            <Pelak
+                            first={pelak.first}
+                            second={pelak.second}
+                            third={pelak.third}
+                            forth={pelak.fourth}
+                            type={1}
+                            size={"small"}
+                            style={{}}
+                        />
+                            :status === "paid" 
 || status ==="not_delivered"
 || status ==="delivered"
-|| status ==="returned" &&
+|| status ==="returned"  &&
                             <Pelak
                                 first={pelak.first}
                                 second={pelak.second}

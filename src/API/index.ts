@@ -1,4 +1,5 @@
 import { REQUEST_GET_YEAR } from './Get/getYear';
+import { REQUEST_URLS_FOR_SITE_MAP } from './Get/getUrlLinkForSitemao';
 // Cars
 import { REQUEST_getCar } from './Get/getCar';
 import { REQUEST_editCarPartial } from "./Set/editCarPartial";
@@ -84,5 +85,6 @@ export {
   REQUEST_setCompanyName,
   REQUEST_setCarCoupan,
   REQUEST_getLanding,
-  REQUEST_GET_YEAR
+  REQUEST_GET_YEAR,
+  REQUEST_URLS_FOR_SITE_MAP
 };

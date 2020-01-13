@@ -169,10 +169,10 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
 
   async function fetchAPI() {
     //get cities and genrate a dropdown input in form
-    const res = await REQUEST_getLocations({ brief: true });
+    // const res = await REQUEST_getLocations({ brief: true });
     SetCalenderWork(true)
-    setCitiesFarsi(res.citiesFarsi);
-    setCitiesEnglish(res.citiesEnglish);
+    // setCitiesFarsi(res.citiesFarsi);
+    // setCitiesEnglish(res.citiesEnglish);
   }
 
   const getSelectedDayValue = date => {

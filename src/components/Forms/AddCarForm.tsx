@@ -2149,7 +2149,7 @@ id="JustPersian"
                       <Form.Field
                         control={TextArea}
                         data-hj-whitelist
-                        label={"توضیحات"}
+                        label={"توضیحات (اختیاری)"}
                         id="carDescription"
                         name="carDescription"
                         placeholder={"برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود.\nاگر برای اجاره شرایط خاصی، مثل سیگار نکشیدن، دارید می‌توانید اینجا وارد کنید."}

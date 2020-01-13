@@ -242,20 +242,17 @@ const DiscountsSelector: React.FC<{
                 flexDirection: 'row-reverse',
                 position: 'relative',
                 bottom: '-20px',
-                left: '-75px'
+                left: '-75px',
+                marginTop: "24px",
+                justifyContent: 'end',
+                direction: 'ltr',
+                marginBottom: '-12px'
               }}
             >
-              <Button
-                basic
-                type="button"
-                className="pos_bott"
-                onClick={e => {
-                  setShowNewEntery(false);
-                }}
-              >
-                حذف
-              </Button>
-              <Button
+             <Button
+             style={{maxWidth:'80px',
+             textAlign: 'right',
+             paddingRight: '4px !important'}}
                 color="blue"
                 basic
                 type="button"
@@ -279,7 +276,22 @@ const DiscountsSelector: React.FC<{
               >
                 ثبت
               </Button>
-            </Button.Group>
+           
+              <Button
+              style={{maxWidth:'80px',
+              textAlign: 'right',
+              paddingRight: '4px'}}
+              id="CancelBTN"
+                basic
+                type="button"
+                className="pos_bott"
+                onClick={e => {
+                  setShowNewEntery(false);
+                }}
+              >
+                حذف
+              </Button>
+               </Button.Group>
           </Segment>
         )}
       </Segment.Group>

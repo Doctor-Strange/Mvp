@@ -86,7 +86,7 @@ const TimeRangesSelector: React.FC<{
                   <Form.Field
                     style={{ margin: 0, maxWidth: '47%' }}
                   >
-                    <label>{t('carTiming.from')}</label>
+                    <label>بازه زمانی</label>
                   </Form.Field>
                 </Form.Group>
                 <DatePicker
@@ -96,7 +96,7 @@ const TimeRangesSelector: React.FC<{
                     setDate({ from: value.from, to: value.to });
                     // console.log('date ', date);
                   }}
-                  inputPlaceholder="انتخاب روزهای نمایش"
+                  inputPlaceholder="انتخاب بازه زمانی"
                   isDayRange
                   disableBackward
                   disabledDays={disabledDays}
@@ -291,21 +291,16 @@ const TimeRangesSelector: React.FC<{
                 position: 'relative',
                 bottom: '-20px',
                 left: '-75px',
-                marginTop: "12px"
+                marginTop: "24px",
+                justifyContent: 'end',
+                direction: 'ltr',
+                marginBottom: '-12px'
               }}
             >
               <Button
-                basic
-                type="button"
-                className="pos_bott"
-                onClick={e => {
-                  showNewEnteryHandller(false)
-                  // setShowNewEntery(false);
-                }}
-              >
-                حذف
-              </Button>
-              <Button
+              style={{maxWidth:'80px',
+              textAlign: 'right',
+              paddingRight: '4px !important'}}
                 color="blue"
                 basic
                 type="button"
@@ -330,7 +325,23 @@ const TimeRangesSelector: React.FC<{
               >
                 ثبت
               </Button>
-            </Button.Group>
+              <Button
+              style={{maxWidth:'80px',
+              textAlign: 'right',
+              paddingRight: '4px'}}
+              id="CancelBTN"
+                basic
+                type="button"
+                className="pos_bott"
+                onClick={e => {
+                  showNewEnteryHandller(false)
+                  // setShowNewEntery(false);
+                }}
+              >
+                حذف
+              </Button>
+              
+           </Button.Group>
           </Segment>
         )}
       </Segment.Group>

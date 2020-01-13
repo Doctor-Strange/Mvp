@@ -4030,6 +4030,10 @@ div:nth-child(4) {
     z-index: -100;
   }
 }
+
+#CancelBTN{
+  color: #EF5350 !important;
+}
 `;
 
 enum Margin {

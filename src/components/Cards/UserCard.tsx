@@ -475,7 +475,7 @@ export const UserCard: React.FunctionComponent<{
                   onBlur={handleBlur}
                   value={values.firstname}
                   name="firstname"
-                />
+                  ><input data-hj-whitelist/></Input>
                  <label  style={{color:"#202020"}}>{'نام خانوادگی'}</label>
                 <Input
                   type="text"
@@ -486,7 +486,7 @@ export const UserCard: React.FunctionComponent<{
                   onBlur={handleBlur}
                   value={values.lastname}
                   name="lastname"
-                />
+                ><input data-hj-whitelist/></Input>
                 {/* <div>5,150 trips<span className="hostDetailCard-dotSeparator"></span>
                       <span>Joined May 2016</span>
                     </div> */}

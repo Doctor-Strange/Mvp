@@ -196,18 +196,18 @@ export default withTranslation("common")(
                       className="sign-in-wrapper"
                     >
                       <label>شماره تلفن همراه</label>
-                      <div data-hj-whitelist>
+                      {/* <div data-hj-whitelist> */}
                       <Input
                         name="phone"
                         inputProps={{
                           type: "tel",
                           tabIndex: this.state.showIndex === 0 ? 0 : -1,
-                          className: "add_top_8",
+                          className: "add_top_8 data-hj-whitelist",
                           placeholder: "لطفا شماره همراه خود را وارد کنید"
                         }}
                       >
                         </Input>
-                        </div>
+                        {/* </div> */}
 
                       <div className="text-center" >
                         <Button.Submit

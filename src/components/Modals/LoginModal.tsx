@@ -317,6 +317,10 @@ export default withTranslation("common")(
                             )
 
                             .then(response2 => {
+                              if(window.heap){
+                                window.heap.identify(`${this.state.phone}`);
+                                console.log('window.heap',this.state.phone);
+                              }
                               // now lets sign them in
                               localStorage["ImageUrl"] =
                                 response.data.user_profile.image_url;

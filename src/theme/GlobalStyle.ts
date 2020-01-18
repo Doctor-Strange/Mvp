@@ -4034,6 +4034,29 @@ div:nth-child(4) {
 #CancelBTN{
   color: #EF5350 !important;
 }
+
+.URLsInRent{
+  direction:rtl;
+    background:#fff;
+    padding-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding:4px 0;
+    li{
+      display: inline-block;
+    width: 33%;
+    text-align: right;
+    vertical-align: top;
+    @media (max-width:720px){
+      width: 48%;
+    }
+    @media (max-width:575px){
+      width: 100%;
+      display:block;
+    }
+
+    }
+}
 `;
 
 enum Margin {

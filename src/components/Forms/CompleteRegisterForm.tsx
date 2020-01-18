@@ -388,7 +388,7 @@ export default withTranslation('common')(
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.firstName}
-                        />
+                        ><input data-hj-whitelist/></Form.Input>
 
                         <Form.Input
                           label="نام خانوادگی"
@@ -397,7 +397,7 @@ export default withTranslation('common')(
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.lastName}
-                        />
+                          ><input data-hj-whitelist/></Form.Input>
                       </Form.Group>
                       {nameErrors && (
                         <label className="sui-error-message sui-padd">

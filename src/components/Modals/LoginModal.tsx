@@ -365,7 +365,7 @@ export default withTranslation("common")(
                   validationSchema={Yup.object().shape({
                     code: Yup.number()
                       .required("لطفاً کد را وارد کنید.")
-                      .typeError("لطفاً فیلد را پر کنید")
+                      .typeError("لطفاً را پر کنید")
                   })}
                 >
                   {({

@@ -285,13 +285,13 @@ export default withTranslation('common')(
             }}
             validationSchema={Yup.object().shape({
               firstName: Yup.string().required(
-                t('لطفاً فیلد') +
+                t('لطفاً') +
                 $firstname +
                 t(" را پر کنید. ")
               ).min(2, t("نام باید حداقل ۲ حرف باشد"))
                 .max(30, t("نام می‌تواند حداکثر ۳۰ حرف باشد")),
               lastName: Yup.string().required(
-                t(" لطفاً فیلد ") +
+                t(" لطفاً ") +
                 $lastname +
                 t(" را پر کنید. ")
               ).min(2, t("نام باید حداقل ۲ حرف باشد"))
@@ -324,12 +324,12 @@ export default withTranslation('common')(
               // ),
               day: Yup.number()
                 .typeError(
-                  t(" لطفاً فیلد ") +
+                  t(" لطفاً ") +
                   $day +
                   t(" را پر کنید. ")
                 )
                 .required(
-                  t(" لطفاً فیلد ") +
+                  t(" لطفاً ") +
                   $day +
                   t(" را پر کنید. ")
                 )
@@ -337,23 +337,23 @@ export default withTranslation('common')(
                 .max(31, t("روز تولد معتبر نیست")),
               month: Yup.number()
                 .typeError(
-                  t(" لطفاً فیلد ") +
+                  t(" لطفاً ") +
                   $month +
                   t(" را پر کنید. ")
                 )
                 .required(
-                  t(" لطفاً فیلد ") +
+                  t(" لطفاً ") +
                   $month +
                   t(" را پر کنید. ")
                 ),
               year: Yup.number()
                 .typeError(
-                  t(" لطفاً فیلد ") +
+                  t(" لطفاً ") +
                   $year +
                   t(" را پر کنید. ")
                 )
                 .required(
-                  t(" لطفاً فیلد ") +
+                  t(" لطفاً ") +
                   $year +
                   t(" را پر کنید. ")
                 )

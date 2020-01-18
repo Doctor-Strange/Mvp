@@ -759,7 +759,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
       
       const fieldErrorGenrator = fieldName => {
         return (
-          " لطفاً فیلد " +
+          " لطفاً " +
           fieldName +
           " را پر کنید. "
         );

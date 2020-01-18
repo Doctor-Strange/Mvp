@@ -269,6 +269,10 @@ export default withTranslation("common")(
                             complete_register: false
                             // =====>
                           });
+                          if(window.heap){
+                            window.heap.identify(`${this.state.phone}`);
+                            console.log('window.heap',this.state.phone);
+                          }
                           this.handleCloseModal();
                           let go_to_pathname = Router.pathname;
                           let go_to_queries = Router.query;

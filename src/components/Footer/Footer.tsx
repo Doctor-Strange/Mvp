@@ -413,6 +413,11 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => {
                     <a>شرایط و پوشش‌های بیمه</a>
                   </Link>
                 </li>
+                <li>
+                  <Link href="/rent">
+                    <a>اجاره ماشین</a>
+                  </Link>
+                </li>
                 {/* <li>
                   <Link
                     href={`/rent/${decodeURIComponent(

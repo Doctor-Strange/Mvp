@@ -219,6 +219,9 @@ export default withTranslation('common')(
                 )
                 .then(response => {
                   if (response.data.success) {
+                    if(window.heap){
+                      window.heap.addUserProperties({Name: `${firstName}-${lastName}`});
+                    }
                     console.log(response.data);
                     // localStorage["complete_register"] = true
                     this.setState({

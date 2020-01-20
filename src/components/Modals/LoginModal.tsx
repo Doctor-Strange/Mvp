@@ -269,10 +269,10 @@ export default withTranslation("common")(
                             complete_register: false
                             // =====>
                           });
-                          // if(window.heap){
-                          //   window.heap.identify(`${this.state.phone}`);
-                          //   console.log('window.heap',this.state.phone);
-                          // }
+                          if(window.heap){
+                            window.heap.identify(`${this.state.phone}`);
+                            console.log('window.heap',this.state.phone);
+                          }
                           this.handleCloseModal();
                           let go_to_pathname = Router.pathname;
                           let go_to_queries = Router.query;
@@ -317,10 +317,11 @@ export default withTranslation("common")(
                             )
 
                             .then(response2 => {
-                              // if(window.heap){
-                              //   window.heap.identify(`${this.state.phone}`);
-                              //   console.log('window.heap',this.state.phone);
-                              // }
+                              if(window.heap){
+                                window.heap.identify(`${this.state.phone}`);
+                                window.heap.addUserProperties({Name: `${response2.data.data.first_name}-${response2.data.data.last_name}`});
+                                console.log('window.heap',this.state.phone);
+                              }
                               // now lets sign them in
                               localStorage["ImageUrl"] =
                                 response.data.user_profile.image_url;

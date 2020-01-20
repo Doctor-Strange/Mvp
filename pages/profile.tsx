@@ -51,6 +51,9 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
         const res = await REQUEST_getUserCars({ id });
         setRresults(res);
         console.log(res)
+        if(window.heap){
+            window.heap.addUserProperties({Cars_Num: `${res.length}`});
+          }
         setLoading(false);
     }
     

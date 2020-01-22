@@ -17,7 +17,6 @@ import {
   Checkbox,
   Grid,
   Progress,
-  Icon,
   Radio,
   TextArea,
   Image,
@@ -45,7 +44,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import {GlobalStyle} from '../../theme';
 import DropDownWithSearch from "../DropDownWithSearch/DropDownWithSearch"
 import Axios from "axios";
-
+import {   Icon } from "semantic-ui-react";
 
 function clearNumber(x) {
   return convertNumbers2English(x.toString())
@@ -268,16 +267,31 @@ SeterrDateTo(false)
     document.activeElement.blur();
   }
 
-  const Cell_phone_Saver = () => {
+  const Cell_phone_Saver = (Pname , Id) => {
     let c = ""
     swal({
-      content: (<div>
-        <p>شماره تلفن همراه</p>
-        <input className="Get_user_Cell_phonE" maxLength='11' type = "text" onChange ={(e) => {
-          e.persist() 
-          c =e.target.value
-        }
-          } placeholder="لطفا شماره تلفن همراه خود را وارد کنید."/> 
+      content: (<div dir="rtl" style={{textAlign:"right"}}>
+        <p>اتولی فعلا فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.</p>
+        <p style={{
+          margin: "4px 0",
+          fontWeight: "100",
+          color: "#949494",
+          fontSize: "14px"
+        }}>{`شماره همراهتان را وارد کنید`}</p>
+        <div>
+          <span className="Input_Icon_Cell_phone">
+          {/* <img src=mobile_alt{} alt="آیکون موبایل"> */}
+          </span>
+          <input className="Get_user_Cell_phonE" maxLength='11' type = "text" onChange ={(e) => {
+            e.persist() 
+            c =e.target.value
+          }
+        } placeholder="شماره تلفن همراه"/> 
+        </div>
+      <p style={{
+        textAlign:"center",
+        marginTop:"8px"
+      }}>{`وقتی در${Pname} فعال شدیم خبرتان میکنیم.`}</p>
       </div>), 
         buttons: {
           cancel: "بستن",
@@ -290,14 +304,15 @@ SeterrDateTo(false)
       .then((value) => {
         switch (value) {
           case "catch":
-            send_Cell_phone(c)
+            send_Cell_phone(c,Pname , Id)
             break;
           default:
         }
       });
   }
 
-  const send_Cell_phone = (c) =>{
+  const send_Cell_phone = (c,Pname,Id) =>{
+    if(c.length < 11)return
     Axios({
       method: "POST",
       url: "https://api.jsonbin.io/b",
@@ -309,8 +324,8 @@ SeterrDateTo(false)
       },
       data: {
         cell_phone :c, 
-        city_name:CityName,
-        city_id:Location_id,
+        city_name:Pname,
+        city_id:Id,
         date:Date.now()
 
       }
@@ -428,24 +443,43 @@ SeterrDateTo(false)
                         date.from && !date.to  ? <p id="alertShow">تاریخ بازگشت را انتخاب کنید</p> : null
                       } */}
                       <Box className="indexFullOnMobile" width={[4 / 16]} >
-                        {/* <label readonly style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
+                        <label  style={{display:"block",textAlign:"right", marginBottom:"2px"}}>خودرو را کجا تحویل می‌گیرید؟</label>
                         <span  onClick={()=>{setAlert(true)}}>
-                          <input disabled value="تهران" type = "text"/>  
-                        </span> */}
-                        <DropDownWithSearch
+                          <select 
+                          style={{
+                            height:'48px'
+                          }}
+                          value={1}
+                          onChange={(e)=>{
+                                  e.persist()
+                                  
+                                  if(e.target.value != 1){
+                                    console.log(e.target.selectedOptions[0].text,e.target.value);
+                                    setCityName(e.target.selectedOptions[0].text)
+                                    if(window.heap){
+                                      window.heap.addUserProperties({Search_Location: `${e.target.selectedOptions[0].text}`});
+                                    }
+                                    // setAlert(true)
+                                    setFieldValue('carCity',1);
+                                    serLocation_id(e.target.value)
+                                    Cell_phone_Saver(e.target.selectedOptions[0].text , e.target.value)
+                                  }else {
+                                    setAlert(false)
+                                  setFieldValue('carCity', e.target.value);
+                                  }
+                          }}>
+                            {citiesFarsi && citiesFarsi.map(i =>{
+                            return<option value={i.value} >{i.text}</option>
+                            })}
+                          </select>
+                          {/* <input disabled value="تهران" type = "text"/>   */}
+                        </span>
+                        {/* <DropDownWithSearch
                       defaultVal = {values.carCity}
                         loading={true}
                         data={citiesFarsi}
                         Select={(e) => {
-                          if(e.value !== 1){
-                            if(window.heap){
-                              window.heap.addUserProperties({Search_Location: `${e.text}`});
-                            }
-                            setAlert(true)
-                            serLocation_id(e.value)
-                          }else setAlert(false)
-                          setFieldValue('carCity', e.value);
-                          setCityName(e.text)
+                          
                         }}
                         // error={Boolean(
                         //   errors.carDistrict && touched.carDistrict
@@ -456,7 +490,12 @@ SeterrDateTo(false)
                         }}
                         placeholder="شهر محل تحویل"
                         disabled={values.carCity === null
-                        }>خودرو را کجا تحویل می‌گیرید؟</DropDownWithSearch>
+                        }>خودرو را کجا تحویل می‌گیرید؟</DropDownWithSearch> */}
+
+
+
+
+
                           {/* <Form.Dropdown
                         // disabled
                           label={'خودرو را کجا تحویل می‌گیرید؟'}
@@ -487,10 +526,10 @@ SeterrDateTo(false)
                           // onBlur={() => { console.log("on Blur for To")}}
                           
                         />   */}
-                        {locationAlert && <p className="JustForTehran" onClick={Cell_phone_Saver}>در حال حاضر اتولی فقط اجاره‌های با مبدا تهران تهران با پوشش می‌دهد.<span>
+                        {/* {locationAlert && <p className="JustForTehran" onClick={Cell_phone_Saver}>در حال حاضر اتولی فقط اجاره‌های با مبدا تهران تهران با پوشش می‌دهد.<span>
                          {` وقتی در ${CityName} فعال شدید خبرم کنید.`}
                         </span>
-                         </p> }
+                         </p> } */}
                         
                       </Box>
                       <Box className="indexFullOnMobile" width={[4 / 16]} style={{position:"relative"}}>

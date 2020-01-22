@@ -43,7 +43,8 @@ import { lightTheme } from "../../theme/Colors"; // fixme: serve colors only fro
 import swal from '@sweetalert/with-react'
 import { ToastContainer, toast } from 'react-toastify';
 import {GlobalStyle} from '../../theme';
-
+import DropDownWithSearch from "../DropDownWithSearch/DropDownWithSearch"
+import Axios from "axios";
 
 
 function clearNumber(x) {
@@ -60,6 +61,11 @@ const BoxAccount = styled.div`
     }
     .field>label {
       font-weight: 500;
+    }
+    .indexFullOnMobile .searchBoxContainer label{
+      width: 100%;
+    display: block;
+    text-align: right;
     }
     background-color: #FFFFFF;
     border-radius: 4px;
@@ -148,7 +154,10 @@ interface IIndexForm {
 
 const IndexForm: React.SFC<IIndexForm> = ({}) => {
   const [error, setError] = useState('');
+  const [Location_id, serLocation_id] = useState('');
   const [name, setName] = useState('');
+  const [CityName, setCityName] = useState('');
+  const [Cell_Phone, setCell_Phone] = useState('');
   const [success, setSuccess] = useState(false);
   const [activeField1, setactiveField1] = useState(false);
   const [activeField2, setactiveField2] = useState(false);
@@ -169,9 +178,9 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
 
   async function fetchAPI() {
     //get cities and genrate a dropdown input in form
-    // const res = await REQUEST_getLocations({ brief: true });
+    const res = await REQUEST_getLocations({ brief: true });
     SetCalenderWork(true)
-    // setCitiesFarsi(res.citiesFarsi);
+    setCitiesFarsi(res.citiesFarsi);
     // setCitiesEnglish(res.citiesEnglish);
   }
 
@@ -252,6 +261,58 @@ SeterrDateTo(false)
       to: null
     });
     document.activeElement.blur();
+  }
+
+  const Cell_phone_Saver = () => {
+    let c = ""
+    swal({
+      content: (<div>
+        <p>شماره تلفن همراه</p>
+        <input className="Get_user_Cell_phonE" maxLength='11' type = "text" onChange ={(e) => {
+          e.persist() 
+          c =e.target.value
+        }
+          } placeholder="لطفا شماره تلفن همراه خود را وارد کنید."/> 
+      </div>), 
+        buttons: {
+          cancel: "بستن",
+          catch: {
+            text: "تایید",
+            value: "catch",
+          }
+        },
+      })
+      .then((value) => {
+        switch (value) {
+          case "catch":
+            send_Cell_phone(c)
+            break;
+          default:
+        }
+      });
+  }
+
+  const send_Cell_phone = (c) =>{
+    Axios({
+      method: "POST",
+      url: "https://api.jsonbin.io/b",
+      headers: {
+        "Content-Type": "application/json",
+        'collection-id':"5e26effd5df6407208396427",
+        "secret-key":
+          "$2b$10$L3UbnS89pYKQP2r/BLgM8uhdF2xbR3294owxUl/kEFJuhe.PWxQyi"
+      },
+      data: {
+        cell_phone :c, 
+        city_name:CityName,
+        city_id:Location_id
+      }
+    })
+      .then(res => {
+        console.log(res); 
+      })
+      .catch(err => console.log(err));
+    
   }
 
   
@@ -350,14 +411,35 @@ SeterrDateTo(false)
                       {/* {
                         date.from && !date.to  ? <p id="alertShow">تاریخ بازگشت را انتخاب کنید</p> : null
                       } */}
-                      <Box className="indexFullOnMobile" width={[4 / 16]}>
-                        <label readonly style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
+                      <Box className="indexFullOnMobile" width={[4 / 16]} >
+                        {/* <label readonly style={{display:"block",textAlign:"right"}}>خودرو را کجا تحویل می‌گیرید؟</label>
                         <span  onClick={()=>{setAlert(true)}}>
                           <input disabled value="تهران" type = "text"/>  
-                        </span>
-                        {locationAlert && <p className="JustForTehran">اتولی فعلا اجاره‌های با مبدا تهران را پوشش می‌دهد.</p> }
-                        {/* <Form.Dropdown
-                        disabled
+                        </span> */}
+                        <DropDownWithSearch
+                      defaultVal = {values.carCity}
+                        loading={true}
+                        data={citiesFarsi}
+                        Select={(e) => {
+                          if(e.value !== 1){
+                            setAlert(true)
+                            serLocation_id(e.value)
+                          }else setAlert(false)
+                          setFieldValue('carCity', e.value);
+                          setCityName(e.text)
+                        }}
+                        // error={Boolean(
+                        //   errors.carDistrict && touched.carDistrict
+                        // )}
+                        IconTop="42"
+                        clearField={()=>{
+                          values.carCity = null
+                        }}
+                        placeholder="شهر محل تحویل"
+                        disabled={values.carCity === null
+                        }>خودرو را کجا تحویل می‌گیرید؟</DropDownWithSearch>
+                          {/* <Form.Dropdown
+                        // disabled
                           label={'خودرو را کجا تحویل می‌گیرید؟'}
                           name="carCity"
                           id="carCity"
@@ -385,7 +467,8 @@ SeterrDateTo(false)
                           value={values.carCity}
                           // onBlur={() => { console.log("on Blur for To")}}
                           
-                        /> */}
+                        />   */}
+                        {locationAlert && <p className="JustForTehran" onClick={Cell_phone_Saver}>{`در حال حاضر اتولی فقط اجاره‌های با مبدا تهران تهران با پوشش می‌دهد. وقتی در ${CityName} فعال شدید خبرم کنید.`}</p> }
                         
                       </Box>
                       <Box className="indexFullOnMobile" width={[4 / 16]} style={{position:"relative"}}>

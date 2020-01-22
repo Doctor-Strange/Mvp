@@ -153,8 +153,9 @@ class Calculator extends Component {
       url: "https://api.jsonbin.io/b",
       headers: {
         "Content-Type": "application/json",
+        'collection-id':"5e26f48a8d761771cc94e32d",
         "secret-key":
-          "$2b$10$ur3O4iHtUdXJEA35yEAuQemtmt2P.6Kolf8WhIeYTcYlcYQGg122a"
+          "$2b$10$L3UbnS89pYKQP2r/BLgM8uhdF2xbR3294owxUl/kEFJuhe.PWxQyi"
       },
       data: {
         carValue: this.state.carValue,

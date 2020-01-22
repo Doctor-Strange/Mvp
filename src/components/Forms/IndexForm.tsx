@@ -130,13 +130,18 @@ const BoxAccount = styled.div`
     z-index: 2;
     text-shadow: none !important;
     font-size: 12px !important;
+    span{
+      color:#1678c2;
+      cursor:pointer;
+    } 
     @media (max-width:768px){
         position:static;
     font-size: 13px !important;
     text-align: right;
     margin-top: 4px !important;
     margin-bottom: 8px !important;
-    }
+  
+  }
   }
 }
 `;
@@ -305,10 +310,21 @@ SeterrDateTo(false)
       data: {
         cell_phone :c, 
         city_name:CityName,
-        city_id:Location_id
+        city_id:Location_id,
+        date:Date.now()
+
       }
     })
       .then(res => {
+        swal({content: (<div dir="rtl">
+          <p style={{
+            color: 'green',
+            fontSize: '22px'
+          }}> شماره شما با موفقیت ثبت شد.</p>
+         <p> امیدواریم به زودی شما را در اتولی ببینیم. </p></div>),button:{
+          
+          text:"بستن",
+        }})
         console.log(res); 
       })
       .catch(err => console.log(err));
@@ -468,7 +484,10 @@ SeterrDateTo(false)
                           // onBlur={() => { console.log("on Blur for To")}}
                           
                         />   */}
-                        {locationAlert && <p className="JustForTehran" onClick={Cell_phone_Saver}>{`در حال حاضر اتولی فقط اجاره‌های با مبدا تهران تهران با پوشش می‌دهد. وقتی در ${CityName} فعال شدید خبرم کنید.`}</p> }
+                        {locationAlert && <p className="JustForTehran" onClick={Cell_phone_Saver}>در حال حاضر اتولی فقط اجاره‌های با مبدا تهران تهران با پوشش می‌دهد.<span>
+                         {` وقتی در ${CityName} فعال شدید خبرم کنید.`}
+                        </span>
+                         </p> }
                         
                       </Box>
                       <Box className="indexFullOnMobile" width={[4 / 16]} style={{position:"relative"}}>

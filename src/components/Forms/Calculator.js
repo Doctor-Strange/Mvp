@@ -162,7 +162,8 @@ class Calculator extends Component {
         brandId: this.state.brandValue,
         brandfarsi: this.state.brandValuefarsi,
         modelId: this.state.modelValue,
-        modelfarsi: this.state.modelValuefarsi
+        modelfarsi: this.state.modelValuefarsi,
+        date:Date.now()
       }
     })
       .then(res => {

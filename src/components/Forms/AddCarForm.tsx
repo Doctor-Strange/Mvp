@@ -273,7 +273,8 @@ export default withTranslation('common')(connect(state => state)(
       value: '',
       cylinderList:[],
       fetchDataFromApi : false,
-      fieldsEdited : false
+      fieldsEdited : false,
+      showAlertUnderLocationField : false
     };
 
     constructor(props) {
@@ -1107,14 +1108,33 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                         // onBlur={(e)=> {;;}}
                         value = {values.carCity && values.carCity}
                         error={Boolean(errors.carCity && touched.carCity)}
-                        onChange={(e) => { this.setCityDistrict(e.target.value); values.carCity = e.target.value }}>
+                        onChange={(e) => { 
+                          e.persist()
+                          if(e.target.value != 1){
+                            this.setState({
+                              showAlertUnderLocationField:true
+                            })
+                          }else{
+                            this.setState({
+                              showAlertUnderLocationField:false
+                            })
+                            this.setCityDistrict(e.target.value); 
+                          }
+                          console.log(e.target.selectedOptions[0].text);
+                          if(window.heap){
+                              window.heap.addUserProperties({Car_Location: `${e.target.selectedOptions[0].text}`});
+                          }
+                          
+                          values.carCity = e.target.value }}>
                         <option value=""></option>
                         {this.state.citiesFarsi.map(i =>
-                          <option value={i.value} key={i.key} >{i.text}</option>
+                          <option value={i.value} key={i.key} 
+                          >{i.text}</option>
                         )
                         }
                       </select>
                     </div>
+                    {this.state.showAlertUnderLocationField && <p>اتولی فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در شیراز فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.</p>}
                     {/* <Form.Group> */}
                     {/* {isBrowser &&
                         <Form.Dropdown
@@ -1189,7 +1209,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                           values.carDistrict = null
                         }}
                         placeholder="محله"
-                        disabled={values.carCity === null
+                        disabled={values.carCity === null || values.carCity !=1
                         }>محله</DropDownWithSearch>
                       {/* <label className ={this.state.cityDistrictFarsi[0].value == null ? "diz": null}>محله</label> */}
                       {/* =========> */}

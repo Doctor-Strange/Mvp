@@ -438,6 +438,9 @@ SeterrDateTo(false)
                         data={citiesFarsi}
                         Select={(e) => {
                           if(e.value !== 1){
+                            if(window.heap){
+                              window.heap.addUserProperties({Search_Location: `${e.text}`});
+                            }
                             setAlert(true)
                             serLocation_id(e.value)
                           }else setAlert(false)

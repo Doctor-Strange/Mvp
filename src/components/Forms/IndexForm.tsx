@@ -447,7 +447,8 @@ SeterrDateTo(false)
                         <span  onClick={()=>{setAlert(true)}}>
                           <select 
                           style={{
-                            height:'48px'
+                            height:'48px',
+                            fontFamily: "inherit"
                           }}
                           value={1}
                           onChange={(e)=>{

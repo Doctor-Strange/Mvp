@@ -270,13 +270,14 @@ SeterrDateTo(false)
   const Cell_phone_Saver = (Pname , Id) => {
     let c = ""
     swal({
+      className:"ModalHomepage",
       content: (<div dir="rtl" style={{textAlign:"right"}}>
-        <p>اتولی فعلا فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.</p>
+        <p>اتولی در حال حاضر فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.</p>
         <p style={{
           margin: "4px 0",
           fontWeight: "100",
-          color: "#949494",
-          fontSize: "14px"
+          color: "#737272",
+          fontSize: "15px"
         }}>{`شماره همراهتان را وارد کنید`}</p>
         <div>
           <span className="Input_Icon_Cell_phone">
@@ -296,7 +297,7 @@ SeterrDateTo(false)
         buttons: {
           cancel: "بستن",
           catch: {
-            text: "تایید",
+            text: "ثبت",
             value: "catch",
           }
         },

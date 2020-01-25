@@ -1122,6 +1122,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                           }
                           console.log(e.target.selectedOptions[0].text);
                           if(window.heap){
+                            values.CityName = e.target.selectedOptions[0].text
                               window.heap.addUserProperties({Car_Location: `${e.target.selectedOptions[0].text}`});
                           }
                           
@@ -1134,7 +1135,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                         }
                       </select>
                     </div>
-                    {this.state.showAlertUnderLocationField && <p>اتولی فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در شیراز فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.</p>}
+                    {this.state.showAlertUnderLocationField && <p>{`اتولی فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در ${values.CityName} فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.`}</p>}
                     {/* <Form.Group> */}
                     {/* {isBrowser &&
                         <Form.Dropdown

@@ -253,6 +253,7 @@ const GlobalStyle = createGlobalStyle`
     text-shadow: none;
     font-weight: 700;
     line-height: 1em;
+    padding:15px 0;
   }
   .addCarnow a:hover , , .addCarnowInlanding a:hover{
     background-color: #bf669c;
@@ -4058,6 +4059,7 @@ div:nth-child(4) {
     }
 }
 .Get_user_Cell_phonE{
+  font-family: IRANSans !important;
   margin: 0;
   max-width: 100%;
   -webkit-box-flex: 1;
@@ -4066,8 +4068,7 @@ div:nth-child(4) {
   outline: 0;
   -webkit-tap-highlight-color: rgba(255,255,255,0);
   text-align: left;
-  line-height: 1.21428571em;
-  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  line-height: 1.21428571em; 
   padding: .67857143em 1em;
   background: #fff;
   border: 1px solid rgba(34,36,38,.15);
@@ -4082,6 +4083,24 @@ div:nth-child(4) {
   font-family: inherit;
   direction: rtl;
   text-align: right;
+}
+
+.ModalHomepage{
+
+  @media (max-width:768px){
+    top: 151px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+  @media (max-width:415px){
+    top: 176px;
+  }
+}
+
+.ModalHomepage .swal-footer button{
+  width:94px;
 }
 `;
 

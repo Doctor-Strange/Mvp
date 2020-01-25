@@ -445,12 +445,13 @@ SeterrDateTo(false)
                       } */}
                       <Box className="indexFullOnMobile" width={[4 / 16]} >
                         <label  style={{display:"block",textAlign:"right", marginBottom:"2px"}}>خودرو را کجا تحویل می‌گیرید؟</label>
-                        <span  onClick={()=>{setAlert(true)}}>
+                        <span  onClick={()=>{setAlert(true)}} className ="SelectHomepageFather">
                           <select 
                           style={{
                             height:'48px',
                             fontFamily: "inherit"
                           }}
+                          className ="SelectHomepage"
                           value={1}
                           onChange={(e)=>{
                                   e.persist()
@@ -470,7 +471,7 @@ SeterrDateTo(false)
                                   setFieldValue('carCity', e.target.value);
                                   }
                           }}>
-                            {citiesFarsi && citiesFarsi.map(i =>{
+                            {citiesFarsi && citiesFarsi.sort().map(i =>{
                             return<option value={i.value} >{i.text}</option>
                             })}
                           </select>

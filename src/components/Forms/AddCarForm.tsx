@@ -1194,7 +1194,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                         </div>
                       } */}
                     {/* {this.state.shouldCityDistrictShow ? ( */}
-                    <div className="fieldEmulator field">
+          { !this.state.showAlertUnderLocationField &&<div className="fieldEmulator field">
                       <DropDownWithSearch
                       defaultVal = {values.carDistrict}
                         loading={true}
@@ -1229,7 +1229,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                     }
                     </select>  */}
                       {/* =========> */}
-                    </div>
+                    </div>}
                     {/* <Form.Dropdown
                           name="carDistrict"
                           id="carDistrict"

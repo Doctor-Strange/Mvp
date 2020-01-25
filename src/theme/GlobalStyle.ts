@@ -4102,6 +4102,36 @@ div:nth-child(4) {
 .ModalHomepage .swal-footer button{
   width:94px;
 }
+.SelectHomepage{
+  -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative
+}
+.SelectHomepage:focus{
+  outline:none;
+  border:none;
+}
+
+.SelectHomepageFather{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.SelectHomepageFather:after{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  content: "";
+  clear: both;
+  display: block;
+  left: 16px;
+  top: 22px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #6b6b6b transparent transparent transparent;
+}
 `;
 
 enum Margin {

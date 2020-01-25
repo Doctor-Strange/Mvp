@@ -292,7 +292,7 @@ SeterrDateTo(false)
       <p style={{
         textAlign:"center",
         marginTop:"8px"
-      }}>{`وقتی در${Pname} فعال شدیم خبرتان میکنیم.`}</p>
+      }}>{`وقتی در ${Pname} فعال شدیم خبرتان میکنیم.`}</p>
       </div>), 
         buttons: {
           cancel: "بستن",
@@ -332,15 +332,24 @@ SeterrDateTo(false)
       }
     })
       .then(res => {
-        swal({content: (<div dir="rtl">
-          <p style={{
-            color: 'green',
-            fontSize: '22px'
-          }}> شماره شما با موفقیت ثبت شد.</p>
-         <p> امیدواریم به زودی شما را در اتولی ببینیم. </p></div>),button:{
+        toast.success(`شماره شما با موفقیت ثبت شد.
+        امیدواریم به زودی شما را در اتولی ببینیم.`,{
+          position: "bottom-center",
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true
+        })
+        // swal({content: (<div dir="rtl">
+        //   <p style={{
+        //     color: 'green',
+        //     fontSize: '22px'
+        //   }}> شماره شما با موفقیت ثبت شد.</p>
+        //  <p> امیدواریم به زودی شما را در اتولی ببینیم. </p></div>),button:{
           
-          text:"بستن",
-        }})
+        //   text:"بستن",
+        // }})
         console.log(res); 
       })
       .catch(err => console.log(err));
@@ -440,6 +449,7 @@ SeterrDateTo(false)
                         margin: '0 auto'
                       }}
                     >
+                      <ToastContainer/>
                       {/* {
                         date.from && !date.to  ? <p id="alertShow">تاریخ بازگشت را انتخاب کنید</p> : null
                       } */}

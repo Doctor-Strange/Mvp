@@ -453,8 +453,8 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => {
               </h3>
               {/* <Icon name='facebook' /> */}
               <div className="iconContainer">
-                <a target="_black" href="https://www.instagram.com/otoli_net/">
-                  <Icon size="large" name="instagram" />
+                <a style={{margin:0}} target="_black" href="https://www.instagram.com/otoli_net/">
+                  <Icon size="large" name="instagram" style={{margin:0}}/>
                 </a>
                 {/* <Icon name='google plus' /> */}
                 {/* <Icon name='vk' /> */}

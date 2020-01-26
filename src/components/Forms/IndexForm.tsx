@@ -424,7 +424,7 @@ setCell_Phone('')
             <p style={{
               textAlign:"center",
               marginTop:"8px"
-            }}>{`وقتی در ${CityName} فعال شدیم خبرتان میکنیم.`}</p>
+            }}>{`وقتی در ${CityName} فعال شدیم خبرتان می‌کنیم.`}</p>
             <div style={{textAlign:"center"}}> 
               <button className="Accept_BTN" onClick={()=>{
                 send_Cell_phone()

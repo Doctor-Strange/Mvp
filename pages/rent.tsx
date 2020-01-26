@@ -240,12 +240,12 @@ const Rent = props => {
                 <a href="https://otoli.net/rent/tehran">اجاره ماشین در تهران</a>
               </li>
               <li>
-                <a href="https://otoli.net/rent/benz">
+                <a href="https://otoli.net/rent/luxury-tehran">
                   همهٔ ماشین‌های لوکس تهران اینجاست
                 </a>
               </li>
               <li>
-                <a href="https://otoli.net/rent/luxury-tehran">اجاره بنز</a>
+                <a href="https://otoli.net/rent/benz">اجاره بنز</a>
               </li>
             </ul>
           </div>

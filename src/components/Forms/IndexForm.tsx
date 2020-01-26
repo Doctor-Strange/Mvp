@@ -275,7 +275,7 @@ SeterrDateTo(false)
 
   const send_Cell_phone = () =>{
     if(Cell_Phone.length < 11){
-      SetErrori("شماره باید 11 رفم باشد.")
+      SetErrori("شماره باید 11 رقم باشد.")
       return
     }
     if(isNaN(Cell_Phone)){
@@ -397,6 +397,10 @@ setCell_Phone('')
               SetModal(false)
             }}></div> 
               <div dir="rtl" className="BoxHomepageModal" >
+                <p>
+                  <Icon className="TimesIcon" size="large" name="times" onClick ={() => {
+                  SetModal(false)}}></Icon>
+                </p>
               <p>اتولی در حال حاضر فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.</p>
               <p style={{
                 margin: "4px 0",

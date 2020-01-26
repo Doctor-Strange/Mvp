@@ -4200,6 +4200,14 @@ div:nth-child(4) {
       }
     }
 }
+.TimesIcon{
+  color: #c3c3c3;
+  font-size: 18px !important;
+  margin: 0 !important;
+  margin-right: -10px !important;
+  margin-top: -10px !important;
+  cursor:pointer;
+}
 `;
 
 enum Margin {

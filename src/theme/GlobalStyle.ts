@@ -4132,6 +4132,74 @@ div:nth-child(4) {
   border-style: solid;
   border-color: #6b6b6b transparent transparent transparent;
 }
+.modal_parent{
+  position: fixed;
+    z-index: 9000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    .modal_parent_drawe{
+      position:absolute;
+      width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 9001;
+    }
+    .BoxHomepageModal{
+      text-align: right;
+    width: 430px;
+    padding: 18px;
+    background: #fff;
+    border-radius: 4px;
+    right: 0;
+    z-index: 9002;
+    left: 0;
+    position:absolute;
+    margin: auto;
+    top: 250px;
+    @media (max-width:991px){
+      top: 190px;
+    }
+    @media (max-width:768px){
+      top: 152px;
+    }
+    @media (max-width:480px){
+      width:340px;
+    }
+    @media (max-width:420px){
+      top:175px;
+    }
+    }
+    .Accept_BTN{width: 108px;
+      color: #fff;
+      border: none;
+      margin: 10px 10px 0;
+      border-radius: 4px;
+      padding: 10px 1px;
+      background: #4BA3CE;
+      font-family: inherit;
+      font-size: 16px;}
+    .Deny_BTN{
+      
+      width: 108px;
+      color: #4BA3CE;
+      border:1px solid #4BA3CE; 
+      background: #fff;
+      border-radius: 4px;
+      padding: 10px 1px;
+      margin: 10px 10px 0;
+      font-family: inherit;
+      font-size: 16px;
+      &:hover{
+        background: #fff!important;
+        color: #4BA3CE!important;
+
+      }
+    }
+}
 `;
 
 enum Margin {

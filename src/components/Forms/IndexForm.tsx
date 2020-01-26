@@ -163,12 +163,14 @@ const IndexForm: React.SFC<IIndexForm> = ({}) => {
   const [CityName, setCityName] = useState('');
   const [Cell_Phone, setCell_Phone] = useState('');
   const [success, setSuccess] = useState(false);
+  const [Modal, SetModal] = useState(false);
   const [activeField1, setactiveField1] = useState(false);
   const [activeField2, setactiveField2] = useState(false);
   const [CalenderWork, SetCalenderWork] = useState(false);
   const [locationAlert,setAlert] = useState(false)
   const [errDateFrom,SeterrDateFrom] = useState(false)
   const [errDateTo,SeterrDateTo] = useState(false)
+  const [Errori,SetErrori] = useState("")
   const [datepicker_animation, setDPA] = useState(`.DatePicker__calendarContainer {
   transform: translateX(-22%);
 }
@@ -267,53 +269,20 @@ SeterrDateTo(false)
     document.activeElement.blur();
   }
 
-  const Cell_phone_Saver = (Pname , Id) => {
-    let c = ""
-    swal({
-      className:"ModalHomepage",
-      content: (<div dir="rtl" style={{textAlign:"right"}}>
-        <p>اتولی در حال حاضر فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.</p>
-        <p style={{
-          margin: "4px 0",
-          fontWeight: "100",
-          color: "#737272",
-          fontSize: "15px"
-        }}>{`شماره همراهتان را وارد کنید`}</p>
-        <div>
-          <span className="Input_Icon_Cell_phone">
-          {/* <img src=mobile_alt{} alt="آیکون موبایل"> */}
-          </span>
-          <input className="Get_user_Cell_phonE" maxLength='11' type = "text" onChange ={(e) => {
-            e.persist() 
-            c =e.target.value
-          }
-        } placeholder="شماره تلفن همراه"/> 
-        </div>
-      <p style={{
-        textAlign:"center",
-        marginTop:"8px"
-      }}>{`وقتی در ${Pname} فعال شدیم خبرتان میکنیم.`}</p>
-      </div>), 
-        buttons: {
-          cancel: "بستن",
-          catch: {
-            text: "ثبت",
-            value: "catch",
-          }
-        },
-      })
-      .then((value) => {
-        switch (value) {
-          case "catch":
-            send_Cell_phone(c,Pname , Id)
-            break;
-          default:
-        }
-      });
+  const Cell_phone_Saver = () => { 
+    SetModal(true)
   }
 
-  const send_Cell_phone = (c,Pname,Id) =>{
-    if(c.length < 11)return
+  const send_Cell_phone = () =>{
+    if(Cell_Phone.length < 11){
+      SetErrori("شماره باید 11 رفم باشد.")
+      return
+    }
+    if(isNaN(Cell_Phone)){
+      SetErrori("شماره وارد شده صحیح نیست.")
+      return
+    }  
+    SetModal(false)
     Axios({
       method: "POST",
       url: "https://api.jsonbin.io/b",
@@ -324,14 +293,17 @@ SeterrDateTo(false)
           "$2b$10$L3UbnS89pYKQP2r/BLgM8uhdF2xbR3294owxUl/kEFJuhe.PWxQyi"
       },
       data: {
-        cell_phone :c, 
-        city_name:Pname,
-        city_id:Id,
+        cell_phone :Cell_Phone, 
+        city_name:CityName,
+        city_id:Location_id,
         date:Date.now()
 
       }
     })
       .then(res => {
+        serLocation_id('')
+setCityName('')
+setCell_Phone('')
         toast.success(`شماره شما با موفقیت ثبت شد.
         امیدواریم به زودی شما را در اتولی ببینیم.`,{
           position: "bottom-center",
@@ -416,8 +388,52 @@ SeterrDateTo(false)
         errors,
         touched
       }) => {
-        return (
+        return (<>
+        <ToastContainer/>
           <BoxAccount className="box_account">
+            {Modal &&<div className="modal_parent">
+                <div className="modal_parent_drawe" onClick={()=>{
+              SetModal(false)
+            }}></div> 
+              <div dir="rtl" className="BoxHomepageModal" >
+              <p>اتولی در حال حاضر فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.</p>
+              <p style={{
+                margin: "4px 0",
+                fontWeight: "100",
+                color: "#737272",
+                fontSize: "15px"
+              }}>{`شماره همراهتان را وارد کنید`}</p>
+              <div>
+                <span className="Input_Icon_Cell_phone">
+                {/* <img src=mobile_alt{} alt="آیکون موبایل"> */}
+                </span>
+                <input className="Get_user_Cell_phonE" maxLength='11' type = "text" onChange ={(e) => {
+                  e.persist() 
+                  SetErrori("") 
+                  setCell_Phone(e.target.value) 
+                }
+              } placeholder="شماره تلفن همراه"/> 
+              <span style={{
+                display:'block',
+                color:"#EF5350",
+                fontSize:"12px",
+                fontFamily: 'IRANSans'
+          }}>{Errori}</span>
+              </div>
+            <p style={{
+              textAlign:"center",
+              marginTop:"8px"
+            }}>{`وقتی در ${CityName} فعال شدیم خبرتان میکنیم.`}</p>
+            <div style={{textAlign:"center"}}> 
+              <button className="Accept_BTN" onClick={()=>{
+                send_Cell_phone()
+              }}>ثبت</button>
+            <button className="Deny_BTN" onClick={()=>{
+              SetModal(false)
+            }}>بستن</button>
+            </div>
+            </div>
+            </div>}
             <Form onSubmit={handleSubmit}>
               <style>
                 {datepicker_animation}
@@ -449,7 +465,6 @@ SeterrDateTo(false)
                         margin: '0 auto'
                       }}
                     >
-                      <ToastContainer/>
                       {/* {
                         date.from && !date.to  ? <p id="alertShow">تاریخ بازگشت را انتخاب کنید</p> : null
                       } */}
@@ -636,6 +651,7 @@ SeterrDateTo(false)
               </Label>
             )}
           </BoxAccount>
+        </>
         );
       }}
     </Formik>

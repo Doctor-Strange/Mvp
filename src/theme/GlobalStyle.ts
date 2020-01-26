@@ -3821,7 +3821,7 @@ input::placeholder{
   bottom: -18px;
 }
 .landingWrapper h1{
-  padding-top: 60px;
+  padding-top: 20px;
   color: rgb(255, 255, 255);
     font-size: 3.25rem;
     text-transform: uppercase;
@@ -3864,9 +3864,9 @@ input::placeholder{
 }
 .heightControlInLanding{
   background-position: 0 -60px !important;
-  height:115vh
+  height:95vh
   @media (max-width:768px){
-    height:105vh;
+    height:auto;
     background-position: left top !important;
   }
   @media (max-width:480px){
@@ -3876,11 +3876,12 @@ input::placeholder{
 
 .SmallHeightControllerinHomepageLanding{
   @media (max-width:768px){
-    height: 1100px;
+    padding-bottom: 52px !important;
+    height: auto !important;
     background-position: center !important;
 }
 @media (max-width:575px){
-  height: 1100px !important;
+  height: 888 !important;
 }
 }
 
@@ -4206,7 +4207,6 @@ div:nth-child(4) {
   margin: 0 !important;
   margin-right: -10px !important;
   margin-top: -10px !important;
-  cursor:pointer;
 }
 `;
 

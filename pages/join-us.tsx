@@ -55,8 +55,8 @@ const Page = props => {
         <div className="hero_single version_4">
           <Flex justifyContent="space-around" className="landingWrapper">
             <Box width={2 / 2} px={2}>
-              <h1>اتولی، برای اوقات فراغت ماشین شما</h1>
-              <h2>
+              <h1 style={{textShadow:"1px 1px 2px #000"}}>اتولی، برای اوقات فراغت ماشین شما</h1>
+              <h2 style={{textShadow:"1px 1px 2px #000"}}>
               به راحتی خودروتان را در اتولی کوتاه مدت اجاره بدهید و درآمد کسب کنید
               </h2>
               <Calculator />

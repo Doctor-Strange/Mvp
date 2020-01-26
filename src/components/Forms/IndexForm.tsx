@@ -282,6 +282,7 @@ SeterrDateTo(false)
       SetErrori("شماره وارد شده صحیح نیست.")
       return
     }  
+    setError("")
     SetModal(false)
     Axios({
       method: "POST",

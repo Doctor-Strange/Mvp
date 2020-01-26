@@ -4159,18 +4159,18 @@ div:nth-child(4) {
     left: 0;
     position:absolute;
     margin: auto;
-    top: 250px;
+    top: 32vh;
     @media (max-width:991px){
-      top: 190px;
+      top: 32vh;
     }
     @media (max-width:768px){
-      top: 152px;
+      top:24vh;
     }
     @media (max-width:480px){
       width:340px;
     }
     @media (max-width:420px){
-      top:175px;
+      top:24vh;
     }
     }
     .Accept_BTN{width: 108px;

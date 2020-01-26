@@ -308,6 +308,8 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => {
   const [hider,setHider] = useState(false)
 
   useEffect(()=>{
+    console.log(process.env.NODE_ENV);
+    
     if(Router.route==="/checkout") setHider(true)
   },[])
   return(

@@ -7,19 +7,19 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "SET NODE_ENV=development & node server.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "build": "NODE_ENV=production next build",
     "build:dev": "next build",
-    "build:analyze": "NODE_ENV=production  ANALYZE=true next build",
+    "build:analyze": "SET NODE_ENV=development &  ANALYZE=true next build",
     "export": "next export",
     "start": "NODE_ENV=production node server.js",
     "ts:check": "tsc --noEmit",
     "docz:dev": "docz dev --typescript",
     "docz:build": "docz build --typescript",
-    "heroku-postbuild": "NODE_ENV=production next build"
+    "heroku-postbuild": "NODE_ENV=development next build"
   },
   "dependencies": {
     "@rebass/grid": "^6.0.0-7",

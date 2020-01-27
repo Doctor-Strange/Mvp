@@ -199,7 +199,11 @@ class Calculator extends Component {
                 loading={true}
                 top="46"
                 data={this.state.brandsFarsi}
-                Select={e => {
+                Select={e => { 
+                  
+                  if(window.heap){ 
+                    window.heap.addUserProperties({Calc_Car_Brand: `${e.text}`});
+                }
                   this.fetchBrandId(e.value);
                   this.inputHandller("brandValue", e);
                 }}
@@ -215,9 +219,10 @@ class Calculator extends Component {
                 top="46"
                 IconTop="20"
                 data={this.state.modelsFarsi}
-                Select={e => {
-                  console.log(e);
-
+                Select={e => { 
+                  if(window.heap){ 
+                      window.heap.addUserProperties({Calc_Car_Brand: `${e.text}`});
+                  }
                   this.inputHandller("modelValue", e);
                   // setModel(e.value, "");
                   // values.carDistrict = e.value

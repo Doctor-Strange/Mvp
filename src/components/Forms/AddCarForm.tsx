@@ -760,9 +760,9 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
       
       const fieldErrorGenrator = fieldName => {
         return (
-          " لطفاً " +
+          "" +
           fieldName +
-          " را پر کنید. "
+          ""
         );
       };
       if (token) return (
@@ -967,41 +967,41 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
           validationSchema={Yup.object().shape({
             
             carCity: Yup.number()
-              .required(fieldErrorGenrator("شهر خودرو"))
-              .typeError(fieldErrorGenrator("شهر خودرو")),
+              .required(fieldErrorGenrator("لطفا شهر خودرو را انتخاب کنید"))
+              .typeError(fieldErrorGenrator("لطفا شهر خودرو را انتخاب کنید")),
             carDistrict: Yup.number()
-              .required(fieldErrorGenrator("محله"))
-              .typeError(fieldErrorGenrator("محله")),
+              .required(fieldErrorGenrator("لطفا محله را انتخاب کنید"))
+              .typeError(fieldErrorGenrator("لطفا محله را انتخاب کنید")),
             carBrand: Yup.number()
-              .required(fieldErrorGenrator("برند"))
-              .typeError(fieldErrorGenrator("برند")),
+              .required(fieldErrorGenrator("لطفا برند را انتخاب کنید"))
+              .typeError(fieldErrorGenrator("لطفا برند را انتخاب کنید")),
             carModel: Yup.number()
-              .required(fieldErrorGenrator("مدل"))
-              .typeError(fieldErrorGenrator("مدل")),
+              .required(fieldErrorGenrator(" لطفا مدل را انتخاب کنید"))
+              .typeError(fieldErrorGenrator(" لطفا مدل را انتخاب کنید")),
             carYear: Yup.number()
-              .required(fieldErrorGenrator("سال"))
-              .typeError(fieldErrorGenrator("سال")),
+              .required(fieldErrorGenrator(" لطفا سال را انتخاب کنید"))
+              .typeError(fieldErrorGenrator(" لطفا سال را انتخاب کنید")),
             carGearboxType: Yup.number()
-              .required(fieldErrorGenrator("نوع دنده"))
-              .typeError(fieldErrorGenrator("نوع دنده"))
+              .required(fieldErrorGenrator("لطفا نوع دنده را انتخاب کنید"))
+              .typeError(fieldErrorGenrator("لطفا نوع دنده را انتخاب کنید"))
               .min(1)
               .max(2),
               
               cylinder_id: Yup.number()
-              .required(fieldErrorGenrator("تعداد سیلندر"))
-              .typeError(fieldErrorGenrator("تعداد سیلندر")),
+              .required(fieldErrorGenrator("لطفا تعداد سیلندر را انتخاب کنید"))
+              .typeError(fieldErrorGenrator("لطفا تعداد سیلندر را انتخاب کنید")),
             carBodyStyle: Yup.number()
-              .required(fieldErrorGenrator("نوع شاسی"))
-              .typeError(fieldErrorGenrator("نوع شاسی")),
+              .required(fieldErrorGenrator("لطفا نوع شاسی را انتخاب کنید"))
+              .typeError(fieldErrorGenrator("لطفا نوع شاسی را انتخاب کنید")),
             carCapacity: Yup.number()
-              .required(fieldErrorGenrator("ظرفیت خودرو"))
-              .typeError(fieldErrorGenrator("ظرفیت خودرو")),
+              .required(fieldErrorGenrator("لطفا ظرفیت خودرو را انتخاب کنبد"))
+              .typeError(fieldErrorGenrator("لطفا ظرفیت خودرو را انتخاب کنبد")),
             carKmDriven: Yup.number()
-              .required(fieldErrorGenrator("کارکرد خودرو"))
-              .typeError(fieldErrorGenrator("کارکرد خودرو")),
+              .required(fieldErrorGenrator("لطفا کارکرد خودرو را انتخاب کنید"))
+              .typeError(fieldErrorGenrator("لطفا کارکرد خودرو را انتخاب کنید")),
               value: Yup.string()
-              .required(fieldErrorGenrator("ارزش خودرو"))
-              .typeError(fieldErrorGenrator("ارزش خودرو")),
+              .required(fieldErrorGenrator("لطفا ارزش خودرو را وارد کنید"))
+              .typeError(fieldErrorGenrator("لطفا ارزش خودرو را وارد کنید")),
             // carVIN: Yup.string()
             //   .required(fieldErrorGenrator("VIN"))
             //   .typeError(fieldErrorGenrator("VIN"))
@@ -1025,8 +1025,8 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
               .min(10, t('forms.error_licensePlates4_not_valid'))
               .max(99, t('forms.error_licensePlates4_not_valid')),
             carColor: Yup.mixed()
-              .required(fieldErrorGenrator("رنگ"))
-              .typeError(fieldErrorGenrator("رنگ"))
+              .required(fieldErrorGenrator("لطفا رنگ خود را انتخاب کنید"))
+              .typeError(fieldErrorGenrator("لطفا رنگ خود را انتخاب کنید"))
             // carOptions: [string]:Yup.number().required( t('forms.error_filed_required1') +                   t('carProperty.city') + t('forms.error_filed_required2') ),
             // carDescription: Yup.string()
           })}

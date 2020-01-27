@@ -119,8 +119,8 @@ const Page = props => {
               <a>ماشین‌تان را اضافه کنید</a>
             </Link>
             <p style={{ textAlign: "center", marginTop: "16px", direction: "rtl" }}>
-              سوالی دارید؟ با ما تماس بگیرید:‌
-              <a className="TellPhone" href="tel:02188567759">۰۲۱۸۸۵۶۷۷۵۹</a>
+              سوالی دارید؟ با ما تماس بگیرید:‌{' '}
+              <a className="TellPhone" href="tel:02188567759"> ۰۲۱۸۸۵۶۷۷۵۹ </a>
             </p>
           </div>
         </section>

@@ -19,7 +19,7 @@
     "ts:check": "tsc --noEmit",
     "docz:dev": "docz dev --typescript",
     "docz:build": "docz build --typescript",
-    "heroku-postbuild": "NODE_ENV=production next build"
+    "heroku-postbuild": "NODE_ENV=development next build"
   },
   "dependencies": {
     "@rebass/grid": "^6.0.0-7",

@@ -71,7 +71,7 @@ export default class extends Document {
               })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
         }}>
         </script>
-        {/* { process.env.NODE_ENV !== 'development' ? <script  dangerouslySetInnerHTML={{
+        { process.env.NODE_ENV !== 'development' ? <script  dangerouslySetInnerHTML={{
           __html: `window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
           heap.load("329839554");`,
         }}>
@@ -80,10 +80,10 @@ export default class extends Document {
           __html: `window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
           heap.load("3071100507");`,
         }}>
-        </script>} */}
+        </script>}
         {/* dev^ */} 
-        {/* { process.env.NODE_ENV === 'development' && 
-        <meta name="robots" content="noindex"/> }   */}
+        { process.env.NODE_ENV === 'development' && 
+        <meta name="robots" content="noindex"/> }  
 
 
         {/* <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147651642-1"></script>

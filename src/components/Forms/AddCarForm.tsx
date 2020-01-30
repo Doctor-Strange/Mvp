@@ -1053,6 +1053,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
               if(this.state.incomming.location.parent_id !== 1){
                 values.carCity = this.state.incomming.location.id;
                 values.carDistrict = this.state.incomming.location.id;
+                values.CityName = this.state.incomming.location.slug.fa
                 this.setState({
                   showAlertUnderLocationField:true,
                   CAR_Location: this.state.incomming.location.id

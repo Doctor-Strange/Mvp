@@ -285,20 +285,18 @@ SeterrDateTo(false)
     setError("")
     SetModal(false)
     Axios({
-      method: "POST",
-      url: "https://api.jsonbin.io/b",
-      headers: {
-        "Content-Type": "application/json",
-        'collection-id':"5e26effd5df6407208396427",
-        "secret-key":
-          "$2b$10$L3UbnS89pYKQP2r/BLgM8uhdF2xbR3294owxUl/kEFJuhe.PWxQyi"
-      },
+      method: "post",
+      // url: "https://api.jsonbin.io/b",
+      url: "https://core.otoli.net/core/service-request/new",
+      // headers: {
+      //   // "Content-Type": "application/json",
+      //   // 'collection-id':"5e26effd5df6407208396427",
+      //   // "secret-key":
+      //   //   "$2b$10$L3UbnS89pYKQP2r/BLgM8uhdF2xbR3294owxUl/kEFJuhe.PWxQyi"
+      // },
       data: {
-        cell_phone :Cell_Phone, 
-        city_name:CityName,
-        city_id:Location_id,
-        date:Date.now()
-
+        cell :Cell_Phone,  
+        location_id:Location_id
       }
     })
       .then(res => {
@@ -325,7 +323,8 @@ setCell_Phone('')
         // }})
         console.log(res); 
       })
-      .catch(err => console.log(err));
+      .catch(err => {console.log(err)
+      console.log("err",err.response)});
     
   }
 

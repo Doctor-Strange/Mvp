@@ -274,7 +274,8 @@ export default withTranslation('common')(connect(state => state)(
       cylinderList:[],
       fetchDataFromApi : false,
       fieldsEdited : false,
-      showAlertUnderLocationField : false
+      showAlertUnderLocationField : false,
+      CAR_Location: null
     };
 
     constructor(props) {
@@ -289,10 +290,10 @@ export default withTranslation('common')(connect(state => state)(
         INterid  = localStorage["CarEditId"]
        }
 
-      // console.log('INterid',INterid);
-      const res = await REQUEST_getCar({
-        id:INterid,
-    });
+       const res = await REQUEST_getCar({
+         id:INterid,
+        });
+        console.log('INterid',res);
     const incomming = res.data;
     if(!this.props.edit_mode && localStorage["CarEditId"]){
       
@@ -918,6 +919,8 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
               cylinder_id: cylinder_id,
               value: Number(value.replace(/,/g,""))
             }
+            console.log(data);
+            // return
             axios
               .post(
                 process.env.PRODUCTION_ENDPOINT +  '/core/rental-car/new',
@@ -931,8 +934,10 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
               .then(response => {
                 // console.log("response.data response ====>", response);
                 if (response.data.success) {
+                  console.log(response.data);
+                  
                   if(this.props.edit_mode){
-                    // localStorage.removeItem("CarEditId")
+                    localStorage.removeItem("CarEditId")
                     Router.push({
                       pathname: `/user/${jsCookie.get('user_id')}`,
                     });
@@ -969,9 +974,9 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
             carCity: Yup.number()
               .required(fieldErrorGenrator("لطفا شهر خودرو را انتخاب کنید"))
               .typeError(fieldErrorGenrator("لطفا شهر خودرو را انتخاب کنید")),
-            carDistrict: Yup.number()
+            carDistrict: this.state.CAR_Location === 1 ? Yup.number()
               .required(fieldErrorGenrator("لطفا محله را انتخاب کنید"))
-              .typeError(fieldErrorGenrator("لطفا محله را انتخاب کنید")),
+              .typeError(fieldErrorGenrator("لطفا محله را انتخاب کنید")):true,
             carBrand: Yup.number()
               .required(fieldErrorGenrator("لطفا برند را انتخاب کنید"))
               .typeError(fieldErrorGenrator("لطفا برند را انتخاب کنید")),
@@ -1044,10 +1049,23 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
             touched
           }) => {
             if(this.state.fetchDataFromApi && this.state.checkboxes.length > 2){
-              // console.log("this.state.incomming",this.state.incomming);
-              this.setCityDistrict(1)
-              values.carCity = 1;
-              values.carDistrict = this.state.incomming.location.id;
+              console.log("this.state.incomming",this.state.incomming);
+              if(this.state.incomming.location.parent_id !== 1){
+                values.carCity = this.state.incomming.location.id;
+                values.carDistrict = this.state.incomming.location.id;
+                this.setState({
+                  showAlertUnderLocationField:true,
+                  CAR_Location: this.state.incomming.location.id
+                })
+              }else{
+                values.carCity = 1;
+                values.carDistrict = this.state.incomming.location.id;
+                this.setCityDistrict(1)
+                this.setState({
+                  showAlertUnderLocationField:false,
+                  CAR_Location: 1
+                })
+              }
               setFieldValue("carBrand", this.state.incomming.car.brand.id);                           
               this.setModels(this.state.incomming.car.brand.id);
               setFieldValue("carModel", this.state.incomming.car.id);
@@ -1110,13 +1128,16 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                         error={Boolean(errors.carCity && touched.carCity)}
                         onChange={(e) => { 
                           e.persist()
-                          if(e.target.value != 1){
+                          if(e.target.value != 1){ 
+                            values.carDistrict = e.target.value
                             this.setState({
-                              showAlertUnderLocationField:true
+                              showAlertUnderLocationField:true,
+                              CAR_Location: null
                             })
                           }else{
                             this.setState({
-                              showAlertUnderLocationField:false
+                              showAlertUnderLocationField:false,
+                              CAR_Location: 1
                             })
                             this.setCityDistrict(e.target.value); 
                           }

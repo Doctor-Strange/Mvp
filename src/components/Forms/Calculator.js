@@ -148,22 +148,23 @@ class Calculator extends Component {
     }
 
     Axios({
-      method: "POST",
+      method: "post",
       // url: "join-us-log.herokuapp.com/",
-      url: "https://api.jsonbin.io/b",
-      headers: {
-        "Content-Type": "application/json",
-        'collection-id':"5e26f48a8d761771cc94e32d",
-        "secret-key":
-          "$2b$10$L3UbnS89pYKQP2r/BLgM8uhdF2xbR3294owxUl/kEFJuhe.PWxQyi"
-      },
+      // url: "https://api.jsonbin.io/b",
+      url: "https://core.otoli.net/core/rent-price-estimation-request/new",
+      // headers: {
+      //   "Content-Type": "application/json",
+      //   'collection-id':"5e26f48a8d761771cc94e32d",
+      //   "secret-key":
+      //     "$2b$10$L3UbnS89pYKQP2r/BLgM8uhdF2xbR3294owxUl/kEFJuhe.PWxQyi"
+      // },
       data: {
-        carValue: this.state.carValue,
-        brandId: this.state.brandValue,
-        brandfarsi: this.state.brandValuefarsi,
-        modelId: this.state.modelValue,
-        modelfarsi: this.state.modelValuefarsi,
-        date:Date.now()
+        price: this.state.carValue,
+        // brandId: this.state.brandValue,
+        // brandfarsi: this.state.brandValuefarsi,
+        car_id: this.state.modelValue,
+        // modelfarsi: this.state.modelValuefarsi,
+        // date:Date.now()
       }
     })
       .then(res => {
@@ -181,7 +182,11 @@ class Calculator extends Component {
           });
         }, 500);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err)
+        this.setState({
+          spinner: false
+        })});
   };
 
   render() {

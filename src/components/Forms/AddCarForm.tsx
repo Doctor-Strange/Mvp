@@ -1130,6 +1130,7 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                           e.persist()
                           if(e.target.value != 1){ 
                             values.carDistrict = e.target.value
+                            values.CityName = e.target.selectedOptions[0].text
                             this.setState({
                               showAlertUnderLocationField:true,
                               CAR_Location: null

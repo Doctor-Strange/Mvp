@@ -29,7 +29,7 @@ const Card = styled.nav`
     .DatePicker__input {
         font-size: 15px;
         font-family: Vazir;
-        border: none;
+        // border: none;
         cursor:pointer
     }
     .price {
@@ -96,18 +96,26 @@ end?:string;
     }
 
     const fetchData = async () =>{
+        // console.log(
+        //     rentalCarID,
+        //     `${NewDate.from.year}/${NewDate.from.month}/${NewDate.from.day}`,
+        //     `${NewDate.to.year}/${NewDate.to.month}/${NewDate.to.day}`
+        // );
+        // return
         setLoader(true)
         let token = jsCookie.get("token")
         const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-        const GET_SEARCH_FOR_RENT = '/core/rental-car/search-for-rent/list';
+        const GET_SEARCH_FOR_RENT = 
+        // `/core/rental-car/search-for-rent/list?rental_car_id=${rentalCarID}&start_date=${NewDate.from.year}/${NewDate.from.month}/${NewDate.from.day}&end_date=${NewDate.to.year}/${NewDate.to.month}/${NewDate.to.day}`;
+        `/core/rental-car/search-for-rent/list`;
         axios
       .post(
         DOMAIN +
           GET_SEARCH_FOR_RENT ,
           {
-            rental_car_id:rentalCarID,
+            id:rentalCarID,
             start_date:`${NewDate.from.year}/${NewDate.from.month}/${NewDate.from.day}`,
-            end_date:`${NewDate.to.year}/${NewDate.to.month}/${NewDate.to.day}`
+            end_date:`${NewDate.to.year}/${NewDate.to.month}/${NewDate.to.day}`,
           },
           {
             headers: {
@@ -116,6 +124,8 @@ end?:string;
           }
       )
       .then(response => {
+        console.log("response ===>", response);
+
         setLoader(false)
         SetresTrue(true)
         SetNewSI(response.data.items[0].search_id);
@@ -142,24 +152,25 @@ end?:string;
                     </span>
                 </div>
             }
-            {start && end &&<p style={{textAlign:"center", marginBottom:'0px'}}>
-                {/* {resTrue ? "" :<> */}
+            {/* {start && end &&<p style={{textAlign:"center", marginBottom:'0px'}}> */}
+            {user.id.toString() !== jsCookie.get('user_id') && <p style={{textAlign:"center", marginBottom:'0px'}}>
+                {/* {start && end && resTrue ? "" :<>
                  از{" "} 
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(start).slice(0, start.length-2)}</span>
                 {" "} تا {" "}
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(end).slice(0, end.length-2)}</span>
-                {/* </>} */}
-                {/* <DatePicker
+                </>} */}
+                <DatePicker
                       selectedDayRange={NewDate}
                       onChange={setNewDate}
-                      inputPlaceholder="تغییر تاریخ"
+                      inputPlaceholder="از تاریخ تا تاریخ"
                       isDayRange
                       disableBackward
                       colorPrimary={'#00ACC1'}
                       colorPrimaryLight={'#00acc147'}
                     />
                    <div>
-                        <Button
+                        {/* <Button
                     basic
             onClick={()=>{
                 SetresTrue(false)
@@ -171,16 +182,16 @@ end?:string;
             }}
                 >
                     انصراف 
-                </Button>
-            <Button
+                </Button> */}
+            {NewDate.from && NewDate.to && <Button
             loading ={loader}
             onClick={()=>{
                 fetchData()
             }}
                 >
 اعمال
-                </Button>
-                </div> */}
+                </Button>}
+                </div>
             </p>
             }
             {/* <CarDateRange from={convertMomentToDate(date.start)} to={convertMomentToDate(date.end)} /> */}
@@ -193,7 +204,9 @@ end?:string;
                 responceTime="میانگین زمان پاسخگویی: نامشخص"
                 image={user.image_url}
             />
-            {user.id.toString() !== jsCookie.get('user_id') && allow !== "true" ?
+            {user.id.toString() !== jsCookie.get('user_id') 
+            && allow !== "true" 
+            ?
             <>
             <Button
             className ="CONTINUE_TO_RENT_CAR"

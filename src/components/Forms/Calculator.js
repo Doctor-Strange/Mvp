@@ -201,6 +201,8 @@ class Calculator extends Component {
             <p className="title">مشخصات ماشین‌تان را وارد کنید:</p>
             <form>
               <DropDownWithSearch
+                styleClass="car_brand_dropdown"
+
                 loading={true}
                 top="46"
                 data={this.state.brandsFarsi}
@@ -221,6 +223,8 @@ class Calculator extends Component {
               />
               <DropDownWithSearch
                 // loading={true}
+                styleClass="car_model_dropdown"
+
                 top="46"
                 IconTop="20"
                 data={this.state.modelsFarsi}
@@ -256,6 +260,7 @@ class Calculator extends Component {
               /> */}
               <div className="searchBoxContainer">
                 <input
+                className="car_value_input"
                   placeholder="ارزش خودرو"
                   data-hj-whitelist
                   type="text"
@@ -283,6 +288,7 @@ class Calculator extends Component {
                   <Spinner></Spinner>
                 ) : (
                   <span
+                  className="calculate_car_income"
                     style={{
                       display: "block"
                     }}
@@ -726,8 +732,8 @@ class Calculator extends Component {
             </div>
 
             <div className="addCarnowInlanding">
-              <Link href="/add-car">
-                <a>ماشین‌تان را اضافه کنید</a>
+              <Link href="/add-car" >
+                <a className="lets_add_my_car">ماشین‌تان را اضافه کنید</a>
               </Link>
               <p
                 className="tryAgainCalc"

@@ -216,7 +216,11 @@ export class FilterAndSortBar extends React.Component<{
     const { brandsEnglish, brandsFarsi } = brands;
     const { modelsEnglish, modelsFarsi } = models;
     const az = <span style={{}}>از</span>;
-    const ta = <span style={{}}>تا</span>;
+    const ta = <span style={{}}>تا</span>; 
+
+    console.log(  brands, brand, models, model, modelLoading);
+    
+    
     return (
       <>
           <FilterAndSort className="filters_listing sticky_horizontal ">
@@ -637,12 +641,12 @@ export class FilterAndSortBar extends React.Component<{
                         top="46"
                         data={brandsFarsi}
                         Select={(e) => {
-                          setBrandAndGetModels(e.value, "");
+                          setBrandAndGetModels(e.value, "");  
                           // values.carDistrict = e.value
                         }}
                         IconTop="20"
                         clearField={()=>{
-                          setBrandAndGetModels("", "");
+                          setBrandAndGetModels("", ""); 
                         }}
                         placeholder="برند"
                         // disabled={brand == null || brand == ""}
@@ -676,12 +680,12 @@ export class FilterAndSortBar extends React.Component<{
                     // defaultValue={brand[0].value}
                     value={brand}
                   /> */}
-                  <div className=" field">
-                <DropDownWithSearch
+                {!modelLoading  && <div className=" field">
+                 <DropDownWithSearch
                         loading={true}
                         top="46"
                         IconTop="20"
-                        data={modelsFarsi}
+                        data={modelsFarsi} 
                         Select={(e) => {
                           setModel(e.value, "");
                           // values.carDistrict = e.value
@@ -692,7 +696,7 @@ export class FilterAndSortBar extends React.Component<{
                         placeholder="مدل"
                         disabled={this.props.brand === null || this.props.brand == ""}
                         ></DropDownWithSearch>
-                        </div>
+                        </div>}
                   {/* <Form.Dropdown
                     name="carModel"
                     id="carModel"

@@ -59,7 +59,7 @@ export default class extends Document {
     return (
       <html lang="fa">
         <Head>
-        <script  dangerouslySetInnerHTML={{
+        <script defer  dangerouslySetInnerHTML={{
           __html: `<!-- Hotjar Tracking Code for http://otoli.net/ -->
               (function(h,o,t,j,a,r){
                   h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -71,12 +71,12 @@ export default class extends Document {
               })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
         }}>
         </script>
-        { process.env.NODE_ENV !== 'development' ? <script  dangerouslySetInnerHTML={{
+        { process.env.NODE_ENV !== 'development' ? <script defer  dangerouslySetInnerHTML={{
           __html: `window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
           heap.load("329839554");`,
         }}>
         </script>
-        :<script  dangerouslySetInnerHTML={{
+        :<script defer dangerouslySetInnerHTML={{
           __html: `window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
           heap.load("3071100507");`,
         }}>
@@ -94,7 +94,7 @@ export default class extends Document {
         
           gtag('config', 'UA-147651642-1');`}}>
 </script>  */}
-        <script  dangerouslySetInnerHTML={{
+        <script defer dangerouslySetInnerHTML={{
           __html: `<!-- Google Tag Manager -->
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -162,9 +162,9 @@ export default class extends Document {
 <meta name="theme-color" content="#000000"/>
           <meta name="google-site-verification" content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto" />
 {/* 980624 */}
-          <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.find,Array.prototype.includes,String.prototype.includes,Array.prototype.findIndex,Object.entries" />
+          <script defer src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.find,Array.prototype.includes,String.prototype.includes,Array.prototype.findIndex,Object.entries" />
           {!DEV && FB_TRACKING_ID && (
-            <script
+            <script defer
             dangerouslySetInnerHTML={{
               __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
               
@@ -184,11 +184,11 @@ export default class extends Document {
           )}
           {!DEV && SENTRY_TRACKING_ID && (
             <>
-              <script
+              <script defer
                 src="https://cdn.ravenjs.com/3.17.0/raven.min.js"
                 {...{ crossOrigin: 'anonymous' }}
               />
-              <script
+              <script defer
                 dangerouslySetInnerHTML={{
                   __html: `Raven.config('https://${SENTRY_TRACKING_ID}@sentry.io/156600').install()`
                 }}

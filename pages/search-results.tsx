@@ -263,7 +263,7 @@ export default withRouter(
                             {
                                 brand: null,
                                 model: null,
-                                modelLoading: false,
+                                modelLoading: true,
                                 loadingResults: true
                             },
                             () => {

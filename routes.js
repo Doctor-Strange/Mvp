@@ -21,4 +21,5 @@ module.exports = routes()
   .add("rent-dynamic", "/rent/:name")
   .add("rent", "/rent")
   .add("site-map", "/site-map")
-  .add("join-us", "/join-us");
+  .add("join-us", "/join-us")
+  .add("join-us1", "/join-us1");

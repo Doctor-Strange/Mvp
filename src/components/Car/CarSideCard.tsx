@@ -153,13 +153,13 @@ end?:string;
                 </div>
             }
             {/* {start && end &&<p style={{textAlign:"center", marginBottom:'0px'}}> */}
-            {user.id.toString() !== jsCookie.get('user_id') && <p style={{textAlign:"center", marginBottom:'0px'}}>
-                {/* {start && end && resTrue ? "" :<>
+            {/* {user.id.toString() !== jsCookie.get('user_id') && <p style={{textAlign:"center", marginBottom:'0px'}}>
+                {start && end && resTrue ? "" :<>
                  از{" "} 
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(start).slice(0, start.length-2)}</span>
                 {" "} تا {" "}
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(end).slice(0, end.length-2)}</span>
-                </>} */}
+                </>}
                 <DatePicker
                       selectedDayRange={NewDate}
                       onChange={setNewDate}
@@ -170,7 +170,7 @@ end?:string;
                       colorPrimaryLight={'#00acc147'}
                     />
                    <div>
-                        {/* <Button
+                        <Button
                     basic
             onClick={()=>{
                 SetresTrue(false)
@@ -182,7 +182,7 @@ end?:string;
             }}
                 >
                     انصراف 
-                </Button> */}
+                </Button>
             {NewDate.from && NewDate.to && <Button
             loading ={loader}
             onClick={()=>{
@@ -193,7 +193,7 @@ end?:string;
                 </Button>}
                 </div>
             </p>
-            }
+            } */}
             {/* <CarDateRange from={convertMomentToDate(date.start)} to={convertMomentToDate(date.end)} /> */}
             <UserCard
                 id={user.id}

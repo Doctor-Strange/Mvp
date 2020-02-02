@@ -50,10 +50,15 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
         setLoading(true);
         const res = await REQUEST_getUserCars({ id });
         setRresults(res);
-        console.log("resresres",res.length)
-        if(window.heap){
-            window.heap.addUserProperties({Cars_Num: `${res.length}`});
-          }
+        console.log("resresres",res)
+       if(jsCookie.get("user_id") == id){ 
+           console.log("heap send");
+           
+           if(window.heap){
+               window.heap.addUserProperties({Cars_Num: `${res.length}`});
+             }
+       }
+ 
         setLoading(false);
     }
     

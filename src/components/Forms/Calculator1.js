@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DropDownWithSearch from "../../components/DropDownWithSearch/DropDownWithSearch";
+import DropDownWithSearch from "../DropDownWithSearch/DropDownWithSearch";
 import { i18n, Link, withTranslation } from "../../i18n";
 
 import { convertNumbers2English, numberWithCommas } from "../../utils/numbers";
@@ -733,7 +733,7 @@ class Calculator extends Component {
 
             <div className="addCarnowInlanding">
               <Link href="/add-car" >
-                <a className="addCar_top_joinus_a">ماشین‌تان را اضافه کنید</a>
+                <a className="addCar_top_joinus_b" style={{width:"263px"}}>از درخواست‌های اجاره مرتبط باخبر شوید</a>
               </Link>
               <p
                 className="tryAgainCalc"

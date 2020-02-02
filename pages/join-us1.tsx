@@ -12,7 +12,7 @@ import { i18n, Link, withTranslation } from "../src/i18n";
 import insurance from "../static/SamanInsurance.png";
 import Router from "next/router";
 import { GlobalStyle } from "../src/theme";
-import Calculator from "../src/components/Forms/Calculator";
+import Calculator from "../src/components/Forms/Calculator1";
 
 const Page = props => {
   const [heightSetter, SetHeight] = useState(false);
@@ -116,7 +116,7 @@ const Page = props => {
           </div>
           <div className="addCarnow">
             <Link href="/add-car">
-              <a>ماشین‌تان را اضافه کنید</a>
+              <a style={{width:"263px"}} className="addCar_bottom_joinus_b">از درخواست‌های اجاره مرتبط باخبر شوید</a>
             </Link>
             <p style={{ textAlign: "center", marginTop: "16px", direction: "rtl" }}>
               سوالی دارید؟ با ما تماس بگیرید:‌{' '}

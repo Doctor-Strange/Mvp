@@ -82,8 +82,8 @@ export default class extends Document {
         }}>
         </script>}
         {/* dev^ */} 
-        { process.env.NODE_ENV === 'development' && 
-        <meta name="robots" content="noindex"/> }  
+        {/* { process.env.NODE_ENV === 'development' && 
+        <meta name="robots" content="noindex"/> }   */}
 
 
         {/* <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147651642-1"></script>

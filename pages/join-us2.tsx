@@ -12,7 +12,7 @@ import { i18n, Link, withTranslation } from "../src/i18n";
 import insurance from "../static/SamanInsurance.png";
 import Router from "next/router";
 import { GlobalStyle } from "../src/theme";
-import Calculator from "../src/components/Forms/Calculator";
+import Calculator from "../src/components/Forms/Calculator1";
 
 const Page = props => {
   const [heightSetter, SetHeight] = useState(false);
@@ -20,9 +20,9 @@ const Page = props => {
   useEffect(() => {
     // console.log(`https://otoli.net${seoImage}`);
 
-    if (window.innerHeight <= 666) {
-      SetHeight(true);
-    }
+    // if (window.innerHeight <= 666) {
+    //   SetHeight(true);
+    // }
   }, []);
   return (
     <Layout haveSubHeader={true} pageTitle={"Hello World"}>
@@ -48,18 +48,27 @@ const Page = props => {
         justifyCenter={true}
         Bimage={backgroundImage}
         className={[
-          "heightControlInLanding",
+          "heightControlInLanding inJOinus2",
           heightSetter && "SmallHeightControllerinHomepageLanding"
         ].join(" ")}
       >
-        <div className="hero_single version_4">
+        <div className="hero_single injounUsHerooo2 version_4">
           <Flex justifyContent="space-around" className="landingWrapper">
             <Box width={2 / 2} px={2}>
               <h1 style={{textShadow:"1px 1px 2px #000"}}>اتولی، برای اوقات فراغت ماشین شما</h1>
               <h2 style={{textShadow:"1px 1px 2px #000"}}>
               به راحتی خودروتان را در اتولی کوتاه مدت اجاره بدهید و درآمد کسب کنید
               </h2>
-              <Calculator />
+              {/* <Calculator /> */}
+              <div className="addCarnow addcarinjoinus2">
+
+              <Link href="/add-car">
+              <a style={{width:"263px"}} className="addCar_bottom_joinus_b">ماشین‌تان را اضافه کنید</a>
+            </Link>
+            <p style={{ textAlign: "center", marginTop: "16px", direction: "rtl" , textShadow: "rgb(0, 0, 0) 1px 1px 2px" }}>
+            ثبت خودرو در اتولی رایگان و ساده است و به کمتر از ده دقیقه زمان نیاز دارد.
+            </p>
+              </div>
             </Box>
           </Flex>
         </div>
@@ -115,7 +124,7 @@ const Page = props => {
           </div>
           <div className="addCarnow">
             <Link href="/add-car">
-              <a className="addCar_bottom_joinus_a">ماشین‌تان را اضافه کنید</a>
+              <a style={{width:"263px"}} className="addCar_bottom_joinus_b">از درخواست‌های اجاره مرتبط باخبر شوید</a>
             </Link>
             <p style={{ textAlign: "center", marginTop: "16px", direction: "rtl" }}>
               سوالی دارید؟ با ما تماس بگیرید:‌{' '}

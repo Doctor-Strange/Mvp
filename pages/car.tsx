@@ -28,6 +28,8 @@ moment.loadPersian({ dialect: 'persian-modern' });
 import { toast } from 'react-toastify';
 import LoginModal from '../src/components/Modals/LoginModal'
 import Slider  from '../src/components/Slider/Slider';
+import 'otoli-react-persian-calendar-date-picker/lib/DatePicker.css';
+import DatePicker from 'otoli-react-persian-calendar-date-picker';
 
 
 const ContentCardTitle = styled.div`
@@ -163,6 +165,14 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
         hideTheseGuys: false,
         onRef: () => { },
       heightController:0,
+      showDate:false,
+      NewDate  : {
+        from: null,
+        to: null
+      },
+      loader:false,
+      localPrice:0,
+search_id: ""
     };
 
     mileage_ranges = ['۰ - ۵۰٫۰۰۰ کیلومتر',
@@ -182,6 +192,11 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
     }
 
     componentDidMount() {
+        if(!Router.query.search_id){
+           this.setState({
+               showDate: true
+           })
+        }
         this.state.onRef(this);
         if (window.location.search === "") {
             this.setState({ hideTheseGuys: true, })
@@ -249,6 +264,57 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
           })
         }      
       }
+
+
+      fetchData = async () =>{
+         let  idCaar = Router.query.id
+        console.log(
+            idCaar,
+            `${this.state.NewDate.from.year}/${this.state.NewDate.from.month}/${this.state.NewDate.from.day}`,
+            `${this.state.NewDate.to.year}/${this.state.NewDate.to.month}/${this.state.NewDate.to.day}`
+        );
+        // return
+        this.setState({
+            loader:true
+        })
+        let token = jsCookie.get("token")
+        const DOMAIN = process.env.PRODUCTION_ENDPOINT;
+        const GET_SEARCH_FOR_RENT = 
+        // `/core/rental-car/search-for-rent/list?rental_car_id=${rentalCarID}&start_date=${NewDate.from.year}/${NewDate.from.month}/${NewDate.from.day}&end_date=${NewDate.to.year}/${NewDate.to.month}/${NewDate.to.day}`;
+        `/core/rental-car/search-for-rent/get`;
+        axios
+      .post(
+        DOMAIN +
+          GET_SEARCH_FOR_RENT ,
+          {
+            id:idCaar,
+            start_date:`${this.state.NewDate.from.year}/${this.state.NewDate.from.month}/${this.state.NewDate.from.day}`,
+            end_date:`${this.state.NewDate.to.year}/${this.state.NewDate.to.month}/${this.state.NewDate.to.day}`,
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + token
+            }
+          }
+      )
+      .then(response => {
+        console.log("response ===>", response.data.search_id); 
+        this.setState({
+            localPrice:response.data.avg_price_per_day,
+            loader:false,
+            search_id : response.data.search_id
+        })  
+        
+      })
+      .catch(e=>{
+        this.setState({
+            loader:false
+        })
+
+          console.log(e);
+      })
+    }
+
 
     render() {
         console.log("this. props ====> ", this.props)
@@ -429,15 +495,24 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                                     last_name: owner.last_name,
                                     company_name: owner.company_name
                                 }}
-                                reserveFunction={() => { this.reserve(search_id) }}
-                                // reserveFunction={(newSI) => { this.reserve(
-                                //     newSI?newSI : search_id) }}
+                                // reserveFunction={() => { this.reserve(search_id) }}
+                                reserveFunction={(newSI) => { this.reserve(
+                                    newSI?newSI : search_id) }}
                             />
                         </ContentSideCard>
                     }
                     <ContentCard style={{ top: '-30px' , zIndex:"2" }}>
                         ‍<ContentCardTitle>
                             {/* commented by sajad 980609======> */}
+                            {
+                                this.state.showDate && this.state.localPrice>0 &&<PriceCard style={{
+                                    display: 'inline-grid',
+                                    left: '10px',
+                                    top: '-15px',
+                                    position: 'absolute'
+                                }} number={this.state.localPrice}>در روز</PriceCard>
+
+                            }
                             {isMobile && avg_discounted_price_per_day > 0 && !this.state.hideTheseGuys ?
                                 <PriceCard style={{
                                     display: 'inline-grid',
@@ -460,6 +535,33 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                             >۱۰ سفر  با امتیاز پنج ستاره</a
                             > */}
                         </ContentCardTitle>
+                        {isMobile && owner.id.toString() !== jsCookie.get('user_id') && this.state.showDate  &&
+                        <div className="INCar_page_datePicker"><p>انتخاب بازه زمانی</p>
+                        <DatePicker
+                      selectedDayRange={this.state.NewDate}
+                      onChange={(e)=>{
+                          console.log(e);
+                        this.setState({
+                            NewDate : e
+                        })
+                      }}
+                      inputPlaceholder="از تاریخ تا تاریخ"
+                      isDayRange
+                      disableBackward
+                      colorPrimary={'#00ACC1'}
+                      colorPrimaryLight={'#00acc147'}
+                    />
+                    {this.state.NewDate.from && this.state.NewDate.to && <p><Button
+            loading ={this.state.loader}
+            onClick={()=>{
+                this.fetchData()
+            }}
+                >
+اعمال
+                </Button></p>}
+
+                        </div>
+                        }
                         <hr />
                         <Details title="محل خودرو و تحویل">
                             <p>{convertNumbers2Persian(location.name.breadcrumb_fa)}</p>
@@ -550,6 +652,68 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
                    </ContentCard>
                 </Section>
                 <CommentSection />
+                {
+                    isMobile &&  this.state.localPrice>0 && this.props.owner.id.toString() !== jsCookie.get('user_id') &&
+                    <div 
+                    style={{
+                        zIndex: "55",
+                        position: "fixed",
+                        borderRadius: "0px",
+                        margin: "0px",
+                        boxShadow: "0px -1px 3px #ccc",
+                        width: "100%",
+                        bottom: "0",
+                        padding: "10px 15px",
+                        display: "flex",
+                        justifyContent: "start",
+                        alignItems: "center",
+                        background: "#fff"
+                    }}
+                    >
+                    <span dir="rtl"
+                    style={{
+                            width: '50%',
+                            fontSize: '12px',
+                        paddingRight: '10px',
+                    }}>هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت
+                    خواهید کرد.</span>
+                        <div
+                        style ={{
+                            width: '50%',
+                            textAlign: 'right',
+                            direction: 'rtl',
+                        }}
+                        >
+                            <Button
+                        style={{
+                            width: "138px",
+                            textAlign: "center",
+                            height: "40px",
+                            fontSize: "12px",
+                            padding: "4px 10px",
+                        }}
+                        primary
+                        type="submit"
+                        loading = {this.state.load}
+                        onClick={
+                            () => this.reserve(this.state.search_id)
+                        }
+                        className="btn_1 full-width CONTINUE_TO_RENT_CAR"
+                    >
+                        ادامه
+                        
+                        {/* <br/><small style={{
+                            marginTop: '8px',
+                            display: 'block',
+                        }}>.دراین مرحله هزینه‌ای اخذ نمی‌شود</small> */}
+
+                    </Button>
+                    </div>
+
+                    </div>
+                
+
+                }
                 {isMobile && !this.state.hideTheseGuys && isAllowed !== "true" ?
                     this.props.owner.id.toString() !== jsCookie.get('user_id') ? <div 
                     style={{

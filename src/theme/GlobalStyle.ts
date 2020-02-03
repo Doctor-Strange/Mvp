@@ -3873,6 +3873,17 @@ input::placeholder{
     height:74vh
   }
 }
+.inJOinus2{
+  background-position: 0 -60px !important;
+  height:auto !important
+  @media (max-width:768px){
+    height:auto;
+    background-position: left top !important;
+  }
+  @media (max-width:480px){
+    height:auto !important
+  }
+}
 
 .SmallHeightControllerinHomepageLanding{
   @media (max-width:768px){
@@ -4207,6 +4218,21 @@ div:nth-child(4) {
   margin: 0 !important;
   margin-right: -10px !important;
   margin-top: -10px !important;
+}
+
+.INCar_page_datePicker .DatePicker__calendarContainer{
+  position: fixed;
+  top: -77px;
+  z-index: 90000;
+  width: 100%;
+  height: 100%;
+}
+
+.addcarinjoinus2{
+  background: none !important
+}
+.injounUsHerooo2{
+  height: 350px !important;
 }
 `;
 

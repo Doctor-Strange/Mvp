@@ -196,14 +196,18 @@ end?:string;
                 </div>
             }
             {/* {start && end &&<p style={{textAlign:"center", marginBottom:'0px'}}> */}
-            {user.id.toString() !== jsCookie.get('user_id') && showDate  && <p style={{textAlign:"center", marginBottom:'0px'}}>
-                انتخاب بازه زمانی
+            {user.id.toString() !== jsCookie.get('user_id') && showDate  && 
+            <div className="DatePickerBoxInCarPage"  >
+
                 {/* {start && end && resTrue ? "" :<>
                  از{" "} 
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(start).slice(0, start.length-2)}</span>
                 {" "} تا {" "}
                 <span style={{fontWeight:'500'}}>{convertNumbers2Persian(end).slice(0, end.length-2)}</span>
                 </>} */}
+                      <p>
+                     انتخاب بازه زمانی
+      </p> 
                 <DatePicker
                       selectedDayRange={NewDate}
                       onChange={setNewDate}
@@ -213,7 +217,10 @@ end?:string;
                       colorPrimary={'#00ACC1'}
                       colorPrimaryLight={'#00acc147'}
                     />
-                   <div>
+                   <div style={{
+                           textAlign: "center",
+                           margin: "10px"
+                   }}>
                         {/* <Button
                     basic
             onClick={()=>{
@@ -236,7 +243,7 @@ end?:string;
 اعمال
                 </Button>}
                 </div>
-            </p>
+            </div>
             }
             {/* <CarDateRange from={convertMomentToDate(date.start)} to={convertMomentToDate(date.end)} /> */}
             <UserCard

@@ -4220,12 +4220,31 @@ div:nth-child(4) {
   margin-top: -10px !important;
 }
 
-.INCar_page_datePicker .DatePicker__calendarContainer{
-  position: fixed;
-  top: -77px;
-  z-index: 90000;
-  width: 100%;
-  height: 100%;
+.INCar_page_datePicker {
+  .DatePicker__calendarContainer{
+    position: fixed;
+    top: -77px;
+    z-index: 90000;
+    width: 100%;
+    height: 100%;
+  }
+    .DatePicker {
+      input{
+        margin: 0;
+        outline: 0; 
+        line-height: 1.21428571em;
+        padding: .67857143em 1em;
+        font-size: 1em;
+        background: #fff;
+        border: 1px solid rgba(34,36,38,.15);
+        color: rgba(0,0,0,.87);
+        border-radius: .28571429rem;
+        -webkit-box-shadow: 0 0 0 0 transparent inset;
+        box-shadow: 0 0 0 0 transparent inset;
+        -webkit-transition: color .1s ease,border-color .1s ease;
+        transition: color .1s ease,border-color .1s ease;
+      }
+  }
 }
 
 .addcarinjoinus2{
@@ -4233,6 +4252,31 @@ div:nth-child(4) {
 }
 .injounUsHerooo2{
   height: 350px !important;
+}
+.DatePickerBoxInCarPage {
+  text-align:right;
+   margin-bottom:0px
+  .DatePicker {
+    width:100%;
+    .DatePicker__calendarContainer{
+      top: 32px;
+    }
+    input{
+      margin: 0;
+      outline: 0; 
+      line-height: 1.21428571em;
+      padding: .67857143em 1em;
+      font-size: 1em;
+      background: #fff;
+      border: 1px solid rgba(34,36,38,.15);
+      color: rgba(0,0,0,.87);
+      border-radius: .28571429rem;
+      -webkit-box-shadow: 0 0 0 0 transparent inset;
+      box-shadow: 0 0 0 0 transparent inset;
+      -webkit-transition: color .1s ease,border-color .1s ease;
+      transition: color .1s ease,border-color .1s ease;
+    }
+  }
 }
 `;
 

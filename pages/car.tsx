@@ -536,7 +536,7 @@ search_id: ""
                             > */}
                         </ContentCardTitle>
                         {isMobile && owner.id.toString() !== jsCookie.get('user_id') && this.state.showDate  &&
-                        <div className="INCar_page_datePicker"><p>انتخاب بازه زمانی</p>
+                        <div className="INCar_page_datePicker" dir="rtl"><h5>انتخاب بازه زمانی</h5>
                         <DatePicker
                       selectedDayRange={this.state.NewDate}
                       onChange={(e)=>{
@@ -551,14 +551,14 @@ search_id: ""
                       colorPrimary={'#00ACC1'}
                       colorPrimaryLight={'#00acc147'}
                     />
-                    {this.state.NewDate.from && this.state.NewDate.to && <p><Button
+                    {this.state.NewDate.from && this.state.NewDate.to && <div style={{display:"inline-block"}}><Button
             loading ={this.state.loader}
             onClick={()=>{
                 this.fetchData()
             }}
                 >
 اعمال
-                </Button></p>}
+                </Button></div>}
 
                         </div>
                         }

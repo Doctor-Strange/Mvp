@@ -136,7 +136,7 @@ export default withTranslation("common")(
                   onSubmit={(
                     values: LoginModalValues,
                     formikActions: FormikActions<LoginModalValues>
-                  ) => {
+                  ) => { 
                     let validPhoneFormated;
                     const phone = convertToEnglishNum(values.phone.toString());
                     if (/^[0][9][0-9][0-9]{8,8}$/.test(phone)) {
@@ -151,7 +151,12 @@ export default withTranslation("common")(
                         process.env.PRODUCTION_ENDPOINT +
                           "/core/device/send-code",
                         {
-                          cell: validPhoneFormated
+                          cell: validPhoneFormated,
+                          utm_source:localStorage['utm_source'] ? localStorage['utm_source'] : null,
+                          utm_medium:localStorage['utm_medium'] ? localStorage['utm_medium'] : null,
+                          utm_campaign:localStorage['utm_campaign'] ? localStorage['utm_campaign']  : null,
+                          utm_term:localStorage['utm_term'] ? localStorage['utm_term'] : null,
+                          utm_content:localStorage['utm_content'] ? localStorage['utm_content']  : null
                         }
                       )
                       .then(response => {

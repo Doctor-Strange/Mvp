@@ -156,7 +156,8 @@ export default withTranslation("common")(
                           utm_medium:localStorage['utm_medium'] ? localStorage['utm_medium'] : null,
                           utm_campaign:localStorage['utm_campaign'] ? localStorage['utm_campaign']  : null,
                           utm_term:localStorage['utm_term'] ? localStorage['utm_term'] : null,
-                          utm_content:localStorage['utm_content'] ? localStorage['utm_content']  : null
+                          utm_content:localStorage['utm_content'] ? localStorage['utm_content']  : null,
+                          utm_landing_url:localStorage['utm_landing_url'] ? localStorage['utm_landing_url']  : null
                         }
                       )
                       .then(response => {

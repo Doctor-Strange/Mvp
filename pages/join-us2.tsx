@@ -25,6 +25,7 @@ const Page = props => {
       localStorage['utm_campaign'] = Router.query.utm_campaign
       localStorage['utm_term'] = Router.query.utm_term
       localStorage['utm_content'] = Router.query.utm_content
+      localStorage['utm_landing_url'] = "https://otoli.net/join-us2"
     }
     // if (window.innerHeight <= 666) {
     //   SetHeight(true);

@@ -974,9 +974,9 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
             carCity: Yup.number()
               .required(fieldErrorGenrator("لطفا شهر خودرو را انتخاب کنید"))
               .typeError(fieldErrorGenrator("لطفا شهر خودرو را انتخاب کنید")),
-            carDistrict: this.state.CAR_Location === 1 ? Yup.number()
+            carDistrict: this.state.CAR_Location === 1 && Yup.number()
               .required(fieldErrorGenrator("لطفا محله را انتخاب کنید"))
-              .typeError(fieldErrorGenrator("لطفا محله را انتخاب کنید")):true,
+              .typeError(fieldErrorGenrator("لطفا محله را انتخاب کنید")),
             carBrand: Yup.number()
               .required(fieldErrorGenrator("لطفا برند را انتخاب کنید"))
               .typeError(fieldErrorGenrator("لطفا برند را انتخاب کنید")),

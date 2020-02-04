@@ -130,7 +130,7 @@ const Page = props => {
           </div>
           <div className="addCarnow">
             <Link href="/add-car">
-              <a style={{width:"263px"}} className="addCar_bottom_joinus_b">از درخواست‌های اجاره مرتبط باخبر شوید</a>
+              <a style={{width:"263px"}} className="addCar_bottom_joinus_b">ماشین‌تان را اضافه کنید</a>
             </Link>
             <p style={{ textAlign: "center", marginTop: "16px", direction: "rtl" }}>
               سوالی دارید؟ با ما تماس بگیرید:‌{' '}

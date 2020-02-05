@@ -649,7 +649,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
             10000000,
             MaxErrorGenrator(t('carTiming.extraKmCost'), 10000000)
           ),
-        cancellationPolicy: Yup.string()
+        cancellationPolicy: Yup.string().min(3).trim()
           .required(fieldErrorGenrator(t('carTiming.cancellationPolicy')))
           .typeError(fieldErrorGenrator(t('carTiming.cancellationPolicy'))),
         availableInAllPrice: Yup.mixed()

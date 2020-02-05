@@ -346,7 +346,6 @@ export default withRouter(
         }
 
         componentWillMount() {  
-          console.log(this.props.DynamicRes);
                   
           if (this.props.SSRender) {
             this.setState({
@@ -407,7 +406,9 @@ export default withRouter(
           }
         }
 
-        async componentDidMount() {          
+        async componentDidMount() {   
+          console.log("this.props.DynamicRes",this.props.DynamicRes);
+                
           this.renderResults();
           // if ssr was activeted then discomment below line:
           // this.setState(this.props.results);
@@ -676,6 +677,7 @@ export default withRouter(
               config={{
                 title: `${this.state.DynamicRes.meta_title}`,
                 description: this.state.DynamicRes.meta_description,
+                canonical:this.state.DynamicRes.canonical_url,
                 openGraph: {
                   title: `${this.state.DynamicRes.meta_title}`,
                   description: this.state.DynamicRes.meta_description,

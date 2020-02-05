@@ -152,12 +152,12 @@ export default withTranslation("common")(
                           "/core/device/send-code",
                         {
                           cell: validPhoneFormated,
-                          utm_source:localStorage['utm_source'] ? localStorage['utm_source'] : null,
-                          utm_medium:localStorage['utm_medium'] ? localStorage['utm_medium'] : null,
-                          utm_campaign:localStorage['utm_campaign'] ? localStorage['utm_campaign']  : null,
-                          utm_term:localStorage['utm_term'] ? localStorage['utm_term'] : null,
-                          utm_content:localStorage['utm_content'] ? localStorage['utm_content']  : null,
-                          utm_landing_url:localStorage['utm_landing_url'] ? localStorage['utm_landing_url']  : null
+                          utm_source:localStorage['utm_source'] ? localStorage['utm_source'] : '',
+                          utm_medium:localStorage['utm_medium'] ? localStorage['utm_medium'] : '',
+                          utm_campaign:localStorage['utm_campaign'] ? localStorage['utm_campaign']  : '',
+                          utm_term:localStorage['utm_term'] ? localStorage['utm_term'] : '',
+                          utm_content:localStorage['utm_content'] ? localStorage['utm_content']  : '',
+                          utm_landing_url:localStorage['utm_landing_url'] ? localStorage['utm_landing_url']  : ''
                         }
                       )
                       .then(response => {

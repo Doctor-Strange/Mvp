@@ -3724,7 +3724,7 @@ input::placeholder{
   width: 100%;
   border-radius: 4px;
   padding: 7px 32px 17px;
-  
+  margin-bottom: 100px;
 }
 
 .eachSvgBox{
@@ -4277,6 +4277,10 @@ div:nth-child(4) {
       transition: color .1s ease,border-color .1s ease;
     }
   }
+}
+
+.BannerboxinJoinUsPage{
+  min-height:550px
 }
 `;
 

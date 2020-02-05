@@ -353,6 +353,7 @@ search_id: ""
                     config={{
                         title: `${owner.company_name ?`${owner.company_name} -` :  `${owner.first_name} ${owner.last_name} -` } ${car.brand.name.fa} ${car.name.fa} | اتولی`,
                         description: description ? description : "همین حالا اجاره کنید",
+                        noindex:true,
                         openGraph: {
                             title: `اجاره ${car.brand.name.fa} ${car.name.fa} در اتولی`,
                             description: description ? description : "همین حالا اجاره کنید",

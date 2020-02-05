@@ -28,9 +28,9 @@ const Page = props => {
       localStorage['utm_landing_url'] = "https://otoli.net/join-us"
 
     }
-    if (window.innerHeight <= 666) {
-      SetHeight(true);
-    }
+    // if (window.innerHeight <= 666) {
+    //   SetHeight(true);
+    // }
   }, []);
   return (
     <Layout haveSubHeader={true} pageTitle={"Hello World"}>
@@ -55,12 +55,11 @@ const Page = props => {
       <Section
         justifyCenter={true}
         Bimage={backgroundImage}
-        className={[
-          "heightControlInLanding",
-          heightSetter && "SmallHeightControllerinHomepageLanding"
-        ].join(" ")}
+        className="BannerboxinJoinUsPage"
+        //   heightSetter && "SmallHeightControllerinHomepageLanding"
+        // ].join(" ")}
       >
-        <div className="hero_single version_4">
+        <div className="hero_single">
           <Flex justifyContent="space-around" className="landingWrapper">
             <Box width={2 / 2} px={2}>
               <h1 style={{textShadow:"1px 1px 2px #000"}}>اتولی، برای اوقات فراغت ماشین شما</h1>

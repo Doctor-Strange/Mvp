@@ -339,6 +339,9 @@ export const CarCard: React.FunctionComponent<{
       if(value === "done"){
       const DOMAIN = process.env.PRODUCTION_ENDPOINT;
       const token = jsCookie.get("token");
+      if(localStorage["CarEditId"] === id.toString()){
+        localStorage.removeItem("CarEditId")
+      }
       const DELETE_CAR = "/core/rental-car/delete";
       axios
         .post(

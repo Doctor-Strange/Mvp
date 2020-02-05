@@ -55,10 +55,12 @@ const Page = props => {
       <Section
         justifyCenter={true}
         Bimage={backgroundImage}
-        className={[
-          "heightControlInLanding",
-          heightSetter && "SmallHeightControllerinHomepageLanding"
-        ].join(" ")}
+        // className={[
+        //   "heightControlInLanding",
+        //   heightSetter && "SmallHeightControllerinHomepageLanding"
+        // ].join(" ")}
+        className="BannerboxinJoinUsPage"
+
       >
         <div className="hero_single version_4">
           <Flex justifyContent="space-around" className="landingWrapper">

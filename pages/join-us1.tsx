@@ -62,7 +62,7 @@ const Page = props => {
         className="BannerboxinJoinUsPage"
 
       >
-        <div className="hero_single version_4">
+        <div className="hero_single">
           <Flex justifyContent="space-around" className="landingWrapper">
             <Box width={2 / 2} px={2}>
               <h1 style={{textShadow:"1px 1px 2px #000"}}>اتولی، برای اوقات فراغت ماشین شما</h1>
@@ -125,7 +125,7 @@ const Page = props => {
           </div>
           <div className="addCarnow">
             <Link href="/add-car">
-              <a style={{width:"263px"}} className="addCar_bottom_joinus_b">از درخواست‌های اجاره مرتبط باخبر شوید</a>
+              <a style={{width:"263px"}} className="addCar_bottom_joinus_b">ماشین‌تان را اضافه کنید</a>
             </Link>
             <p style={{ textAlign: "center", marginTop: "16px", direction: "rtl" }}>
               سوالی دارید؟ با ما تماس بگیرید:‌{' '}

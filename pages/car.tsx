@@ -237,6 +237,20 @@ search_id: ""
         //     Router.push({ pathname: '/complete-register' })
         // } else {
             // const { search_id, rentalCarID } = this.props;
+
+            if (!jsCookie.get('first_name')) {
+                toast.error('ثابت نام خود را کامل کنید', {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+                Router.push({ pathname: '/complete-register' })
+                return
+            }
+
             this.setState({
                 load:true
             })

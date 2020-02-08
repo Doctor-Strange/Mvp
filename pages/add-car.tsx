@@ -7,6 +7,10 @@ import AddCarForm from '../src/components/Forms/AddCarForm';
 import { Box, Flex } from '@rebass/grid';
 import { i18n, withTranslation } from '../src/i18n';
 import { FORMS_WIDTH } from '../src/constants/env';
+import jsCookie from "js-cookie";
+import { toast } from 'react-toastify';
+import Router from 'next/router';
+
 
 export default withTranslation('common')(
   class extends React.Component<{ t: any; openModal?: any; }> {
@@ -27,6 +31,21 @@ export default withTranslation('common')(
         this.setState({ openModal: this.header.onClick })
       }
     };
+
+    componentDidMount =() =>{
+      if (!jsCookie.get('first_name')) {
+        toast.error('ثابت نام خود را کامل کنید', {
+            position: "bottom-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true
+        });
+        Router.push({ pathname: '/complete-register' })
+        return
+    }
+    }
 
     render() {
       const { t, edit_mode ,car_id} = this.props;

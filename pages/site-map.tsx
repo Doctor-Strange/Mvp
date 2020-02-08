@@ -38,9 +38,9 @@ const Rent = () => {
         }}
       />
       {UrlList.length > 0 && (
-        <ul>
+        <ul style={{columnCount: '3'}}>
           {UrlList.map(i=>{
-            return <li>
+            return <li style={{margin: '5px 0'}}>
             <Link href={`/rent/${i.unique_id}`}>
               <a>{i.title}</a>
             </Link>

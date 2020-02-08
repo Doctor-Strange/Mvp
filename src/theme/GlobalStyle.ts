@@ -4282,6 +4282,10 @@ div:nth-child(4) {
 .BannerboxinJoinUsPage{
   min-height:550px
 }
+.UserContentInformation{
+  margin: 10px auto;
+  direction: ltr !important; 
+}
 `;
 
 enum Margin {

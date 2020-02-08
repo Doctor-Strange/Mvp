@@ -380,7 +380,7 @@ export default withTranslation("common")(
                   validationSchema={Yup.object().shape({
                     code: Yup.number()
                       .required("لطفاً کد را وارد کنید.")
-                      .typeError("لطفاً را پر کنید")
+                      .typeError("لطفاً کد را وارد کنید")
                   })}
                 >
                   {({

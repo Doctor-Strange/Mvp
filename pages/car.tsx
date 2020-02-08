@@ -620,7 +620,7 @@ search_id: ""
                             </pre>
                         </Details>
                         {isMobile &&
-                            <div style={{ margin: '10px auto', direction: 'ltr' }}>
+                            <div className="UserContentInformation" >
                                 <UserCard
                                     id={owner.id}
                                     company_name={owner.company_name}

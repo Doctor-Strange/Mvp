@@ -4286,6 +4286,71 @@ div:nth-child(4) {
   margin: 10px auto;
   direction: ltr !important; 
 }
+
+.Tab_Accordion{
+  transotion: 0.2s;
+  .Tab_father{
+    direction: rtl;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    @media (max-width:575px){
+      flex-direction:column;
+      span{
+        width:100%;
+        margin: 4px;
+      }
+    }
+    span{
+      transotion: 0.2s;
+      position:relative;
+      padding: 8px 54px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      i{
+        transotion: 0.2s;
+        position: absolute;
+        left: 13px;
+        top: 10px;
+      }
+    }
+    .active_tab{
+      transition: 0.2s all;
+      background: #4ba3ce;
+      color: #fff;
+    }
+    .rotateIcon{
+      transform:rotate(180deg);
+      top: 15px;
+    }
+  } 
+  
+  .content_part_accordion ul{
+    transition:0.2s;
+    display:none;
+    column-count:3
+    @media (max-width:768px){
+      column-count: 2;
+    }
+    @media (max-width:575px){
+      column-count: 1;
+    }
+    li{
+      transition: 0.2s all;
+      padding: 10px;
+      list-style-type: circle;
+    direction: rtl;
+    list-style-position: inside;
+    &:hover{
+      list-style-type: disc;
+      padding-right: 5px;
+    }
+    }
+  }
+  .content_part_accordion .active_tab{
+    display:block;
+  }
+}
 `;
 
 enum Margin {

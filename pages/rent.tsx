@@ -235,7 +235,7 @@ const Rent = props => {
             </p>
           </div>
           <div className="URLsInRent">
-            <ul>
+            {/* <ul>
               <li>
                 <a href="https://otoli.net/rent/206">اجاره ۲۰۶</a>
               </li>
@@ -250,7 +250,7 @@ const Rent = props => {
               <li>
                 <a href="https://otoli.net/rent/benz">اجاره بنز</a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </section>
       </div>
@@ -313,7 +313,7 @@ const Rent = props => {
 ]
             },
             {
-              title:"دسته‌بندی",
+              title:"پربازدید",
               links:[
                 {title:"همه ماشین های لوکس تهران اینجاست",
               link:"https://otoli.net/rent/luxury-tehran"},

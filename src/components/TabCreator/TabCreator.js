@@ -3,12 +3,14 @@ import { Icon } from "semantic-ui-react";
 
 class TabCreator extends Component {
   state = {
-    active: 0
+    active: null,
+    showTabContent: false
   };
 
   TabClick = (i) =>{
     this.setState({
-        active:i
+        active:i,
+        showTabContent:true
     })
   }
 
@@ -37,7 +39,7 @@ class TabCreator extends Component {
             </div>
           </section>
         </div>
-        <div style={{ background: "#fafafa", marginBottom: "30px" }}>
+        {this.state.showTabContent && <div style={{ background: "#fafafa", marginBottom: "30px" }}>
           <section
             className="insurance responsive content_part_accordion"
             style={{ paddingTop: "30px",paddingBottom: "30px", direction: 'rtl' }}
@@ -57,6 +59,7 @@ class TabCreator extends Component {
             })}
           </section>
         </div>
+        }
       </div>
     );
   }

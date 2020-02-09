@@ -111,6 +111,8 @@ import IndexFormOnSearchResult from '../src/components/Forms/IndexFormOnSearchRe
 import SearchInSearch from "../src/context/context";
 
 import moment from "moment-jalaali";
+import TabCreator from '../src/components/TabCreator/TabCreator.js'
+
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -758,7 +760,7 @@ export default withRouter(
                 this.state.DynamicRes.content
               }`}}>
               </article>
-              {this.state.DynamicRes.link_set.length > 0 && (
+              {/* {this.state.DynamicRes.link_set.length > 0 && (
                 <div className="D_Content">
                   <ul className ="Dynamic_links_Landing">
                     {this.state.DynamicRes.link_set.map(item => {
@@ -772,8 +774,87 @@ export default withRouter(
                       })}
                   </ul>
                 </div>
-              )}
+              )} */}
               </div>
+              
+      <TabCreator data_arr={[
+            {
+              title:"شهرها",
+              links:[
+              {title:'اجاره ماشین در اهواز',
+              link:'https://otoli.net/rent/ahvaz'},
+              {title:'اجاره ماشین در بندر انزلی',
+              link:'https://otoli.net/rent/Bandar-Anzali'},
+              {title:'اجاره ماشین در اصفهان',
+              link:'https://otoli.net/rent/isfahan'},
+              {title:'اجاره ماشین در چالوس',
+              link:'https://otoli.net/rent/Chalus'},
+              {title:'اجاره ماشین در تهران',
+              link:'https://otoli.net/rent/tehran'},
+              {title:'اجاره ماشین در کرمان',
+              link:'https://otoli.net/rent/kerman'},
+              {title:'اجاره ماشین در کرمانشاه',
+              link:'https://otoli.net/rent/Kermanshah'},
+              {title:'اجاره ماشین در مشهد',
+              link:'https://otoli.net/rent/mashhad'},
+              {title:'اجاره ماشین در کیش',
+              link:'https://otoli.net/rent/kish'},
+              {title:'اجاره ماشن در قشم',
+              link:'https://otoli.net/rent/Qeshm'},
+              {title:'اجاره ماشین در رامسر',
+              link:'https://otoli.net/rent/ramsar'},
+              {title:'اجاره ماشین در رشت',
+              link:'https://otoli.net/rent/rasht'},
+              {title:'اجاره ماشین در شیراز',
+              link:'https://otoli.net/rent/shiraz'},
+              {title:'اجاره ماشین در تبریز',
+              link:'https://otoli.net/rent/tabriz'},
+              {title:'اجاره ماشین در یزد',
+              link:'https://otoli.net/rent/yazd'},
+              {title:'اجاره ماشین در فرودگاه مهرآباد تهران',
+              link:'https://otoli.net/rent/Mehrabad-Airport-Car-Rental'},
+              {title:'اجاره ماشین در فرودگاه امام خمینی',
+              link:'https://otoli.net/rent/Car-rental-at-Tehran-Imam-Khomeini-Airport'},
+              ]
+            },
+            {
+              title:"برندها",
+              links:[
+{title:"اجاره 206",link:"https://otoli.net/rent/206"},
+{title:"اجاره ماشین سراتو",link:"https://otoli.net/rent/cerato"},
+{title:"اجاره بنز",link:"https://otoli.net/rent/benz"},
+{title:"اجاره بی ام وی",link:"https://otoli.net/rent/bmw"},
+{title:"اجاره ماشین هیوندای",link:"https://otoli.net/rent/hyundai"},
+{title:"اجاره کیا",link:"https://otoli.net/rent/kia"},
+{title:"اجاره مازراتی",link:"https://otoli.net/rent/maserati"},
+{title:"لیست اجاره ماشین مزدا",link:"https://otoli.net/rent/Mazda"},
+{title:"اجاره پورشه ",link:"https://otoli.net/rent/porsche"},
+{title:"اجاره رنو",link:"https://otoli.net/rent/Renault"},
+{title:"اجاره تویوتا ",link:"https://otoli.net/rent/toyota"},
+{title:"اجاره وانت ",link:"https://otoli.net/rent/Pickup"},
+{title:"اجاره ون",link:"https://otoli.net/rent/van"}
+]
+            },
+            {
+              title:"پربازدید",
+              links:[
+                {title:"همه ماشین های لوکس تهران اینجاست",
+              link:"https://otoli.net/rent/luxury-tehran"},
+                {title:"اجاره ماشین عروس",
+              link:"https://otoli.net/rent/Bride-car-rental"}, 
+                {title:"اجاره ماشین برای مسافرت",
+              link:"https://otoli.net/rent/Car-rental-for-travel"},
+                {title:"اجاره ماشین با راننده",
+              link:"https://otoli.net/rent/Car-rental-with-driver"},
+                {title:"اجاره ماشین کلاسیک",
+              link:"https://otoli.net/rent/Classic"},
+                {title:"اجاره ماشین برای کویر",
+              link:"https://otoli.net/rent/desert"}, 
+                {title:"اجاره ماشن بدون راننده",
+              link:"https://otoli.net/rent/Rent-a-car-without-a-driver"}
+              ]
+            }
+          ]}></TabCreator>
             </Layout>
           );
         }

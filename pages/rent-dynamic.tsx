@@ -799,7 +799,7 @@ export default withRouter(
               link:'https://otoli.net/rent/mashhad'},
               {title:'اجاره ماشین در کیش',
               link:'https://otoli.net/rent/kish'},
-              {title:'اجاره ماشن در قشم',
+              {title:'اجاره ماشین در قشم',
               link:'https://otoli.net/rent/Qeshm'},
               {title:'اجاره ماشین در رامسر',
               link:'https://otoli.net/rent/ramsar'},
@@ -850,7 +850,7 @@ export default withRouter(
               link:"https://otoli.net/rent/Classic"},
                 {title:"اجاره ماشین برای کویر",
               link:"https://otoli.net/rent/desert"}, 
-                {title:"اجاره ماشن بدون راننده",
+                {title:"اجاره ماشین بدون راننده",
               link:"https://otoli.net/rent/Rent-a-car-without-a-driver"}
               ]
             }

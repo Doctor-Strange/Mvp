@@ -4301,7 +4301,9 @@ div:nth-child(4) {
         margin: 4px;
       }
     }
+    
     span{
+      cursor:pointer;
       transotion: 0.2s;
       position:relative;
       padding: 8px 54px;
@@ -4327,7 +4329,10 @@ div:nth-child(4) {
   
   .content_part_accordion ul{
     transition:0.2s;
-    display:none;
+    display:block;
+    position:absolute;
+    z-index:-10;
+    opacity:0;
     column-count:3
     @media (max-width:768px){
       column-count: 2;
@@ -4349,6 +4354,12 @@ div:nth-child(4) {
   }
   .content_part_accordion .active_tab{
     display:block;
+    position:static;
+    z-index:1;
+    opacity:1;
+  }
+  .hidebox{
+    opacity:0
   }
 }
 `;

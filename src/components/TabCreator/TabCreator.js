@@ -39,9 +39,9 @@ class TabCreator extends Component {
             </div>
           </section>
         </div>
-        {this.state.showTabContent && <div style={{ background: "#fafafa", marginBottom: "30px" }}>
+      <div style={{ background: "#fafafa", marginBottom: "30px" }}>
           <section
-            className="insurance responsive content_part_accordion"
+          className ={["insurance responsive content_part_accordion" , !this.state.showTabContent ? "hidebox" : ""].join(" ")} 
             style={{ paddingTop: "30px",paddingBottom: "30px", direction: 'rtl' }}
           >
             {data_arr.map((item, i) => {
@@ -59,7 +59,7 @@ class TabCreator extends Component {
             })}
           </section>
         </div>
-        }
+        
       </div>
     );
   }

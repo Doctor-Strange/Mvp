@@ -256,13 +256,13 @@ export class FilterAndSortBar extends React.Component<{
                   ><Icon name='options' /> {showFilters ? "جستجوی پیشرفته" : "جستجوی پیشرفته"}</a
                   >
                 </li>
-                <li>
+                {/* <li>
                   <div className="layout_view">
                     <a href="#0" className="active"><i className="icon-th"></i></a>
                     <a href="/listing-2"><i className="icon-th-list"></i></a>
                     <a href="/list-map"><i className="icon-map"></i></a>
                   </div>
-                </li>
+                </li> */}
                 {/* <li>
                     <a
                         className="btn_map"

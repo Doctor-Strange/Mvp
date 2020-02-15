@@ -110,7 +110,8 @@ export default withTranslation('common')(
       name: null,
       success: false,
       checkbox: false,
-      ShowInput:false
+      ShowInput:false,
+      clickToConfirm:false
     };
 
     constructor(props) {
@@ -617,8 +618,11 @@ export default withTranslation('common')(
                   </div> */}
                       <Form.Field
                         style={{ textAlign: 'center', fontSize: '0.8em' }}
+                        onClick={()=>this.setState({
+                          clickToConfirm:true
+                        })}
                       >
-                        <div style={{textAlign: 'right'}}>
+                        <div style={{textAlign: 'right'}} >
                         <input id="selectBox" type="checkbox"
                         checked = {this.state.checkbox}
                         name="laws" onChange={(e) =>this.setState(pre =>{
@@ -675,7 +679,9 @@ export default withTranslation('common')(
                           {Object.values(errors)[0]}
                         </Label>
                       )}
-
+            {!this.state.checkbox && this.state.clickToConfirm && <Label attached="bottom" color="red">
+                          لطفا قوانین و مقررات را بپذیرید.
+                      </Label>}
                       {this.state.success && this.state.name && (
                         <Label attached="bottom" color="green">
                           {this.state.name} خوش آمدی!

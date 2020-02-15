@@ -1,10 +1,28 @@
 import * as React from 'react';
 import Layout from "../src/components/Layout";
 import { Section } from "../src/components/row/Sections";
+import NextSeo from "next-seo";
 
 const InsurancePolicies = () => {
     return (
         <Layout haveSubHeader={true} pageTitle={"Hello World"}>
+            <NextSeo
+        config={{
+          title: `بیمه | اجاره آسان خودرو`,
+          description: `پوشش بیمه برای اجاره خودرو در اتولی نیز یکی از سرمایه‌گذاری‌های ما برای جبران خطرات و خسارات احتمالی است که متوجه اجاره‌گیرنده ماشین خواهند بود.`,
+          openGraph: {
+            title: `بیمه | اجاره آسان خودرو`,
+            description: `پوشش بیمه برای اجاره خودرو در اتولی نیز یکی از سرمایه‌گذاری‌های ما برای جبران خطرات و خسارات احتمالی است که متوجه اجاره‌گیرنده ماشین خواهند بود.`,
+            images: [{ url: `https://otoli.net${seoImage}` }],
+            site_name: "اتولی"
+          },
+          twitter: {
+            handle: "@otoli_net",
+            site: "@otoli_net",
+            cardType: "summary_large_image"
+          }
+        }}
+      />
             <Section justifyCenter={true} >
                 <div className="AboutUsPage">
 

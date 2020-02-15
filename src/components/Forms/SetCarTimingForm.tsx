@@ -592,7 +592,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
               setTimeout(() => {
                 actions.setSubmitting(false);
                 // Router.push(`/car/${id}/${car.car.brand.name.fa.replace(/ /ig,"-")}-${car.car.name.fa.replace(/ /ig,"-")}`);
-                Router.push(`/profile?id=${userId}`);
+                Router.push(`/profile?id=${userId}&newcaradded=true`);
               }, 1000);
           })
         }

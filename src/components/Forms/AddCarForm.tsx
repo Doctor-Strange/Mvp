@@ -961,13 +961,13 @@ if(!this.props.edit_mode && localStorage["CarEditId"]){
                 this.setState({ error: error.response.data.message, success: false });
               })
               .then(() => {
-                actions.setSubmitting(false);
+                // actions.setSubmitting(false);
               });
-            setTimeout(() => {
-              //console.log(values);
+            // setTimeout(() => {
+            //   //console.log(values);
 
-              actions.setSubmitting(false);
-            }, 3000);
+            //   actions.setSubmitting(false);
+            // }, 3000);
           }}
           validationSchema={Yup.object().shape({
             

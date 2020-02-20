@@ -4364,6 +4364,7 @@ div:nth-child(4) {
 }
 
 .GPS-Container{
+  padding: 15px;
   direction:rtl;
   text-align:right;
   margin-bottom:80px;

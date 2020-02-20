@@ -2298,10 +2298,14 @@ input[type="number"] {
 }
 .AboutUsPage ul{
   list-style-type: disc;
-  padding-right: 15px;
+  margin-right: 15px;
   text-align: justify;
   direction: rtl;
-  list-style-position: inside;
+  list-style-position: outside;
+  li{
+    line-height: 2;
+    margin-bottom: 14px;
+  }
 }
 .intends{
   padding-right:50px !important;

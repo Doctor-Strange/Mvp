@@ -23,4 +23,5 @@ module.exports = routes()
   .add("site-map", "/site-map")
   .add("join-us", "/join-us")
   .add("join-us1", "/join-us1")
-  .add("join-us2", "/join-us2");
+  .add("join-us2", "/join-us2")
+  .add("gps", "/gps");

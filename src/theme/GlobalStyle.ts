@@ -4362,6 +4362,29 @@ div:nth-child(4) {
     opacity:0
   }
 }
+
+.GPS-Container{
+  direction:rtl;
+  text-align:right;
+  margin-bottom:80px;
+  h1{
+    margin-bottom:24px;
+  }
+  p{
+    line-height:2;
+  }
+  ul{
+    list-style-type: arabic-indic;
+    list-style-position: inside;
+    li{
+    line-height:2;
+    margin-bottom:8px;
+    }
+  }
+}
+.TextIndenter{
+  padding-right:15px;
+}
 `;
 
 enum Margin {

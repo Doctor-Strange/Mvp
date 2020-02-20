@@ -166,6 +166,9 @@ export const Nav: React.FunctionComponent = ({ children, isMobile = false }) => 
             <li>
               <Link href="/guide-picture"><a>راهنمای عکس گرفتن</a></Link>
             </li>
+            <li>
+              <Link href="/gps"><a>راهنمای انتخاب ردیاب</a></Link>
+            </li>
           </ul>
         </li>
         {

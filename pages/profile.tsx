@@ -16,7 +16,7 @@ import { Formik, FormikActions, withFormik } from 'formik';
 import { i18n, withTranslation } from '../src/i18n';
 import { REQUEST_getUserCars, REQUEST_getUser } from '../src/API';
 import { numberWithCommas, convertNumbers2Persian, convertNumbers2English } from '../src/utils/numbers';
-import { ResultsCards } from '../src/components/Search';
+import { ProfileResultsCards } from '../src/components/Search';
 import jsCookie from 'js-cookie';
 import {
     BrowserView,
@@ -91,7 +91,7 @@ const Profile: React.SFC<IProfile> = ({ t, id, first_name, last_name, image_url,
             {/* {console.log(results)} */}
             <Section justifyCenter={true} style={{ marginTop: '24px' }} rowClassName="profile_page">
             
-          <ResultsCards
+          <ProfileResultsCards
                     t={t}
                     // own = {own}
                     fetchAPI = {fetchAPI}

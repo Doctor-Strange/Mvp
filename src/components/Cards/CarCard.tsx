@@ -1,23 +1,9 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-import jsCookie from "js-cookie";
+import { useState } from "react";
 import styled from "styled-components";
-import { Box, Flex } from "@rebass/grid";
 import Link from "next/link";
-import Router from "next/router";
-import StarRatingComponent from "react-star-rating-component";
-import { Icon, Button, Grid } from "semantic-ui-react";
 import { PriceCard } from "./index";
-import {
-  numberWithCommas,
-  convertNumbers2Persian,
-  convertNumbers2English
-} from "../../utils/numbers";
-import { ITheme } from "../../theme/Interfaces";
-import { REQUEST_set_out_of_service, REQUEST_deleteCar } from "../../API";
-import axios from "axios";
-import { toast } from "react-toastify";
-import swal from "@sweetalert/with-react";
+import { convertNumbers2Persian } from "../../utils/numbers";
 
 const Card = styled.div`
   max-height: 300px;
@@ -25,8 +11,7 @@ const Card = styled.div`
   width: 340px;
   max-width: 100%;
   margin: 10px 10px;
-  background-color: ${({ theme }: { theme: ITheme }) =>
-    theme.color.whiteBackground};
+  background-color: #ffffff;
   display: block;
   position: relative;
   border-radius: 4px;
@@ -83,11 +68,10 @@ const Card = styled.div`
       transition: all 0.6s;
       z-index: 2;
       span {
-        background-color: ${({ theme }: { theme: ITheme }) =>
-          theme.color.cardLabels};
+        background-color: #f7f7f7;
         border-radius: 20px;
         display: inline-block;
-        color: ${({ theme }: { theme: ITheme }) => theme.color.textMain};
+        color: #2a2a2a;
         font-size: 12px;
         font-size: 0.75rem;
         padding: 5px 10px;
@@ -98,7 +82,7 @@ const Card = styled.div`
       right: 16px;
       text-align: right;
     }
-    .Edit_car{
+    .Edit_car {
       top: 20px;
       left: 16px;
       text-align: left;
@@ -106,15 +90,18 @@ const Card = styled.div`
   }
   a.wish_bt {
     position: absolute;
-    left: 12px;
-    bottom: 28px;
+    left: 0;
+    bottom: 35px;
     z-index: 1;
-    background-color: ${({ theme }: { theme: ITheme }) =>
-      theme.color.fadedGray};
-    padding: 5px 10px;
+    line-height: 2;
+    background-color: #4BA3CE;
+    padding: 0px 10px;
     display: inline-block;
-    color: ${({ theme }: { theme: ITheme }) => theme.color.whiteBackground};
+    color: #ffffff;
     border-radius: 3px;
+    box-shadow: 0px 2px 2px rgba(0,0,0,.2);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
   .wrapper {
     padding: 0px 0px 60px 0px;
@@ -184,9 +171,8 @@ const Card = styled.div`
   }
 
   .delivery {
-    color: ${({ theme }: { theme: ITheme }) => theme.color.successColor};
-    border: 1px solid
-      ${({ theme }: { theme: ITheme }) => theme.color.successColor};
+    color: #32a067;
+    border: 1px solid #32a067;
   }
   .delivery,
   .loc_closed {
@@ -235,203 +221,32 @@ export const CarCard: React.FunctionComponent<{
   id: any;
   title: string;
   img: string;
-  description: string;
   year: string;
-  score: any;
   price: number;
   deliver_at_renters_place: boolean;
   dateURL?: string;
   search_id?: string;
-  simpleMode?: boolean;
-  showEditButtons?: boolean;
   discount_percent?: string;
   discounted_price?: number;
-  is_out_of_service: boolean;
-  fetchAPI?:any;
-  showInProfile?: boolean; 
-  own?:boolean
 }> = ({
-  children,
   title,
   img,
-  description,
   year,
-  score,
   price,
   deliver_at_renters_place,
   id,
   dateURL,
   search_id,
-  simpleMode = true,
-  showEditButtons = false,
   discount_percent,
-  discounted_price,
-  is_out_of_service = false,
-  fetchAPI,
-  showInProfile,
-  own
+  discounted_price
 }) => {
-  const [outofservice, setoutofservice] = useState(false);
   const [heightController, setheightController] = useState(0);
-  let link = "";
-  // let start_date ;
-  // let end_date;
-  // if(localStorage['start']){
-  //   start_date = JSON.parse(localStorage['start'])
-  //   end_date = JSON.parse(localStorage['end'])
-  // }
+
   let carName = title.replace(/ /g, "-");
-  if (simpleMode) {
-    link = `/car/${id}/${carName}?notAllowed=true`;
-  } else {
-    link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`;
-  }
+  let link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`;
 
-  // console.log(children,
-  //   title,
-  //   img,
-  //   description,
-  //   year,
-  //   score,
-  //   price,
-  //   deliver_at_renters_place,
-  //   id,
-  //   dateURL,
-  //   search_id,
-  //   simpleMode = true,
-  //   showEditButtons = false,
-  //   discount_percent,
-  //   discounted_price,
-  //   is_out_of_service = false,)
-  useEffect(() => {
-    setoutofservice(is_out_of_service);
-  }, []);
-  const setCarTiming = () => {
-    const href = `/set-car-timing?id=${id}`;
-    Router.push(href, href);
-    // console.log("/set-car-timing")
-    // return
-    // Router.push({
-    //   pathname: '/set-car-timing',
-    //   query: {
-    //     id: id
-    //   }
-    // });
-  };
-
-  const deleteCarHandller = () => {
-    // console.log("test");
-    swal(
-      <div>
-        <h3>حذف خودرو</h3>
-        <span dir="rtl">اطلاعات خودرو به طور کامل پاک شود؟</span>
-      </div>,
-      {
-        buttons: {
-          cancel: "لغو",
-          catch: {
-            text: "تایید",
-            value: "done"
-          }
-        }
-      }
-    ).then(value => {
-      if(value === "done"){
-      const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-      const token = jsCookie.get("token");
-      if(localStorage["CarEditId"] === id.toString()){
-        localStorage.removeItem("CarEditId")
-      }
-      const DELETE_CAR = "/core/rental-car/delete";
-      axios
-        .post(
-          DOMAIN + DELETE_CAR,
-          {
-            id
-          },
-          {
-            headers: {
-              Authorization: "Bearer " + token
-            }
-          }
-        )
-        .then(response => {
-          console.log("res", response.data.success, fetchAPI);
-          fetchAPI()
-        })
-        .catch(error => {
-          console.log(error.response.data.message);
-        });
-      }
-      // if (data.action == 'pay') {
-      //     Router.push(res.redirect_to, res.redirect_to, { shallow: false });
-      // }
-      // else {
-      //     refresh();
-      // }
-    });
-  };
-  const pauseCar = (id, value) => {
-    // console.log("pass" , value)
-    const token = jsCookie.get("token");
-    const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-    const SETOUTOFSERVICE = "/core/rental-car/set-is-out-of-service";
-    axios
-      .post(
-        DOMAIN + SETOUTOFSERVICE,
-        {
-          id,
-          value: !value
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token
-          }
-        }
-      )
-      .then(response => {
-        // console.log("response" ,response.data.data.is_out_of_service)
-        if (response.data.success) {
-          setoutofservice(response.data.data.is_out_of_service);
-          is_out_of_service = response.data.data.is_out_of_service;
-          let message = "";
-          if (is_out_of_service) {
-            message = `خودروی ${carName} شما در نتایج جستجو نمایش داده نخواهد شد.`;
-          } else {
-            message = `خودروی ${carName} شما در نتایج جستجو نمایش داده خواهد شد.`;
-          }
-          toast.success(message, {
-            position: "bottom-center",
-            autoClose: 7000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true
-          });
-          // console.log("outofservice" , outofservice);
-          // console.log("new value" , is_out_of_service)
-        }
-      })
-      .catch(error => {
-        console.log(error.response);
-
-        // reject(error.response);
-      });
-    // fetchAPI();
-    // console.log("pauseCar", id, value)
-    // const href = `/set-car-timing?id=${id}`;
-    // Router.push(href, href, { shallow: true });
-    return;
-    alert("خودروی شما از دیده‌ها پنهان شد.");
-  };
-
-  // async function fetchAPI() {
-  //   const res = await REQUEST_set_out_of_service({  token: jsCookie.get('token'),id:11 , value : true });
-  //   // console.log(res);
-  // }
   return (
     <Card className={`strip grid carcard CAR_CART_${title}`}>
-      {/* {console.log("body",outofservice)} */}
       <Link href={link}>
         <a className={`strip grid carcard CAR_CART_${title}`}>
           <figure>
@@ -459,128 +274,39 @@ export const CarCard: React.FunctionComponent<{
               }}
             />
             <div className="read_more">
-              <span>{simpleMode ? "مشاهده" : "مشاهده مشخصات"}</span>
+              <span>مشاهده مشخصات</span>
             </div>
-            {/* <div
-              className=" read_more delete_car"
-              onClick={e => {
-                e.preventDefault();
-                deleteCarHandller();
-              }}
-            >
-              {own && <span>{simpleMode ? "حذف خودرو" : "حذف خودرو"}</span>}
-            </div> */}
-            {/* <div className=" read_more Edit_car"
-            onClick={e => {
-              e.preventDefault();
-              Router.push(`/add-car?edit=true&car_id=${id}`)
-            }}
-            >
-              {own && <span>{simpleMode ? "ویرایش اطلاعات" : "ویرایش اطلاعات"}</span>}
-            </div> */}
-            {/* <small>Restaurant</small> */}
           </figure>
-        </a>
-      </Link>
 
-      <div className="wrapper row">
-        <div className="col-8">
-          <Link href={link}>
-            <a>
+          <div className="wrapper row">
+            <div className="col-8">
               <h3>
                 {title}
                 <br />
                 <small>{year}</small>
                 <br />
-                {/* <StarRatingComponent
-                          name="rate1"
-                          starCount={5}
-                          value={3}
-                        /> */}
               </h3>
-            </a>
-          </Link>
-        </div>
-        {!simpleMode && (
-          <div className="col-4 leftbox" style={{ cursor: "default" }}>
-            <Link href={link}>
-            <a style={{color:"#2a2a2a"}}>
-              <PriceCard number={discounted_price ? discounted_price : price}>
-              در روز
-            </PriceCard>
-            </a>
-          </Link>
-          </div>
-        )}
+            </div>
 
-        {/* <small>{text2}</small> */}
-        {/* <p>{description}</p> */}
-        {/* <a className="address" href={`/car?id=${id}`}>Get directions</a> */}
-        {!simpleMode && (
-          <ul style={{ cursor: "default" }}>
-            {deliver_at_renters_place ? (
-             <Link href={link}>
-             <a > <li>
-                <span className="delivery">تحویل در محل</span>
-              </li>
-              </a>
-              </Link>
-            ) : (
-              <li></li>
-            )}
-          </ul>
-        )}
-        {showEditButtons && (
-          <Grid className="edit">
-            <Grid.Row columns={2} centered className="property" 
-            id="Profile_BOX_details"
-            >
-              {/* <Grid.Column width={8} className="item"> */}
-                <Button basic onClick={setCarTiming}
-                className="EDIT_PRPICE_AND_TIME" 
-                id="Profile_button"
-                >
-                  {/* <Icon name="calendar alternate outline" />  */}
-                  تغیر تاریخ و قیمت
-                </Button>
-              {/* </Grid.Column> */}
-              {/* <Grid.Column width={8} className="item"> */}
-                <Button className="OUT_OF_SERVICE" basic onClick={() => pauseCar(id, outofservice)} 
-                id="Profile_button"
-                >
-                  {outofservice ? (
-                    "نمایش مجدد خودرو"
-                  ) : (
-                    <>
-                      {/* <Icon name="pause circle outline" /> */}
-                       توقف نمایش
-                    </>
-                  )}
-                </Button>
-                
-                <Button
-              className="delete_car_ICON Padding_right"
-              onClick={e => {
-                e.preventDefault();
-                deleteCarHandller();
-              }}
-            >
-              <span>{<Icon name="trash icon" size="small"/>}</span>
-            </Button>
-            <Button
-              className="delete_car_ICON"
-              onClick={e => {
-                e.preventDefault();
-                Router.push(`/add-car?edit=true&car_id=${id}`)
-              }}
-            >
-              <span>{<Icon name="pencil alternate icon" size="small"/>}</span>
-            </Button>
-              {/* </Grid.Column> */}
-            </Grid.Row>
-          </Grid>
-        )}
-      </div>
+            <div className="col-4 leftbox" style={{ cursor: "default" }}>
+              <PriceCard number={discounted_price ? discounted_price : price}>
+                در روز
+              </PriceCard>
+            </div>
+
+            <ul style={{ cursor: "default" }}>
+              {deliver_at_renters_place && (
+                <li>
+                  <span className="delivery">تحویل در محل</span>
+                </li>
+              )}
+            </ul>
+          </div>
+        </a>
+      </Link>
     </Card>
   );
 };
+
+// before 587
+// after 305

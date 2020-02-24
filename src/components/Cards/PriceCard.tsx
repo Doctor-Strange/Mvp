@@ -54,7 +54,7 @@ export const PriceCard: React.FunctionComponent<{
     }
 }
     return <Card className="price" style={style}>
-        <span className="number" style={{ fontSize: fontSize + 'px' }}>
+        <span className="number" style={{ fontSize: fontSize + 'px', color:"#2a2a2a" }}>
                 {preNumber}
                 {" "}
                 {price}

@@ -15,7 +15,7 @@ import {
   TextArea,
   Transition
 } from "semantic-ui-react";
-import { CarCard, CarCardPlaceholder } from "../Cards";
+import { ProfileCarCard, CarCardPlaceholder } from "../Cards";
 import { BulletList } from "react-content-loader";
 import { i18n, withTranslation } from "../../i18n";
 import moment from "moment-jalaali";
@@ -42,7 +42,7 @@ const NotFound = styled.p`
 //   endDate: any;
 // }
 
-export class ResultsCards extends React.Component<{
+export class ProfileResultsCards extends React.Component<{
   t?: any;
   results?: any;
   loadingResults: boolean;
@@ -52,8 +52,12 @@ export class ResultsCards extends React.Component<{
   nextPage?: any;
   dateURL?: string;
   colClass?: string;
-  marginClass?: string; 
-  userOwnPage?: boolean; 
+  marginClass?: string;
+  showInProfile?: boolean;
+  userOwnPage?: boolean;
+  fetchAPI?:any;
+  own?: boolean;
+  // own?:boolean
 }> {
   state = {
     error: ""
@@ -74,7 +78,11 @@ export class ResultsCards extends React.Component<{
       dateURL,
       lodingMore,
       colClass = "col-lg-9",
-      marginClass = "margin_16",  
+      marginClass = "margin_16",
+      showInProfile = false,
+      userOwnPage = false,
+      fetchAPI,
+      own
     } = this.props;
     return (
       <>
@@ -96,20 +104,29 @@ export class ResultsCards extends React.Component<{
           ) : (
             results.map((value, index) => {
               return (
-                <CarCard  
+                <ProfileCarCard
+                own = {own}
+                fetchAPI={fetchAPI}
                   key={index}
                   id={value.id}
-                  title= {value.car.brand.name.fa + " " + value.car.name.fa }
+                  title={showInProfile ? value.car.name.fa : 
+                  value.car.brand.name.fa + " " + value.car.name.fa}
                   year={value.year.name.fa}
                   img={
                     value.media_set[0] ? value.media_set[0].thumbnail_url : null
                   }
                   price={value.avg_price_per_day}
                   discount_percent={value.discount_percent}
-                  discounted_price={value.avg_discounted_price_per_day} 
-                  deliver_at_renters_place={value.deliver_at_renters_place} 
+                  discounted_price={value.avg_discounted_price_per_day}
+                  description={value.description}
+                  deliver_at_renters_place={value.deliver_at_renters_place}
+                  // text2={value.text2}
+                  score={"8.4"}
                   dateURL={dateURL}
-                  search_id={value.search_id}   
+                  search_id={value.search_id}
+                  simpleMode={showInProfile}
+                  showEditButtons={userOwnPage}
+                  is_out_of_service={value.is_out_of_service}
                 />
               );
             })

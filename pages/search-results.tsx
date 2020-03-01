@@ -490,7 +490,7 @@ export default withRouter(
                             result_key: this.state.latest_result_key,
                             o:this.state.priceSort
                         });
-                        console.log("res2", res);
+                        // console.log("res2", res);
 
                         const stateTemp = this.state.results;
                         const resultsTemp = res.results;

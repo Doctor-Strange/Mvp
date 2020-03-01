@@ -109,7 +109,13 @@ export class ResultsCards extends React.Component<{
                   discounted_price={value.avg_discounted_price_per_day} 
                   deliver_at_renters_place={value.deliver_at_renters_place} 
                   dateURL={dateURL}
-                  search_id={value.search_id}   
+                  search_id={value.search_id} 
+                  system_discount_per_day_name={value.system_discount_per_day_name} 
+  system_discount_name ={value.system_discount_name}
+  system_discount_percent={value.system_discount_percent}
+  avg_discounted_price_per_day_name={value.avg_discounted_price_per_day_name}
+  discounted_total_price_name={value.discounted_total_price_name}
+  avg_price_per_day_name={value.avg_price_per_day_name}
                 />
               );
             })

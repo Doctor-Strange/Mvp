@@ -6,7 +6,7 @@ import { PriceCard } from "./index";
 import { convertNumbers2Persian } from "../../utils/numbers";
 
 const Card = styled.div`
-  max-height: 300px;
+  // max-height: 300px;
   min-width: 300px;
   width: 340px;
   max-width: 100%;
@@ -188,7 +188,8 @@ const Card = styled.div`
     top: -8px;
   }
   .leftbox {
-    position: absolute;
+    position: static;
+    // position: absolute;
     left: -8px;
     bottom: 48px;
   }
@@ -228,6 +229,12 @@ export const CarCard: React.FunctionComponent<{
   search_id?: string;
   discount_percent?: string;
   discounted_price?: number;
+  system_discount_per_day_name: any,  
+  system_discount_name : any,
+  system_discount_percent: any,
+  avg_discounted_price_per_day_name:any,
+  discounted_total_price_name:any,
+  avg_price_per_day_name:any
 }> = ({
   title,
   img,
@@ -238,7 +245,13 @@ export const CarCard: React.FunctionComponent<{
   dateURL,
   search_id,
   discount_percent,
-  discounted_price
+  discounted_price,
+  system_discount_per_day_name,  
+  system_discount_name ,
+  system_discount_percent ,
+  avg_discounted_price_per_day_name,
+  discounted_total_price_name,
+  avg_price_per_day_name,
 }) => {
   const [heightController, setheightController] = useState(0);
 
@@ -277,7 +290,48 @@ export const CarCard: React.FunctionComponent<{
               <span>مشاهده مشخصات</span>
             </div>
           </figure>
-
+           <div
+           style={{
+            direction: 'ltr',
+            textAlign: 'left',
+            color: '#202020'
+           }}>
+              <p>
+              system_discount_per_day_name:  
+              {
+          system_discount_per_day_name  
+              }</p>
+              <p>
+                system_discount_name :
+                {
+  system_discount_name 
+                }
+              </p>
+              <p>
+                system_discount_percent:
+                {
+  system_discount_percent
+                }
+              </p>
+              <p>
+                avg_discounted_price_per_day_name:
+                {
+  avg_discounted_price_per_day_name
+                }
+              </p>
+              <p>
+                discounted_total_price_name:
+                {
+  discounted_total_price_name
+                }
+              </p>
+              <p>
+                avg_price_per_day_name:
+                {
+  avg_price_per_day_name
+                }
+              </p>
+              </div>
           <div className="wrapper row">
             <div className="col-8">
               <h3>

@@ -52,7 +52,13 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
             transmission_type: value.transmission_type,
             year: value.year,
             search_id: value.search_id,
-            is_out_of_service: value.is_out_of_service
+            is_out_of_service: value.is_out_of_service,
+            system_discount_per_day_name: value.system_discount_per_day_name,  
+            system_discount_name : value.system_discount_name,
+            system_discount_percent: value.system_discount_percent,
+            avg_discounted_price_per_day_name:value.avg_discounted_price_per_day_name,
+            discounted_total_price_name:value.discounted_total_price_name,
+            avg_price_per_day_name:value.avg_price_per_day_name
           }));
           if (results === undefined || results.length == 0) {
             resolve({

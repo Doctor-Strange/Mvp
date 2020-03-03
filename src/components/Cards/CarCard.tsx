@@ -250,7 +250,11 @@ export const CarCard: React.FunctionComponent<{
   avg_discounted_price_per_day_name:any,
   discounted_total_price_name:any,
   avg_price_per_day_name:any,
-  is_promoted:any
+  is_promoted:any,
+  system_discount_per_day:any,
+  total_price:any,
+  total_discount:any,
+  total_discount_percent:any
 }> = ({
   title,
   img,
@@ -268,21 +272,27 @@ export const CarCard: React.FunctionComponent<{
   avg_discounted_price_per_day_name,
   discounted_total_price_name,
   avg_price_per_day_name,
-  is_promoted
+  is_promoted,
+  system_discount_per_day,
+  total_price,
+  total_discount,
+  total_discount_percent
 }) => {
   const [heightController, setheightController] = useState(0);
 
   let carName = title.replace(/ /g, "-");
   let link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`;
-
+  let Total_Dis = discount_percent && system_discount_percent>0 ? discount_percent +Number(parseFloat(system_discount_percent).toFixed(1))
+  : discount_percent ?discount_percent : system_discount_percent>0? Number(parseFloat(system_discount_percent).toFixed(1)) : false
+  console.log("Total_Dis , discount_percent, avg_discounted_price_per_day",Total_Dis , discount_percent, Number(parseFloat(system_discount_percent).toFixed(1)))
   return (
     <Card className={`strip grid carcard CAR_CART_${title}`}>
       <Link href={link}>
         <a className={`strip grid carcard CAR_CART_${title}`}>
           <figure>
-            {discount_percent && (
+            {Total_Dis && (
               <a className="wish_bt">
-                ٪{convertNumbers2Persian(discount_percent)} تخفیف
+                ٪{convertNumbers2Persian(Total_Dis)} تخفیف
               </a>
             )}
             {
@@ -317,6 +327,9 @@ export const CarCard: React.FunctionComponent<{
             textAlign: 'left',
             color: '#202020'
            }}>
+             <h3>
+               discounts
+             </h3>
               <p>
               system_discount_per_day_name:  
               {
@@ -335,6 +348,11 @@ export const CarCard: React.FunctionComponent<{
                 }
               </p>
               <p>
+              discount_percent:{
+                discount_percent
+              }
+              </p>
+              <p>
                 avg_discounted_price_per_day_name:
                 {
   avg_discounted_price_per_day_name
@@ -345,6 +363,23 @@ export const CarCard: React.FunctionComponent<{
                 {
   discounted_total_price_name
                 }
+              </p>
+              <p>
+              total_discount_percent:{
+                total_discount_percent
+              }
+              </p>
+              <p>
+              total_discount:{
+                total_discount
+              }
+              </p>
+              <h3>prices</h3>
+              <p>
+              total_price:
+              {
+                total_price
+              }
               </p>
               <p>
                 avg_price_per_day_name:

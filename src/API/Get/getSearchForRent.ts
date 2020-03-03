@@ -25,7 +25,7 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
         // console.log("let's search", response);
 
         if (response.data.success) {
-          // console.log("dynamic ===> ",response.data );
+          console.log("dynamic ===> ",response.data );
           
           const results = response.data.items.map((value, index) => ({
             key: value.index,
@@ -58,7 +58,8 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
             system_discount_percent: value.system_discount_percent,
             avg_discounted_price_per_day_name:value.avg_discounted_price_per_day_name,
             discounted_total_price_name:value.discounted_total_price_name,
-            avg_price_per_day_name:value.avg_price_per_day_name
+            avg_price_per_day_name:value.avg_price_per_day_name,
+            is_promoted:value.is_promoted
           }));
           if (results === undefined || results.length == 0) {
             resolve({

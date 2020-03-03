@@ -116,6 +116,8 @@ export class ResultsCards extends React.Component<{
   avg_discounted_price_per_day_name={value.avg_discounted_price_per_day_name}
   discounted_total_price_name={value.discounted_total_price_name}
   avg_price_per_day_name={value.avg_price_per_day_name}
+  is_promoted={value.is_promoted}
+  system_discount_per_day={value.system_discount_per_day}
                 />
               );
             })

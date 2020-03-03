@@ -91,11 +91,26 @@ const Card = styled.div`
   a.wish_bt {
     position: absolute;
     left: 0;
-    bottom: 35px;
+    bottom:26px;
     z-index: 1;
     line-height: 2;
     background-color: #4BA3CE;
     padding: 0px 10px;
+    display: inline-block;
+    color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0px 2px 2px rgba(0,0,0,.2);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  span.wish_bt {
+    position: absolute;
+    left: 0;
+    bottom: 64px;
+    z-index: 1;
+    line-height: 2;
+    background-color: #A3678B;
+    padding: 0px 19px;
     display: inline-block;
     color: #ffffff;
     border-radius: 3px;
@@ -234,7 +249,8 @@ export const CarCard: React.FunctionComponent<{
   system_discount_percent: any,
   avg_discounted_price_per_day_name:any,
   discounted_total_price_name:any,
-  avg_price_per_day_name:any
+  avg_price_per_day_name:any,
+  is_promoted:any
 }> = ({
   title,
   img,
@@ -252,6 +268,7 @@ export const CarCard: React.FunctionComponent<{
   avg_discounted_price_per_day_name,
   discounted_total_price_name,
   avg_price_per_day_name,
+  is_promoted
 }) => {
   const [heightController, setheightController] = useState(0);
 
@@ -268,6 +285,10 @@ export const CarCard: React.FunctionComponent<{
                 ٪{convertNumbers2Persian(discount_percent)} تخفیف
               </a>
             )}
+            {
+              is_promoted && 
+              <span className="wish_bt">ویژه</span>
+            }
             <img
               style={{ position: "absolute", top: -heightController + "px" }}
               src={img}

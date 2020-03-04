@@ -295,7 +295,8 @@ export default withTranslation("common")(
         avg_price_per_day,
         no_of_days,
         avg_discounted_price_per_day,
-        insurance_total_price
+        insurance_total_price,
+        is_promoted
       } = this.props;
       if (loaded) {
         console.log(this.props);
@@ -362,7 +363,9 @@ export default withTranslation("common")(
                     </span>
                   </li>
                   {total_price !== discounted_total_price && <li>
-                    تخفیف برای {convertNumbers2Persian(no_of_days)} روز
+                    {!is_promoted ?  `تخفیف برای ${convertNumbers2Persian(no_of_days)} روز` : 
+                    "تخفیف"
+                    }
                     <span className="float-left">
                       <span>
                         {convertNumbers2Persian(

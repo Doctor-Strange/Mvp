@@ -243,7 +243,7 @@ export const CarCard: React.FunctionComponent<{
   dateURL?: string;
   search_id?: string;
   discount_percent?: string;
-  discounted_price?: number;
+  avg_discounted_price_per_day?: number;
   system_discount_per_day_name: any,  
   system_discount_name : any,
   system_discount_percent: any,
@@ -265,7 +265,7 @@ export const CarCard: React.FunctionComponent<{
   dateURL,
   search_id,
   discount_percent,
-  discounted_price,
+  avg_discounted_price_per_day,
   system_discount_per_day_name,  
   system_discount_name ,
   system_discount_percent ,
@@ -284,15 +284,15 @@ export const CarCard: React.FunctionComponent<{
   let link = `/car/${id}/${carName}${dateURL}?search_id=${search_id}`;
   let Total_Dis = discount_percent && system_discount_percent>0 ? discount_percent +Number(parseFloat(system_discount_percent).toFixed(1))
   : discount_percent ?discount_percent : system_discount_percent>0? Number(parseFloat(system_discount_percent).toFixed(1)) : false
-  console.log("Total_Dis , discount_percent, avg_discounted_price_per_day",Total_Dis , discount_percent, Number(parseFloat(system_discount_percent).toFixed(1)))
+  // console.log("Total_Dis , discount_percent, avg_discounted_price_per_day",Total_Dis , discount_percent, Number(parseFloat(system_discount_percent).toFixed(1)))
   return (
     <Card className={`strip grid carcard CAR_CART_${title}`}>
       <Link href={link}>
         <a className={`strip grid carcard CAR_CART_${title}`}>
           <figure>
-            {Total_Dis && (
+            {total_discount_percent && (
               <a className="wish_bt">
-                ٪{convertNumbers2Persian(Total_Dis)} تخفیف
+                ٪{convertNumbers2Persian(total_discount_percent)} تخفیف
               </a>
             )}
             {
@@ -399,7 +399,7 @@ export const CarCard: React.FunctionComponent<{
             </div>
 
             <div className="col-4 leftbox" style={{ cursor: "default" }}>
-              <PriceCard number={discounted_price ? discounted_price : price}>
+              <PriceCard number={avg_discounted_price_per_day}>
                 در روز
               </PriceCard>
             </div>

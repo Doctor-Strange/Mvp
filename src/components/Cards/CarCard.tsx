@@ -6,7 +6,7 @@ import { PriceCard } from "./index";
 import { convertNumbers2Persian } from "../../utils/numbers";
 
 const Card = styled.div`
-  // max-height: 300px;
+  max-height: 300px;
   min-width: 300px;
   width: 340px;
   max-width: 100%;
@@ -91,7 +91,7 @@ const Card = styled.div`
   a.wish_bt {
     position: absolute;
     left: 0;
-    bottom:26px;
+    bottom:35px;
     z-index: 1;
     line-height: 2;
     background-color: #4BA3CE;
@@ -106,7 +106,7 @@ const Card = styled.div`
   span.wish_bt {
     position: absolute;
     left: 0;
-    bottom: 64px;
+    bottom: 70px;
     z-index: 1;
     line-height: 2;
     background-color: #A3678B;
@@ -203,8 +203,8 @@ const Card = styled.div`
     top: -8px;
   }
   .leftbox {
-    position: static;
-    // position: absolute;
+    // position: static;
+    position: absolute;
     left: -8px;
     bottom: 48px;
   }
@@ -250,7 +250,7 @@ export const CarCard: React.FunctionComponent<{
   avg_discounted_price_per_day_name:any,
   discounted_total_price_name:any,
   avg_price_per_day_name:any,
-  is_promoted:any,
+  has_system_discount:any,
   system_discount_per_day:any,
   total_price:any,
   total_discount:any,
@@ -272,7 +272,7 @@ export const CarCard: React.FunctionComponent<{
   avg_discounted_price_per_day_name,
   discounted_total_price_name,
   avg_price_per_day_name,
-  is_promoted,
+  has_system_discount,
   system_discount_per_day,
   total_price,
   total_discount,
@@ -296,7 +296,7 @@ export const CarCard: React.FunctionComponent<{
               </a>
             )}
             {
-              is_promoted && 
+              has_system_discount && 
               <span className="wish_bt">ویژه</span>
             }
             <img
@@ -321,7 +321,7 @@ export const CarCard: React.FunctionComponent<{
               <span>مشاهده مشخصات</span>
             </div>
           </figure>
-           <div
+           {/* <div
            style={{
             direction: 'ltr',
             textAlign: 'left',
@@ -387,7 +387,7 @@ export const CarCard: React.FunctionComponent<{
   avg_price_per_day_name
                 }
               </p>
-              </div>
+              </div> */}
           <div className="wrapper row">
             <div className="col-8">
               <h3>

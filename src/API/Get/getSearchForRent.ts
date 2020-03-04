@@ -59,7 +59,7 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
             avg_discounted_price_per_day_name:value.avg_discounted_price_per_day_name,
             discounted_total_price_name:value.discounted_total_price_name,
             avg_price_per_day_name:value.avg_price_per_day_name,
-            is_promoted:value.is_promoted,
+            has_system_discount:value.has_system_discount,
             system_discount_per_day:value.system_discount_per_day,
             total_discount:value.total_discount,
             total_discount_percent:value.total_discount_percent

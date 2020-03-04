@@ -55,7 +55,7 @@ export const REQUEST_getCar = (data: IgetCar) => {
           value:data.value,
           cylinder: data.cylinder,
           insurance_total_price:data.insurance_total_price,
-          is_promoted:data.is_promoted,
+          has_system_discount:data.has_system_discount,
         });
       } else {
         reject(false);

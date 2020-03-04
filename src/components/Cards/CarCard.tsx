@@ -186,8 +186,9 @@ const Card = styled.div`
   }
 
   .delivery {
-    color: #32a067;
-    border: 1px solid #32a067;
+    color: #656565;
+    border: 1px solid #e6e6e6;
+    background: #e6e6e6;
   }
   .delivery,
   .loc_closed {

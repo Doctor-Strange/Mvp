@@ -534,7 +534,7 @@ const Footer: React.FunctionComponent = ({ changeLangFunc }) => {
           </div> */}
           <div className="col-lg-12">
             <AdditionalLinks>
-              <span className="ver">  </span>
+              <span className="ver">1.10.13</span>
               <Link href="/site-map">
                 <a
                   style={{

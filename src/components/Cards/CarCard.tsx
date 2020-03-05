@@ -291,7 +291,7 @@ export const CarCard: React.FunctionComponent<{
       <Link href={link}>
         <a className={`strip grid carcard CAR_CART_${title}`}>
           <figure>
-            {total_discount_percent && (
+            {total_discount_percent > 0 && (
               <a className="wish_bt">
                 ٪{convertNumbers2Persian(total_discount_percent)} تخفیف
               </a>

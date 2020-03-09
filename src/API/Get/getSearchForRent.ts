@@ -39,6 +39,7 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
             car: value.car,
             color: value.color,
             deliver_at_renters_place: value.deliver_at_renters_place,
+            with_driver: value.with_driver,
             description: value.description,
             extra_km_price: value.extra_km_price,
             location: value.location,
@@ -84,7 +85,8 @@ export const REQUEST_getSearchForRent = (data: IgetSearchForRent) => {
               statsObj = {
                 stats: {
                   body_style_set: body_style_stats,
-                  deliver_at_renters_place: stats.deliver_at_renters_place
+                  deliver_at_renters_place: stats.deliver_at_renters_place,
+                  with_driver: stats.with_driver,
                 }
               };
             }

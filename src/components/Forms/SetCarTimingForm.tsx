@@ -251,6 +251,7 @@ interface ISetCarTimingFormValues {
   daysToGetReminded: number;
   minDaysToRent: number;
   deliverAtRentersPlace: boolean;
+  with_driver: boolean;
   distanceLimit: string;
   extraKm: string;
   radioGroup: boolean;
@@ -501,6 +502,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
         daysToGetReminded: 1,
         minDaysToRent: 3,
         deliverAtRentersPlace: false,
+        with_driver: false,
         availableInAllPrice: null,
         distanceLimit: null,
         extraKm: null,
@@ -531,12 +533,14 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           cancellationPolicy,
           daysToGetReminded,
           deliverAtRentersPlace,
+          with_driver,
           distanceLimit,
           extraKm,
           minDaysToRent,
           radioGroup
         } = values;
         if (!deliverAtRentersPlace) deliverAtRentersPlace = false;
+        if (!with_driver) with_driver = false;
         // car discounts
         let discounts = [];
         carDiscounts.map((val, index) => {
@@ -556,6 +560,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           token: jsCookie.get('token'),
           id,
           deliver_at_renters_place: deliverAtRentersPlace,
+          with_driver: with_driver,
           max_km_per_day: Number(distanceLimit), // fixme
           extra_km_price: Number(extraKm), // fixme
           cancellation_policy: cancellationPolicy,
@@ -692,6 +697,7 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
           setFieldValue('extraKm', car.extra_km_price);
           setFieldValue('cancellationPolicy', car.cancellation_policy);
           setFieldValue('deliverAtRentersPlace', car.deliver_at_renters_place);
+          setFieldValue('with_driver', car.with_driver);
           setFieldValue('daysToGetReminded', car.days_to_get_reminded);
           setFieldValue('minDaysToRent', car.min_days_to_rent);
           // console.log('isAllTimePrice: ', isAllTimePrice);
@@ -953,6 +959,17 @@ const SetCarTimingForm: React.SFC<ISetCarTimingForm> = ({ t, id }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     checked={values.deliverAtRentersPlace}
+                  />
+                </Form.Field>
+                {/* ===================================================================== */}
+                <Form.Field>
+                  <Checkbox
+                    label="اجاره فقط با راننده"
+                    name="with_driver"
+                    id="with_driver"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    checked={values.with_driver}
                   />
                 </Form.Field>
                 {/* ===================================================================== */}

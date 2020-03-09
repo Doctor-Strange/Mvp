@@ -74,6 +74,7 @@ export default withTranslation("common")(
       color: {},
       color_code: null,
       deliver_at_renters_place: null,
+      with_driver: null,
       cancellation_policy: null,
       transmission_type: {},
       location: {},
@@ -279,6 +280,7 @@ export default withTranslation("common")(
         color,
         color_code,
         deliver_at_renters_place,
+        with_driver,
         cancellation_policy,
         transmission_type,
         location,
@@ -598,6 +600,15 @@ export default withTranslation("common")(
                         </p>
                         <p>
                           {deliver_at_renters_place ? "در محدوده تهران، خودرو در محل شما تحویل می‌شود." : ""}
+                        </p>
+                      </Details>
+                      <Details
+                        title="تحویل با راننده"
+                        showHr={false}
+                        style={{ marginTop: "20px" }}
+                      >
+                        <p>
+                          {with_driver && "این خودرو فقط، همراه با راننده اجاره داده می‌شود."}
                         </p>
                       </Details>
                       <Details

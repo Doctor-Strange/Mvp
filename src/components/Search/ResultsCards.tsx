@@ -108,6 +108,7 @@ export class ResultsCards extends React.Component<{
                   discount_percent={value.discount_percent}
                   avg_discounted_price_per_day={value.avg_discounted_price_per_day} 
                   deliver_at_renters_place={value.deliver_at_renters_place} 
+                  with_driver={value.with_driver} 
                   dateURL={dateURL}
                   search_id={value.search_id} 
                   system_discount_per_day_name={value.system_discount_per_day_name} 

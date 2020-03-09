@@ -760,7 +760,7 @@ export default withRouter(
                 this.state.DynamicRes.content
               }`}}>
               </article>
-              {/* {this.state.DynamicRes.link_set.length > 0 && (
+              {this.state.DynamicRes.link_set.length > 0 && (
                 <div className="D_Content">
                   <ul className ="Dynamic_links_Landing">
                     {this.state.DynamicRes.link_set.map(item => {
@@ -774,10 +774,10 @@ export default withRouter(
                       })}
                   </ul>
                 </div>
-              )} */}
+              )}
               </div>
               
-      <TabCreator data_arr={[
+      {/* <TabCreator data_arr={[
             {
               title:"شهرها",
               links:[
@@ -855,6 +855,7 @@ export default withRouter(
               ]
             }
           ]}></TabCreator>
+            */}
             </Layout>
           );
         }

@@ -152,6 +152,7 @@ export default class extends React.Component<{ t: any,isAllowed?:any, rentalCarI
         color: {},
         color_code: null,
         deliver_at_renters_place: null,
+        with_driver: null,
         cancellation_policy: null,
         transmission_type: {},
         location: {},
@@ -349,7 +350,7 @@ search_id: ""
         // console.log("this.props",
         // this.props)
         const { media_set, year, mileage_range, owner, body_style, color, color_code, cylinder, value,
-            deliver_at_renters_place, cancellation_policy, transmission_type, location, facility_set,
+            deliver_at_renters_place,with_driver, cancellation_policy, transmission_type, location, facility_set,
             max_km_per_day, description, capacity, extra_km_price, car, loaded, avg_price_per_day, avg_discounted_price_per_day, data } = this.props;
         let metaImagesArr = [];
         media_set.length >= 1 ? media_set.map((value, index) =>
@@ -582,6 +583,9 @@ search_id: ""
                             <p>{convertNumbers2Persian(location.name.breadcrumb_fa)}</p>
                             <p>{deliver_at_renters_place ? "در محدوده تهران، خودرو در محل شما تحویل می‌شود." : ""}</p>
                         </Details>
+                        {with_driver &&<Details title="اجاره با راننده">
+                            <p>اجاره این خودرو فقط، همراه با راننده امکان‌پذیر است.</p>
+                        </Details>}
                         <Details title="محدودیت مسافت">
                             <ul className="">
                                 <li>{max_km_per_day ? convertNumbers2Persian(max_km_per_day) + "کیلومتر" : "ندارد"}</li>

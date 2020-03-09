@@ -241,6 +241,7 @@ export const CarCard: React.FunctionComponent<{
   year: string;
   price: number;
   deliver_at_renters_place: boolean;
+  with_driver: boolean;
   dateURL?: string;
   search_id?: string;
   discount_percent?: string;
@@ -262,6 +263,7 @@ export const CarCard: React.FunctionComponent<{
   year,
   price,
   deliver_at_renters_place,
+  with_driver,
   id,
   dateURL,
   search_id,
@@ -409,6 +411,11 @@ export const CarCard: React.FunctionComponent<{
               {deliver_at_renters_place && (
                 <li>
                   <span className="delivery">تحویل در محل</span>
+                </li>
+              )}
+              {with_driver && (
+                <li>
+                  <span className="delivery">اجاره با راننده</span>
                 </li>
               )}
             </ul>

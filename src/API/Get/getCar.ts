@@ -35,6 +35,7 @@ export const REQUEST_getCar = (data: IgetCar) => {
           color: data.color.name,
           color_code: data.color.code,
           deliver_at_renters_place: data.deliver_at_renters_place,
+          with_driver: data.with_driver,
           cancellation_policy: data.cancellation_policy,
           transmission_type: data.transmission_type.name,
           location: data.location,

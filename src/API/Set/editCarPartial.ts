@@ -9,6 +9,7 @@ export const REQUEST_editCarPartial = (data: IeditCarPartial) => {
         token,
         id,
         deliver_at_renters_place,
+        with_driver,
         max_km_per_day,
         extra_km_price,
         cancellation_policy,
@@ -22,6 +23,7 @@ export const REQUEST_editCarPartial = (data: IeditCarPartial) => {
             cancellation_policy,
             days_to_get_reminded,
             deliver_at_renters_place,
+            with_driver,
             extra_km_price,
             id,
             max_km_per_day,
@@ -48,6 +50,7 @@ interface IeditCarPartial {
   token: string;
   id: string | number;
   deliver_at_renters_place: number | boolean;
+  with_driver: number | boolean;
   max_km_per_day: number;
   extra_km_price: number;
   cancellation_policy: string;

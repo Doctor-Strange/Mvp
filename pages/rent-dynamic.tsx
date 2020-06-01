@@ -760,7 +760,7 @@ export default withRouter(
                 this.state.DynamicRes.content
               }`}}>
               </article>
-              {this.state.DynamicRes.link_set.length > 0 && (
+              {/* {this.state.DynamicRes.link_set.length > 0 && (
                 <div className="D_Content">
                   <ul className ="Dynamic_links_Landing">
                     {this.state.DynamicRes.link_set.map(item => {
@@ -774,10 +774,10 @@ export default withRouter(
                       })}
                   </ul>
                 </div>
-              )}
+              )} */}
               </div>
               
-      {/* <TabCreator data_arr={[
+      <TabCreator data_arr={[
             {
               title:"شهرها",
               links:[
@@ -831,7 +831,7 @@ export default withRouter(
 {title:"اجاره پورشه ",link:"https://otoli.net/rent/porsche"},
 {title:"اجاره رنو",link:"https://otoli.net/rent/Renault"},
 {title:"اجاره تویوتا ",link:"https://otoli.net/rent/toyota"},
-{title:"اجاره وانت ",link:"https://otoli.net/rent/Pickup"},
+// {title:"اجاره وانت ",link:"https://otoli.net/rent/Pickup"},
 {title:"اجاره ون",link:"https://otoli.net/rent/van"}
 ]
             },
@@ -855,7 +855,7 @@ export default withRouter(
               ]
             }
           ]}></TabCreator>
-            */}
+           
             </Layout>
           );
         }
